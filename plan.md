@@ -352,3 +352,8 @@ Si un PR no cumple con estos criterios, debe devolverse con observaciones concre
 Este proyecto busca crear una mini app de películas y series inspirada en Letterboxd, enfocada en la organización personal del usuario, la interacción visual y la posibilidad de compartir listas en un entorno sin backend. Para hacerlo sostenible y de calidad, se exige disciplina en Git Flow, en la definición de requisitos, en la revisión de pull requests y en la alineación de todas las implementaciones con el `plan.md` como especificación maestra.
 
 La calidad del proyecto no dependerá solo de la funcionalidad final, sino también de la disciplina del proceso, la consistencia del diseño, la robustez del código y la correcta gestión de revisiones antes del merge.
+
+> Spec maestro inicial configurado y validado para el flujo de trabajo.
+
+ 
+<!-- Este archivo se ha subido anteriormente en develop -->
