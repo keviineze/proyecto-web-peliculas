@@ -7,8 +7,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 ## [Unreleased]
 
 ### Added
-- [feature/coordinador-setup-repo-and-pages] Agregado de archivos **index.html**, **plan.md** y **changelog.md**.  
-  PR: [#1](link) - @keviineze (Coordinador / DevOps)
+- [feature/coordinador-setup-repo-and-pages] Agregado de archivos **index.html**, **plan.md**, **changelog.md**, carpetas **.github** y **docs** con archivo **spec-devops.md**.  
+  PR: [#2](https://github.com/keviineze/proyecto-web-peliculas/pull/2) - @keviineze (Coordinador / DevOps)
 
 
 ### Changed
