@@ -30,11 +30,11 @@ La carpeta `docs/02-prompts/` deberá incluir al menos cinco prompts documentado
 
 ## 👥 Integrantes del grupo
 
-| Nombre completo | N.º de matrícula | Usuario de GitHub                                    | Rol en esta entrega                     |
-| --------------- | ---------------: | ---------------------------------------------------- | --------------------------------------- |
-| Gonzalo Barbano |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano) | coordinación/DevOps                     |
-| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | desarrollo front-end y documentación/UX |
-| Kevin Sosa      |           154080 | [@keviineze](https://github.com/keviineze)           | IA y prompt engineering                 |
+| Nombre completo | N.º de matrícula | Usuario de GitHub                                    | Rol en esta entrega                                |
+| --------------- | ---------------: | ---------------------------------------------------- | -------------------------------------------------- |
+| Gonzalo Barbano |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano) | Desarrollo front-end y documentación/UXengineering |
+| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | IA y prompt engineering                            |
+| Kevin Sosa      |           154080 | [@keviineze](https://github.com/keviineze)           | Coordinación/DevOps                                |
 
 Los roles de coordinación/DevOps, desarrollo front-end, documentación/UX e IA y prompt engineering se distribuirán y rotarán entre los integrantes a lo largo de las entregas, de acuerdo con la dinámica de la materia.
 
