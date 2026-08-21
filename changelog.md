@@ -8,6 +8,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
+- [feature/frontend-add-html-structure] Agregado de spec-frontend.md [#4](https://github.com/keviineze/proyecto-web-peliculas/pull/4) - @GonzaloBarbano (Desarrollo front-end)
+
 - [feature/doc-ux-add-readme-and-mockup] Agregado de spec-ux.md y de README.md PR: [#3](https://github.com/keviineze/proyecto-web-peliculas/pull/3) - @GonzaloBarbano (Documentador/UX)
 
 - [feature/coordinador-setup-repo-and-pages] Agregado de archivos **index.html**, **plan.md**, **changelog.md**, carpetas **.github** y **docs** con archivo **spec-devops.md**.  
