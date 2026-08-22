@@ -4,7 +4,7 @@
 El Spec-Driven Development (SDD) es una metodología de trabajo que exige que cada tarea sea especificada antes de ser ejecutada. Usamos SDD para garantizar que el trabajo de cada rol esté alineado estrictamente con los requerimientos funcionales del archivo maestro plan.md.
 
 ## Implementación en el Proyecto
-* Ningún integrante puede comenzar a escribir código o diseñar sin antes redactar su especificación en la carpeta docs/specs/.
+* Ningún integrante puede comenzar a escribir código o diseñar sin antes redactar su especificación en la carpeta docs/03-specs/actividad-obligatoria-1/.
 * Las especificaciones se redactarán utilizando una plantilla estandarizada (spec-[rol].md).
 * Un Pull Request (PR) no será aprobado si no incluye la especificación técnica correspondiente.
 * Durante los Code Reviews, el archivo plan.md funcionará como la referencia oficial.
