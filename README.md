@@ -20,7 +20,7 @@ Esta primera entrega incluye títulos, párrafos, imágenes, enlaces, listas, un
 
 ## 📁 Documentación
 
-- 📁 **[Mockup](docs/01-mockup/diseño-inicial.png)** - **[Figma](https://www.figma.com/design/MUinkLOSBg71RCgez6ibro/Proyecto-Web-Peliculas?node-id=0-1&m=dev&t=yIfByMZitEHj3ruE-1)**
+- 📁 **[Mockup](docs/01-mockup/actividad-obligatoria-1/diseño-inicial.png)** - **[Figma](https://www.figma.com/design/MUinkLOSBg71RCgez6ibro/Proyecto-Web-Peliculas?node-id=0-1&m=dev&t=yIfByMZitEHj3ruE-1)**
 
 ## 👥 Integrantes del grupo
 
