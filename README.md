@@ -95,26 +95,6 @@ El repositorio incluirá la carpeta `docs/02-prompts/`, donde se documentarán a
 
 Los prompts deben corresponder a interacciones reales y podrán documentar el uso de herramientas como ChatGPT, Gemini, Claude, Copilot o Cursor. No se incluirán ejemplos ficticios.
 
-## Estructura prevista
-
-```text
-.
-├── index.html
-├── plan.md
-├── README.md
-├── css/
-├── js/
-└── docs/
-    ├── 02-prompts/
-    └── specs/
-        ├── spec-devops.md
-        ├── spec-frontend.md
-        ├── spec-ux.md
-        └── spec-ia.md
-```
-
-En esta etapa, `index.html` es el punto de entrada de la página. La carpeta `css/` contendrá los estilos en futuras entregas y `js/` concentrará la lógica de interacción y persistencia.
-
 ## Tecnologías
 
 - HTML5 para la estructura y el contenido semántico.
