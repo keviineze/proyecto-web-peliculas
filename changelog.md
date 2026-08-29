@@ -8,32 +8,26 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
-<<<<<<< HEAD
-- [feature/ia-sdd-docs] Configuración de SDD, plantillas base y spec de IA.
-  PR: [#X] - @Davidsoria99 (Especialista en IA)
-=======
 - [feature/frontend-add-html-structure-1] Agregado de index.html [#10](https://github.com/keviineze/proyecto-web-peliculas/pull/10) - @GonzaloBarbano (Desarrollo front-end)
 
 - [feature/doc-ux-add-readme-and-mockup] Agregado de mockup y actualizacion README.md PR: [#8](https://github.com/keviineze/proyecto-web-peliculas/pull/8) - @GonzaloBarbano (Documentador/UX)
->>>>>>> 48f5808f7efad9cda2e25b350f8a90580958e3f7
 
-- [feature/doc-ux-add-readme-and-mockup] Agregado de mockup y actualizacion README.md 
-  PR: [#8](https://github.com/keviineze/proyecto-web-peliculas/pull/8) - @GonzaloBarbano (Documentador/UX)
+- [feature/ia-sdd-docs] Configuración de SDD, plantillas base y spec de IA. PR: [#5](https://github.com/keviineze/proyecto-web-peliculas/pull/5) - @Davidsoria99 (Especialista en IA)
 
-- [feature/frontend-add-html-structure] Agregado de spec-frontend.md 
-  PR: [#4](https://github.com/keviineze/proyecto-web-peliculas/pull/4) - @GonzaloBarbano (Desarrollo front-end)
+- [feature/frontend-add-html-structure] Agregado de spec-frontend.md PR: [#4](https://github.com/keviineze/proyecto-web-peliculas/pull/4) - @GonzaloBarbano (Desarrollo front-end)
 
-- [feature/doc-ux-add-readme-and-mockup] Agregado de spec-ux.md y de README.md 
-  PR: [#3](https://github.com/keviineze/proyecto-web-peliculas/pull/3) - @GonzaloBarbano (Documentador/UX)
+- [feature/doc-ux-add-readme-and-mockup] Agregado de spec-ux.md y de README.md PR: [#3](https://github.com/keviineze/proyecto-web-peliculas/pull/3) - @GonzaloBarbano (Documentador/UX)
 
-- [feature/coordinador-setup-repo-and-pages] Agregado de archivos **index.html**, **plan.md**, **changelog.md**, carpetas **.github** y **docs** con archivo **spec-devops.md**.  
-  PR: [#2](https://github.com/keviineze/proyecto-web-peliculas/pull/2) - @keviineze (Coordinador / DevOps)
+- [feature/coordinador-setup-repo-and-pages] Agregado de archivos **index.html**, **plan.md**, **changelog.md**, carpetas **.github** y **docs** con archivo **spec-devops.md**. PR: [#2](https://github.com/keviineze/proyecto-web-peliculas/pull/2) - @keviineze (Coordinador / DevOps)
+
+### Fixed
+- [fix/changelog-1] Corrección de changelog. - @Davidsoria99 (Especialista en IA)
 
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2025-08-10
 
-Aquí se listarán todas las Pull Requests que entraron en esta release.  
+Aquí se listarán todas las Pull Requests que entraron en esta release.
 Actualmente están en la sección [Unreleased] porque sólo están en la rama `develop`.
 
 ---
