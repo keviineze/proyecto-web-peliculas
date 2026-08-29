@@ -4,7 +4,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
-## [Unreleased]
+## [Release Actividad Obligatoria N°1] - 2026-08-31
 
 ### Added
 
@@ -22,13 +22,6 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 - [fix/changelog-1] Corrección de changelog. - @Davidsoria99 (Especialista en IA)
-
----
-
-## [Release Actividad Obligatoria N°1] - 2025-08-10
-
-Aquí se listarán todas las Pull Requests que entraron en esta release.
-Actualmente están en la sección [Unreleased] porque sólo están en la rama `develop`.
 
 ---
 
