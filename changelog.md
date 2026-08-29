@@ -1,6 +1,6 @@
 # Changelog
 
-Este archivo se actualizado con cada Pull Request para registrar avances y correcciones.
+Este archivo se actualiza con cada Pull Request para registrar avances y correcciones.
 
 ---
 
