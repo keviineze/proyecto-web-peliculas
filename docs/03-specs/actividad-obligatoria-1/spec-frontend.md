@@ -45,16 +45,16 @@ Además, dejar identificadas las áreas de CSS y JavaScript permite que los pró
 
 ## 4. Criterios de aceptación
 
-- [ ] Existe `docs/specs/spec-frontend.md` y fue redactado antes de modificar la estructura principal.
-- [ ] `index.html` contiene una estructura HTML5 completa y semántica.
-- [ ] La página incluye título, párrafos, imágenes, enlaces, listas, formulario y tabla relacionados con películas o series.
-- [ ] La página incluye metadatos básicos, idioma declarado y una jerarquía de encabezados accesible.
-- [ ] Las imágenes poseen texto alternativo y los controles del formulario poseen etiquetas asociadas.
-- [ ] La tabla contiene encabezados y datos legibles.
-- [ ] El código HTML incluye comentarios concisos sobre las futuras integraciones de CSS y JavaScript.
-- [ ] La estructura permite agregar posteriormente tarjetas, filtros, estados de visualización, calificaciones y comentarios sin rehacer el documento.
-- [ ] El archivo se puede abrir en un navegador moderno sin errores de marcado visibles.
-- [ ] El PR incluye esta especificación y la actualización de `index.html`.
+- [x] Existe `docs/specs/spec-frontend.md` y fue redactado antes de modificar la estructura principal.
+- [x] `index.html` contiene una estructura HTML5 completa y semántica.
+- [x] La página incluye título, párrafos, imágenes, enlaces, listas, formulario y tabla relacionados con películas o series.
+- [x] La página incluye metadatos básicos, idioma declarado y una jerarquía de encabezados accesible.
+- [x] Las imágenes poseen texto alternativo y los controles del formulario poseen etiquetas asociadas.
+- [x] La tabla contiene encabezados y datos legibles.
+- [x] El código HTML incluye comentarios concisos sobre las futuras integraciones de CSS y JavaScript.
+- [x] La estructura permite agregar posteriormente tarjetas, filtros, estados de visualización, calificaciones y comentarios sin rehacer el documento.
+- [x] El archivo se puede abrir en un navegador moderno sin errores de marcado visibles.
+- [x] El PR incluye esta especificación y la actualización de `index.html`.
 
 ## 5. Validación prevista
 

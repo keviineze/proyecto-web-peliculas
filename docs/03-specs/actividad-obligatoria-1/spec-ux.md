@@ -141,17 +141,17 @@ La tabla se utilizará para comparar datos del catálogo como título, tipo, añ
 
 La tarea UX se considerará terminada cuando se cumplan todos los siguientes criterios:
 
-- [ ] Existe `docs/specs/spec-ux.md` y fue redactado antes de iniciar la tarea de desarrollo asociada.
-- [ ] El documento explica qué se hará, por qué, el alcance y la forma de validación.
-- [ ] Se registra el pedido realizado a GitHub Copilot en modo Agente usando `plan.md` como contexto.
-- [ ] Se documentan las sugerencias recibidas, las decisiones adoptadas y las alternativas descartadas o postergadas.
-- [ ] El layout propuesto contempla navegación, catálogo, biblioteca personal, formulario, tabla y pie de página.
-- [ ] La propuesta respeta el alcance de la primera entrega HTML5 y no presenta como implementadas las funciones futuras.
-- [ ] Se definen criterios básicos de accesibilidad para semántica, navegación, imágenes, formularios y tablas.
-- [ ] El mockup final se exporta a `docs/01-mockup/diseño-inicial.png`.
-- [ ] `README.md` incluye un enlace funcional al mockup.
-- [ ] El mockup y la estructura propuesta permiten reconocer las futuras funciones de estados, calificaciones, comentarios y compartir.
-- [ ] La propuesta puede validarse visualmente en Figma y revisarse contra este documento durante el Pull Request.
+- [x] Existe `docs/specs/spec-ux.md` y fue redactado antes de iniciar la tarea de desarrollo asociada.
+- [x] El documento explica qué se hará, por qué, el alcance y la forma de validación.
+- [x] Se registra el pedido realizado a GitHub Copilot en modo Agente usando `plan.md` como contexto.
+- [x] Se documentan las sugerencias recibidas, las decisiones adoptadas y las alternativas descartadas o postergadas.
+- [x] El layout propuesto contempla navegación, catálogo, biblioteca personal, formulario, tabla y pie de página.
+- [x] La propuesta respeta el alcance de la primera entrega HTML5 y no presenta como implementadas las funciones futuras.
+- [x] Se definen criterios básicos de accesibilidad para semántica, navegación, imágenes, formularios y tablas.
+- [x] El mockup final se exporta a `docs/01-mockup/diseño-inicial.png`.
+- [x] `README.md` incluye un enlace funcional al mockup.
+- [x] El mockup y la estructura propuesta permiten reconocer las futuras funciones de estados, calificaciones, comentarios y compartir.
+- [x] La propuesta puede validarse visualmente en Figma y revisarse contra este documento durante el Pull Request.
 
 ## 9. Validación
 
