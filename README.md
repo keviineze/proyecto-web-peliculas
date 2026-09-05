@@ -82,10 +82,10 @@ Antes de comenzar cada tarea de desarrollo, el integrante responsable deberá cr
 
 Los archivos previstos son:
 
-- `docs/specs/spec-devops.md`
-- `docs/specs/spec-frontend.md`
-- `docs/specs/spec-ux.md`
-- `docs/specs/spec-ia.md`
+- `docs/03-specs/actividad-obligatoria-1/spec-devops.md`
+- `docs/03-specs/actividad-obligatoria-1/spec-frontend.md`
+- `docs/03-specs/actividad-obligatoria-1/spec-ux.md`
+- `docs/03-specs/actividad-obligatoria-1/spec-ia.md`
 
 Un Pull Request no se considerará completo sin el spec correspondiente.
 
