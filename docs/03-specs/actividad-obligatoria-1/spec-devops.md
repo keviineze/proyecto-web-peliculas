@@ -12,9 +12,9 @@
 Es necesario establecer bases sólidas de control de versiones mediante la metodología Git Flow y Spec-Driven Development (SDD), asegurando que todo cambio futuro pase por revisiones formales y se ajuste a los requerimientos acordados antes de modificar el código principal.
 
 ## 3. Criterios de Aceptación (Checklist)
-- [ ] Repositorio creado y compartido con el profesor (`MVelasquez98`) y los integrantes del equipo.
-- [ ] Rama `master` protegida (requiere PR y aprobación).
-- [ ] Rama `develop` protegida (requiere PR y aprobación del Coordinador).
-- [ ] Estructura de carpetas inicial completa reflejada en el repositorio.
-- [ ] Archivo `plan.md` redactado en la raíz y validado.
-- [ ] Especificación técnica (`spec-devops.md`) commiteada antes del desarrollo principal.
+- [x] Repositorio creado y compartido con el profesor (`MVelasquez98`) y los integrantes del equipo.
+- [x] Rama `master` protegida (requiere PR y aprobación).
+- [x] Rama `develop` protegida (requiere PR y aprobación del Coordinador).
+- [x] Estructura de carpetas inicial completa reflejada en el repositorio.
+- [x] Archivo `plan.md` redactado en la raíz y validado.
+- [x] Especificación técnica (`spec-devops.md`) commiteada antes del desarrollo principal.
