@@ -21,9 +21,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/coordinador-setup-repo-and-pages] Agregado de archivos **index.html**, **plan.md**, **changelog.md**, carpetas **.github** y **docs** con archivo **spec-devops.md**. PR: [#2](https://github.com/keviineze/proyecto-web-peliculas/pull/2) - @keviineze (Coordinador / DevOps)
 
 ### Fixed
-- [fix/changelog-1] Corrección de changelog. - @Davidsoria99 (Especialista en IA)
 
----
+- [fix/coreccion-frontend-y-documentador-ux] Correcciones generales PR: [#14](https://github.com/keviineze/proyecto-web-peliculas/pull/14) - @GonzaloBarbano (Desarrollo front-end y Documentador/UX)
+
+- [fix/changelog-1] Corrección de changelog. PR: [#12](https://github.com/keviineze/proyecto-web-peliculas/pull/12) - @Davidsoria99 (Especialista en IA)
 
 ## Cómo usar este archivo
 
