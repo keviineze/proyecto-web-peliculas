@@ -21,6 +21,7 @@ Se buscaba obtener una guía estructural (un wireframe lógico o esqueleto) que 
 ## Resultado Obtenido
 
 La IA entregó una propuesta de arquitectura de la información detallada. Estructuró la respuesta en tres ejes fundamentales:
+
 1. Una estructura semántica mapeada directamente a etiquetas HTML5 (`<header>`, `<nav>`, `<main>`, `<aside>`, etc.).
 2. El desglose de los componentes de la interfaz (Tarjetas de catálogo, estados de la biblioteca, formulario de búsqueda y tabla comparativa).
 3. Pautas específicas de jerarquía visual y accesibilidad (uso de etiquetas de texto, contraste tipográfico y uso de layouts en grid/flexbox).
@@ -28,6 +29,26 @@ La IA entregó una propuesta de arquitectura de la información detallada. Estru
 📸 **Captura de pantalla**
 ![Respuesta - Parte 1](img/Prompt-04-respuesta1.png)
 ![Respuesta - Parte 2](img/Prompt-04-respuesta2.png)
+
+## Resultado de Gemini
+
+Como segunda respuesta al mismo pedido, Gemini propuso una estructura visual más detallada y directamente trasladable a Figma. La propuesta incluye:
+
+1. Un sistema de diseño base con paleta de colores, tipografía y grilla responsive.
+2. Un esquema de navegación con header fijo, filtros, pestañas y acción para compartir la lista.
+3. La organización de las vistas principales: catálogo general, panel "Mi Lista Personal", detalle/edición y modal para compartir.
+4. Estados y acciones de los componentes, como "Para ver", "Visto", calificación con estrellas y comentarios personales.
+
+📸 **Captura de pantalla**
+![Respuesta de Gemini](img/Prompt-04-Gemini.png)
+
+## Comparación de resultados
+
+Ambas respuestas cumplen con el resultado esperado de convertir los requerimientos del `plan.md` en una guía para diseñar el mockup. La respuesta de Claude aporta una base más conceptual y técnica: relaciona la estructura visual con etiquetas HTML5, separa los componentes principales y considera criterios de jerarquía visual y accesibilidad.
+
+La respuesta de Gemini amplía esa base con decisiones visuales y funcionales más específicas. Define colores, tipografías, distribución en grilla, navegación, pantallas, modales y estados interactivos, por lo que resulta más útil como referencia inmediata para construir los frames y componentes en Figma. Como contrapartida, algunas decisiones de estilo, como el modo oscuro y la tipografía, deberían validarse con el resto del proyecto antes de adoptarse.
+
+En conjunto, se conservaron de Claude los criterios de estructura semántica y accesibilidad, mientras que la propuesta de Gemini se tomó como complemento para concretar el sistema visual, la navegación y los estados de interacción del mockup.
 
 ## Correcciones Manuales
 
