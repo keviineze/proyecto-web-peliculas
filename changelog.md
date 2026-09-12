@@ -22,6 +22,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
+- [fix/coreccion-frontend-y-documentador-ux] Correcciones generales PR: [#15](https://github.com/keviineze/proyecto-web-peliculas/pull/15) - @GonzaloBarbano (Desarrollo front-end y Documentador/UX)
+
 - [fix/coreccion-frontend-y-documentador-ux] Correcciones generales PR: [#14](https://github.com/keviineze/proyecto-web-peliculas/pull/14) - @GonzaloBarbano (Desarrollo front-end y Documentador/UX)
 
 - [fix/changelog-1] Corrección de changelog. PR: [#12](https://github.com/keviineze/proyecto-web-peliculas/pull/12) - @Davidsoria99 (Especialista en IA)
