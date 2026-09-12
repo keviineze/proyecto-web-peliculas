@@ -40,7 +40,7 @@ Como segunda respuesta al mismo pedido, Gemini propuso una estructura visual má
 4. Estados y acciones de los componentes, como "Para ver", "Visto", calificación con estrellas y comentarios personales.
 
 📸 **Captura de pantalla**
-![Respuesta de Gemini](img/Promt-04-Gemini.png)
+![Respuesta de Gemini](img/Prompt-04-Gemini.png)
 
 ## Comparación de resultados
 
