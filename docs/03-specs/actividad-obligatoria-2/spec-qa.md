@@ -1,332 +1,302 @@
-# Spec QA — Actividad Obligatoria N.º 2
+# Especificación de Testing & QA
 
-## 1. Información general
-
-* **Actividad:** Actividad Obligatoria N.º 2
-* **Rol:** Documentador / QA Tester
-* **Proyecto:** Proyecto Web Películas (Mini Letterboxd)
-* **Responsable:** Kevin Ezequiel Sosa
-* **Rama de trabajo:** `feature/doc-qa-tester-add-test-cases`
-* **Rama base:** `release/actividad-obligatoria-1`
-* **Entorno de testing:** aplicación web ejecutándose localmente
-* **URL de testing:** `http://localhost:3000`
+**Proyecto:** Proyecto Web Películas (Mini Letterboxd).
+**Actividad:** Actividad Obligatoria N.º 2
+**Rol:** Documentador / QA Tester
+**Versión:** 1.0
+**Estado:** Planificación inicial
+**Rama de trabajo:** `feature/doc-qa-tester-add-test-cases`
+**Rama base:** `release/actividad-obligatoria-1`
+**URL de testing local:** `http://localhost:3000`
 
 ---
 
-## 2. Objetivo
+## 📋 Índice
 
-El objetivo de esta tarea es verificar la calidad de la interfaz web del proyecto de películas mediante pruebas automatizadas asistidas por MCP.
-
-El testing se realizará principalmente sobre los cambios desarrollados por los integrantes responsables de:
-
-* Desarrollo Frontend / CSS.
-* Responsive Design.
-
-Las pruebas buscarán detectar problemas funcionales, visuales, de responsive design, rendimiento, accesibilidad y estructura semántica antes de que los cambios sean integrados a la rama `develop`.
-
-Los hallazgos relevantes serán documentados y, cuando corresponda, registrados como issues de tipo `bug` en GitHub.
-
----
-
-## 3. Alcance del testing
-
-El testing contempla los siguientes aspectos:
-
-1. Compatibilidad entre navegadores de escritorio.
-2. Adaptación responsive en dispositivos móviles y tablets.
-3. Rendimiento y tiempos de carga.
-4. Accesibilidad web.
-5. Estructura HTML semántica.
-
-Las pruebas se ejecutarán inicialmente durante el **Momento 1 — Testing pre-merge** y posteriormente durante el **Momento 2 — Testing post-merge a develop**.
+1. [Objetivo](#objetivo)
+2. [Alcance del Testing](#alcance-del-testing)
+3. [Herramientas](#herramientas)
+4. [Plan de Testing](#plan-de-testing)
+5. [Criterios de Aceptación](#criterios-de-aceptación)
+6. [Momento 1: Testing Pre-Merge](#momento-1-testing-pre-merge)
+7. [Momento 2: Testing Post-Merge](#momento-2-testing-post-merge)
+8. [Documentación de Test Cases](#documentación-de-test-cases)
+9. [Gestión de Bugs](#gestión-de-bugs)
+10. [Resultados](#resultados)
 
 ---
 
-## 4. Plan de testing
+## 🎯 Objetivo
 
-### Test Case 1 — Compatibilidad en navegadores desktop
+El objetivo de este documento es definir el plan de testing y aseguramiento de calidad para el proyecto web de películas.
 
-Se verificará el comportamiento y la presentación de la aplicación utilizando navegadores de escritorio compatibles con Playwright.
+Como Documentador / QA Tester, se realizarán pruebas sobre las funcionalidades y la interfaz desarrollada por los integrantes responsables del Frontend/CSS y Responsive Design.
 
-Navegadores a verificar:
+El testing tendrá como objetivos principales:
 
-* Chrome / Chromium
-* Firefox
-* Safari / WebKit
-* Edge
-
-### Objetivo
-
-Comprobar que la interfaz principal y sus elementos visuales se comporten correctamente independientemente del navegador utilizado.
-
-Se verificarán especialmente:
-
-* carga de la página;
-* navegación;
-* visualización de contenido;
-* botones y enlaces;
-* estilos CSS;
-* ausencia de errores visibles;
-* comportamiento de componentes principales.
+* Detectar errores funcionales y visuales.
+* Verificar el comportamiento responsive.
+* Comprobar compatibilidad entre navegadores.
+* Evaluar aspectos básicos de rendimiento.
+* Detectar problemas de accesibilidad.
+* Verificar la estructura y semántica del HTML.
+* Documentar los resultados obtenidos.
+* Registrar mediante issues los bugs relevantes encontrados durante las pruebas.
 
 ---
 
-### Test Case 2 — Responsive en dispositivos móviles
+## 🔎 Alcance del Testing
 
-Se verificará la adaptación de la interfaz utilizando diferentes tamaños de viewport mediante emulación de dispositivos.
+El testing se realizará en dos momentos definidos por la actividad:
 
-Dispositivos de referencia:
+### Momento 1 — Testing Pre-Merge
 
-* iPhone
-* Samsung Galaxy
-* iPad
+Se probarán las ramas de los integrantes responsables de Frontend/CSS y Responsive Design antes de que sus cambios sean integrados a `develop`.
 
-### Objetivo
+El objetivo será detectar problemas antes de la integración.
 
-Comprobar que la interfaz se adapte correctamente a diferentes resoluciones y tamaños de pantalla.
+### Momento 2 — Testing Post-Merge
 
-Se verificará:
+Una vez que los cambios hayan sido integrados en `develop`, se volverán a ejecutar las pruebas para verificar el funcionamiento de la versión integrada.
 
-* ausencia de scroll horizontal no deseado;
-* correcta distribución de elementos;
-* legibilidad del contenido;
-* tamaño y posición de botones;
-* navegación;
-* imágenes;
-* tarjetas de películas;
-* encabezado y demás componentes;
-* ausencia de elementos superpuestos o cortados.
+El objetivo será detectar problemas producidos por la integración o problemas que no hayan sido detectados durante el Momento 1.
 
 ---
 
-### Test Case 3 — Performance y carga
-
-Se evaluará el rendimiento inicial de la aplicación utilizando información disponible mediante la Performance API del navegador.
-
-### Objetivo
-
-Detectar problemas relacionados con:
-
-* tiempo de carga;
-* recursos excesivamente pesados;
-* carga de imágenes;
-* tiempos de renderizado;
-* comportamiento general durante la carga inicial.
-
----
-
-### Test Case 4 — Accesibilidad web
-
-Se realizará una evaluación automatizada de accesibilidad utilizando Playwright MCP junto con la evaluación mediante `axe-core`.
-
-### Objetivo
-
-Detectar problemas relacionados con accesibilidad, incluyendo:
-
-* elementos sin nombre accesible;
-* problemas de contraste;
-* estructura incorrecta de encabezados;
-* imágenes sin texto alternativo;
-* problemas de navegación;
-* atributos ARIA incorrectos o ausentes cuando sean necesarios.
-
----
-
-### Test Case 5 — Estructura HTML semántica
-
-Se verificará la estructura semántica del documento mediante snapshot de accesibilidad y validaciones HTML/CSS.
-
-### Objetivo
-
-Detectar problemas relacionados con:
-
-* estructura HTML incorrecta;
-* uso inadecuado de elementos semánticos;
-* jerarquía de encabezados;
-* elementos duplicados o innecesarios;
-* atributos inválidos;
-* errores de HTML;
-* errores relevantes de CSS.
-
----
-
-## 5. Herramientas
+## 🛠️ Herramientas
 
 ### Playwright MCP
 
-Se utilizará Playwright MCP para automatizar la interacción con la aplicación web mediante un navegador real.
+Se utilizará Playwright MCP para automatizar la interacción con el navegador y realizar las pruebas sobre el proyecto local.
 
-Permitirá realizar navegación, inspección de la interfaz, interacción con elementos, evaluación del contenido y captura de evidencia.
+Se utilizará para:
 
-La aplicación será ejecutada localmente y Playwright MCP apuntará inicialmente a:
+* Abrir `http://localhost:3000`.
+* Interactuar con la página.
+* Verificar elementos y comportamiento.
+* Realizar pruebas responsive mediante diferentes tamaños de viewport.
+* Realizar pruebas en distintos navegadores.
+* Obtener capturas de pantalla como evidencia.
+* Obtener información de la estructura de la página.
 
-`http://localhost:3000`
+La configuración se encuentra en:
 
----
+```text
+.vscode/mcp.json
+```
 
 ### GitHub MCP
 
-Se utilizará GitHub MCP para registrar los hallazgos que correspondan como issues de tipo `bug`.
+Se utilizará GitHub MCP para gestionar los issues correspondientes a los bugs encontrados durante las pruebas, de acuerdo con lo establecido por la actividad.
 
-Cada issue deberá incluir información suficiente para que el desarrollador pueda reproducir y corregir el problema.
+Los issues deberán contener información suficiente para reproducir y comprender el problema encontrado.
 
 ---
 
-## 6. Criterios de aceptación
+## 📊 Plan de Testing
 
-### Testing
+Se planifican los siguientes cinco test cases:
 
-* [ ] Ejecutar los 5 test cases definidos.
-* [ ] Ejecutar los tests contra `http://localhost:3000`.
-* [ ] Registrar el momento de ejecución de cada test.
-* [ ] Ejecutar el Momento 1 sobre las ramas `feature/` correspondientes.
-* [ ] Ejecutar el Momento 2 después de la integración en `develop`.
-* [ ] Verificar compatibilidad desktop.
-* [ ] Verificar responsive.
-* [ ] Verificar performance.
-* [ ] Verificar accesibilidad.
-* [ ] Verificar estructura HTML semántica.
+| # | Test Case                             | Objetivo                                                               | Herramienta                                 | Momento |
+| - | ------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------- | ------- |
+| 1 | Compatibilidad de navegadores Desktop | Verificar el funcionamiento en distintos navegadores                   | Playwright MCP                              | 1 y 2   |
+| 2 | Responsive en dispositivos            | Verificar la adaptación de la interfaz a distintos tamaños de pantalla | Playwright MCP                              | 1 y 2   |
+| 3 | Performance y carga                   | Obtener información básica sobre el rendimiento de la página           | Playwright MCP + Performance API            | 1 y 2   |
+| 4 | Accesibilidad Web                     | Detectar problemas de accesibilidad                                    | Playwright MCP + axe-core                   | 1 y 2   |
+| 5 | HTML semántico                        | Verificar estructura y semántica del documento HTML                    | Playwright MCP + herramientas de validación | 1 y 2   |
+
+Los resultados concretos de cada prueba serán registrados posteriormente en sus respectivos archivos dentro de:
+
+```text
+docs/04-testing/
+```
+
+---
+
+## ✅ Criterios de Aceptación
+
+Antes de considerar finalizada la actividad deberán cumplirse los siguientes puntos:
+
+### Momento 1 — Pre-Merge
+
+* [ ] Ejecutar los 5 test cases contra las ramas correspondientes.
+* [ ] Utilizar Playwright MCP durante las pruebas.
+* [ ] Documentar los resultados de cada test case.
+* [ ] Incorporar capturas de pantalla como evidencia.
+* [ ] Registrar los bugs relevantes encontrados.
+* [ ] Crear los issues correspondientes mediante GitHub MCP.
+* [ ] Notificar a los responsables de los componentes afectados.
+
+### Momento 2 — Post-Merge
+
+* [ ] Verificar que los cambios hayan sido integrados en `develop`.
+* [ ] Ejecutar nuevamente los 5 test cases.
+* [ ] Comparar los resultados con el Momento 1.
+* [ ] Registrar nuevos problemas de integración, si existen.
+* [ ] Crear los issues correspondientes mediante GitHub MCP.
+* [ ] Completar `testing-doc.md`.
+* [ ] Dejar documentados los resultados finales del testing.
+
+---
+
+## 🔄 Momento 1: Testing Pre-Merge
+
+El Momento 1 se realizará cuando los integrantes responsables de Frontend/CSS y Responsive Design tengan sus ramas disponibles para testing.
+
+### Flujo previsto
+
+1. Obtener las ramas de los responsables.
+2. Realizar checkout de la rama correspondiente.
+3. Levantar el proyecto localmente.
+4. Verificar que la aplicación esté disponible en `http://localhost:3000`.
+5. Conectar y utilizar Playwright MCP mediante Copilot Agent Mode.
+6. Ejecutar los cinco test cases.
+7. Documentar los resultados y evidencias.
+8. Identificar los hallazgos relevantes.
+9. Crear los issues de bugs correspondientes mediante GitHub MCP.
+10. Notificar a los responsables.
 
 ### Evidencia
 
-* [ ] Documentar cada test case.
-* [ ] Incorporar capturas de pantalla como evidencia.
-* [ ] Registrar los resultados obtenidos.
-* [ ] Registrar los prompts utilizados con Copilot Agent Mode.
-* [ ] Documentar cualquier ajuste manual realizado.
+Cada test case deberá registrar:
 
-### Issues
-
-* [ ] Crear un issue de tipo `bug` para cada hallazgo relevante.
-* [ ] Incluir pasos para reproducir el problema.
-* [ ] Incluir resultado esperado.
-* [ ] Incluir resultado obtenido.
-* [ ] Incluir evidencia cuando corresponda.
-* [ ] Vincular el issue con la PR correspondiente cuando sea posible.
-* [ ] Notificar al responsable del desarrollo del componente afectado.
-
-### Documentación
-
-* [ ] Completar `testing-doc.md`.
-* [ ] Incluir enlaces a los cinco test cases.
-* [ ] Incluir resumen de issues encontrados.
-* [ ] Registrar los resultados del Momento 1.
-* [ ] Registrar los resultados del Momento 2.
-* [ ] Completar este `spec-qa.md` con la evidencia final.
+* Fecha y hora.
+* Rama testeada.
+* URL utilizada.
+* Navegador/dispositivo, cuando corresponda.
+* Resultado de la prueba.
+* Hallazgos.
+* Capturas de pantalla.
+* Issue asociado, si corresponde.
 
 ---
 
-## 7. Estrategia de ejecución
+## 🔄 Momento 2: Testing Post-Merge
 
-El testing se realizará en dos momentos.
+El Momento 2 se realizará una vez que los cambios correspondientes hayan sido integrados en `develop`.
 
-### Momento 1 — Testing pre-merge
+### Flujo previsto
 
-Se realizará sobre las ramas `feature/` de los integrantes responsables del desarrollo Frontend/CSS y Responsive Design.
-
-Flujo:
-
-1. Obtener la versión actual de las ramas de los desarrolladores.
-2. Realizar checkout de las ramas correspondientes.
-3. Ejecutar la aplicación localmente.
-4. Verificar que la aplicación esté disponible en `http://localhost:3000`.
-5. Conectar Playwright MCP mediante Copilot Agent Mode.
-6. Ejecutar los cinco test cases.
-7. Registrar resultados y capturas.
-8. Crear issues de tipo `bug` para los hallazgos relevantes.
-9. Notificar a los responsables correspondientes.
-
-### Momento 2 — Testing post-merge
-
-Una vez que las ramas de los desarrolladores hayan sido integradas a `develop`, se realizará una nueva ronda de pruebas.
-
-Flujo:
-
-1. Confirmar que los cambios hayan sido mergeados a `develop`.
-2. Realizar checkout de `develop`.
-3. Ejecutar la aplicación localmente.
-4. Verificar `http://localhost:3000`.
-5. Ejecutar nuevamente los cinco test cases.
+1. Confirmar que los cambios fueron integrados.
+2. Cambiar a la rama `develop`.
+3. Actualizar la rama local.
+4. Levantar nuevamente el proyecto.
+5. Ejecutar los cinco test cases.
 6. Comparar los resultados con el Momento 1.
-7. Registrar nuevos hallazgos.
-8. Crear issues de tipo `bug` cuando corresponda.
-9. Notificar al Coordinador y a los responsables.
-10. Completar la documentación final.
+7. Registrar problemas nuevos o problemas que persistan.
+8. Crear los issues correspondientes mediante GitHub MCP.
+9. Documentar los resultados finales.
+10. Completar `testing-doc.md`.
 
 ---
 
-## 8. Registro de resultados
+## 📝 Documentación de Test Cases
+
+Los resultados serán documentados en los siguientes archivos:
+
+```text
+docs/04-testing/
+├── test-case-1.md
+├── test-case-2.md
+├── test-case-3.md
+├── test-case-4.md
+├── test-case-5.md
+└── testing-doc.md
+```
+
+Estos archivos serán creados y completados durante la ejecución del testing.
+
+### Test Case 1 — Compatibilidad Desktop
+
+Se verificará el comportamiento del sitio utilizando diferentes navegadores.
+
+Se analizará:
+
+* Carga de la página.
+* Visualización de los elementos.
+* Interacciones principales.
+* Diferencias de comportamiento o visualización.
+
+### Test Case 2 — Responsive
+
+Se verificará la adaptación de la interfaz utilizando diferentes tamaños de viewport correspondientes a dispositivos móviles y tablets.
+
+Se analizará:
+
+* Distribución de elementos.
+* Contenido visible.
+* Overflow horizontal.
+* Tamaños y posiciones.
+* Interacciones.
+
+### Test Case 3 — Performance
+
+Se analizarán métricas básicas relacionadas con la carga y rendimiento de la página utilizando las herramientas disponibles mediante Playwright MCP y Performance API.
+
+### Test Case 4 — Accesibilidad
+
+Se analizarán posibles problemas de accesibilidad mediante Playwright MCP y axe-core.
+
+Se documentarán las violaciones encontradas y su gravedad.
+
+### Test Case 5 — HTML Semántico
+
+Se verificará la estructura HTML de la página y el uso correcto de elementos semánticos.
+
+También se registrarán errores o advertencias relevantes encontrados durante la validación.
+
+---
+
+## 🐛 Gestión de Bugs
+
+Se considerará crear un issue cuando el hallazgo represente un problema real que deba ser corregido.
+
+Cada bug deberá documentar, como mínimo:
+
+* Descripción del problema.
+* Test case donde fue detectado.
+* Rama donde fue encontrado.
+* Pasos para reproducirlo.
+* Resultado esperado.
+* Resultado actual.
+* Navegador/dispositivo, cuando corresponda.
+* Captura de pantalla o evidencia.
+* Responsable, si puede determinarse.
+
+No se crearán issues simplemente por preferencias personales de diseño si estas no contradicen las especificaciones del proyecto.
+
+---
+
+## 📊 Resultados
 
 Esta sección será completada durante la ejecución de los test cases.
 
-| Test Case   | Momento   | Resultado | Bugs      | Evidencia |
-| ----------- | --------- | --------- | --------- | --------- |
-| Test Case 1 | Pendiente | Pendiente | Pendiente | Pendiente |
-| Test Case 2 | Pendiente | Pendiente | Pendiente | Pendiente |
-| Test Case 3 | Pendiente | Pendiente | Pendiente | Pendiente |
-| Test Case 4 | Pendiente | Pendiente | Pendiente | Pendiente |
-| Test Case 5 | Pendiente | Pendiente | Pendiente | Pendiente |
+### Momento 1
+
+| Test Case   | Resultado | Issues    | Evidencia |
+| ----------- | --------- | --------- | --------- |
+| Test Case 1 | Pendiente | Pendiente | Pendiente |
+| Test Case 2 | Pendiente | Pendiente | Pendiente |
+| Test Case 3 | Pendiente | Pendiente | Pendiente |
+| Test Case 4 | Pendiente | Pendiente | Pendiente |
+| Test Case 5 | Pendiente | Pendiente | Pendiente |
+
+### Momento 2
+
+| Test Case   | Resultado | Issues    | Evidencia |
+| ----------- | --------- | --------- | --------- |
+| Test Case 1 | Pendiente | Pendiente | Pendiente |
+| Test Case 2 | Pendiente | Pendiente | Pendiente |
+| Test Case 3 | Pendiente | Pendiente | Pendiente |
+| Test Case 4 | Pendiente | Pendiente | Pendiente |
+| Test Case 5 | Pendiente | Pendiente | Pendiente |
 
 ---
 
-## 9. Resumen final
+## 📌 Estado actual
 
-> Esta sección se completará al finalizar los Momentos 1 y 2.
+El documento corresponde a la etapa inicial de planificación.
 
-* **Tests ejecutados:** Pendiente
-* **Tests aprobados:** Pendiente
-* **Tests fallidos:** Pendiente
-* **Bugs encontrados:** Pendiente
-* **Issues creados:** Pendiente
-* **Issues resueltos:** Pendiente
+Todavía no se registran resultados de testing, bugs ni issues, ya que las pruebas serán ejecutadas posteriormente sobre las ramas correspondientes y, en el Momento 2, sobre `develop`.
 
----
-
-## 10. Prompts utilizados
-
-> Los prompts utilizados durante la ejecución de Playwright MCP se incorporarán aquí al finalizar cada test case.
-
-### Test Case 1
-
-```text
-Pendiente
-```
-
-### Test Case 2
-
-```text
-Pendiente
-```
-
-### Test Case 3
-
-```text
-Pendiente
-```
-
-### Test Case 4
-
-```text
-Pendiente
-```
-
-### Test Case 5
-
-```text
-Pendiente
-```
-
----
-
-## 11. Decisiones y ajustes manuales
-
-Esta sección documentará:
-
-* hallazgos considerados bugs;
-* hallazgos considerados mejoras;
-* falsos positivos;
-* problemas del entorno;
-* ajustes realizados manualmente;
-* decisiones tomadas durante el proceso de testing.
-
-> Pendiente de completar durante la ejecución.
+**Próximo paso:** configurar y verificar las herramientas MCP y comenzar el testing cuando las ramas de Frontend/CSS y Responsive Design estén disponibles.
