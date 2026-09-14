@@ -141,7 +141,7 @@ La tabla se utilizará para comparar datos del catálogo como título, tipo, añ
 
 La tarea UX se considerará terminada cuando se cumplan todos los siguientes criterios:
 
-- [x] Existe `docs/03-specs/actividad-obligatoria-1/spec-ux.md` y fue redactado antes de iniciar la tarea de desarrollo asociada.
+- [x] Existe `docs/specs/spec-ux.md` y fue redactado antes de iniciar la tarea de desarrollo asociada.
 - [x] El documento explica qué se hará, por qué, el alcance y la forma de validación.
 - [x] Se registra el pedido realizado a GitHub Copilot en modo Agente usando `plan.md` como contexto.
 - [x] Se documentan las sugerencias recibidas, las decisiones adoptadas y las alternativas descartadas o postergadas.

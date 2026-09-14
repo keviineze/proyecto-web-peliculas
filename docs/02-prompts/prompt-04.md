@@ -1,7 +1,7 @@
 # Prompt 4: Propuesta de Estructura Visual y Layout para Figma
 
 - **Rol:** Documentador / UX (@GonzaloBarbano)
-- **Modelo de IA utilizado:** Claude Sonnet 5 + Gemini 1.5 Pro
+- **Modelo de IA utilizado:** Claude Sonnet 5
 - **Método / Técnica:** Chain of Thought (Context-aware, referenciando un archivo de requerimientos)
 - **Contexto Proveído:** Se le indicó a la IA el objetivo de construir un mockup en Figma, utilizando como única fuente de verdad los requerimientos y alcances ya definidos en el archivo `plan.md`.
 
@@ -56,4 +56,4 @@ No se requirieron correcciones al texto generado. La guía sirvió como base con
 
 ## Archivo o parte del proyecto donde se aplicó
 
-Se aplicó como guía teórica para el diseño del mockup en Figma y sirvió como insumo principal para la redacción del archivo `docs/03-specs/actividad-obligatoria-1/spec-ux.md`.
+Se aplicó como guía teórica para el diseño del mockup en Figma y sirvió como insumo principal para la redacción del archivo `docs/specs/spec-ux.md`.

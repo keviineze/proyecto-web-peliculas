@@ -7,14 +7,14 @@
 
 ## Prompt Exacto
 
-> > Actúa como un Especialista en Inteligencia Artificial y Metodologías Ágiles. Tu tarea es redactar un archivo llamado "sdd-decisions.md" que defina las reglas de trabajo de nuestro equipo.
->
+> > Actúa como un Especialista en Inteligencia Artificial y Metodologías Ágiles. Tu tarea es redactar un archivo llamado "sdd-decisions.md" que defina las reglas de trabajo de nuestro equipo. 
+> 
 > El documento debe estar en formato Markdown y tener exactamente estas 3 secciones:
->
+> 
 > 1. **¿Qué es SDD y por qué lo usamos?**: Explica brevemente que es una metodología donde se especifica antes de ejecutar para alinear el trabajo con el archivo maestro plan.md.
 > 2. **Implementación en el Proyecto**: Crea una lista con viñetas indicando que: no se escribe código sin spec en `docs/03-specs/actividad-obligatoria-1/`; usamos la plantilla `spec-[rol].md`; los PRs no se aprueban sin spec; y `plan.md` es la referencia oficial en Code Reviews.
 > 3. **Verificación de Entorno**: Enumera que todos los integrantes tienen operativas las extensiones "GitHub Copilot" (en modo Agente) y "GitHub Pull Requests" en Visual Studio Code.
->
+> 
 > Sé directo, profesional y conciso. No agregues introducciones ni conclusiones, devuelve solo el código Markdown.
 
 📸 **Captura de pantalla**
