@@ -22,6 +22,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
+- [fix/correccion-general] Correcciones generales de rutas, prompts y changelog PR: [#16](https://github.com/keviineze/proyecto-web-peliculas/pull/16) - @GonzaloBarbano (Especialista en IA)
+
 - [fix/promts] Corrección de prompts y rutas de documentación PR: [#15](https://github.com/keviineze/proyecto-web-peliculas/pull/15) - @GonzaloBarbano (Especialista en IA)
 
 - [fix/coreccion-frontend-y-documentador-ux] Correcciones generales PR: [#14](https://github.com/keviineze/proyecto-web-peliculas/pull/14) - @GonzaloBarbano (Desarrollo front-end y Documentador/UX)
