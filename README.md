@@ -72,7 +72,7 @@ En las próximas entregas se incorporarán:
 
 El archivo [`plan.md`](plan.md) es la especificación maestra del proyecto. Define el alcance funcional, la estructura esperada, los criterios de aceptación y el flujo de trabajo. Toda tarea debe mantenerse alineada con ese documento.
 
-Antes de comenzar cada tarea de desarrollo, el integrante responsable deberá crear la especificación técnica de su rol en `docs/specs/`. La especificación debe explicar:
+Antes de comenzar cada tarea de desarrollo, el integrante responsable deberá crear la especificación técnica de su rol en `docs/03-specs/actividad-obligatoria-1/`. La especificación debe explicar:
 
 - qué se va a desarrollar;
 - por qué es necesario para el proyecto;
