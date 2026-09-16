@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Mini Letterboxd: catálogo y biblioteca personal de películas y series."
+    />
+    <title>Mini Letterboxd | Películas y series</title>
+    <!-- Futuro CSS: enlazar aquí la hoja de estilos y los recursos visuales del proyecto. -->
+  </head>
+  <body>
+    <!-- Futuro CSS: aplicar la composición visual de la barra superior del mockup. -->
+    <header>
+      <p><a href="#inicio">Mini Letterboxd</a></p>
+
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#biblioteca">Biblioteca</a></li>
+          <li><a href="#recomendaciones">Recomendaciones</a></li>
+          <li><a href="#ajustes">Ajustes</a></li>
+        </ul>
+      </nav>
+
+      <!-- Futuro JavaScript: generar una representación compartible de la biblioteca. -->
+      <a href="#compartir">Compartir mi lista</a>
+    </header>
+
+    <main id="inicio">
+      <section id="sobre-proyecto" aria-labelledby="titulo-presentacion">
+        <h1 id="titulo-presentacion">Sobre el proyecto</h1>
+        <h2>Tu biblioteca de películas y series</h2>
+        <p>
+          Explorá títulos, guardá lo que querés ver y registrá tus películas
+          favoritas en un solo lugar.
+        </p>
+        <p>
+          Esta primera versión presenta el catálogo y deja preparada la
+          estructura para calificar y comentar tus contenidos.
+        </p>
+      </section>
+
+      <!-- Futuro CSS: convertir el siguiente bloque en la distribución de dos columnas del mockup. -->
+      <div>
+        <aside id="biblioteca" aria-labelledby="titulo-biblioteca">
+          <h2 id="titulo-biblioteca">Tu biblioteca</h2>
+
+          <section id="lista-pendientes" aria-labelledby="titulo-pendientes">
+            <h3 id="titulo-pendientes">Pendientes</h3>
+            <article>
+              <img
+                src="assets/images/interestellar.jpeg"
+                alt="Sala de cine con una pantalla iluminada"
+                width="370"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              />
+              <h4>Interstellar</h4>
+              <p>Calificación: pendiente</p>
+            </article>
+          </section>
+
+          <section id="lista-vistas" aria-labelledby="titulo-vistas">
+            <h3 id="titulo-vistas">Vistas</h3>
+            <article>
+              <img
+                src="assets/images/chihiro.jpeg"
+                alt="Butacas de una sala de cine"
+                width="351"
+                height="569"
+                loading="lazy"
+                decoding="async"
+              />
+              <h4>El viaje de Chihiro</h4>
+              <p>Calificación: 5 de 5</p>
+            </article>
+          </section>
+        </aside>
+
+        <section id="catalogo" aria-labelledby="titulo-catalogo">
+          <h2 id="titulo-catalogo">Catálogo de películas</h2>
+          <p>Una selección inicial para descubrir nuevas historias.</p>
+
+          <!-- Futuro JavaScript: renderizar estas tarjetas desde un catálogo y actualizar sus estados. -->
+          <div>
+            <article>
+              <img
+                src="assets/images/interestellar-2.jpeg"
+                alt="Paisaje montañoso de la película Interstellar"
+                width="686"
+                height="446"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3>Interstellar</h3>
+              <p>Película | 2014 | Ciencia ficción</p>
+              <p>
+                Un grupo de exploradores busca un nuevo hogar para la humanidad
+                más allá de las estrellas.
+              </p>
+              <ul>
+                <li>Estado: pendiente</li>
+                <li>Duración: 169 minutos</li>
+              </ul>
+              <!-- Futuro JavaScript: agregar el título a la lista "Para ver". -->
+              <button type="button">Añadir para ver</button>
+              <!-- Futuro JavaScript: cambiar el estado del título a "Visto". -->
+              <button type="button">Marcar como vista</button>
+            </article>
+
+            <article>
+              <img
+                src="assets/images/chihiro-2.jpeg"
+                alt="Paisaje natural que representa un viaje fantástico"
+                width="225"
+                height="225"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3>El viaje de Chihiro</h3>
+              <p>Película | 2001 | Animación y fantasía</p>
+              <p>
+                Chihiro entra en un mundo de espíritus y debe encontrar el valor
+                para recuperar a sus padres.
+              </p>
+              <ul>
+                <li>Estado: vista</li>
+                <li>Duración: 125 minutos</li>
+              </ul>
+              <!-- Futuro JavaScript: abrir el formulario de calificación y comentario. -->
+              <button type="button">Calificar y comentar</button>
+            </article>
+
+            <article>
+              <img
+                src="assets/images/dark.jpeg"
+                alt="Paisaje de una ciudad nocturna para representar una serie de misterio"
+                width="685"
+                height="384"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3>Dark</h3>
+              <p>Serie | 2017 | Misterio y ciencia ficción</p>
+              <p>
+                Cuatro familias buscan respuestas cuando la desaparición de un
+                niño revela un misterio temporal.
+              </p>
+              <ul>
+                <li>Estado: pendiente</li>
+                <li>Temporadas: 3</li>
+              </ul>
+              <button type="button">Añadir para ver</button>
+              <button type="button">Marcar como vista</button>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <section aria-labelledby="titulo-lista">
+        <h2 id="titulo-lista">Mi lista</h2>
+        <nav aria-label="Estados de mi lista">
+          <ul>
+            <li><a href="#lista-completa">Tu lista</a></li>
+            <li><a href="#lista-pendientes">Para ver</a></li>
+            <li><a href="#lista-vistas">Vistas</a></li>
+          </ul>
+        </nav>
+
+        <section id="lista-completa" aria-labelledby="titulo-lista-completa">
+          <h3 id="titulo-lista-completa">Títulos guardados</h3>
+          <ul>
+            <li>
+              <a href="#interstellar">Interstellar</a> - pendiente de ver.
+            </li>
+            <li>
+              <a href="#chihiro">El viaje de Chihiro</a> - vista, calificación 5
+              de 5.
+            </li>
+            <li><a href="#dark">Dark</a> - pendiente de ver.</li>
+          </ul>
+        </section>
+      </section>
+
+      <section id="recomendaciones" aria-labelledby="titulo-recomendaciones">
+        <h2 id="titulo-recomendaciones">Buscar en el catálogo</h2>
+        <form action="#catalogo" method="get">
+          <div>
+            <label for="busqueda">Título o palabra clave</label>
+            <input
+              type="search"
+              id="busqueda"
+              name="busqueda"
+              placeholder="Ejemplo: ciencia ficción"
+            />
+          </div>
+          <div>
+            <label for="tipo">Tipo de contenido</label>
+            <select id="tipo" name="tipo">
+              <option value="todos">Todos</option>
+              <option value="pelicula">Películas</option>
+              <option value="serie">Series</option>
+            </select>
+          </div>
+          <div>
+            <label for="genero">Género</label>
+            <select id="genero" name="genero">
+              <option value="todos">Todos los géneros</option>
+              <option value="ciencia-ficcion">Ciencia ficción</option>
+              <option value="fantasia">Fantasía</option>
+              <option value="misterio">Misterio</option>
+            </select>
+          </div>
+          <!-- Futuro JavaScript: filtrar el catálogo sin recargar la página. -->
+          <button type="submit">Buscar</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="titulo-resumen">
+        <h2 id="titulo-resumen">Resumen del catálogo</h2>
+        <table>
+          <caption>
+            Películas y series disponibles en la biblioteca inicial
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Título</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Año</th>
+              <th scope="col">Género</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="interstellar">
+              <th scope="row">Interstellar</th>
+              <td>Película</td>
+              <td>2014</td>
+              <td>Ciencia ficción</td>
+              <td>Pendiente</td>
+            </tr>
+            <tr id="chihiro">
+              <th scope="row">El viaje de Chihiro</th>
+              <td>Película</td>
+              <td>2001</td>
+              <td>Fantasía</td>
+              <td>Vista</td>
+            </tr>
+            <tr id="dark">
+              <th scope="row">Dark</th>
+              <td>Serie</td>
+              <td>2017</td>
+              <td>Misterio</td>
+              <td>Pendiente</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="ajustes" aria-labelledby="titulo-ajustes">
+        <h2 id="titulo-ajustes">Próximas funciones</h2>
+        <ul>
+          <li>Calificaciones personales guardadas en el navegador.</li>
+          <li>Comentarios asociados a cada título.</li>
+          <li>Compartir la biblioteca mediante un enlace.</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Futuro CSS: aplicar el diseño visual y la distribución del pie de página. -->
+    <footer id="compartir">
+      <h2>Mini Letterboxd</h2>
+      <p>Proyecto académico de Programación Web I.</p>
+      <ul>
+        <li><a href="#sobre-proyecto">Sobre el proyecto</a></li>
+        <li>
+          <a href="https://github.com/keviineze/proyecto-web-peliculas"
+            >Repositorio en GitHub</a
+          >
+        </li>
+      </ul>
+      <!-- Futuro JavaScript: inicializar la persistencia local y la acción de compartir. -->
+    </footer>
+  </body>
+</html>
