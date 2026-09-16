@@ -292,9 +292,9 @@ Si una tarea o PR entra en conflicto con este documento, debe resolverse antes d
 
 ### 7.2 Specs por rol
 
-En `docs/specs/` deben crearse specs individuales siguiendo la convención:
+En `docs/03-specs/actividad-obligatoria-1/` deben crearse specs individuales siguiendo la convención:
 
-- `docs/specs/spec-[noombre-del-rol].md`
+- `docs/03-specs/actividad-obligatoria-1/spec-[nombre-del-rol].md`
 
 Cada spec debe:
 
@@ -333,7 +333,6 @@ Antes de aprobar cualquier PR, el revisor debe verificar:
 - que la persistencia funciona correctamente;
 - que el cambio no rompe la navegación ni la experiencia global.
 
-
 ### 8.4 Criterios de aprobación
 
 Un PR podrá aprobarse solo si:
@@ -346,7 +345,6 @@ Un PR podrá aprobarse solo si:
 
 Si un PR no cumple con estos criterios, debe devolverse con observaciones concretas y corregirse antes de fusionarse.
 
-
 ## 9. Resumen ejecutivo
 
 Este proyecto busca crear una mini app de películas y series inspirada en Letterboxd, enfocada en la organización personal del usuario, la interacción visual y la posibilidad de compartir listas en un entorno sin backend. Para hacerlo sostenible y de calidad, se exige disciplina en Git Flow, en la definición de requisitos, en la revisión de pull requests y en la alineación de todas las implementaciones con el `plan.md` como especificación maestra.
@@ -355,5 +353,4 @@ La calidad del proyecto no dependerá solo de la funcionalidad final, sino tambi
 
 > Spec maestro inicial configurado y validado para el flujo de trabajo.
 
- 
 <!-- Este archivo se ha subido anteriormente en develop -->

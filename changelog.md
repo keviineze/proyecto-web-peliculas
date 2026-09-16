@@ -4,7 +4,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
-## [Unreleased]
+## [Release Actividad Obligatoria N°1] - 2026-08-31
 
 ### Added
 
@@ -21,16 +21,14 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/coordinador-setup-repo-and-pages] Agregado de archivos **index.html**, **plan.md**, **changelog.md**, carpetas **.github** y **docs** con archivo **spec-devops.md**. PR: [#2](https://github.com/keviineze/proyecto-web-peliculas/pull/2) - @keviineze (Coordinador / DevOps)
 
 ### Fixed
-- [fix/changelog-1] Corrección de changelog. - @Davidsoria99 (Especialista en IA)
 
----
+- [fix/correccion-general] Correcciones generales de rutas, prompts y changelog PR: [#16](https://github.com/keviineze/proyecto-web-peliculas/pull/16) - @GonzaloBarbano (Especialista en IA)
 
-## [Release Actividad Obligatoria N°1] - 2025-08-10
+- [fix/promts] Corrección de prompts y rutas de documentación PR: [#15](https://github.com/keviineze/proyecto-web-peliculas/pull/15) - @GonzaloBarbano (Especialista en IA)
 
-Aquí se listarán todas las Pull Requests que entraron en esta release.
-Actualmente están en la sección [Unreleased] porque sólo están en la rama `develop`.
+- [fix/coreccion-frontend-y-documentador-ux] Correcciones generales PR: [#14](https://github.com/keviineze/proyecto-web-peliculas/pull/14) - @GonzaloBarbano (Desarrollo front-end y Documentador/UX)
 
----
+- [fix/changelog-1] Corrección de changelog. PR: [#12](https://github.com/keviineze/proyecto-web-peliculas/pull/12) - @Davidsoria99 (Especialista en IA)
 
 ## Cómo usar este archivo
 
