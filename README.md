@@ -12,25 +12,23 @@ Mini Letterboxd Front End es una aplicación web estática para explorar pelícu
 
 La aplicación funcionará como un simulador de seguimiento de contenido audiovisual. Permitirá consultar un catálogo, crear una lista de títulos pendientes, marcar contenidos como vistos, asignar calificaciones, escribir comentarios y compartir una representación de la lista desde el navegador, sin utilizar backend ni base de datos.
 
-## 🎯 Objetivo del entregable
+## 🎯 Objetivo de la segunda entrega
 
-Construir la estructura HTML5 inicial de la página, utilizando contenido relacionado con películas y series y etiquetas semánticas que permitan incorporar estilos e interactividad en futuras entregas.
-
-Esta primera entrega incluye títulos, párrafos, imágenes, enlaces, listas, un formulario, una tabla y comentarios en el código HTML. CSS y JavaScript no son requisitos funcionales todavía, pero se dejarán marcadores para su futura integración.
+Incorporar estilos CSS, diseño responsive y un proceso de QA automatizado sobre la estructura HTML5 de la primera entrega. La implementación debe mantenerse alineada con el mockup actualizado de Figma y con los requisitos definidos en [`plan.md`](plan.md).
 
 ## 📁 Documentación
 
-- 📁 **[Mockup](docs/01-mockup/actividad-obligatoria-1/diseño-inicial.png)** - **[Figma](https://www.figma.com/design/MUinkLOSBg71RCgez6ibro/Proyecto-Web-Peliculas?node-id=0-1&m=dev&t=yIfByMZitEHj3ruE-1)**
+- 📁 **[Mockup](docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png)** - **[Figma](https://www.figma.com/design/MUinkLOSBg71RCgez6ibro/Proyecto-Web-Peliculas?node-id=2-62&m=dev&t=vcf4fPKlVi2i39Wn-1)**
 
 ## 👥 Integrantes del grupo
 
-| Nombre completo | N.º de matrícula | Usuario de GitHub                                    | Rol en esta entrega                                |
-| --------------- | ---------------: | ---------------------------------------------------- | -------------------------------------------------- |
-| Gonzalo Barbano |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano) | Desarrollo front-end y documentación/UXengineering |
-| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | IA y prompt engineering                            |
-| Kevin Sosa      |           154080 | [@keviineze](https://github.com/keviineze)           | Coordinación/DevOps                                |
+| Nombre completo | N.º de matrícula | Usuario de GitHub                                    | Rol en esta entrega                                            |
+| --------------- | ---------------: | ---------------------------------------------------- | -------------------------------------------------------------- |
+| Gonzalo Barbano |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano) | Coordinador / DevOps                                           |
+| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | Desarrollador Frontend/CSS y Especialista en Responsive Design |
+| Kevin Sosa      |           154080 | [@keviineze](https://github.com/keviineze)           | Documentador / QA Tester                                       |
 
-Los roles de coordinación/DevOps, desarrollo front-end, documentación/UX e IA y prompt engineering se distribuirán y rotarán entre los integrantes a lo largo de las entregas, de acuerdo con la dinámica de la materia.
+Los roles se asignan específicamente para esta entrega y se rotan respecto de la Actividad Obligatoria N.° 1.
 
 ## Objetivo
 
@@ -38,7 +36,7 @@ Construir una aplicación estática, clara y escalable que permita al usuario ll
 
 ## Alcance del proyecto
 
-### Incluido en la primera entrega
+### Primera entrega
 
 Esta entrega establece la estructura HTML5 inicial de la página relacionada con películas y series. La interfaz deberá contemplar:
 
@@ -52,27 +50,20 @@ Esta entrega establece la estructura HTML5 inicial de la página relacionada con
 - etiquetas semánticas como `header`, `nav`, `main`, `section`, `article`, `aside` y `footer`, cuando correspondan;
 - comentarios HTML que documenten la estructura y marquen las áreas reservadas para CSS y JavaScript.
 
-La maquetación visual con CSS y la interactividad con JavaScript no son requisitos funcionales de esta entrega. Sin embargo, la estructura debe quedar preparada para incorporarlas en etapas posteriores.
+Esta entrega toma esa estructura como base y agrega la capa visual y el control de calidad.
 
-### Evolución prevista
+### Segunda entrega
 
-En las próximas entregas se incorporarán:
-
-- catálogo reutilizable de películas y series con título, tipo, año, género, poster y sinopsis;
-- lista personal de títulos **Para ver**;
-- marcado de contenidos como **Vistos**;
-- calificaciones persistidas para cada título visto;
-- comentarios personales asociados a cada contenido;
-- vistas organizadas por estado: pendientes, vistas, calificadas y comentadas;
-- persistencia local mediante `localStorage` o una alternativa equivalente;
-- generación de una representación compartible mediante URL, hash, texto o archivo local;
-- estilos responsive y una interfaz accesible para navegadores modernos.
+- Archivos CSS separados por responsabilidad: `css/styles.css`, `css/components.css` y `css/responsive.css`.
+- Tipografías, colores, espaciados, componentes y estados coherentes con el mockup.
+- Layouts con Flexbox y/o CSS Grid, adaptados a mobile, tablet y desktop sin overflow horizontal.
+- QA automatizado con Playwright MCP y registro de bugs mediante GitHub MCP.
 
 ## Especificación técnica
 
 El archivo [`plan.md`](plan.md) es la especificación maestra del proyecto. Define el alcance funcional, la estructura esperada, los criterios de aceptación y el flujo de trabajo. Toda tarea debe mantenerse alineada con ese documento.
 
-Antes de comenzar cada tarea de desarrollo, el integrante responsable deberá crear la especificación técnica de su rol en `docs/03-specs/actividad-obligatoria-1/`. La especificación debe explicar:
+Antes de comenzar cada tarea, el integrante responsable deberá crear el spec de su rol en `docs/03-specs/actividad-obligatoria-2/`. El spec debe explicar:
 
 - qué se va a desarrollar;
 - por qué es necesario para el proyecto;
@@ -80,32 +71,34 @@ Antes de comenzar cada tarea de desarrollo, el integrante responsable deberá cr
 - cómo se validará;
 - qué criterios determinan que está terminada.
 
-Los archivos previstos son:
+Los archivos previstos para esta entrega son:
 
-- `docs/03-specs/actividad-obligatoria-1/spec-devops.md`
-- `docs/03-specs/actividad-obligatoria-1/spec-frontend.md`
-- `docs/03-specs/actividad-obligatoria-1/spec-ux.md`
-- `docs/03-specs/actividad-obligatoria-1/spec-ia.md`
+- `docs/03-specs/actividad-obligatoria-2/spec-devops.md`
+- `docs/03-specs/actividad-obligatoria-2/spec-frontend.md`
+- `docs/03-specs/actividad-obligatoria-2/spec-responsive.md`
+- `docs/03-specs/actividad-obligatoria-2/spec-qa.md`
 
 Un Pull Request no se considerará completo sin el spec correspondiente.
 
-## IA y Prompt Engineering
+## IA, MCP y testing
 
-El repositorio incluirá la carpeta `docs/02-prompts/`, donde se documentarán al menos cinco prompts utilizados durante el desarrollo. Cada registro deberá indicar el modelo utilizado, el objetivo del prompt, el resultado obtenido y el aporte concreto al proyecto.
+El Desarrollador Frontend/CSS utilizará Figma MCP y GitHub Copilot en Agent Mode para generar los estilos a partir del mockup. El Especialista en Responsive Design utilizará el mismo flujo para generar y validar `responsive.css`.
 
-Los prompts deben corresponder a interacciones reales y podrán documentar el uso de herramientas como ChatGPT, Gemini, Claude, Copilot o Cursor. No se incluirán ejemplos ficticios.
+El Documentador / QA Tester ejecutará cinco casos con Playwright MCP y creará issues de tipo bug mediante GitHub MCP cuando corresponda. Los prompts, resultados y ajustes manuales se documentarán en cada spec.
+
+Los casos de prueba se registrarán en `docs/04-testing/` y cubrirán desktop, responsive móvil, performance, accesibilidad y estructura HTML semántica. `testing-doc.md` será el índice central con el resumen de issues de los momentos pre-merge y post-merge.
 
 ## Tecnologías
 
 - HTML5 para la estructura y el contenido semántico.
-- CSS3 para la maquetación y los estilos de futuras entregas.
+- CSS3 para la maquetación visual y responsive.
 - JavaScript para la interactividad y la gestión del estado local.
 - Git y GitHub para el control de versiones y la revisión mediante Pull Requests.
 - Navegadores modernos como entorno de ejecución.
 
 No se utilizará backend ni base de datos. El estado de la biblioteca se gestionará en el cliente mediante almacenamiento local.
 
-## Flujo de trabajo
+## Flujo de trabajo de la entrega
 
 El equipo trabajará con ramas propias siguiendo el formato:
 
@@ -115,13 +108,13 @@ feature/<rol>-<descripción>
 
 Las reglas principales son:
 
-1. Crear cada rama a partir de `develop`.
-2. Realizar al menos un commit relevante por integrante en su Pull Request.
-3. Abrir el Pull Request hacia `develop`.
-4. Registrar en `changelog.md` quién realizó cada PR, qué aportó y el enlace correspondiente.
-5. Incluir el spec técnico del rol antes de iniciar el desarrollo asociado.
-6. Realizar revisión funcional, revisión de código y revisión asistida por IA.
-7. Integrar cambios en `master` únicamente mediante una release formal aprobada por el profesor.
+1. Crear cada rama a partir de `develop` y realizar al menos un commit relevante por integrante.
+2. Abrir cada Pull Request hacia `develop`.
+3. Registrar en `changelog.md` quién realizó cada PR, qué aportó y el enlace correspondiente.
+4. Commitear el spec del rol antes de comenzar la implementación asociada.
+5. Realizar revisiones funcionales, de código y asistidas por IA.
+6. Crear `release/actividad-obligatoria-2` desde `develop` cuando todas las features estén integradas.
+7. Integrar cambios en `master` únicamente mediante una release aprobada por el profesor.
 
 `master` es la rama estable y protegida. `develop` es la rama de integración y también estará protegida; sus cambios requieren revisión y aprobación del Coordinador de Repositorio.
 
@@ -138,10 +131,11 @@ Cada cambio deberá:
 - demostrar que no rompe el comportamiento existente;
 - contar con revisión humana y revisión asistida por IA antes del merge.
 
-## Ejecución local
+## Ejecución y estado
 
-La primera entrega puede abrirse directamente en un navegador mediante el archivo `index.html`. Cuando se incorporen módulos JavaScript, persistencia o una configuración de desarrollo, se documentará aquí el comando correspondiente para iniciar la aplicación.
+El proyecto puede ejecutarse localmente mediante Live Preview en VS Code y validarse contra `http://localhost:3000` o el puerto configurado. También se verificará la integración final en GitHub Pages.
 
 ## Estado del proyecto
 
-Actualmente se encuentra en la etapa de definición y estructura base. El próximo objetivo es completar la página HTML5 con contenido relacionado con el catálogo audiovisual y dejar preparados los puntos de extensión para CSS, JavaScript, documentación por roles y prompts reales.
+Actualmente se encuentra en la segunda entrega: mockup actualizado, estilos CSS, responsive y documentación de QA automatizado en proceso.
+
