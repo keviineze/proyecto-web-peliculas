@@ -8,7 +8,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
-- [feature/frontend-add-html-structure-1] Actualizo plan.md, README.md y agrego mockup de A2 [#20](https://github.com/keviineze/proyecto-web-peliculas/pull/20) - @GonzaloBarbano (Coordinador/DevOps)
+- [feature/coord-dev-ops-repo-update-readme-md] Actualizo plan.md, README.md y agrego mockup de A2 [#20](https://github.com/keviineze/proyecto-web-peliculas/pull/20) - @GonzaloBarbano (Coordinador/DevOps)
 
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
