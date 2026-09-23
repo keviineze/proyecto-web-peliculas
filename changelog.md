@@ -12,7 +12,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [feature/dev-frontend-css-add-styles] Implementación de estilos CSS styles y components generados vía Figma MCP y actualización de spec-frontend.md [#21](https://github.com/keviineze/proyecto-web-peliculas/pull/21) - @Davidsoria99 (Desarrollo frontend)
 
-- [feature/responsive-design-add-responsive-styles] Implementación de estilos responsive con Mobile-First y Flexbox/Grid generados vía Copilot. - @Davidsoria99 (Especialista en Responsive Design)
+- [feature/responsive-design-add-responsive-styles] Implementación de estilos responsive con Mobile-First y Flexbox/Grid generados vía Copilot [#24](https://github.com/keviineze/proyecto-web-peliculas/pull/24) - @Davidsoria99 (Especialista en Responsive Design)
 
 ### Fixed
 
