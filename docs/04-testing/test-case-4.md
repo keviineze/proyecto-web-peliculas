@@ -3,10 +3,10 @@
 ## Metadata
 | Campo | Valor |
 |-------|-------|
-| Responsable | |
-| Fecha Momento 1 | |
+| Responsable | Kevin Ezequiel Sosa|
+| Fecha Momento 1 |24-09-26 |
 | Fecha Momento 2 | |
-| Rama Momento 1 | `feature/` |
+| Rama Momento 1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 2 | `develop` |
 | URL testeada | `http://localhost:3000` |
 
@@ -58,33 +58,33 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 ### Violaciones encontradas
 | # | Regla axe | Impacto | Elemento afectado | Descripción |
 |---|-----------|---------|-------------------|-------------|
-| | | | | |
-| | | | | |
-| | | | | |
+| 1 | `link-in-text-block` | serious | `a[href$="#interstellar"]` | El enlace “Interstellar” tiene contraste insuficiente (2,16:1; requiere 3:1) y no se distingue del texto circundante mediante subrayado u otro estilo. Aumentar el contraste y/o agregar una diferenciación visual persistente. |
+| 2 | `link-in-text-block` | serious | `a[href$="#chihiro"]` | El enlace “El viaje de Chihiro” tiene contraste insuficiente (2,16:1; requiere 3:1) y no se distingue del texto circundante mediante subrayado u otro estilo. Aumentar el contraste y/o agregar una diferenciación visual persistente. |
+| 3 | `link-in-text-block` | serious | `a[href$="#dark"]` | El enlace “Dark” tiene contraste insuficiente (2,16:1; requiere 3:1) y no se distingue del texto circundante mediante subrayado u otro estilo. Aumentar el contraste y/o agregar una diferenciación visual persistente. |
 
 ### Needs Review (incomplete)
 | # | Regla axe | Elemento | Descripción |
 |---|-----------|----------|-------------|
-| | | | |
+| — | — | — | No se encontraron resultados incomplete que requieran revisión manual. |
 
 ### Capturas de pantalla
 | Descripción | Captura |
 |-------------|---------|
-| Estado general de la página | ![](capturas/tc-4/momento-1/accessibility-overview.png) |
+| Estado general de la página | ![](capturas/tc-4/momento-1/accessibility-momento-1.png) |
 
 ### Resumen por nivel de impacto
 | Nivel | Cantidad | Reglas |
 |-------|----------|--------|
-| 🔴 critical | | |
-| 🟠 serious | | |
-| 🟡 moderate | | |
-| 🔵 minor | | |
-| **Total** | | |
+| 🔴 critical | 0 | — |
+| 🟠 serious | 3 | `link-in-text-block` |
+| 🟡 moderate | 0 | — |
+| 🔵 minor | 0 | — |
+| **Total** | 3 | `link-in-text-block` |
 
 ### Resultado Momento 1
 - [ ] ✅ PASS — Sin violaciones
 - [ ] ⚠️ FAIL CON OBSERVACIONES — Solo violaciones moderate/minor
-- [ ] ❌ FAIL — Violaciones critical o serious presentes
+- [x] ❌ FAIL — Violaciones critical o serious presentes
 
 ---
 
@@ -126,10 +126,10 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 ## Issues creados
 | Issue | Momento | Regla axe | Elemento | Impacto | Estado |
 |-------|---------|-----------|----------|---------|--------|
-| | | | | | |
+| [#27](https://github.com/keviineze/proyecto-web-peliculas/issues/27) | Momento 1 | `link-in-text-block` | Tres enlaces de la lista completa (`#interstellar`, `#chihiro`, `#dark`) | serious | Abierto |
 
 ## Decisiones tomadas
-<!-- Explicá qué hallazgos registraste como bugs y cuáles descartaste, con justificación -->
+La violación `link-in-text-block` se consideró un bug de accesibilidad porque axe-core detectó contraste insuficiente (2,16:1 frente al mínimo requerido de 3:1) y falta de diferenciación visual adicional en tres enlaces de texto. Debe corregirse aumentando el contraste y/o agregando subrayado u otro estilo persistente. No se descartaron violaciones. No se encontraron resultados incomplete, por lo que no hubo hallazgos pendientes de revisión manual. No se creó un issue en esta ejecución.
 
 ## Conclusión general
 **Resultado final:** <!-- PASS / FAIL CON OBSERVACIONES / FAIL -->

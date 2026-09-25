@@ -3,10 +3,10 @@
 ## Metadata
 | Campo | Valor |
 |-------|-------|
-| Responsable | |
-| Fecha Momento 1 | |
+| Responsable | Kevin Ezequiel Sosa|
+| Fecha Momento 1 | 25/09/2026 |
 | Fecha Momento 2 | |
-| Rama Momento 1 | `feature/` |
+| Rama Momento 1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 2 | `develop` |
 | URL testeada | `http://localhost:3000` |
 
@@ -58,24 +58,24 @@ Guardá las capturas en docs/04-testing/capturas/tc-2/momento-X/
 ### Dispositivos testeados
 | Dispositivo | Viewport | Navegación | Layout móvil | Tabla | Formulario | Scroll horizontal | Estado |
 |-------------|----------|------------|--------------|-------|------------|-------------------|--------|
-| iPhone 14 Pro | 390×844 | | | | | | |
-| Samsung Galaxy S23 | 412×915 | | | | | | |
-| iPad Air | 820×1180 | | | | | | |
+| iPhone 14 Pro | 390×844 | OK | OK | OK | OK | OK | OK |
+| Samsung Galaxy S23 | 412×915 | OK | OK | OK | OK | OK | OK |
+| iPad Air | 820×1180 | OK | OK | OK | OK | OK | OK |
 
 ### Capturas de pantalla
 | Dispositivo | Captura | Estado |
 |-------------|---------|--------|
-| iPhone 14 Pro | ![](capturas/tc-2/momento-1/iphone-14-pro-390x844.png) | |
-| Samsung Galaxy S23 | ![](capturas/tc-2/momento-1/samsung-galaxy-s23-412x915.png) | |
-| iPad Air | ![](capturas/tc-2/momento-1/ipad-air-820x1180.png) | |
+| iPhone 14 Pro | ![](capturas/tc-2/momento-1/iphone-14-pro-390x844.png) | OK |
+| Samsung Galaxy S23 | ![](capturas/tc-2/momento-1/samsung-galaxy-s23-412x915.png) | OK |
+| iPad Air | ![](capturas/tc-2/momento-1/ipad-air-820x1180.png) | OK |
 
 ### Hallazgos
 | # | Elemento | Dispositivo afectado | Descripción | Desbordamiento | Severidad |
 |---|----------|----------------------|-------------|----------------|-----------|
-| | | | | | |
+| — | — | Ninguno | No se encontraron cortes, problemas visuales ni desbordamiento horizontal en los tres dispositivos. | No | — |
 
 ### Resultado Momento 1
-- [ ] ✅ PASS — Sin hallazgos
+- [x] ✅ PASS — Sin hallazgos
 - [ ] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
@@ -112,9 +112,9 @@ Guardá las capturas en docs/04-testing/capturas/tc-2/momento-X/
 ## Issues creados
 | Issue | Momento | Elemento | Dispositivo | Severidad | Estado |
 |-------|---------|----------|-------------|-----------|--------|
-| | | | | | |
+| — | — | No se crearon issues: no se detectaron bugs relevantes. | — | — | — |
 
 ## Conclusión general
-**Resultado final:** <!-- PASS / FAIL CON OBSERVACIONES / FAIL -->
+**Resultado Momento 1:** PASS — Sin hallazgos. El Momento 2 queda pendiente.
 
 <!-- Escribí un resumen de los hallazgos más importantes y las acciones requeridas -->

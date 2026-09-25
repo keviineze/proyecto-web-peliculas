@@ -3,10 +3,10 @@
 ## Metadata
 | Campo | Valor |
 |-------|-------|
-| Responsable | |
-| Fecha Momento 1 | |
+| Responsable | Kevin Ezequiel Sosa|
+| Fecha Momento 1 |24-09-26 |
 | Fecha Momento 2 | |
-| Rama Momento 1 | `feature/` |
+| Rama Momento 1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 2 | `develop` |
 | URL testeada | `http://localhost:3000` |
 
@@ -57,31 +57,35 @@ Guardá las capturas en docs/04-testing/capturas/tc-3/momento-X/
 ### Métricas de performance
 | Métrica | Valor medido | Umbral recomendado | Estado |
 |---------|-------------|-------------------|--------|
-| DOMContentLoaded | ms | < 800 ms | |
-| DOM Interactive | ms | < 600 ms | |
-| Load completo | ms | < 2000 ms | |
-| Total de recursos | | — | |
-| Tamaño total | KB | < 1 MB | |
+| DOMContentLoaded | 16,2 ms | < 800 ms | OK |
+| DOM Interactive | 16,1 ms | < 600 ms | OK |
+| Load completo | 18,9 ms | < 2000 ms | OK |
+| Total de recursos | 7 | — | OK |
+| Tamaño total | 2,051 KB | < 1 MB | OK |
 
 ### Recursos analizados
 | Recurso | Tipo | Tamaño (KB) | Tiempo descarga (ms) | Estado |
 |---------|------|-------------|----------------------|--------|
-| | | | | |
-| | | | | |
-| | | | | |
+| `http://localhost:3000/css/styles.css` | CSS / link | 0,293 | 4,6 | OK |
+| `http://localhost:3000/css/components.css` | CSS / link | 0,293 | 5,0 | OK |
+| `http://localhost:3000/assets/images/interestellar.jpeg` | Imagen / img | 0,293 | 4,9 | OK |
+| `http://localhost:3000/assets/images/chihiro-2.jpeg` | Imagen / img | 0,293 | 7,2 | OK |
+| `http://localhost:3000/assets/images/chihiro.jpeg` | Imagen / img | 0,293 | 7,4 | OK |
+| `http://localhost:3000/assets/images/interestellar-2.jpeg` | Imagen / img | 0,293 | 7,7 | OK |
+| `http://localhost:3000/assets/images/dark.jpeg` | Imagen / img | 0,293 | 8,2 | OK |
 
 ### Capturas de pantalla
 | Descripción | Captura |
 |-------------|---------|
-| Estado final cargado | ![](capturas/tc-3/momento-1/performance-estado-final.png) |
+| Estado final cargado | ![](capturas/tc-3/momento-1/performance-momento-1.png) |
 
 ### Hallazgos
 | # | Métrica / Recurso | Valor | Descripción | Severidad |
 |---|-------------------|-------|-------------|-----------|
-| | | | | |
+| — | — | — | No se detectaron recursos superiores a 500 KB ni recursos con tiempo de descarga mayor a 500 ms. | — |
 
 ### Resultado Momento 1
-- [ ] ✅ PASS — Sin hallazgos
+- [x] ✅ PASS — Sin hallazgos
 - [ ] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 

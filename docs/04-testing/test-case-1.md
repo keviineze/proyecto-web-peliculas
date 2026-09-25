@@ -3,10 +3,10 @@
 ## Metadata
 | Campo | Valor |
 |-------|-------|
-| Responsable | |
-| Fecha Momento 1 | |
+| Responsable | Kevin Ezequiel Sosa|
+| Fecha Momento 1 |24-09-26 |
 | Fecha Momento 2 | |
-| Rama Momento 1 | `feature/` |
+| Rama Momento 1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 2 | `develop` |
 | URL testeada | `http://localhost:3000` |
 
@@ -54,26 +54,26 @@ Guardá las capturas en docs/04-testing/capturas/tc-1/momento-X/
 ### Viewports testeados
 | Viewport | Navegador simulado | Navegación | Layout | Tabla | Footer | Estado |
 |----------|--------------------|------------|--------|-------|--------|--------|
-| 1920×1080 | Chrome | | | | | |
-| 1440×900 | Chrome | | | | | |
-| 1280×800 | Firefox / Safari | | | | | |
-| 1280×800 | Edge | | | | | |
+| 1920×1080 | Chrome | OK | OK | OK | OK | OK |
+| 1440×900 | Chrome | OK | OK | OK | OK | OK |
+| 1280×800 | Firefox / Safari | OK | OK | OK | OK | OK |
+| 1280×800 | Edge | OK | OK | OK | OK | OK |
 
 ### Capturas de pantalla
 | Viewport | Captura | Estado |
 |----------|---------|--------|
-| 1920×1080 | ![](capturas/tc-1/momento-1/desktop-1920x1080.png) | |
-| 1440×900 | ![](capturas/tc-1/momento-1/desktop-1440x900.png) | |
-| 1280×800 Firefox/Safari | ![](capturas/tc-1/momento-1/desktop-1280x800-firefox.png) | |
-| 1280×800 Edge | ![](capturas/tc-1/momento-1/desktop-1280x800-edge.png) | |
+| 1920×1080 | ![](capturas/tc-1/momento-1/desktop-1920x1080.png) | OK |
+| 1440×900 | ![](capturas/tc-1/momento-1/desktop-1440x900.png) | OK |
+| 1280×800 Firefox/Safari | ![](capturas/tc-1/momento-1/desktop-1280x800-firefox.png) | OK |
+| 1280×800 Edge | ![](capturas/tc-1/momento-1/desktop-1280x800-edge.png) | OK |
 
 ### Hallazgos
 | # | Elemento | Viewport afectado | Descripción | Severidad |
 |---|----------|-------------------|-------------|-----------|
-| | | | | |
+| — | — | Ninguno | No se encontraron cortes, desbordamientos horizontales ni problemas visuales en ninguno de los cuatro viewports. | — |
 
 ### Resultado Momento 1
-- [ ] ✅ PASS — Sin hallazgos
+- [x] ✅ PASS — Sin hallazgos
 - [ ] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
@@ -115,6 +115,6 @@ Guardá las capturas en docs/04-testing/capturas/tc-1/momento-X/
 | | | | | |
 
 ## Conclusión general
-**Resultado final:** <!-- PASS / FAIL CON OBSERVACIONES / FAIL -->
+**Resultado Momento 1:** PASS — Sin hallazgos. El Momento 2 queda pendiente.
 
 <!-- Escribí un resumen de los hallazgos más importantes y las acciones requeridas -->
