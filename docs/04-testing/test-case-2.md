@@ -6,7 +6,7 @@
 | Responsable | Kevin Ezequiel Sosa|
 | Fecha Momento 1 | 25/09/2026 |
 | Fecha Momento 2 | |
-| Rama Momento 1 | `feature/dev-frontend-css-add-styles` |
+| Rama Momento 1 | `feature/responsive-design-add-responsive-styles` |
 | Rama Momento 2 | `develop` |
 | URL testeada | `http://localhost:3000` |
 
