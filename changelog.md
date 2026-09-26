@@ -20,7 +20,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correccion-espacio-carpeta] Eliminación de espacio en blanco en carpeta actividad-obligatoria-2. PR: [#22](https://github.com/keviineze/proyecto-web-peliculas/pull/22) - @Davidsoria99 (Desarrollo frontend)
 
-- [fix/restaurar-components] Restauración del archivo css/components.css extraviado durante integración de ramas. - @Davidsoria99 (Desarrollo frontend)
+- [fix/restaurar-components-css] Restauración del archivo css/components.css extraviado durante integración de ramas [#30](https://github.com/keviineze/proyecto-web-peliculas/pull/30) - @Davidsoria99 (Desarrollo frontend)
 
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
