@@ -4,11 +4,21 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
-## [Release Actividad Obligatoria N°2] - 2026-09-28
+## [Unreleased]
 
 ### Added
 
 - [feature/coord-dev-ops-repo-update-readme-md] Actualizo plan.md, README.md y agrego mockup de A2 [#20](https://github.com/keviineze/proyecto-web-peliculas/pull/20) - @GonzaloBarbano (Coordinador/DevOps)
+
+- [feature/dev-frontend-css-add-styles] Implementación de estilos CSS styles y components generados vía Figma MCP y actualización de spec-frontend.md [#21](https://github.com/keviineze/proyecto-web-peliculas/pull/21) - @Davidsoria99 (Desarrollo frontend)
+
+- [feature/responsive-design-add-responsive-styles] Implementación de estilos responsive con Mobile-First y Flexbox/Grid generados vía Copilot [#24](https://github.com/keviineze/proyecto-web-peliculas/pull/24) - @Davidsoria99 (Especialista en Responsive Design)
+  
+- [feature/frontend-review] Revisión de QA para los estilos base del frontend [#28](https://github.com/keviineze/proyecto-web-peliculas/pull/28) - @Davidsoria99 (Desarrollo frontend)
+
+### Fixed
+
+- [fix/correccion-espacio-carpeta] Eliminación de espacio en blanco en carpeta actividad-obligatoria-2. PR: [#22](https://github.com/keviineze/proyecto-web-peliculas/pull/22) - @Davidsoria99 (Desarrollo frontend)
 
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 

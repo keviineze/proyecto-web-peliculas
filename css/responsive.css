@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Responsive layout - Mobile First
+   ========================================================================== */
+
+/* Previene desplazamiento horizontal en todos los tamaños */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Base mobile (Configuración por defecto)
+   ========================================================================== */
+
+main > div,
+#catalogo > div {
+  min-width: 0;
+}
+
+#catalogo > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   Tablet - 768px
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  #catalogo > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ==========================================================================
+   Desktop - 1024px
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  #catalogo > div {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
