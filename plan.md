@@ -6,7 +6,7 @@ Este proyecto consiste en la creación de una aplicación web front-end de pelí
 
 El proyecto se desarrollará como una aplicación estática sin backend, orientada a la experiencia de usuario en navegador y a la gestión local en el cliente. Su objetivo es ofrecer una experiencia clara, visualmente atractiva y funcional para seguir el consumo de contenido y construir una lista personal con valor social.
 
-El proyecto se organiza en un flujo de trabajo con Git Flow y revisión de pull requests (PRs) con criterio de calidad y revisión asistida por IA. El archivo `plan.md` es el especificación maestra del proyecto y será la referencia obligatoria para code reviews y para todos los specs funcionales de cada rol en `docs/specs/spec-[rol].md`.
+El proyecto se organiza en un flujo de trabajo con Git Flow y revisión de pull requests (PRs) con criterio de calidad y revisión asistida por IA. El archivo `plan.md` es la especificación maestra del proyecto y será la referencia obligatoria para code reviews y para los specs funcionales de cada rol en `docs/03-specs/actividad-obligatoria-[n]/spec-[rol].md`.
 
 ## 2. Alcance del proyecto
 
@@ -28,16 +28,16 @@ Construir una aplicación front-end que permita:
 - Sin servidor ni base de datos.
 - Persistencia del estado en el navegador usando almacenamiento local (`localStorage` o equivalente).
 - Compatibilidad con navegadores modernos.
-- Estilo visual minimalista, orientado a catalogación y seguimiento personal.
+- Estilo visual coherente con el mockup vigente de Figma, orientado a catalogación y seguimiento personal.
 
 ### 2.3 Equipo y roles
 
-El equipo está conformado por 3 integrantes:
+El equipo está organizado en cuatro roles:
 
 - Coordinador / DevOps
-- Desarrollador Frontend
-- Documentador / Diseñador UX
-- Especialista en IA y Prompt Engineering
+- Desarrollador Frontend/CSS
+- Especialista en Responsive Design
+- Documentador / QA Tester
 
 Cada integrante debe respetar este plan como fuente de verdad para la implementación y revisión.
 
@@ -172,13 +172,55 @@ Requisitos:
 - estados visibles para elementos activos, pendientes y completados;
 - uso consistente de iconografía, etiquetas y textos.
 
+### 3.11 Requisitos de la segunda entrega: CSS y diseño responsive
+
+La segunda entrega corresponde a la Unidad Temática N.° 2 sobre Diseño Web. Debe incorporar la capa visual de la aplicación sin romper la estructura HTML ni el alcance funcional general del proyecto.
+
+#### Maquetación CSS
+
+- Los estilos deben estar organizados por responsabilidad en archivos separados:
+  - `css/styles.css`: variables visuales y layout base;
+  - `css/components.css`: componentes reutilizables;
+  - `css/responsive.css`: reglas responsive y media queries.
+- Se deben utilizar selectores de elemento, clase, atributo, descendientes y pseudoclases cuando corresponda, aprovechando la herencia y la especificidad sin recurrir a estilos inline innecesarios.
+- La tipografía, la paleta de colores y los espaciados deben mantenerse alineados con el mockup actualizado en Figma y su exportación en `docs/01-mockup/actividad-obligatoria-2/`.
+- El box model debe definirse explícitamente mediante `padding`, `margin`, `border` y `box-sizing` en los elementos que lo requieran.
+- Los elementos en línea y en bloque deben diferenciarse mediante reglas CSS apropiadas, sin alterar la semántica del HTML.
+
+#### Diseño responsive
+
+- Las secciones deben utilizar `display: flex` y/o `display: grid` según la relación entre sus elementos.
+- `css/responsive.css` debe incluir media queries para mobile, tablet y desktop.
+- El diseño debe adaptarse sin pérdida de contenido, legibilidad ni funcionalidad en los breakpoints definidos.
+- No debe existir overflow horizontal en ningún breakpoint ni dispositivo probado.
+
+### 3.12 Flujo asistido por IA y MCP para la segunda entrega
+
+- El Desarrollador Frontend/CSS debe generar y ajustar los estilos con GitHub Copilot en Agent Mode y el servidor MCP de Figma, tomando como contexto el mockup actualizado y el nodo de Figma enlazado en `README.md`.
+- El Especialista en Responsive Design debe utilizar GitHub Copilot en Agent Mode con los archivos CSS y el mockup como contexto para implementar y revisar la adaptación responsive.
+- El QA Tester debe ejecutar las pruebas automatizadas con Playwright MCP y registrar los hallazgos como issues de tipo bug mediante GitHub MCP, usando Copilot Agent Mode.
+- Cada rol debe registrar en su `spec-*.md` el prompt utilizado, el resultado obtenido y los ajustes manuales realizados.
+
+### 3.13 Documentación y testing de la segunda entrega
+
+- El mockup actualizado de Figma debe reflejar la paleta de colores, tipografías y espaciados definitivos y debe exportarse a `docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png`.
+- Deben ejecutarse y documentarse cinco casos de prueba con Playwright MCP en `docs/04-testing/`:
+  - compatibilidad desktop;
+  - responsive móvil;
+  - performance;
+  - accesibilidad;
+  - estructura HTML semántica.
+- Cada caso de prueba debe incluir el prompt utilizado, los hallazgos, las capturas de pantalla y los enlaces a los issues de GitHub generados.
+- `docs/04-testing/testing-doc.md` debe funcionar como índice central y contener un resumen de los issues identificados en cada ejecución.
+- `changelog.md` debe registrar la contribución de cada integrante de la entrega, con enlaces a los PRs e issues correspondientes.
+
 ## 4. Requisitos no funcionales
 
 ### 4.1 Mantenibilidad
 
 - El código debe estructurarse por responsabilidades.
 - Los archivos JS deben estar separados por lógica y renderización si es necesario.
-- El CSS debe ser modular o seguir una estructura consistente.
+- El CSS debe estar separado por responsabilidades en `styles.css`, `components.css` y `responsive.css`.
 - El trabajo debe favorecer reutilización y legibilidad.
 
 ### 4.2 Escalabilidad del front-end
@@ -197,6 +239,19 @@ Requisitos:
 
 - El proyecto debe funcionar en navegadores modernos.
 - El código debe evitar dependencias complejas no necesarias para una app front-end ligera.
+
+### 4.5 Calidad visual y responsive
+
+- La implementación debe coincidir con las decisiones visuales documentadas en el mockup actualizado.
+- Los layouts deben conservar una estructura estable y legible en mobile, tablet y desktop.
+- Debe verificarse la ausencia de overflow horizontal y de contenido superpuesto en los breakpoints definidos.
+
+### 4.6 QA automatizado y trazabilidad
+
+- La segunda entrega debe contar con cinco casos de prueba automatizados ejecutados con Playwright MCP.
+- Las evidencias deben incluir capturas de pantalla, resultado, hallazgos y enlaces a issues de GitHub.
+- Las pruebas deben poder localizarse desde `docs/04-testing/testing-doc.md`.
+- Los prompts y ajustes manuales del uso de IA y MCP deben estar documentados en los specs de los roles involucrados.
 
 ## 5. Criterios de aceptación para las tareas
 
@@ -234,6 +289,19 @@ Cada tarea debe validarse con al menos:
 - verificación del flujo principal de la funcionalidad;
 - control de estado persistido;
 - confirmación de que los cambios no rompen el comportamiento previo.
+
+### 5.5 Requisitos de aceptación de la segunda entrega
+
+Para considerar completa la segunda entrega, además de los criterios generales, se debe comprobar que:
+
+- existen `css/styles.css`, `css/components.css` y `css/responsive.css`, cada uno con responsabilidades diferenciadas;
+- los estilos implementan la paleta, tipografía y espaciados definidos en el mockup actualizado;
+- se utilizan flexbox y/o grid, junto con media queries para mobile, tablet y desktop;
+- no existe overflow horizontal en los dispositivos y breakpoints evaluados;
+- se ejecutaron los cinco casos de Playwright MCP y sus evidencias están documentadas en `docs/04-testing/`;
+- los bugs detectados tienen issues de GitHub vinculados cuando corresponde;
+- los specs de los roles documentan prompts, resultados y ajustes manuales;
+- `changelog.md` registra las contribuciones, PRs e issues de la entrega.
 
 ## 6. Git Flow y control de versiones
 
@@ -292,9 +360,9 @@ Si una tarea o PR entra en conflicto con este documento, debe resolverse antes d
 
 ### 7.2 Specs por rol
 
-En `docs/specs/` deben crearse specs individuales siguiendo la convención:
+En `docs/03-specs/actividad-obligatoria-1/` se conservan los specs de la primera entrega. Para cada entrega posterior se debe crear una carpeta con el identificador correspondiente, siguiendo la misma convención. Para esta segunda entrega se utilizará `docs/03-specs/actividad-obligatoria-2/`.
 
-- `docs/specs/spec-[noombre-del-rol].md`
+- `docs/03-specs/actividad-obligatoria-2/spec-[nombre-del-rol].md`
 
 Cada spec debe:
 
@@ -302,6 +370,14 @@ Cada spec debe:
 - especificar el alcance, tareas y criterios de aceptación asociados a ese rol;
 - no ampliar el proyecto más allá del alcance definido;
 - servir como base para la ejecución y revisión del trabajo de ese rol.
+
+Para la segunda entrega, los specs de Coordinación/DevOps, Frontend/CSS, Responsive Design y Documentación/QA Tester deben incluir como mínimo:
+
+- el prompt utilizado con GitHub Copilot Agent Mode y/o MCP;
+- el resultado obtenido y su relación con el requisito correspondiente;
+- los ajustes manuales realizados;
+- la forma de validación y las evidencias generadas;
+- los enlaces a PRs e issues relacionados, cuando existan.
 
 Los specs no reemplazan al `plan.md`; lo complementan con detalle operativo por función.
 
@@ -333,7 +409,6 @@ Antes de aprobar cualquier PR, el revisor debe verificar:
 - que la persistencia funciona correctamente;
 - que el cambio no rompe la navegación ni la experiencia global.
 
-
 ### 8.4 Criterios de aprobación
 
 Un PR podrá aprobarse solo si:
@@ -346,14 +421,27 @@ Un PR podrá aprobarse solo si:
 
 Si un PR no cumple con estos criterios, debe devolverse con observaciones concretas y corregirse antes de fusionarse.
 
+## 9. Entregas y alineación del proyecto
 
-## 9. Resumen ejecutivo
+### 9.1 Primera entrega
+
+La primera entrega establece la estructura HTML5 semántica, el contenido inicial del catálogo y la documentación base del proyecto.
+
+### 9.2 Segunda entrega
+
+La segunda entrega agrega estilos CSS organizados, diseño responsive, alineación visual con el mockup de Figma y un proceso de QA automatizado con Playwright MCP y GitHub MCP. Estos cambios deben preservar la aplicación front-end estática, la estructura semántica y la evolución funcional prevista en este plan.
+
+La documentación de la entrega se concentra en:
+
+- `docs/01-mockup/actividad-obligatoria-2/` para el mockup exportado;
+- `docs/03-specs/actividad-obligatoria-2/` para los specs de cada rol;
+- `docs/04-testing/` para los casos de prueba, evidencias y resumen de issues;
+- `changelog.md` para la trazabilidad de PRs e issues.
+
+## 10. Resumen ejecutivo
 
 Este proyecto busca crear una mini app de películas y series inspirada en Letterboxd, enfocada en la organización personal del usuario, la interacción visual y la posibilidad de compartir listas en un entorno sin backend. Para hacerlo sostenible y de calidad, se exige disciplina en Git Flow, en la definición de requisitos, en la revisión de pull requests y en la alineación de todas las implementaciones con el `plan.md` como especificación maestra.
 
 La calidad del proyecto no dependerá solo de la funcionalidad final, sino también de la disciplina del proceso, la consistencia del diseño, la robustez del código y la correcta gestión de revisiones antes del merge.
 
-> Spec maestro inicial configurado y validado para el flujo de trabajo.
-
- 
-<!-- Este archivo se ha subido anteriormente en develop -->
+> Spec maestro actualizado para la segunda entrega de Diseño Web, CSS, responsive y QA asistido por IA y MCP.

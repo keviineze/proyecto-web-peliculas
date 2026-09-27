@@ -43,9 +43,41 @@ Además, dejar identificadas las áreas de CSS y JavaScript permite que los pró
 - El contenido será coherente con el proyecto definido en `plan.md` y con el mockup de UX.
 - No se agregarán dependencias ni código JavaScript funcional en esta entrega.
 
-## 4. Criterios de aceptación
+## 4. Uso de Figma MCP en la definición visual
 
-- [x] Existe `docs/specs/spec-frontend.md` y fue redactado antes de modificar la estructura principal.
+Para validar la estructura visual antes de maquetar la primera entrega, se utilizó la herramienta Figma MCP como apoyo directo para interpretar el mockup entregado por UX y traducirlo a una estructura HTML5 semántica.
+
+### 4.1 Prompt utilizado
+
+El prompt empleado fue el siguiente:
+
+> Teniendo en cuenta el mockup y el link de figma https://www.figma.com/design/MUiNklOSBg71RCgez6ibro/Proyecto-Web-Peliculas?node-id=0-1&p=f&t=DSXkjCuNYDij8m6f-0
+>
+> Construye la estructura HTML5 de la página, siguiendo los requisitos de la consigna.
+> Incluye título, párrafos, imágenes, enlaces, listas, tablas y etiquetas semánticas.
+> Deja comentarios en el código indicando dónde se aplicarán CSS y JavaScript en el futuro.
+
+### 4.2 Resultado obtenido
+
+El flujo de Figma MCP permitió conectar con el diseño visual, inspeccionar la composición del mockup y utilizar esa referencia como base para redactar la estructura del archivo `index.html`. Como resultado, la IA generó una versión inicial con más de 200 líneas de marcado, incorporando navegación, catálogo, biblioteca, formularios y tablas con etiquetas HTML5 correctas.
+
+Este proceso fue útil para alinear la estructura del documento con la propuesta visual del proyecto sin introducir funcionalidad real de JavaScript ni estilos definitivos.
+
+### 4.3 Ajustes manuales realizados
+
+Tras la generación inicial, se realizaron ajustes manuales para asegurar consistencia y calidad de entrega:
+
+- corrección de espacios y URLs en recursos visuales;
+- revisión de enlaces internos y rutas de imágenes;
+- validación de semántica HTML5 y estructura del documento;
+- ajuste de comentarios de desarrollo para dejar claros los puntos de integración futura de CSS y JavaScript;
+- verificación de que la estructura no excediera el alcance de la entrega: solamente HTML semántico y contenido inicial.
+
+Estos cambios fueron necesarios para dejar la implementación alineada con `plan.md`, el mockup y la consigna académica de la primera entrega.
+
+## 5. Criterios de aceptación
+
+- [x] Existe `docs/03-specs/actividad-obligatoria-1/spec-frontend.md` y fue redactado antes de modificar la estructura principal.
 - [x] `index.html` contiene una estructura HTML5 completa y semántica.
 - [x] La página incluye título, párrafos, imágenes, enlaces, listas, formulario y tabla relacionados con películas o series.
 - [x] La página incluye metadatos básicos, idioma declarado y una jerarquía de encabezados accesible.

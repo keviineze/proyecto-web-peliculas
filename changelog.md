@@ -4,6 +4,24 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- [feature/coord-dev-ops-repo-update-readme-md] Actualizo plan.md, README.md y agrego mockup de A2 [#20](https://github.com/keviineze/proyecto-web-peliculas/pull/20) - @GonzaloBarbano (Coordinador/DevOps)
+
+- [feature/dev-frontend-css-add-styles] Implementación de estilos CSS styles y components generados vía Figma MCP y actualización de spec-frontend.md [#21](https://github.com/keviineze/proyecto-web-peliculas/pull/21) - @Davidsoria99 (Desarrollo frontend)
+
+- [feature/responsive-design-add-responsive-styles] Implementación de estilos responsive con Mobile-First y Flexbox/Grid generados vía Copilot [#24](https://github.com/keviineze/proyecto-web-peliculas/pull/24) - @Davidsoria99 (Especialista en Responsive Design)
+  
+- [feature/frontend-review] Revisión de QA para los estilos base del frontend [#28](https://github.com/keviineze/proyecto-web-peliculas/pull/28) - @Davidsoria99 (Desarrollo frontend)
+
+### Fixed
+
+- [fix/correccion-espacio-carpeta] Eliminación de espacio en blanco en carpeta actividad-obligatoria-2. PR: [#22](https://github.com/keviineze/proyecto-web-peliculas/pull/22) - @Davidsoria99 (Desarrollo frontend)
+
+- [fix/restaurar-components-css] Restauración del archivo css/components.css extraviado durante integración de ramas [#30](https://github.com/keviineze/proyecto-web-peliculas/pull/30) - @Davidsoria99 (Desarrollo frontend)
+
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
 ### Added
@@ -21,6 +39,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/coordinador-setup-repo-and-pages] Agregado de archivos **index.html**, **plan.md**, **changelog.md**, carpetas **.github** y **docs** con archivo **spec-devops.md**. PR: [#2](https://github.com/keviineze/proyecto-web-peliculas/pull/2) - @keviineze (Coordinador / DevOps)
 
 ### Fixed
+
+- [fix/correccion-general] Correcciones generales de rutas, prompts y changelog PR: [#16](https://github.com/keviineze/proyecto-web-peliculas/pull/16) - @GonzaloBarbano (Especialista en IA)
+
+- [fix/promts] Corrección de prompts y rutas de documentación PR: [#15](https://github.com/keviineze/proyecto-web-peliculas/pull/15) - @GonzaloBarbano (Especialista en IA)
 
 - [fix/coreccion-frontend-y-documentador-ux] Correcciones generales PR: [#14](https://github.com/keviineze/proyecto-web-peliculas/pull/14) - @GonzaloBarbano (Desarrollo front-end y Documentador/UX)
 
