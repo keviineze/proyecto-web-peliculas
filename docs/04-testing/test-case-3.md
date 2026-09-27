@@ -5,7 +5,7 @@
 |-------|-------|
 | Responsable | Kevin Ezequiel Sosa|
 | Fecha Momento 1 |24-09-26 |
-| Fecha Momento 2 | |
+| Fecha Momento 2 | 27-09-26 |
 | Rama Momento 1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 2 | `develop` |
 | URL testeada | `http://localhost:3000` |
@@ -96,18 +96,28 @@ Guardá las capturas en docs/04-testing/capturas/tc-3/momento-X/
 ### Métricas de performance
 | Métrica | Valor medido | Umbral recomendado | Estado |
 |---------|-------------|-------------------|--------|
-| DOMContentLoaded | ms |  — | |
-| DOM Interactive | ms |  — | |
-| Load completo | ms |  — | |
-| Total de recursos | | — | |
-| Tamaño total | KB |  — | |
+| DOMContentLoaded | 22 ms | < 800 ms | OK |
+| DOM Interactive | 21,9 ms | < 600 ms | OK |
+| Load completo | 35,1 ms | < 2000 ms | OK |
+| Total de recursos | 8 | — | OK |
+| Tamaño total transferido (suma de `transferSize`) | 300 bytes (0,293 KiB) | < 1 MiB | OK |
+| Tamaño total de cuerpos codificados (`encodedBodySize`) | 213.237 bytes (208,24 KiB) | < 1 MiB | OK |
+
+**Nota sobre caché:** `transferSize` fue 0 para 7 de los 8 recursos, consistente con respuestas servidas desde caché. Por eso se informa también el tamaño de los cuerpos codificados, que refleja el contenido de los recursos aunque no se transfiriera de nuevo durante esta navegación.
 
 ### Recursos analizados
-| Recurso | Tipo | Tamaño (KB) | Tiempo descarga (ms) | Estado |
-|---------|------|-------------|----------------------|--------|
-| | | | | |
-| | | | | |
-| | | | | |
+| Recurso | Tipo | `transferSize` (KiB) | `encodedBodySize` (KiB) | Duración (ms) | Estado |
+|---------|------|-----------------------|-------------------------|----------------|--------|
+| `http://localhost:3000/css/styles.css` | CSS (`link`) | 0 | 3,77 | 5,9 | OK |
+| `http://localhost:3000/css/components.css` | CSS (`link`) | 0,293 | 3,47 | 10,1 | OK |
+| `http://localhost:3000/css/responsive.css` | CSS (`link`) | 0 | 1,24 | 11,7 | OK |
+| `http://localhost:3000/assets/images/interestellar.jpeg` | Imagen (`img`) | 0 | 43,34 | 1,9 | OK |
+| `http://localhost:3000/assets/images/chihiro.jpeg` | Imagen (`img`) | 0 | 33,03 | 3,1 | OK |
+| `http://localhost:3000/assets/images/interestellar-2.jpeg` | Imagen (`img`) | 0 | 44,06 | 4,1 | OK |
+| `http://localhost:3000/assets/images/chihiro-2.jpeg` | Imagen (`img`) | 0 | 6,96 | 7,9 | OK |
+| `http://localhost:3000/assets/images/dark.jpeg` | Imagen (`img`) | 0 | 72,36 | 9,2 | OK |
+
+No se encontraron recursos con tamaño transferido superior a 500 KiB ni con duración superior a 500 ms.
 
 ### Capturas de pantalla
 | Descripción | Captura |
@@ -117,10 +127,10 @@ Guardá las capturas en docs/04-testing/capturas/tc-3/momento-X/
 ### Hallazgos
 | # | Métrica / Recurso | Valor | Descripción | Severidad |
 |---|-------------------|-------|-------------|-----------|
-| | | | | |
+| — | — | — | No se detectaron métricas fuera de los umbrales ni recursos superiores a 500 KiB o 500 ms. Los `transferSize` en cero se atribuyen a caché; los cuerpos codificados suman 208,24 KiB. | — |
 
 ### Resultado Momento 2
-- [ ] ✅ PASS — Sin hallazgos
+- [x] ✅ PASS — Sin hallazgos
 - [ ] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
@@ -129,9 +139,7 @@ Guardá las capturas en docs/04-testing/capturas/tc-3/momento-X/
 ## Issues creados
 | Issue | Momento | Métrica / Recurso | Severidad | Estado |
 |-------|---------|-------------------|-----------|--------|
-| | | | | |
+| — | Momento 2 | No se crearon Issues; no se detectaron problemas de performance que requieran seguimiento | — | — |
 
 ## Conclusión general
-**Resultado final:** <!-- PASS / FAIL CON OBSERVACIONES / FAIL -->
-
-<!-- Escribí un resumen de los hallazgos más importantes y las acciones requeridas -->
+**Resultado final:** PASS — Momento 1 y Momento 2 quedaron dentro de los umbrales documentados. En Momento 2 se midieron 22 ms para DOMContentLoaded, 21,9 ms para DOM Interactive y 35,1 ms para Load completo. Los 8 recursos registraron 300 bytes acumulados de transferencia según la Performance API, con respuestas cacheadas; los cuerpos codificados sumaron 208,24 KiB. Ningún recurso excedió 500 KiB ni 500 ms. No se encontraron hallazgos que requieran Issue.

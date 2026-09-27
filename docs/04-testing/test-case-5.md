@@ -179,42 +179,70 @@ Guardá las capturas en docs/04-testing/capturas/tc-5/momento-X/
 ### Estructura de headings
 | Nivel | Texto | ¿Correcto? | Observación |
 |-------|-------|-----------|-------------|
-| | | | |
-| | | | |
+| H1 | Sobre el proyecto | Sí | Único H1 del documento. |
+| H2 | Tu biblioteca de películas y series | Sí | Sin salto de jerarquía. |
+| H2 | Tu biblioteca | Sí | Sin salto de jerarquía. |
+| H3 | Pendientes | Sí | Subtítulo de la biblioteca. |
+| H4 | Interstellar | Sí | Jerarquía bajo “Pendientes”. |
+| H3 | Vistas | Sí | Mismo nivel que “Pendientes”. |
+| H4 | El viaje de Chihiro | Sí | Jerarquía bajo “Vistas”. |
+| H2 | Catálogo de películas | Sí | Sin salto de jerarquía. |
+| H3 | Interstellar | Sí | Título de artículo. |
+| H3 | El viaje de Chihiro | Sí | Título de artículo. |
+| H3 | Dark | Sí | Título de artículo. |
+| H2 | Mi lista | Sí | Sin salto de jerarquía. |
+| H3 | Títulos guardados | Sí | Subtítulo de la sección. |
+| H2 | Buscar en el catálogo | Sí | Sin salto de jerarquía. |
+| H2 | Resumen del catálogo | Sí | Sin salto de jerarquía. |
+| H2 | Próximas funciones | Sí | Sin salto de jerarquía. |
+| H2 | Mini Letterboxd | Sí | Heading del footer. |
 
 ### Landmarks detectados
 | Landmark | Elemento HTML | ¿Correcto? | Observación |
 |----------|---------------|-----------|-------------|
-| | | | |
-| | | | |
+| banner | `<header>` | Sí | Encabezado principal. |
+| navigation | `<nav aria-label="Navegación principal">` | Sí | Nombre accesible presente. |
+| main | `<main id="inicio">` | Sí | Contenido principal único. |
+| complementary | `<aside id="biblioteca">` | Sí | Biblioteca lateral con heading. |
+| navigation | `<nav aria-label="Estados de mi lista">` | Sí | Navegación secundaria nombrada. |
+| contentinfo | `<footer id="compartir">` | Sí | Pie de página con heading. |
+| region | `<section>` con heading | Sí | Secciones identificables por sus encabezados. |
+| — | `<article>` | Sí | Cada artículo de película/serie tiene heading propio. |
 
 ### Verificaciones semánticas
 | Verificación | Estado | Detalle |
 |--------------|--------|---------|
-| Un solo H1 | | |
-| Jerarquía de headings sin saltos | | |
-| Secciones con elementos semánticos | | |
-| Campos de formulario con label | | |
-| Tabla/s con caption | | |
+| Un solo H1 | OK | Se detectó un H1: “Sobre el proyecto”. |
+| Jerarquía de headings sin saltos | OK | 17 headings; no se detectaron saltos de nivel. |
+| Secciones con elementos semánticos | OK | Se usan header, nav, main, aside, section, article y footer con propósito reconocible. Los 5 div observados envuelven el layout (2) y campos del formulario (3); no sustituyen elementos semánticos donde corresponda. |
+| Campos de formulario con label | OK | `input#busqueda`, `select#tipo` y `select#genero` tienen labels asociados. |
+| Tabla/s con caption | OK | Una tabla con caption “Películas y series disponibles en la biblioteca inicial”. |
 
 ### Validación W3C HTML
 | Tipo | Cantidad | Detalle |
 |------|----------|---------|
-| Errores | | |
-| Warnings | | |
+| Errores | 0 | Documento validado por Nu Html Checker (vnu 26.9.16). |
+| Warnings | 0 | No se informaron warnings. |
+
+El validador reportó 9 mensajes `Info` (no errores ni warnings) sobre barras finales en elementos void, en las líneas 4, 5, 9, 63, 79, 100, 125, 148 y 201.
 
 ### Validación W3C CSS
 | Archivo | Errores | Warnings |
 |---------|---------|----------|
-| styles.css | | |
-| components.css | | |
-| responsive.css | | |
+| styles.css | 0 | 23 |
+| components.css | 0 | 47 |
+| responsive.css | 0 | 2 |
+
+**Detalle de warnings W3C CSS (perfil CSS level 3, nivel de warnings 2):**
+- `styles.css` — 23: variable CSS no comprobable estáticamente y recomendación de familia genérica (línea 31); avisos por color sin color de fondo explícito en líneas 61 (4 mensajes), 83, 95, 121, 139, 143, 159 y 205; por fondo sin color de texto explícito en líneas 111, 176 (3) y 197; redefiniciones en líneas 210 (`align-items`), 212 (`gap`), 220 (`grid-template-columns`) y URI `$sf`, línea 0 (`column-gap`, `row-gap`).
+- `components.css` — 47: variables CSS no comprobables estáticamente en líneas 9, 13, 15, 17, 19, 33, 35, 69, 89, 93, 111, 123, 139, 151, 167, 181, 211, 213, 215, 217, 255, 257, 265, 279, 281, 293 y 321; avisos por color/fondo no explícito en líneas 61 (3), 113 (2), 125 (2), 191, 219 (3), 229, 267, 303 y 311; redefiniciones de `padding-*` en línea 321 y `grid-template-columns` en línea 329.
+- `responsive.css` — 2: redefinición de `grid-template-columns` en líneas 33 y 43. No se detectaron errores de parseo ni contenido no CSS, a diferencia de Momento 1.
 
 ### Capturas de pantalla
 | Descripción | Captura |
 |-------------|---------|
 | Snapshot accesibilidad | ![](capturas/tc-5/momento-2/semantic-snapshot.png) |
-| W3C HTML Validator | ![](capturas/tc-5/momento-2/w3c-html.png) |
+| W3C HTML Validator (0 errores, 0 warnings) | ![](capturas/tc-5/momento-2/w3c-html.png) |
 | W3C CSS — styles.css | ![](capturas/tc-5/momento-2/w3c-css-styles.png) |
 | W3C CSS — components.css | ![](capturas/tc-5/momento-2/w3c-css-components.png) |
 | W3C CSS — responsive.css | ![](capturas/tc-5/momento-2/w3c-css-responsive.png) |
@@ -222,10 +250,10 @@ Guardá las capturas en docs/04-testing/capturas/tc-5/momento-X/
 ### Hallazgos
 | # | Tipo | Elemento / Archivo | Descripción | Severidad |
 |---|------|--------------------|-------------|-----------|
-| | | | | |
+| — | — | — | No se encontraron errores HTML/CSS ni problemas semánticos. Los warnings CSS y mensajes informativos HTML están detallados arriba y no impidieron la validación. | — |
 
 ### Resultado Momento 2
-- [ ] ✅ PASS — Sin hallazgos
+- [x] ✅ PASS — Sin errores de validación ni hallazgos semánticos
 - [ ] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
@@ -240,6 +268,5 @@ Guardá las capturas en docs/04-testing/capturas/tc-5/momento-X/
 Se consideró bug el hallazgo de `css/responsive.css` porque contiene contenido que no pertenece a CSS y el validador W3C reportó 5 errores de parseo. Se registró en el issue [#29](https://github.com/keviineze/proyecto-web-peliculas/issues/29). Los warnings de `styles.css` sobre variables CSS y los warnings `-webkit-` de `responsive.css` no se consideraron bugs. El warning HTML sobre barras finales en elementos void tampoco se consideró bug, ya que el documento obtuvo 0 errores. `components.css` no se consideró bug en Momento 1 porque aparecerá al hacer el merge a `develop`; queda pendiente de validación en Momento 2.
 
 ## Conclusión general
-**Resultado Momento 1:** FAIL. El Momento 2 queda pendiente.
-
-<!-- Escribí un resumen de los hallazgos más importantes y las acciones requeridas -->
+**Resultado Momento 1:** FAIL — se detectaron 5 errores W3C en `responsive.css`.  
+**Resultado Momento 2:** PASS — la estructura semántica es correcta y HTML/CSS no presentan errores W3C. `responsive.css` valida sin errores.

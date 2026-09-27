@@ -5,7 +5,7 @@
 |-------|-------|
 | Responsable | Kevin Ezequiel Sosa|
 | Fecha Momento 1 |24-09-26 |
-| Fecha Momento 2 | |
+| Fecha Momento 2 | 27-09-26 |
 | Rama Momento 1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 2 | `develop` |
 | URL testeada | `http://localhost:3000` |
@@ -93,14 +93,12 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 ### Violaciones encontradas
 | # | Regla axe | Impacto | Elemento afectado | Descripción |
 |---|-----------|---------|-------------------|-------------|
-| | | | | |
-| | | | | |
-| | | | | |
+| — | — | — | — | No se encontraron violaciones axe-core en esta ejecución. La regla `link-in-text-block`, registrada en Momento 1 para `a[href$="#interstellar"]`, `a[href$="#chihiro"]` y `a[href$="#dark"]`, no se reprodujo. |
 
 ### Needs Review (incomplete)
 | # | Regla axe | Elemento | Descripción |
 |---|-----------|----------|-------------|
-| | | | |
+| — | — | — | No se encontraron resultados incomplete que requieran revisión manual. |
 
 ### Capturas de pantalla
 | Descripción | Captura |
@@ -110,14 +108,16 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 ### Resumen por nivel de impacto
 | Nivel | Cantidad | Reglas |
 |-------|----------|--------|
-| 🔴 critical | | |
-| 🟠 serious | | |
-| 🟡 moderate | | |
-| 🔵 minor | | |
-| **Total** | | |
+| 🔴 critical | 0 | — |
+| 🟠 serious | 0 | — |
+| 🟡 moderate | 0 | — |
+| 🔵 minor | 0 | — |
+| **Total** | **0** | — |
+
+**Ejecución:** axe-core 4.7.2; 44 reglas pasaron y 42 fueron no aplicables.
 
 ### Resultado Momento 2
-- [ ] ✅ PASS — Sin violaciones
+- [x] ✅ PASS — Sin violaciones
 - [ ] ⚠️ FAIL CON OBSERVACIONES — Solo violaciones moderate/minor
 - [ ] ❌ FAIL — Violaciones critical o serious presentes
 
@@ -127,11 +127,10 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 | Issue | Momento | Regla axe | Elemento | Impacto | Estado |
 |-------|---------|-----------|----------|---------|--------|
 | [#27](https://github.com/keviineze/proyecto-web-peliculas/issues/27) | Momento 1 | `link-in-text-block` | Tres enlaces de la lista completa (`#interstellar`, `#chihiro`, `#dark`) | serious | Abierto |
+| — | Momento 2 | No se creó un Issue nuevo: no se encontraron violaciones | — | — | — |
 
 ## Decisiones tomadas
 La violación `link-in-text-block` se consideró un bug de accesibilidad porque axe-core detectó contraste insuficiente (2,16:1 frente al mínimo requerido de 3:1) y falta de diferenciación visual adicional en tres enlaces de texto. Debe corregirse aumentando el contraste y/o agregando subrayado u otro estilo persistente. No se descartaron violaciones. No se encontraron resultados incomplete, por lo que no hubo hallazgos pendientes de revisión manual. No se creó un issue en esta ejecución.
 
 ## Conclusión general
-**Resultado final:** <!-- PASS / FAIL CON OBSERVACIONES / FAIL -->
-
-<!-- Escribí un resumen de los hallazgos más importantes y las acciones requeridas -->
+**Resultado final:** PASS en Momento 2. La nueva ejecución con axe-core 4.7.2 no encontró violaciones ni resultados incomplete; las tres instancias `link-in-text-block` de Momento 1 no se reprodujeron.

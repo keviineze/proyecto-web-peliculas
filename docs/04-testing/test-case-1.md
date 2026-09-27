@@ -5,7 +5,7 @@
 |-------|-------|
 | Responsable | Kevin Ezequiel Sosa|
 | Fecha Momento 1 |24-09-26 |
-| Fecha Momento 2 | |
+| Fecha Momento 2 | 26-09-26 |
 | Rama Momento 1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 2 | `develop` |
 | URL testeada | `http://localhost:3000` |
@@ -84,26 +84,28 @@ Guardá las capturas en docs/04-testing/capturas/tc-1/momento-X/
 ### Viewports testeados
 | Viewport | Navegador simulado | Navegación | Layout | Tabla | Footer | Estado |
 |----------|--------------------|------------|--------|-------|--------|--------|
-| 1920×1080 | Chrome | | | | | |
-| 1440×900 | Chrome | | | | | |
-| 1280×800 | Firefox / Safari | | | | | |
-| 1280×800 | Edge | | | | | |
+| 1920×1080 | Chrome | OK | OK | OK | OK | OK |
+| 1440×900 | Chrome | OK | OK | OK | OK | OK |
+| 1280×800 | Firefox / Safari (viewport emulado) | OK | OK | OK | OK | OK |
+| 1280×800 | Edge (viewport emulado) | OK | OK | OK | OK | OK |
+
+**Nota de ejecución:** Playwright MCP reportó Chromium 153 como motor/User-Agent en las cuatro pruebas. Las capturas Firefox/Safari y Edge verifican el viewport solicitado, pero no sustituyen una ejecución en los motores nativos de esos navegadores.
 
 ### Capturas de pantalla
 | Viewport | Captura | Estado |
 |----------|---------|--------|
-| 1920×1080 | ![](capturas/tc-1/momento-2/desktop-1920x1080.png) | |
-| 1440×900 | ![](capturas/tc-1/momento-2/desktop-1440x900.png) | |
-| 1280×800 Firefox/Safari | ![](capturas/tc-1/momento-2/desktop-1280x800-firefox.png) | |
-| 1280×800 Edge | ![](capturas/tc-1/momento-2/desktop-1280x800-edge.png) | |
+| 1920×1080 | ![](capturas/tc-1/momento-2/desktop-1920x1080.png) | OK |
+| 1440×900 | ![](capturas/tc-1/momento-2/desktop-1440x900.png) | OK |
+| 1280×800 Firefox/Safari (viewport emulado) | ![](capturas/tc-1/momento-2/desktop-1280x800-firefox.png) | OK |
+| 1280×800 Edge (viewport emulado) | ![](capturas/tc-1/momento-2/desktop-1280x800-edge.png) | OK |
 
 ### Hallazgos
 | # | Elemento | Viewport afectado | Descripción | Severidad |
 |---|----------|-------------------|-------------|-----------|
-| | | | | |
+| — | — | Ninguno | No se observaron cortes, desbordamientos horizontales ni contenido ilegible. Header, navegación, layout, tabla y footer se visualizaron correctamente en los cuatro viewports. | — |
 
 ### Resultado Momento 2
-- [ ] ✅ PASS — Sin hallazgos
+- [x] ✅ PASS — Sin hallazgos visuales en los cuatro viewports emulados
 - [ ] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
@@ -112,9 +114,8 @@ Guardá las capturas en docs/04-testing/capturas/tc-1/momento-X/
 ## Issues creados
 | Issue | Momento | Elemento | Severidad | Estado |
 |-------|---------|----------|-----------|--------|
-| | | | | |
+| Ninguno | Momento 2 | — | — | No se crearon Issues; no se detectaron bugs visuales |
 
 ## Conclusión general
-**Resultado Momento 1:** PASS — Sin hallazgos. El Momento 2 queda pendiente.
-
-<!-- Escribí un resumen de los hallazgos más importantes y las acciones requeridas -->
+**Resultado Momento 1:** PASS — Sin hallazgos.  
+**Resultado Momento 2:** PASS — Sin hallazgos visuales en 1920×1080, 1440×900 y 1280×800. No se detectaron cortes, desbordamiento horizontal ni problemas de legibilidad; la navegación, el layout, la tabla y el footer se mantuvieron visibles y correctos. No se crearon Issues. Las pruebas con etiqueta Firefox/Safari y Edge se ejecutaron con viewport emulado en Chromium 153, por lo que se recomienda confirmar en los motores nativos para certificar compatibilidad entre navegadores.
