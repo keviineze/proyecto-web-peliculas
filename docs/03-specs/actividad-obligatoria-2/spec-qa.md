@@ -369,11 +369,11 @@ Esta sección será completada durante la ejecución de los test cases.
 
 | Test Case   | Resultado | Issues    | Evidencia |
 | ----------- | --------- | --------- | --------- |
-| Test Case 1 | PASS | Ninguno | Pendiente |
-| Test Case 2 | PASS | Ninguno | Pendiente |
-| Test Case 3 | PASS | Ninguno | Pendiente |
-| Test Case 4 | FAIL | #27 | Pendiente |
-| Test Case 5 | FAIL | #29 | Pendiente |
+| Test Case 1 | PASS | Ninguno | capturas/tc-1/momento-1/ |
+| Test Case 2 | PASS | Ninguno | capturas/tc-2/momento-1/ |
+| Test Case 3 | PASS | Ninguno | capturas/tc-3/momento-1/ |
+| Test Case 4 | FAIL | #27 | capturas/tc-4/momento-1/ |
+| Test Case 5 | FAIL | #29 | capturas/tc-5/momento-1/ |
 
 ### Momento 2
 
