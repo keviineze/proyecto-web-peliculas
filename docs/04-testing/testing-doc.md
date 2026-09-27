@@ -76,10 +76,12 @@ Se utilizó la validación W3C para comprobar la estructura HTML y los archivos 
 | Test Case | Prueba | Herramienta | Momento 1 | Momento 2 | Estado |
 |---|---|---|---|---|---|
 | TC1 | Compatibilidad desktop | Playwright MCP | PASS | PASS | Completado |
-| TC2 | Responsive | Playwright MCP + viewport emulation | PASS | FAIL | Completado |
+| TC2 | Responsive | Playwright MCP + viewport emulation | PASS | PASS* | Completado |
 | TC3 | Performance y carga | Playwright MCP + Performance API | PASS | PASS | Completado |
 | TC4 | Accesibilidad | Playwright MCP + axe-core | FAIL | PASS | Completado |
 | TC5 | HTML semántico y CSS | Playwright MCP + W3C | FAIL | PASS | Completado |
+
+\* El Momento 2 presentó inicialmente el Issue #31. Luego de la corrección integrada en `develop`, se realizó un retest específico y se verificó que el problema quedó corregido.
 
 ---
 
@@ -246,6 +248,26 @@ En iPad Air la tabla se visualizó correctamente.
 
 **Severidad:** Media.
 
+### Retest TC2 — Issue #31
+
+Luego de la corrección del problema responsive y su integración en `develop`, se realizó una prueba de regresión específica mediante Playwright MCP.
+
+Se verificaron nuevamente:
+
+- iPhone 14 Pro — 390×844
+- Samsung Galaxy S23 — 412×915
+- iPad Air — 820×1180
+
+En iPhone y Samsung la tabla pudo desplazarse horizontalmente mediante su propio contenedor, permitiendo consultar la columna final "Estado".
+
+Se verificó además que la página no presenta scroll horizontal global.
+
+En iPad Air las cinco columnas continúan visibles sin necesidad de desplazamiento.
+
+**Resultado del retest:** PASS.
+
+**Issue #31:** Corregido y verificado.
+
 ---
 
 ### TC3 — Performance y carga
@@ -298,7 +320,7 @@ El problema documentado anteriormente en el Issue #29 no volvió a presentarse d
 
 | Issue | Test Case | Descripción | Estado |
 |---|---|---|---|
-| [#31](https://github.com/keviineze/proyecto-web-peliculas/issues/31) | TC2 | La tabla del catálogo queda parcialmente inaccesible en los viewports móviles | Pendiente de corrección |
+| [#31](https://github.com/keviineze/proyecto-web-peliculas/issues/31) | TC2 | La tabla del catálogo queda parcialmente inaccesible en los viewports móviles | Corregido y verificado |
 
 **Total de issues creados en Momento 2: 1**
 
@@ -319,7 +341,7 @@ Ambos problemas fueron corregidos antes del merge a `develop`.
 
 **Issues creados: 1**
 
-- [Issue #31](https://github.com/keviineze/proyecto-web-peliculas/issues/31) — Tabla del catálogo inaccesible completamente en dispositivos móviles.
+- [Issue #31](https://github.com/keviineze/proyecto-web-peliculas/issues/31) — Tabla del catálogo inaccesible completamente en dispositivos móviles. El Issue #31 fue corregido mediante una nueva PR del equipo de desarrollo e integrado en `develop`. La corrección fue posteriormente verificada mediante una prueba de regresión de TC2 utilizando Playwright MCP.
 
 ---
 
@@ -328,10 +350,12 @@ Ambos problemas fueron corregidos antes del merge a `develop`.
 | Test Case | Momento 1 | Momento 2 | Issues |
 |---|---|---|---|
 | TC1 | PASS | PASS | Ninguno |
-| TC2 | PASS | FAIL | #31 |
+| TC2 | PASS | PASS* | #31 |
 | TC3 | PASS | PASS | Ninguno |
 | TC4 | FAIL | PASS | #27 |
 | TC5 | FAIL | PASS | #29 |
+
+\* El resultado inicial del Momento 2 fue FAIL debido al Issue #31. Luego de la corrección se realizó un retest y el resultado final fue PASS.
 
 **Total de Test Cases ejecutados:** 5
 
@@ -341,7 +365,9 @@ Ambos problemas fueron corregidos antes del merge a `develop`.
 
 **Issues corregidos antes del merge:** 2
 
-**Issues pendientes detectados después del merge:** 1
+**Issues pendientes detectados después del merge:** 0 
+
+**Issues corregidos y verificados después del merge:** 1
 
 ---
 

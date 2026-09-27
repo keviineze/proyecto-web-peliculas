@@ -242,10 +242,12 @@ http://localhost:3000
 | # | Test Case                             | Resultado                                                               | Issues                                 
 | - | ------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------- 
 | 1 | TC1 | PASS | Ninguno                              
-| 2 | TC2 | FAIL | #31                              
+| 2 | TC2 | PASS* | #31                              
 | 3 | TC3 | PASS | Ninguno            
 | 4 | TC4 | PASS | Ninguno                  
 | 5 | TC5 | PASS | Ninguno 
+
+\* TC2 — Momento 2 — PASS después del retest Issue #31 — Corregido y verificado
 
 ### Verificación de problemas anteriores
 El problema registrado en el Issue #27 durante el Momento 1 no volvió a presentarse durante TC4 en `develop`.
@@ -385,6 +387,20 @@ Esta sección será completada durante la ejecución de los test cases.
 | Test Case 4 | PASS | Ninguno | capturas/tc-4/momento-2/ |
 | Test Case 5 | PASS | Ninguno | capturas/tc-5/momento-2/ |
 
+### Retest del Issue #31
+
+Luego de la corrección implementada por el equipo de desarrollo e integrada en `develop`, se realizó una prueba de regresión específica del TC2 mediante Playwright MCP.
+
+Los viewports afectados originalmente fueron nuevamente evaluados:
+
+- iPhone 14 Pro — 390×844
+- Samsung Galaxy S23 — 412×915
+- iPad Air — 820×1180
+
+La tabla del catálogo dispone ahora de desplazamiento horizontal propio en los dos viewports móviles donde se había detectado el problema. Se pudo alcanzar la columna final "Estado" mediante `scrollLeft`, sin generar scroll horizontal global de la página.
+
+Resultado: **PASS — Issue #31 corregido y verificado.**
+
 ---
 
 ## 📌 Estado final
@@ -398,3 +414,11 @@ Durante el Momento 1 se detectaron dos bugs, registrados en los Issues #27 y #29
 Durante el Momento 2 se detectó un nuevo bug responsive, registrado en el Issue #31, relacionado con la visualización de la tabla del catálogo en dispositivos móviles.
 
 La documentación de testing queda consolidada en los cinco Test Cases, testing-doc.md y este documento de especificación.
+
+### Resumen Final
+- 5 Test Cases
+- 10 ejecuciones iniciales
+- 1 retest específico de Issue #31
+- 3 Issues detectados
+- 3 Issues corregidos
+- 0 Issues pendientes

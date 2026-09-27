@@ -110,10 +110,56 @@ Guardá las capturas en docs/04-testing/capturas/tc-2/momento-X/
 ---
 
 ## Issues creados
+
 | Issue | Momento | Elemento | Dispositivo | Severidad | Estado |
 |-------|---------|----------|-------------|-----------|--------|
-| [#31 — Tabla del catálogo recortada en viewports móviles](https://github.com/keviineze/proyecto-web-peliculas/issues/31) | Momento 2 | Tabla de resumen del catálogo | iPhone 14 Pro y Samsung Galaxy S23 | Media | Abierto |
+| [#31 — Tabla del catálogo recortada en viewports móviles](https://github.com/keviineze/proyecto-web-peliculas/issues/31) | Momento 2 | Tabla de resumen del catálogo | iPhone 14 Pro y Samsung Galaxy S23 | Media | Corregido y verificado |
+
+---
+
+## Retest del Issue #31 — Verificación de la corrección
+
+Luego de la corrección realizada por el equipo de desarrollo y su integración en la rama `develop`, se realizó una prueba de regresión específica del Issue #31 utilizando Playwright MCP.
+
+La prueba se ejecutó nuevamente sobre los mismos dispositivos y viewports donde se había detectado el problema:
+
+| Dispositivo | Viewport | Resultado |
+|-------------|----------|-----------|
+| iPhone 14 Pro | 390×844 | PASS — tabla desplazable horizontalmente |
+| Samsung Galaxy S23 | 412×915 | PASS — tabla desplazable horizontalmente |
+| iPad Air | 820×1180 | PASS — tabla completa visible |
+
+### Verificaciones realizadas
+
+- La tabla mantiene un ancho de 482 px en los dispositivos móviles, pero ahora dispone de desplazamiento horizontal propio.
+- En iPhone 14 Pro se pudo desplazar la tabla hasta `scrollLeft = 175 px`, permitiendo consultar la columna final "Estado".
+- En Samsung Galaxy S23 se pudo desplazar la tabla hasta `scrollLeft = 153 px`, permitiendo consultar la columna final "Estado".
+- No se detectó scroll horizontal global de la página.
+- Las columnas de la tabla pueden consultarse completamente en los dos dispositivos afectados originalmente.
+- En iPad Air las cinco columnas continúan siendo visibles sin necesidad de desplazamiento horizontal.
+
+### Evidencias del retest
+
+Las nuevas capturas se almacenaron en:
+
+`docs/04-testing/capturas/tc-2/momento-2/`
+
+- iPhone 14 Pro — evidencia de corrección.
+- Samsung Galaxy S23 — evidencia de corrección.
+- iPad Air — evidencia de control.
+
+### Resultado del retest
+
+**PASS — Issue #31 corregido y verificado.**
+
+El problema detectado originalmente en el Momento 2 no volvió a reproducirse después de la corrección integrada en `develop`.
 
 ## Conclusión general
-**Resultado Momento 1:** PASS — Sin hallazgos.  
-**Resultado Momento 2:** FAIL CON OBSERVACIONES — El layout responsive se adapta y no hay scroll horizontal global en los tres dispositivos. Sin embargo, la tabla de resumen recorta sus columnas derechas en iPhone 14 Pro (390×844) y Samsung Galaxy S23 (412×915), aunque se visualiza completa en iPad Air (820×1180). Se creó el Issue [#31](https://github.com/keviineze/proyecto-web-peliculas/issues/31) para seguimiento. No se modificó la implementación.
+
+**Resultado Momento 1:** PASS — Sin hallazgos.
+
+**Resultado Momento 2 — ejecución inicial:** FAIL CON OBSERVACIONES — Se detectó que la tabla de resumen del catálogo recortaba sus columnas derechas en iPhone 14 Pro (390×844) y Samsung Galaxy S23 (412×915). Se creó el Issue #31 para registrar el problema.
+
+**Resultado del retest:** PASS — La corrección fue integrada en `develop` y verificada mediante Playwright MCP. En ambos dispositivos móviles la tabla dispone ahora de desplazamiento horizontal propio, permitiendo consultar todas sus columnas sin generar scroll horizontal global en la página. El iPad Air (820×1180) continúa funcionando correctamente.
+
+**Estado final del Issue #31:** Corregido y verificado.

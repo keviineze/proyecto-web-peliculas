@@ -130,7 +130,7 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 | — | Momento 2 | No se creó un Issue nuevo: no se encontraron violaciones | — | — | — |
 
 ## Decisiones tomadas
-La violación `link-in-text-block` se consideró un bug de accesibilidad porque axe-core detectó contraste insuficiente (2,16:1 frente al mínimo requerido de 3:1) y falta de diferenciación visual adicional en tres enlaces de texto. Debe corregirse aumentando el contraste y/o agregando subrayado u otro estilo persistente. No se descartaron violaciones. No se encontraron resultados incomplete, por lo que no hubo hallazgos pendientes de revisión manual. No se creó un issue en esta ejecución.
+La violación `link-in-text-block` se consideró un bug de accesibilidad porque axe-core detectó contraste insuficiente (2,16:1 frente al mínimo requerido de 3:1) y falta de diferenciación visual adicional en tres enlaces de texto. Debe corregirse aumentando el contraste y/o agregando subrayado u otro estilo persistente. No se descartaron violaciones. No se encontraron resultados incomplete, por lo que no hubo hallazgos pendientes de revisión manual.
 
 ## Conclusión general
 **Resultado final:** PASS en Momento 2. La nueva ejecución con axe-core 4.7.2 no encontró violaciones ni resultados incomplete; las tres instancias `link-in-text-block` de Momento 1 no se reprodujeron.
