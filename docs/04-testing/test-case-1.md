@@ -62,10 +62,10 @@ Guardá las capturas en docs/04-testing/capturas/tc-1/momento-X/
 ### Capturas de pantalla
 | Viewport | Captura | Estado |
 |----------|---------|--------|
-| 1920×1080 | ![](capturas/tc-1/momento-1/desktop-1920x1080.png) | OK |
-| 1440×900 | ![](capturas/tc-1/momento-1/desktop-1440x900.png) | OK |
-| 1280×800 Firefox/Safari | ![](capturas/tc-1/momento-1/desktop-1280x800-firefox.png) | OK |
-| 1280×800 Edge | ![](capturas/tc-1/momento-1/desktop-1280x800-edge.png) | OK |
+| 1920×1080 | ![](capturas/tc-1/momento-1/1920x1080.png) | OK |
+| 1440×900 | ![](capturas/tc-1/momento-1/1440x900.png) | OK |
+| 1280×800 Firefox/Safari | ![](capturas/tc-1/momento-1/1280x800-firefox-safari.png) | OK |
+| 1280×800 Edge | ![](capturas/tc-1/momento-1/1280x800-edge.png) | OK |
 
 ### Hallazgos
 | # | Elemento | Viewport afectado | Descripción | Severidad |
