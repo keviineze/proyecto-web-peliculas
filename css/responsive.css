@@ -24,8 +24,9 @@ main > div,
   gap: 1rem;
 }
 
-table {
+.table-scroll {
   max-width: 100%;
+  overflow-x: auto;
 }
 
 /* ==========================================================================
