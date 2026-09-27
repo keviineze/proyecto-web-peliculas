@@ -22,6 +22,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/restaurar-components-css] Restauración del archivo css/components.css extraviado durante integración de ramas [#30](https://github.com/keviineze/proyecto-web-peliculas/pull/30) - @Davidsoria99 (Desarrollo frontend)
 
+- [fix/tabla-scroll-movil] Corrección del desbordamiento de la tabla en vista móvil [#33](https://github.com/keviineze/proyecto-web-peliculas/pull/33) - @Davidsoria99 (Especialista en Responsive Design)
+
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
 ### Added
