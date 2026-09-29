@@ -20,7 +20,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
-- [fix/correcciones-qa-tester-1] Correccion RC10 y RC4 sobre release de Actividad Obligatoria 2 []() - @keviineze (Documentador / QA Tester)
+- [fix/correcciones-qa-tester-1] Correccion RC10 y RC4 sobre release de Actividad Obligatoria 2 [#36](https://github.com/keviineze/proyecto-web-peliculas/pull/36) - @keviineze (Documentador / QA Tester)
 
 - [fix/tabla-scroll-movil] Corrección del desbordamiento de la tabla en vista móvil [#33](https://github.com/keviineze/proyecto-web-peliculas/pull/33) - @Davidsoria99 (Especialista en Responsive Design)
 
