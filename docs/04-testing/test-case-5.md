@@ -5,7 +5,7 @@
 |-------|-------|
 | Responsable | Kevin Ezequiel Sosa |
 | Fecha Momento 1 |24-09-26 |
-| Fecha Momento 2 | |
+| Fecha Momento 2 |27-09-26|
 | Rama Momento 1 | `feature/responsive-design-add-responsive-styles` |
 | Rama Momento 2 | `develop` |
 | URL testeada | `http://localhost:3000` |
@@ -262,7 +262,7 @@ El validador reportó 9 mensajes `Info` (no errores ni warnings) sobre barras fi
 ## Issues creados
 | Issue | Momento | Tipo | Elemento / Archivo | Severidad | Estado |
 |-------|---------|------|--------------------|-----------|--------|
-| [#29](https://github.com/keviineze/proyecto-web-peliculas/issues/29) | Momento 1 | Validación CSS | `css/responsive.css` — 5 errores de parseo W3C | Alta | Abierto |
+| [#29](https://github.com/keviineze/proyecto-web-peliculas/issues/29) | Momento 1 | Validación CSS | `css/responsive.css` — 5 errores de parseo W3C | Alta | Cerrado |
 
 ## Decisiones tomadas
 Se consideró bug el hallazgo de `css/responsive.css` porque contiene contenido que no pertenece a CSS y el validador W3C reportó 5 errores de parseo. Se registró en el issue [#29](https://github.com/keviineze/proyecto-web-peliculas/issues/29). Los warnings de `styles.css` sobre variables CSS y los warnings `-webkit-` de `responsive.css` no se consideraron bugs. El warning HTML sobre barras finales en elementos void tampoco se consideró bug, ya que el documento obtuvo 0 errores. `components.css` no se consideró bug en Momento 1 porque aparecerá al hacer el merge a `develop`; queda pendiente de validación en Momento 2.

@@ -8,7 +8,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
-- [feature/doc-qa-tester-add-test-cases] Agregado de archivos correspondientes al rol de Documentador / QA Tester [#34](https://github.com/keviineze/proyecto-web-peliculas/pull/34) - @keviineze (Documentador / QA Tester)
+- [feature/doc-qa-tester-add-test-cases] A2 - Feature Documentador / QA Tester [#34](https://github.com/keviineze/proyecto-web-peliculas/pull/34) - @keviineze (Documentador / QA Tester)
 
 - [feature/frontend-review] Revisión de QA para los estilos base del frontend [#28](https://github.com/keviineze/proyecto-web-peliculas/pull/28) - @Davidsoria99 (Desarrollo frontend)
 
@@ -19,6 +19,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/coord-dev-ops-repo-update-readme-md] Actualizo plan.md, README.md y agrego mockup de A2 [#20](https://github.com/keviineze/proyecto-web-peliculas/pull/20) - @GonzaloBarbano (Coordinador/DevOps)
 
 ### Fixed
+
+- [fix/correcciones-qa-tester-1] Correccion RC10 y RC4 sobre release de Actividad Obligatoria 2 []() - @keviineze (Documentador / QA Tester)
 
 - [fix/tabla-scroll-movil] Corrección del desbordamiento de la tabla en vista móvil [#33](https://github.com/keviineze/proyecto-web-peliculas/pull/33) - @Davidsoria99 (Especialista en Responsive Design)
 
