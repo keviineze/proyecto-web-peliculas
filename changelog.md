@@ -24,9 +24,11 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/restaurar-components-css] Restauración del archivo css/components.css extraviado durante integración de ramas [#30](https://github.com/keviineze/proyecto-web-peliculas/pull/30) - @Davidsoria99 (Desarrollo frontend)
 
-- [fix/correccion-espacio-carpeta] Eliminación de espacio en blanco en carpeta actividad-obligatoria-2. PR: [#22](https://github.com/keviineze/proyecto-web-peliculas/pull/22) - @Davidsoria99 (Desarrollo frontend)
+- [fix/correccion-espacio-carpeta] Eliminación de espacio en blanco en carpeta actividad-obligatoria-2. [#22](https://github.com/keviineze/proyecto-web-peliculas/pull/22) - @Davidsoria99 (Desarrollo frontend)
 
-- [fix/correcciones-frontend] Corrección de RC11, RC14, RC12/13 y RC7. PR: [#37](https://github.com/keviineze/proyecto-web-peliculas/pull/37) - @Davidsoria99 (Desarrollo frontend)
+- [fix/correcciones-frontend] Corrección de RC11, RC14, RC12/13 y RC7. [#37](https://github.com/keviineze/proyecto-web-peliculas/pull/37) - @Davidsoria99 (Desarrollo frontend)
+
+- [fix/correcciones-responsive] Corrección de RC9 y RC4. [#38](https://github.com/keviineze/proyecto-web-peliculas/pull/38) - @Davidsoria99 (Especialista en Responsive Design)
 
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
