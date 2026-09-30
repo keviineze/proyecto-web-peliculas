@@ -164,7 +164,7 @@ main > div {
   display: grid;
   grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
   gap: var(--space-4);
-  align-items: start;
+  align-items: stretch;
 }
 
 aside,
