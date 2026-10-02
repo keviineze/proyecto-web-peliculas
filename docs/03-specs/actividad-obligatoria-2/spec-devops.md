@@ -176,22 +176,22 @@ Completar durante la ejecución:
 
 ## 5. Criterios de aceptación
 
-- [ ] Se resolvieron y documentaron los Request Changes de la Actividad N.° 1.
-- [ ] Se creó el backport hacia `develop`.
-- [ ] El mockup actualizado contiene paleta, tipografías, espaciados, componentes y estados.
-- [ ] Existe `docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png`.
-- [ ] `README.md` enlaza el mockup y el archivo de Figma.
-- [ ] `plan.md` está alineado con los requisitos de la segunda entrega.
-- [ ] Cada integrante tiene una rama propia y un PR contra `develop`.
-- [ ] Cada integrante realizó al menos un commit relevante.
-- [ ] Se realizaron como mínimo cuatro code reviews asistidos.
-- [ ] Se verificó la resolución de los Request Changes.
-- [ ] Los cinco casos de Playwright MCP están documentados.
-- [ ] `docs/04-testing/testing-doc.md` funciona como índice central.
-- [ ] `changelog.md` incluye aportes, PRs e issues.
-- [ ] Los specs de todos los roles incluyen prompts, resultados y ajustes manuales.
-- [ ] Se creó `release/actividad-obligatoria-2` desde `develop`.
-- [ ] Se habilitó GitHub Pages.
+- [x] Se resolvieron y documentaron los Request Changes de la Actividad N.° 1.
+- [x] Se creó el backport hacia `develop`.
+- [x] El mockup actualizado contiene paleta, tipografías, espaciados, componentes y estados.
+- [x] Existe `docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png`.
+- [x] `README.md` enlaza el mockup y el archivo de Figma.
+- [x] `plan.md` está alineado con los requisitos de la segunda entrega.
+- [x] Cada integrante tiene una rama propia y un PR contra `develop`.
+- [x] Cada integrante realizó al menos un commit relevante.
+- [x] Se realizaron como mínimo cuatro code reviews asistidos.
+- [x] Se verificó la resolución de los Request Changes.
+- [x] Los cinco casos de Playwright MCP están documentados.
+- [x] `docs/04-testing/testing-doc.md` funciona como índice central.
+- [x] `changelog.md` incluye aportes, PRs e issues.
+- [x] Los specs de todos los roles incluyen prompts, resultados y ajustes manuales.
+- [x] Se creó `release/actividad-obligatoria-2` desde `develop`.
+- [x] Se habilitó GitHub Pages.
 - [ ] La integración a `master` cuenta con la aprobación del profesor.
 
 ## 6. Definition of Done
