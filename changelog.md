@@ -36,6 +36,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correcciones-devops] **Correccion entradas en changelog y spec-devops.md** [PR #39](https://github.com/keviineze/proyecto-web-peliculas/pull/39) - @GonzaloBarbano (Coordinador / DevOps)
 
+- [fix/correccion-RC15-RC16] **Correccion de RC15 y RC16** [PR #40](https://github.com/keviineze/proyecto-web-peliculas/pull/40) - @GonzaloBarbano (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
 ### Added
