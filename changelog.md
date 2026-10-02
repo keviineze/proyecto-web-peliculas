@@ -34,7 +34,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correcciones-responsive] **fix: correcciones RC9 y RC4** [PR #38](https://github.com/keviineze/proyecto-web-peliculas/pull/38) - @Davidsoria99 (Especialista en Responsive Design)
 
-- [fix/correcciones-devops] **fix: correcciones entradas changelog y spec-devops** [PR #39](https://github.com/keviineze/proyecto-web-peliculas/pull/3) - @GonzaloBarbano (Coordinador / DevOps)
+- [fix/correcciones-devops] **Correccion entradas en changelog y spec-devops.md** [PR #39](https://github.com/keviineze/proyecto-web-peliculas/pull/39) - @GonzaloBarbano (Coordinador / DevOps)
 
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
