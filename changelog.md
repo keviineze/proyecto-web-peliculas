@@ -12,9 +12,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [feature/frontend-review] Revisión de QA para los estilos base del frontend [#28](https://github.com/keviineze/proyecto-web-peliculas/pull/28) - @Davidsoria99 (Desarrollo frontend)
 
-- [feature/responsive-design-add-responsive-styles] Implementación de estilos responsive con Mobile-First y Flexbox/Grid generados vía Copilot [#24](https://github.com/keviineze/proyecto-web-peliculas/pull/24) - @Davidsoria99 (Especialista en Responsive Design)
+- [feature/responsive-design-add-responsive-styles] Implementación de Responsive Design [#24](https://github.com/keviineze/proyecto-web-peliculas/pull/24) - @Davidsoria99 (Especialista en Responsive Design)
 
-- [feature/dev-frontend-css-add-styles] Implementación de estilos CSS styles y components generados vía Figma MCP y actualización de spec-frontend.md [#21](https://github.com/keviineze/proyecto-web-peliculas/pull/21) - @Davidsoria99 (Desarrollo frontend)
+- [feature/dev-frontend-css-add-styles] implementación de estilos base y componentes CSS [#21](https://github.com/keviineze/proyecto-web-peliculas/pull/21) - @Davidsoria99 (Desarrollo frontend)
 
 - [feature/coord-dev-ops-repo-update-readme-md] Actualizo plan.md, README.md y agrego mockup de A2 [#20](https://github.com/keviineze/proyecto-web-peliculas/pull/20) - @GonzaloBarbano (Coordinador/DevOps)
 
@@ -26,9 +26,11 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/restaurar-components-css] Restauración del archivo css/components.css extraviado durante integración de ramas [#30](https://github.com/keviineze/proyecto-web-peliculas/pull/30) - @Davidsoria99 (Desarrollo frontend)
 
-- [fix/correccion-espacio-carpeta] Eliminación de espacio en blanco en carpeta actividad-obligatoria-2. PR: [#22](https://github.com/keviineze/proyecto-web-peliculas/pull/22) - @Davidsoria99 (Desarrollo frontend)
+- [fix/correccion-espacio-carpeta] Eliminación de espacio en blanco en carpeta actividad-obligatoria-2. [#22](https://github.com/keviineze/proyecto-web-peliculas/pull/22) - @Davidsoria99 (Desarrollo frontend)
 
-- [fix/correcciones-frontend] Corrección de RC11, RC14, RC12/13 y RC7. PR: [#37](https://github.com/keviineze/proyecto-web-peliculas/pull/37) - @Davidsoria99 (Desarrollo frontend)
+- [fix/correcciones-frontend] Corrección de RC11, RC14, RC12/13 y RC7. [#37](https://github.com/keviineze/proyecto-web-peliculas/pull/37) - @Davidsoria99 (Desarrollo frontend)
+
+- [fix/correcciones-responsive] Corrección de RC9 y RC4. [#38](https://github.com/keviineze/proyecto-web-peliculas/pull/38) - @Davidsoria99 (Especialista en Responsive Design)
 
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
