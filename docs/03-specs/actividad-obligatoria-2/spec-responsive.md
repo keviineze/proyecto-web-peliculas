@@ -23,6 +23,8 @@ Se definen los siguientes breakpoints basados en las prácticas Mobile-First par
 ## 2. Evidencia de Ejecución
 
 ### Prompt utilizado en Copilot
+
+```
 Actúa como un Especialista en Responsive Design. Basándote en la imagen del mockup adjunto, en la planificación de 'spec-responsive.md' y en las clases existentes de 'styles.css' y 'components.css', genera el código CSS completo para un nuevo archivo 'responsive.css'.
 Requisitos:
 
@@ -36,6 +38,7 @@ Ajusta tamaños de tipografías y márgenes según el breakpoint.
 
 Asegúrate de prevenir cualquier overflow horizontal (overflow-x: hidden en el body si es necesario).
 Devuelve únicamente el código CSS comentado y organizado por breakpoints.
+```
 
 ### Resultado obtenido y ajustes manuales
 - **Resultado:** Copilot generó un archivo estructurado con enfoque Mobile-First, utilizando `grid-template-columns` para adaptar la grilla de películas (1 columna en mobile, 2 en tablet, 3 en desktop). Además, aplicó `overflow-x: hidden` en el body y ajustó variables tipográficas según el breakpoint.
