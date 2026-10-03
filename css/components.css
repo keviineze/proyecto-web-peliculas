@@ -35,6 +35,16 @@ article ul {
   padding-left: var(--space-4);
 }
 
+nav[aria-label="Estados de mi lista"] ul {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
 /* Los controles comparten altura, borde y transición de interacción. */
 button,
 header > a,
