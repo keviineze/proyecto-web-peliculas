@@ -8,7 +8,9 @@
       content="Mini Letterboxd: catálogo y biblioteca personal de películas y series."
     />
     <title>Mini Letterboxd | Películas y series</title>
-    <!-- Futuro CSS: enlazar aquí la hoja de estilos y los recursos visuales del proyecto. -->
+     <link rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" href="css/components.css">
+      <link rel="stylesheet" href="css/responsive.css">
   </head>
   <body>
     <!-- Futuro CSS: aplicar la composición visual de la barra superior del mockup. -->
@@ -160,7 +162,7 @@
           </div>
         </section>
       </div>
-
+      
       <section aria-labelledby="titulo-lista">
         <h2 id="titulo-lista">Mi lista</h2>
         <nav aria-label="Estados de mi lista">
@@ -185,7 +187,6 @@
           </ul>
         </section>
       </section>
-
       <section id="recomendaciones" aria-labelledby="titulo-recomendaciones">
         <h2 id="titulo-recomendaciones">Buscar en el catálogo</h2>
         <form action="#catalogo" method="get">
@@ -222,6 +223,7 @@
 
       <section aria-labelledby="titulo-resumen">
         <h2 id="titulo-resumen">Resumen del catálogo</h2>
+        <div class="table-scroll">
         <table>
           <caption>
             Películas y series disponibles en la biblioteca inicial
@@ -259,6 +261,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </section>
 
       <section id="ajustes" aria-labelledby="titulo-ajustes">
