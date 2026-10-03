@@ -158,21 +158,17 @@ En la rama release se realizará la validación final y se habilitará GitHub Pa
 
 ### 4.3 Resultado obtenido
 
-Completar durante la ejecución:
-
-- **Resultado de la asistencia:** Pendiente.
-- **Requisitos verificados:** Pendiente.
-- **Incumplimientos detectados:** Pendiente.
-- **Issues generados:** Pendiente.
+- **Resultado de la asistencia:** Se documentó la coordinación de la entrega y se registraron los resultados de QA. El índice de testing informa cinco casos ejecutados en dos momentos (10 ejecuciones en esos momentos): TC4 y TC5 fallaron inicialmente y se registraron como issues; TC2 detectó un problema móvil en el segundo momento, que luego se corrigió y retesteó con resultado PASS. Véase [testing-doc.md](../../04-testing/testing-doc.md).
+- **Requisitos verificados:** La documentación registra la actualización del mockup, `README.md` y `plan.md` en la PR [#20](https://github.com/keviineze/proyecto-web-peliculas/pull/20); los cinco casos de Playwright están indexados en [testing-doc.md](../../04-testing/testing-doc.md), y sus resultados, capturas e issues se detallan en `docs/04-testing/`. El resumen final informa tres issues creados, dos corregidos antes del merge y uno corregido y verificado después del merge. Esta evidencia acredita el registro documental; no implica una nueva ejecución independiente de todas las pruebas durante esta asistencia.
+- **Incumplimientos detectados:** La revisión de la PR [#35](https://github.com/keviineze/proyecto-web-peliculas/pull/35) señaló que este bloque aún estaba incompleto (RC15) y que la entrada de la PR #39 tenía título y enlace incorrectos (RC16), corregidos en este cambio. En esa misma revisión permanecen señalados RC17 (diferencias entre el mockup y las secciones implementadas) y RC18 (composición de la navegación de estados). También sigue sin constar la aprobación del profesor para integrar la release a `master`, criterio que permanece sin marcar.
+- **Issues generados:** QA registró los issues [#27](https://github.com/keviineze/proyecto-web-peliculas/issues/27) (accesibilidad, TC4), [#29](https://github.com/keviineze/proyecto-web-peliculas/issues/29) (validación de `responsive.css`, TC5) y [#31](https://github.com/keviineze/proyecto-web-peliculas/issues/31) (tabla del catálogo en móviles, TC2). El resumen de testing los informa corregidos; #31 cuenta además con retest PASS. Esta asistencia DevOps no generó issues nuevos.
 
 ### 4.4 Ajustes manuales realizados
 
-Completar durante la ejecución:
-
-- Ajustes realizados al mockup y sus exportaciones.
-- Correcciones manuales en `README.md`, `plan.md` o índices.
-- Cambios aplicados después de las revisiones asistidas.
-- Motivo de cada ajuste y evidencia de validación.
+- La PR [#20](https://github.com/keviineze/proyecto-web-peliculas/pull/20) registra la actualización del mockup/exportación y de `README.md` y `plan.md` para la entrega.
+- Se documentaron los cinco casos y sus evidencias en `docs/04-testing/testing-doc.md`; las correcciones de accesibilidad y CSS quedaron registradas como issues #27 y #29, y el problema móvil como issue #31, con retest posterior.
+- El spec de Frontend registra ajustes a `align-items: stretch` (RC11), al selector de navegación (RC14) y la eliminación de una sección HTML extra (RC12/RC13). El spec Responsive indica que la integración de `responsive.css` no requirió correcciones manuales adicionales.
+- En este cambio se completó este registro (RC15) y se corrigió la entrada de PR #39 (RC16). La validación de esos dos ajustes es la revisión del contenido de este spec y del enlace/título del changelog; RC17 y RC18 quedan pendientes de resolución.
 
 ## 5. Criterios de aceptación
 
