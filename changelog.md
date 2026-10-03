@@ -38,6 +38,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correccion-RC15-RC16] **Correccion de RC15 y RC16** [PR #40](https://github.com/keviineze/proyecto-web-peliculas/pull/40) - @GonzaloBarbano (Coordinador / DevOps)
 
+- [fix/correcciones-RC17-18] **Fix: correcciones rc17 y rc18** [PR #41](https://github.com/keviineze/proyecto-web-peliculas/pull/41) - @Davidsoria99 (Desarrollador Frontend)
+
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
 ### Added
