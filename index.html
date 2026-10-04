@@ -8,9 +8,14 @@
       content="Mini Letterboxd: catálogo y biblioteca personal de películas y series."
     />
     <title>Mini Letterboxd | Películas y series</title>
-     <link rel="stylesheet" href="css/styles.css">
-      <link rel="stylesheet" href="css/components.css">
-      <link rel="stylesheet" href="css/responsive.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/bootstrap-overrides.css" />
   </head>
   <body>
     <!-- Futuro CSS: aplicar la composición visual de la barra superior del mockup. -->
@@ -44,8 +49,12 @@
       </section>
 
       <!-- Futuro CSS: convertir el siguiente bloque en la distribución de dos columnas del mockup. -->
-      <div>
-        <aside id="biblioteca" aria-labelledby="titulo-biblioteca">
+      <div class="row g-4">
+        <aside
+          id="biblioteca"
+          class="col-12 col-lg-3"
+          aria-labelledby="titulo-biblioteca"
+        >
           <h2 id="titulo-biblioteca">Tu biblioteca</h2>
 
           <section id="lista-pendientes" aria-labelledby="titulo-pendientes">
@@ -81,82 +90,90 @@
           </section>
         </aside>
 
-        <section id="catalogo" aria-labelledby="titulo-catalogo">
+        <section
+          id="catalogo"
+          class="col-12 col-lg-9"
+          aria-labelledby="titulo-catalogo"
+        >
           <h2 id="titulo-catalogo">Catálogo de películas</h2>
           <p>Una selección inicial para descubrir nuevas historias.</p>
 
           <!-- Futuro JavaScript: renderizar estas tarjetas desde un catálogo y actualizar sus estados. -->
-          <div>
-            <article id="interstellar">
-              <img
-                src="assets/images/interestellar-2.jpeg"
-                alt="Paisaje montañoso de la película Interstellar"
-                width="686"
-                height="446"
-                loading="lazy"
-                decoding="async"
-              />
-              <h3>Interstellar</h3>
-              <p>Película | 2014 | Ciencia ficción</p>
-              <p>
-                Un grupo de exploradores busca un nuevo hogar para la humanidad
-                más allá de las estrellas.
-              </p>
-              <ul>
-                <li>Estado: pendiente</li>
-                <li>Duración: 169 minutos</li>
-              </ul>
-              <!-- Futuro JavaScript: agregar el título a la lista "Para ver". -->
-              <button type="button">Añadir para ver</button>
-              <!-- Futuro JavaScript: cambiar el estado del título a "Visto". -->
-              <button type="button">Marcar como vista</button>
-            </article>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 catalog-grid">
+  <div class="col">
+    <article class="h-100">
+      <img
+        src="assets/images/interestellar-2.jpeg"
+        alt="Paisaje montañoso de la película Interstellar"
+        width="686"
+        height="446"
+        loading="lazy"
+        decoding="async"
+      />
+      <h3>Interstellar</h3>
+      <p>Película | 2014 | Ciencia ficción</p>
+      <p>
+        Un grupo de exploradores busca un nuevo hogar para la humanidad
+        más allá de las estrellas.
+      </p>
+      <ul>
+        <li>Estado: pendiente</li>
+        <li>Duración: 169 minutos</li>
+      </ul>
+      <button class="btn btn-primary" type="button">Añadir para ver</button>
+      <button class="btn btn-primary" type="button">Marcar como vista</button>
+    </article>
+  </div>
 
-            <article id="chihiro">
-              <img
-                src="assets/images/chihiro-2.jpeg"
-                alt="Paisaje natural que representa un viaje fantástico"
-                width="225"
-                height="225"
-                loading="lazy"
-                decoding="async"
-              />
-              <h3>El viaje de Chihiro</h3>
-              <p>Película | 2001 | Animación y fantasía</p>
-              <p>
-                Chihiro entra en un mundo de espíritus y debe encontrar el valor
-                para recuperar a sus padres.
-              </p>
-              <ul>
-                <li>Estado: vista</li>
-                <li>Duración: 125 minutos</li>
-              </ul>
-              <!-- Futuro JavaScript: abrir el formulario de calificación y comentario. -->
-              <button type="button">Calificar y comentar</button>
-            </article>
+  <div class="col">
+    <article class="h-100">
+      <img
+        src="assets/images/chihiro-2.jpeg"
+        alt="Paisaje natural que representa un viaje fantástico"
+        width="225"
+        height="225"
+        loading="lazy"
+        decoding="async"
+      />
+      <h3>El viaje de Chihiro</h3>
+      <p>Película | 2001 | Animación y fantasía</p>
+      <p>
+        Chihiro entra en un mundo de espíritus y debe encontrar el valor
+        para recuperar a sus padres.
+      </p>
+      <ul>
+        <li>Estado: vista</li>
+        <li>Duración: 125 minutos</li>
+      </ul>
+      <button class="btn btn-primary" type="button">Calificar y comentar</button>
+    </article>
+  </div>
 
-            <article id="dark">
-              <img
-                src="assets/images/dark.jpeg"
-                alt="Paisaje de una ciudad nocturna para representar una serie de misterio"
-                width="685"
-                height="384"
-                loading="lazy"
-                decoding="async"
-              />
-              <h3>Dark</h3>
-              <p>Serie | 2017 | Misterio y ciencia ficción</p>
-              <p>
-                Cuatro familias buscan respuestas cuando la desaparición de un
-                niño revela un misterio temporal.
-              </p>
-              <ul>
-                <li>Estado: pendiente</li>
-                <li>Temporadas: 3</li>
-              </ul>
-              <button type="button">Añadir para ver</button>
-              <button type="button">Marcar como vista</button>
-            </article>
+  <div class="col">
+    <article class="h-100">
+      <img
+        src="assets/images/dark.jpeg"
+        alt="Paisaje de una ciudad nocturna para representar una serie de misterio"
+        width="685"
+        height="384"
+        loading="lazy"
+        decoding="async"
+      />
+      <h3>Dark</h3>
+      <p>Serie | 2017 | Misterio y ciencia ficción</p>
+      <p>
+        Cuatro familias buscan respuestas cuando la desaparición de un
+        niño revela un misterio temporal.
+      </p>
+      <ul>
+        <li>Estado: pendiente</li>
+        <li>Temporadas: 3</li>
+      </ul>
+      <button class="btn btn-primary" type="button">Añadir para ver</button>
+      <button class="btn btn-primary" type="button">Marcar como vista</button>
+    </article>
+  </div>
+</div>
           </div>
         </section>
       </div>
@@ -201,5 +218,6 @@
       </ul>
       <!-- Futuro JavaScript: inicializar la persistencia local y la acción de compartir. -->
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
