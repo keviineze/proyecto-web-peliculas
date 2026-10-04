@@ -4,7 +4,7 @@
 | Campo | Valor |
 |-------|-------|
 | Responsable | Kevin Sosa |
-| Fecha de ejecución | 2026-10-04 |
+| Fecha de ejecución | 2026-10-05 |
 | Rama testeada | `feature/dev-frontend-bootstrap-migration` |
 | URL testeada | `http://localhost:3000` |
 | Versión de Bootstrap | 5.3.8 |
