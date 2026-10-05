@@ -36,16 +36,18 @@ article ul {
 }
 
 nav[aria-label="Estados de mi lista"] ul {
-    display: flex;
+    display: inline-flex;
+    background-color: var(--color-surface);
     flex-direction: row;
-    gap: 10px;
+    gap: 0px;
     list-style: none;
     padding: 0;
     margin-top: 0;
+    border-radius: var(--radius-control);
+    overflow: hidden;
     margin-bottom: 24px;
 }
 
-/* Los controles comparten altura, borde y transición de interacción. */
 button,
 header > a,
   nav[aria-label="Estados de mi lista"] a {
@@ -76,6 +78,25 @@ nav[aria-label="Estados de mi lista"] a:hover {
   color: #07130b;
 }
 
+nav[aria-label="Estados de mi lista"] a {
+    background-color: transparent;
+    color: var(--color-text-muted);
+    border-radius: 0;
+    border: none;
+}
+
+nav[aria-label="Estados de mi lista"] li:first-child a {
+    background-color: var(--color-primary);
+    color: #07130b;
+    border-top-left-radius: var(--radius-control);
+    border-bottom-left-radius: var(--radius-control);
+}
+
+nav[aria-label="Estados de mi lista"] li:last-child a {
+    border-top-right-radius: var(--radius-control);
+    border-bottom-right-radius: var(--radius-control);
+}
+
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
@@ -91,7 +112,6 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-/* Los formularios usan una superficie distinta para diferenciar entradas. */
 form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -133,7 +153,6 @@ form button {
   width: 100%;
 }
 
-/* La tabla conserva legibilidad en pantallas pequeñas mediante scroll horizontal. */
 table {
   display: block;
   width: 100%;

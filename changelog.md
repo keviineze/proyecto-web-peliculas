@@ -44,6 +44,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correccion] **Actualizar spec DevOps con el estado de RC17 y RC18** [PR #42](https://github.com/keviineze/proyecto-web-peliculas/pull/42) - @GonzaloBarbano (Coordinador / DevOps)
 
+- [fix/correcciones-RC19-20] **Corregir RC19 y RC20** [PR #43](https://github.com/keviineze/proyecto-web-peliculas/pull/43) - @Davidsoria99 (Desarrollador Frontend)
+
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
 ### Added
