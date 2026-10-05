@@ -18,7 +18,7 @@ Incorporar estilos CSS, diseño responsive y un proceso de QA automatizado sobre
 
 ## 📁 Documentación
 
-- 📁 **[Mockup](docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png)** - **[Figma](https://www.figma.com/design/MUinkLOSBg71RCgez6ibro/Proyecto-Web-Peliculas?node-id=2-62&m=dev&t=vcf4fPKlVi2i39Wn-1)**
+- 📁 **[Mockup](docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png)** - **[Figma](https://www.figma.com/design/ZHASAjWQTbizIsUdcszmnq/Proyecto-Web-Peliculas-1?t=wAMia2wIHdldLlda-0)**
 
 ## 👥 Integrantes del grupo
 
