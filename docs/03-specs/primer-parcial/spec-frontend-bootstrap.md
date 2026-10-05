@@ -151,29 +151,102 @@ Las personalizaciones de Bootstrap se centralizarán en `css/bootstrap-overrides
 
 ## 4. Momento 2 — Cierre
 
-### 4.1 Contexto Figma utilizado
 
-**Pendiente de completar con el enlace/nodo real del mockup actualizado cuando esté disponible en Figma.**
+### 4.2 Prompt utilizado con GitHub Copilot Agent Mode
 
-> El PNG entregado por el Coordinador se utilizó como referencia visual local durante la preparación/implementación. Para acreditar el uso de Figma MCP debe registrarse el enlace o nodo real utilizado con el MCP.
+El prompt utilizado para la implementación solicitó:
 
-### 4.2 Prompt exacto utilizado con Figma MCP + Copilot
+- integrar Bootstrap 5.3.8 mediante CDN jsDelivr;
+- mantener `styles.css`, `components.css` y `responsive.css`;
+- crear `css/bootstrap-overrides.css`;
+- migrar Biblioteca y Catálogo al sistema de columnas Bootstrap;
+- adaptar las tarjetas del catálogo a columnas responsive;
+- mantener la identidad visual del mockup;
+- revisar el resultado mediante Playwright MCP;
+- comprobar los viewports responsive;
+- evitar overflow horizontal.
 
-```text
-PENDIENTE: pegar aquí literalmente el prompt utilizado durante la sesión real de Copilot/Figma MCP.
-```
 
 ### 4.3 Resultado obtenido
 
-PENDIENTE. Registrar el resultado real generado por Copilot/Figma MCP.
+La migración del frontend fue implementada correctamente.
 
-### 4.4 Ajustes manuales realizados
+Se integró Bootstrap 5.3.8 mediante CDN jsDelivr y se conservaron los
+archivos CSS existentes del proyecto.
 
-PENDIENTE. Registrar solamente los ajustes realmente realizados después de revisar el resultado generado.
+La sección Biblioteca/Catálogo fue migrada al sistema de columnas
+Bootstrap:
 
-### 4.5 Evidencia final
+- `col-12 col-lg-3` para Biblioteca.
+- `col-12 col-lg-9` para Catálogo.
 
-- Test case: `docs/04-testing/test-case-6.md`
-- Capturas: `docs/04-testing/capturas/tc-6/`
-- Issues: registrar solamente los hallazgos reales.
-- PR: completar al abrir la PR.
+Las tarjetas del catálogo utilizan columnas responsive Bootstrap:
+
+- una columna en móvil;
+- dos columnas desde `md`;
+- tres columnas desde `lg`.
+
+Se creó `css/bootstrap-overrides.css` para centralizar las
+personalizaciones de Bootstrap y conservar la identidad visual del
+proyecto.
+
+Durante la validación se comprobó que Bootstrap se cargara correctamente,
+que el layout responsive funcionara y que no existiera overflow horizontal
+en los tamaños evaluados.
+
+### 4.4 Ajustes manuales y revisión
+
+Durante la revisión de la implementación se conservaron los estilos
+existentes que continuaban siendo necesarios para el proyecto y se
+utilizó `bootstrap-overrides.css` para adaptar Bootstrap a la identidad
+visual existente.
+
+La revisión realizada mediante Playwright comprobó el comportamiento
+responsive del layout y la ausencia de overflow horizontal.
+
+También se verificó mediante `git diff --check` que no existieran errores
+de whitespace en los cambios.
+
+### 4.5 Resultado del Test Case 6
+
+El Test Case 6 se documentó en:
+
+`docs/04-testing/test-case-6.md`
+
+Se realizaron comprobaciones del layout Bootstrap en los tamaños definidos
+por el template del test.
+
+Los resultados principales fueron:
+
+- Bootstrap cargado correctamente.
+- Biblioteca y Catálogo utilizan Bootstrap Grid.
+- En tamaños móviles las secciones se apilan.
+- Las tarjetas se adaptan a las columnas responsive.
+- No se detectó overflow horizontal.
+- Los estilos existentes del proyecto se conservaron.
+- `bootstrap-overrides.css` se utilizó para las personalizaciones de
+  Bootstrap.
+
+Durante la validación se observó que el favicon `/favicon.ico` devuelve
+404. Esta observación es ajena a la migración Bootstrap y no se creó un
+Issue por ella.
+
+### 4.6 Evidencia final
+
+- Test Case:
+  `docs/04-testing/test-case-6.md`
+
+- Capturas:
+  `docs/04-testing/capturas/tc-6/`
+
+- Mockup:
+  `docs/01-mockup/disenio-bootstrap.png`
+
+- Overrides:
+  `css/bootstrap-overrides.css`
+
+- Implementación principal:
+  `index.html`
+
+Los Issues y PR correspondientes se completarán según el flujo de ramas
+del proyecto cuando se realice la integración.
