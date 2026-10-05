@@ -46,7 +46,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correcciones-RC19-20] **Corregir RC19 y RC20** [PR #43](https://github.com/keviineze/proyecto-web-peliculas/pull/43) - @Davidsoria99 (Desarrollador Frontend)
 
-- [fix/correccion-hangelog] **Correccion de changelog** [PR #44](https://github.com/keviineze/proyecto-web-peliculas/pull/44) - @GonzaloBarbano (Coordinador / DevOps)
+- [fix/correccion-changelog] **Correccion de changelog** [PR #44](https://github.com/keviineze/proyecto-web-peliculas/pull/44) - @GonzaloBarbano (Coordinador / DevOps)
 
 - [fix/correcciones-RC23-25] **Corrección RC23 y RC25** [PR #45](https://github.com/keviineze/proyecto-web-peliculas/pull/45) - @Davidsoria99 (Desarrollador Frontend)
 
