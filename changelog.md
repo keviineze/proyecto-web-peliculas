@@ -42,7 +42,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correcciones-RC17-18] **Fix: correcciones rc17 y rc18** [PR #41](https://github.com/keviineze/proyecto-web-peliculas/pull/41) - @Davidsoria99 (Desarrollador Frontend)
 
-- [fix/correccion] **Actualizar spec DevOps con el estado de RC17 y RC18** [PR #42](https://github.com/keviineze/proyecto-web-peliculas/pull/42) - @GonzaloBarbano (Coordinador / DevOps)
+- [fix/correccion] **Corrijo spec-devops (RC21) y agrego unrelease a changelog** [PR #42](https://github.com/keviineze/proyecto-web-peliculas/pull/42) - @GonzaloBarbano (Coordinador / DevOps)
 
 - [fix/correcciones-RC19-20] **Corregir RC19 y RC20** [PR #43](https://github.com/keviineze/proyecto-web-peliculas/pull/43) - @Davidsoria99 (Desarrollador Frontend)
 
