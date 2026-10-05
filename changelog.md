@@ -4,6 +4,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
+## [Unreleased]
+
 ## [Release Actividad Obligatoria N°2] - 2026-09-28
 
 ### Added
@@ -39,6 +41,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [fix/correccion-RC15-RC16] **Correccion de RC15 y RC16** [PR #40](https://github.com/keviineze/proyecto-web-peliculas/pull/40) - @GonzaloBarbano (Coordinador / DevOps)
 
 - [fix/correcciones-RC17-18] **Fix: correcciones rc17 y rc18** [PR #41](https://github.com/keviineze/proyecto-web-peliculas/pull/41) - @Davidsoria99 (Desarrollador Frontend)
+
+- [fix/correccion] **Actualizar spec DevOps con el estado de RC17 y RC18** [PR #42](https://github.com/keviineze/proyecto-web-peliculas/pull/42) - @GonzaloBarbano (Coordinador / DevOps)
 
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
