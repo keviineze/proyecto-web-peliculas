@@ -18,15 +18,15 @@ Incorporar estilos CSS, diseño responsive y un proceso de QA automatizado sobre
 
 ## 📁 Documentación
 
-- 📁 **[Mockup](docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png)** - **[Figma](https://www.figma.com/design/ZHASAjWQTbizIsUdcszmnq/Proyecto-Web-Peliculas-1?t=wAMia2wIHdldLlda-0)**
+- 📁 **[Mockup Bootstrap](docs/01-mockup/disenio-bootstrap.png)** - **[Figma](https://www.figma.com/design/aavw8ufOkinPXlXFVs9k7q/Proyecto-Web-Peliculas-Mockup-Bootstrap?node-id=2003-65&t=eVzgsTytu6vEXB5r-0)**
 
 ## 👥 Integrantes del grupo
 
-| Nombre completo | N.º de matrícula | Usuario de GitHub                                    | Rol en esta entrega                                            |
-| --------------- | ---------------: | ---------------------------------------------------- | -------------------------------------------------------------- |
-| Gonzalo Barbano |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano) | Coordinador / DevOps                                           |
-| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | Desarrollador Frontend/CSS y Especialista en Responsive Design |
-| Kevin Sosa      |           154080 | [@keviineze](https://github.com/keviineze)           | Documentador / QA Tester                                       |
+| Nombre completo | N.º de matrícula | Usuario de GitHub                                    | Rol en esta entrega                                                            |
+| --------------- | ---------------: | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
+| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | Coordinador / DevOps                                                           |
+| Kevin Sosa  |           154080 | [@keviinez](https://github.com/keviineze) | Desarrollador Frontend/Bootstrap y Especialista en Componentes Bootstrap       |
+| Gonzalo Barbano      |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano)           | Desarrollador de Componentes HTML Avanzados                                    |
 
 Los roles se asignan específicamente para esta entrega y se rotan respecto de la Actividad Obligatoria N.° 1.
 
