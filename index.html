@@ -8,7 +8,9 @@
       content="Mini Letterboxd: catálogo y biblioteca personal de películas y series."
     />
     <title>Mini Letterboxd | Películas y series</title>
-    <!-- Futuro CSS: enlazar aquí la hoja de estilos y los recursos visuales del proyecto. -->
+     <link rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" href="css/components.css">
+      <link rel="stylesheet" href="css/responsive.css">
   </head>
   <body>
     <!-- Futuro CSS: aplicar la composición visual de la barra superior del mockup. -->
@@ -20,8 +22,6 @@
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#catalogo">Catálogo</a></li>
           <li><a href="#biblioteca">Biblioteca</a></li>
-          <li><a href="#recomendaciones">Recomendaciones</a></li>
-          <li><a href="#ajustes">Ajustes</a></li>
         </ul>
       </nav>
 
@@ -87,7 +87,7 @@
 
           <!-- Futuro JavaScript: renderizar estas tarjetas desde un catálogo y actualizar sus estados. -->
           <div>
-            <article>
+            <article id="interstellar">
               <img
                 src="assets/images/interestellar-2.jpeg"
                 alt="Paisaje montañoso de la película Interstellar"
@@ -112,7 +112,7 @@
               <button type="button">Marcar como vista</button>
             </article>
 
-            <article>
+            <article id="chihiro">
               <img
                 src="assets/images/chihiro-2.jpeg"
                 alt="Paisaje natural que representa un viaje fantástico"
@@ -135,7 +135,7 @@
               <button type="button">Calificar y comentar</button>
             </article>
 
-            <article>
+            <article id="dark">
               <img
                 src="assets/images/dark.jpeg"
                 alt="Paisaje de una ciudad nocturna para representar una serie de misterio"
@@ -160,7 +160,7 @@
           </div>
         </section>
       </div>
-
+      
       <section aria-labelledby="titulo-lista">
         <h2 id="titulo-lista">Mi lista</h2>
         <nav aria-label="Estados de mi lista">
@@ -184,90 +184,6 @@
             <li><a href="#dark">Dark</a> - pendiente de ver.</li>
           </ul>
         </section>
-      </section>
-
-      <section id="recomendaciones" aria-labelledby="titulo-recomendaciones">
-        <h2 id="titulo-recomendaciones">Buscar en el catálogo</h2>
-        <form action="#catalogo" method="get">
-          <div>
-            <label for="busqueda">Título o palabra clave</label>
-            <input
-              type="search"
-              id="busqueda"
-              name="busqueda"
-              placeholder="Ejemplo: ciencia ficción"
-            />
-          </div>
-          <div>
-            <label for="tipo">Tipo de contenido</label>
-            <select id="tipo" name="tipo">
-              <option value="todos">Todos</option>
-              <option value="pelicula">Películas</option>
-              <option value="serie">Series</option>
-            </select>
-          </div>
-          <div>
-            <label for="genero">Género</label>
-            <select id="genero" name="genero">
-              <option value="todos">Todos los géneros</option>
-              <option value="ciencia-ficcion">Ciencia ficción</option>
-              <option value="fantasia">Fantasía</option>
-              <option value="misterio">Misterio</option>
-            </select>
-          </div>
-          <!-- Futuro JavaScript: filtrar el catálogo sin recargar la página. -->
-          <button type="submit">Buscar</button>
-        </form>
-      </section>
-
-      <section aria-labelledby="titulo-resumen">
-        <h2 id="titulo-resumen">Resumen del catálogo</h2>
-        <table>
-          <caption>
-            Películas y series disponibles en la biblioteca inicial
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Título</th>
-              <th scope="col">Tipo</th>
-              <th scope="col">Año</th>
-              <th scope="col">Género</th>
-              <th scope="col">Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr id="interstellar">
-              <th scope="row">Interstellar</th>
-              <td>Película</td>
-              <td>2014</td>
-              <td>Ciencia ficción</td>
-              <td>Pendiente</td>
-            </tr>
-            <tr id="chihiro">
-              <th scope="row">El viaje de Chihiro</th>
-              <td>Película</td>
-              <td>2001</td>
-              <td>Fantasía</td>
-              <td>Vista</td>
-            </tr>
-            <tr id="dark">
-              <th scope="row">Dark</th>
-              <td>Serie</td>
-              <td>2017</td>
-              <td>Misterio</td>
-              <td>Pendiente</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section id="ajustes" aria-labelledby="titulo-ajustes">
-        <h2 id="titulo-ajustes">Próximas funciones</h2>
-        <ul>
-          <li>Calificaciones personales guardadas en el navegador.</li>
-          <li>Comentarios asociados a cada título.</li>
-          <li>Compartir la biblioteca mediante un enlace.</li>
-        </ul>
       </section>
     </main>
 
