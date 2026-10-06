@@ -52,6 +52,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correcciones-RC26-27] **Corrección RC26 y RC27** [PR #46](https://github.com/keviineze/proyecto-web-peliculas/pull/46) - @Davidsoria99 (Desarrollador Frontend)
 
+- [fix/correccion-RC28] **Corrección RC28** [PR #47](https://github.com/keviineze/proyecto-web-peliculas/pull/47) - @Davidsoria99 (Desarrollador Frontend)
+
 ## [Release Actividad Obligatoria N°1] - 2026-08-31
 
 ### Added
