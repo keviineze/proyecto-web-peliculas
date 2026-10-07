@@ -25,7 +25,7 @@ Incorporar estilos CSS, diseño responsive y un proceso de QA automatizado sobre
 | Nombre completo | N.º de matrícula | Usuario de GitHub                                    | Rol en esta entrega                                                            |
 | --------------- | ---------------: | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
 | David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | Coordinador / DevOps                                                           |
-| Kevin Sosa  |           154080 | [@keviinez](https://github.com/keviineze) | Desarrollador Frontend/Bootstrap y Especialista en Componentes Bootstrap       |
+| Kevin Sosa  |           154080 | [@keviineze](https://github.com/keviineze) | Desarrollador Frontend/Bootstrap y Especialista en Componentes Bootstrap       |
 | Gonzalo Barbano      |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano)           | Desarrollador de Componentes HTML Avanzados                                    |
 
 Los roles se asignan específicamente para esta entrega y se rotan respecto de la Actividad Obligatoria N.° 1.
