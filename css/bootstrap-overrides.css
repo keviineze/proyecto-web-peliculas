@@ -16,6 +16,8 @@ main > div.row {
   display: flex;
   grid-template-columns: none;
   gap: 0;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 #catalogo > .catalog-grid {
@@ -53,18 +55,36 @@ main > div.row {
 #main-navbar {
   display: block;
   flex-direction: row;
-  padding: var(--space-2) 0;
+  padding: var(--space-3) 0;
+  border-bottom: 0;
+  background: transparent;
 }
 
 #main-navbar .navbar-container {
-  width: min(100% - var(--space-8), 1280px);
+  width: min(100% - var(--space-8), 1000px);
   padding: 0;
 }
 
 #main-navbar .navbar-brand {
-  margin-right: var(--space-6);
+  margin-right: auto;
   color: var(--color-text);
+  text-decoration: none;
+}
+
+#main-navbar .wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 0.85;
+}
+
+#main-navbar .wordmark span {
+  font-size: 0.65rem;
   font-weight: 700;
+}
+
+#main-navbar .wordmark strong {
+  font-size: 1.25rem;
 }
 
 #main-navbar .navbar-collapse {
@@ -72,7 +92,7 @@ main > div.row {
 }
 
 #main-navbar .navbar-nav {
-  gap: var(--space-3);
+  gap: var(--space-6);
 }
 
 #main-navbar .nav-link {
@@ -109,14 +129,15 @@ main > div.row {
 .featured-section > h2 {
   width: fit-content;
   margin-right: auto;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   margin-left: auto;
   border-bottom: 2px solid var(--color-primary);
   text-align: center;
+  font-size: 2rem;
 }
 
 .featured-carousel {
-  max-width: 980px;
+  max-width: 740px;
   margin: 0 auto;
   overflow: hidden;
   border: 1px solid var(--color-border);
@@ -124,41 +145,30 @@ main > div.row {
 }
 
 .featured-slide {
-  position: relative;
-  min-height: clamp(260px, 38vw, 440px);
-  background: var(--color-input);
+  min-height: 0;
+  background: var(--color-surface);
 }
 
 .featured-slide-image {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
+  height: 165px;
   object-fit: cover;
 }
 
 .featured-slide-caption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: var(--space-8) clamp(3.5rem, 10vw, 8rem) var(--space-6);
-  background: linear-gradient(transparent, rgba(20, 24, 28, 0.96) 40%);
+  padding: var(--space-3) clamp(3.5rem, 10vw, 8rem) var(--space-3);
   color: var(--color-text);
+  text-align: center;
 }
 
 .featured-slide-caption h3 {
-  margin-bottom: var(--space-2);
-  font-size: clamp(1.25rem, 3vw, 2rem);
+  margin-bottom: var(--space-3);
+  font-size: 1.5rem;
 }
 
 .featured-slide-caption p {
-  margin-bottom: var(--space-2);
-  color: var(--color-text-muted);
-}
-
-.featured-slide-caption p:last-child {
-  margin-bottom: 0;
+  display: none;
 }
 
 .featured-carousel .carousel-control-prev,
@@ -179,19 +189,64 @@ main > div.row {
 }
 
 @media (min-width: 992px) {
+  main > div.row {
+    gap: var(--space-4);
+  }
+
+  main > div.row > #biblioteca {
+    flex: 0 0 calc(25% - 12px);
+    max-width: calc(25% - 12px);
+  }
+
+  main > div.row > #catalogo {
+    flex: 0 0 calc(75% - 4px);
+    max-width: calc(75% - 4px);
+  }
+}
+
+@media (max-width: 991.98px) {
+  main > div.row {
+    gap: var(--space-4);
+  }
+
+  main > div.row > #biblioteca,
+  main > div.row > #catalogo {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
   #main-navbar .navbar-share {
     margin-top: 0;
-    margin-left: var(--space-6);
+    margin-left: var(--space-8);
   }
 }
 
 @media (max-width: 575.98px) {
-  .featured-slide {
-    min-height: 320px;
+  .my-list-section nav[aria-label="Estados de mi lista"] {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .my-list-section .list-filter {
+    min-height: 72px;
+  }
+
+  #main-navbar .navbar-nav {
+    gap: var(--space-2);
   }
 
   .featured-slide-caption {
-    padding: var(--space-8) var(--space-8) var(--space-4);
+    padding: var(--space-3) var(--space-8);
+  }
+
+  .featured-slide-image {
+    height: 125px;
+  }
+
+  .featured-section > h2 {
+    font-size: 1.5rem;
   }
 
   .featured-carousel .carousel-control-prev,
