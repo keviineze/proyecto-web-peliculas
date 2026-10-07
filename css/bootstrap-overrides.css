@@ -137,6 +137,14 @@ main > div.row {
 }
 
 .featured-carousel {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.featured-carousel .carousel-inner {
+  width: calc(100% - 8rem);
   max-width: 740px;
   margin: 0 auto;
   overflow: hidden;
@@ -180,6 +188,16 @@ main > div.row {
   border: 0;
   border-radius: 0;
   background-color: transparent;
+}
+
+.featured-carousel
+  .carousel-control-prev:focus-visible
+  .carousel-control-prev-icon,
+.featured-carousel
+  .carousel-control-next:focus-visible
+  .carousel-control-next-icon {
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px var(--color-secondary);
 }
 
 .featured-carousel .carousel-control-prev-icon,
@@ -252,5 +270,9 @@ main > div.row {
   .featured-carousel .carousel-control-prev,
   .featured-carousel .carousel-control-next {
     width: 2.5rem;
+  }
+
+  .featured-carousel .carousel-inner {
+    width: calc(100% - 6rem);
   }
 }
