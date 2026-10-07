@@ -204,6 +204,25 @@
               />
               <h4>El viaje de Chihiro</h4>
               <p>Estado: vista</p>
+              <div class="rating-control">
+                <label for="rating-chihiro">Tu calificación</label>
+                <input
+                  class="form-range"
+                  id="rating-chihiro"
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
+                  value="3"
+                />
+                <div class="rating-scale" aria-hidden="true">
+                  <span>1</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4</span>
+                  <span>5</span>
+                </div>
+              </div>
             </article>
           </section>
         </aside>
@@ -233,11 +252,19 @@
                 <h3>Interstellar</h3>
                 <p>Película | 2014 | Ciencia ficción</p>
                 <p>
-                  Un grupo de exploradores busca un nuevo hogar para la
-                  humanidad más allá de las estrellas.
-                </p>
-                <div class="card-meta">
-                  <p>Duración: 169 minutos</p>
+                  <details class="movie-facts">
+                    <summary>Ficha técnica</summary>
+                    <ul>
+                      <li>Duración: 125 minutos</li>
+                      <li>Estado: vista</li>
+                    </ul>
+                        <details class="movie-facts">
+                          <summary>Ficha técnica</summary>
+                          <ul>
+                            <li>Duración: 125 minutos</li>
+                            <li>Estado: vista</li>
+                          </ul>
+                        </details>
                   <p>Estado: pendiente</p>
                 </div>
                 <div class="card-actions">
@@ -428,10 +455,13 @@
               Chihiro entra en un mundo de espíritus y debe encontrar el valor
               para recuperar a sus padres.
             </p>
-            <ul>
-              <li>Duración: 125 minutos</li>
-              <li>Estado: vista</li>
-            </ul>
+            <details class="movie-facts">
+              <summary>Ficha técnica</summary>
+              <ul>
+                <li>Duración: 125 minutos</li>
+                <li>Estado: vista</li>
+              </ul>
+            </details>
           </div>
           <div class="modal-footer">
             <button
