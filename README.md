@@ -28,7 +28,7 @@ Incorporar estilos CSS, diseño responsive y un proceso de QA automatizado sobre
 | Kevin Sosa  |           154080 | [@keviineze](https://github.com/keviineze) | Desarrollador Frontend/Bootstrap y Especialista en Componentes Bootstrap       |
 | Gonzalo Barbano      |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano)           | Desarrollador de Componentes HTML Avanzados                                    |
 
-Los roles se asignan específicamente para esta entrega y se rotan respecto de la Actividad Obligatoria N.° 1.
+Los roles se asignan específicamente para esta entrega y se rotan respecto de la Actividad Obligatoria N.° 2.
 
 ## Objetivo
 
