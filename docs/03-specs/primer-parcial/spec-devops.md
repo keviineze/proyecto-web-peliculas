@@ -24,3 +24,24 @@ El diseño se migrará para reflejar la utilización de Bootstrap. Se ajustará 
      > Actúa como Senior Software Engineer realizando un code review profesional. Analiza los cambios de la Pull Request activa comparando la rama actual con develop. Utiliza las herramientas de GitKraken (MCP) para identificar los archivos modificados y publicar los hallazgos. CRÍTICO PARA ESTE SPRINT: Verifica si el código HTML utiliza correctamente el sistema de columnas y clases de Bootstrap, y evalúa si la implementación visual y los overrides de CSS son coherentes con la imagen de referencia `docs/01-mockup/disenio-bootstrap.png`.
    - **Resumen de hallazgos:** Se publicaron 3 hallazgos mediante comentarios en línea evaluando la referencia del mockup (carrusel/grilla), errores de legibilidad en el README, y la falta de actualización de los checkboxes de tareas en el spec-devops.
    - **Acción tomada:** Se dejó como "Comment" debido a ser una PR propia y se corrigieron los hallazgos.
+
+   2. **PR #51 (Migración Frontend a Bootstrap)**
+   - **Revisor:** @Davidsoria99
+   - **Prompt utilizado:**
+     > Actúa como Senior Software Engineer realizando un code review profesional. Analiza los cambios de la Pull Request activa comparando la rama actual con develop. Utiliza las herramientas de GitKraken (MCP) para identificar los archivos modificados y publicar los hallazgos. CRÍTICO PARA ESTE SPRINT: Verifica si el código HTML utiliza correctamente el sistema de columnas y clases de Bootstrap, y evalúa si la implementación visual y los overrides de CSS son coherentes con la imagen de referencia `docs/01-mockup/disenio-bootstrap.png`.
+   - **Resumen de hallazgos:** La IA logró detectar bugs funcionales (pérdida de IDs en las tarjetas, lo que rompía los anclajes internos) y errores en la documentación del QA Tester (discrepancias en resoluciones y tablas).
+   - **Acción tomada:** Se publicaron los hallazgos solicitando cambios (Request Changes). Tras una segunda revisión validando los nuevos commits, se aprobó (Approve) y se mergeó a `develop`.
+
+3. **PR #53 (Componentes Bootstrap - Navbar y Carrusel)**
+   - **Revisor:** @Davidsoria99
+   - **Prompt utilizado:**
+     > Actúa como Senior Software Engineer realizando un code review profesional. Analiza los cambios de la Pull Request activa comparando la rama actual con develop. Utiliza las herramientas de GitKraken (MCP) para identificar los archivos modificados y publicar los hallazgos. CRÍTICO PARA ESTE SPRINT: Verifica si el código HTML utiliza correctamente el sistema de columnas y clases de Bootstrap, y evalúa si la implementación visual y los overrides de CSS son coherentes con la imagen de referencia `docs/01-mockup/disenio-bootstrap.png`.
+   - **Resumen de hallazgos:** La IA detectó discrepancias visuales graves contra el mockup (omisión del enlace "Mi Lista", enlaces del Navbar mal distribuidos, flechas del Carrusel superpuestas), un problema de accesibilidad (foco del teclado invisible en los controles), y capturas de QA desactualizadas.
+   - **Acción tomada:** Se documentaron los hallazgos de forma manual debido a un fallo temporal de publicación automática de la herramienta MCP. Se solicitaron cambios (Request Changes), bloqueando la integración en espera de las correcciones y la resolución de conflictos.
+
+   4. **PR #57 (Componentes HTML Avanzados - Range y Details)**
+   - **Revisor:** @Davidsoria99
+   - **Prompt utilizado:**
+     > Actúa como Senior Software Engineer realizando un code review profesional. Analiza los cambios de la Pull Request activa comparando la rama actual con develop. Utiliza las herramientas de GitKraken (MCP) para identificar los archivos modificados y publicar los hallazgos. CRÍTICO PARA ESTE SPRINT: Verifica si el desarrollador implementó correctamente los componentes HTML avanzados solicitados (`<input type="range">` para el sistema de calificación y la estructura `<details>` con `<summary>` para la ficha técnica). Evalúa si se aplicaron adecuadamente las clases de Bootstrap para su integración y si la implementación visual, junto con los overrides de CSS, son coherentes con la imagen de referencia `docs/01-mockup/disenio-bootstrap.png`.
+   - **Resumen de hallazgos:** La IA detectó un bug de severidad media en el catálogo de películas: se insertó un elemento `<details>` duplicado y sin cerrar en la tarjeta de "Interstellar", sobrescribiendo incorrectamente sus metadatos (duración y estado) con los de otra película ("El viaje de Chihiro"). 
+   - **Acción tomada:** Se publicó el hallazgo bloqueando la PR para exigir la restauración de los datos originales y corregir el anidamiento HTML. Una vez que el desarrollador subió los commits con las correcciones, se reevaluó el código, se aprobó y se mergeó exitosamente a `develop`.
