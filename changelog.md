@@ -9,6 +9,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 ### Added
 - [feature/coord-devops-update-figma-and-readme] **Preparación de entorno- #49** [PR #49](https://github.com/keviineze/proyecto-web-peliculas/pull/49) - @Davidsoria99 (Coordinador / DevOps)
 
+- [feature/dev-frontend-bootstrap-migration] **Feature/dev frontend bootstrap migration** [PR #51](https://github.com/keviineze/proyecto-web-peliculas/pull/51) - @keviineze (Desarrollador Frontend / Bootstrap)
+
 ### Fixed
 
 ## [Release Actividad Obligatoria N°2] - 2026-09-28
