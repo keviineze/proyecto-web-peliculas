@@ -101,46 +101,46 @@ Las personalizaciones de Bootstrap se centralizarán en `css/bootstrap-overrides
 
 #### Bootstrap
 
-- [ ] Bootstrap 5.3.8 está integrado mediante CDN jsDelivr.
-- [ ] Bootstrap CSS se carga antes de los estilos propios.
-- [ ] Bootstrap Bundle JS se carga antes del cierre de `body`.
-- [ ] `styles.css` continúa cargándose.
-- [ ] `components.css` continúa cargándose.
-- [ ] `responsive.css` continúa cargándose.
-- [ ] La integración no requiere modificar el código fuente de Bootstrap.
+- [x] Bootstrap 5.3.8 está integrado mediante CDN jsDelivr.
+- [x] Bootstrap CSS se carga antes de los estilos propios.
+- [x] Bootstrap Bundle JS se carga antes del cierre de `body`.
+- [x] `styles.css` continúa cargándose.
+- [x] `components.css` continúa cargándose.
+- [x] `responsive.css` continúa cargándose.
+- [x] La integración no requiere modificar el código fuente de Bootstrap.
 
 #### Bootstrap Grid
 
-- [ ] Biblioteca y catálogo utilizan Bootstrap Grid.
-- [ ] Desktop conserva la composición de dos columnas del mockup.
-- [ ] En móvil biblioteca y catálogo se apilan.
-- [ ] Las tarjetas del catálogo utilizan columnas responsive Bootstrap.
-- [ ] No aparece overflow horizontal de página.
+- [x] Biblioteca y catálogo utilizan Bootstrap Grid.
+- [x] Desktop conserva la composición de dos columnas del mockup.
+- [x] En móvil biblioteca y catálogo se apilan.
+- [x] Las tarjetas del catálogo utilizan columnas responsive Bootstrap.
+- [x] No aparece overflow horizontal de página.
 
 #### Identidad visual
 
-- [ ] Se mantiene la paleta del proyecto.
-- [ ] Se mantiene el fondo oscuro.
-- [ ] Los botones conservan el verde característico.
-- [ ] Se mantienen bordes, radios y contraste coherentes.
-- [ ] `bootstrap-overrides.css` concentra las personalizaciones de Bootstrap.
+- [x] Se mantiene la paleta del proyecto.
+- [x] Se mantiene el fondo oscuro.
+- [x] Los botones conservan el verde característico.
+- [x] Se mantienen bordes, radios y contraste coherentes.
+- [x] `bootstrap-overrides.css` concentra las personalizaciones de Bootstrap.
 
 #### Responsive
 
-- [ ] Se valida iPhone 14 Pro — 390 × 844.
-- [ ] Se valida Samsung Galaxy S23 — 412 × 915.
-- [ ] Se valida iPad Air — 820 × 1180.
-- [ ] Se valida desktop.
-- [ ] No existe scroll horizontal global.
-- [ ] El contenido principal permanece accesible en todos los tamaños.
+- [x] Se valida iPhone 14 Pro — 390 × 844.
+- [x] Se valida Samsung Galaxy S23 — 412 × 915.
+- [x] Se valida iPad Air — 820 × 1180.
+- [x] Se valida desktop.
+- [x] No existe scroll horizontal global.
+- [x] El contenido principal permanece accesible en todos los tamaños.
 
 #### Calidad
 
-- [ ] La aplicación funciona en `http://localhost:3000`.
-- [ ] No se introducen errores relevantes de consola.
-- [ ] El test case 6 está documentado.
-- [ ] Los hallazgos reales se registran como issues mediante GitHub MCP.
-- [ ] Las correcciones reales se documentan como `[Fixed]` en `changelog.md`.
+- [x] La aplicación funciona en `http://localhost:3000`.
+- [x] No se introducen errores relevantes de consola.
+- [x] El test case 6 está documentado.
+- [x] Los hallazgos reales se registran como issues mediante GitHub MCP.
+- [x] Las correcciones reales se documentan como `[Fixed]` en `changelog.md`.
 
 ## 3. Herramientas
 
@@ -150,7 +150,6 @@ Las personalizaciones de Bootstrap se centralizarán en `css/bootstrap-overrides
 - GitHub MCP.
 
 ## 4. Momento 2 — Cierre
-
 
 ### 4.2 Prompt utilizado con GitHub Copilot Agent Mode
 
@@ -165,7 +164,6 @@ El prompt utilizado para la implementación solicitó:
 - revisar el resultado mediante Playwright MCP;
 - comprobar los viewports responsive;
 - evitar overflow horizontal.
-
 
 ### 4.3 Resultado obtenido
 
@@ -227,8 +225,7 @@ Los resultados principales fueron:
 - `bootstrap-overrides.css` se utilizó para las personalizaciones de
   Bootstrap.
 
-Durante la validación se observó que el favicon `/favicon.ico` devuelve
-404. Esta observación es ajena a la migración Bootstrap y no se creó un
+Durante la validación se observó que el favicon `/favicon.ico` devuelve 404. Esta observación es ajena a la migración Bootstrap y no se creó un
 Issue por ella.
 
 ### 4.6 Evidencia final
