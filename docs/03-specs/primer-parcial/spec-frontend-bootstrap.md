@@ -101,46 +101,46 @@ Las personalizaciones de Bootstrap se centralizarán en `css/bootstrap-overrides
 
 #### Bootstrap
 
-- [x] Bootstrap 5.3.8 está integrado mediante CDN jsDelivr.
-- [x] Bootstrap CSS se carga antes de los estilos propios.
-- [x] Bootstrap Bundle JS se carga antes del cierre de `body`.
-- [x] `styles.css` continúa cargándose.
-- [x] `components.css` continúa cargándose.
-- [x] `responsive.css` continúa cargándose.
-- [x] La integración no requiere modificar el código fuente de Bootstrap.
+- [ ] Bootstrap 5.3.8 está integrado mediante CDN jsDelivr.
+- [ ] Bootstrap CSS se carga antes de los estilos propios.
+- [ ] Bootstrap Bundle JS se carga antes del cierre de `body`.
+- [ ] `styles.css` continúa cargándose.
+- [ ] `components.css` continúa cargándose.
+- [ ] `responsive.css` continúa cargándose.
+- [ ] La integración no requiere modificar el código fuente de Bootstrap.
 
 #### Bootstrap Grid
 
-- [x] Biblioteca y catálogo utilizan Bootstrap Grid.
-- [x] Desktop conserva la composición de dos columnas del mockup.
-- [x] En móvil biblioteca y catálogo se apilan.
-- [x] Las tarjetas del catálogo utilizan columnas responsive Bootstrap.
-- [x] No aparece overflow horizontal de página.
+- [ ] Biblioteca y catálogo utilizan Bootstrap Grid.
+- [ ] Desktop conserva la composición de dos columnas del mockup.
+- [ ] En móvil biblioteca y catálogo se apilan.
+- [ ] Las tarjetas del catálogo utilizan columnas responsive Bootstrap.
+- [ ] No aparece overflow horizontal de página.
 
 #### Identidad visual
 
-- [x] Se mantiene la paleta del proyecto.
-- [x] Se mantiene el fondo oscuro.
-- [x] Los botones conservan el verde característico.
-- [x] Se mantienen bordes, radios y contraste coherentes.
-- [x] `bootstrap-overrides.css` concentra las personalizaciones de Bootstrap.
+- [ ] Se mantiene la paleta del proyecto.
+- [ ] Se mantiene el fondo oscuro.
+- [ ] Los botones conservan el verde característico.
+- [ ] Se mantienen bordes, radios y contraste coherentes.
+- [ ] `bootstrap-overrides.css` concentra las personalizaciones de Bootstrap.
 
 #### Responsive
 
-- [x] Se valida iPhone 14 Pro — 390 × 844.
-- [x] Se valida Samsung Galaxy S23 — 412 × 915.
-- [x] Se valida iPad Air — 820 × 1180.
-- [x] Se valida desktop.
-- [x] No existe scroll horizontal global.
-- [x] El contenido principal permanece accesible en todos los tamaños.
+- [ ] Se valida iPhone 14 Pro — 390 × 844.
+- [ ] Se valida Samsung Galaxy S23 — 412 × 915.
+- [ ] Se valida iPad Air — 820 × 1180.
+- [ ] Se valida desktop.
+- [ ] No existe scroll horizontal global.
+- [ ] El contenido principal permanece accesible en todos los tamaños.
 
 #### Calidad
 
-- [x] La aplicación funciona en `http://localhost:3000`.
-- [x] No se introducen errores relevantes de consola.
-- [x] El test case 6 está documentado.
-- [x] Los hallazgos reales se registran como issues mediante GitHub MCP.
-- [x] Las correcciones reales se documentan como `[Fixed]` en `changelog.md`.
+- [ ] La aplicación funciona en `http://localhost:3000`.
+- [ ] No se introducen errores relevantes de consola.
+- [ ] El test case 6 está documentado.
+- [ ] Los hallazgos reales se registran como issues mediante GitHub MCP.
+- [ ] Las correcciones reales se documentan como `[Fixed]` en `changelog.md`.
 
 ## 3. Herramientas
 
@@ -151,99 +151,29 @@ Las personalizaciones de Bootstrap se centralizarán en `css/bootstrap-overrides
 
 ## 4. Momento 2 — Cierre
 
-### 4.2 Prompt utilizado con GitHub Copilot Agent Mode
+### 4.1 Contexto Figma utilizado
 
-El prompt utilizado para la implementación solicitó:
+**Pendiente de completar con el enlace/nodo real del mockup actualizado cuando esté disponible en Figma.**
 
-- integrar Bootstrap 5.3.8 mediante CDN jsDelivr;
-- mantener `styles.css`, `components.css` y `responsive.css`;
-- crear `css/bootstrap-overrides.css`;
-- migrar Biblioteca y Catálogo al sistema de columnas Bootstrap;
-- adaptar las tarjetas del catálogo a columnas responsive;
-- mantener la identidad visual del mockup;
-- revisar el resultado mediante Playwright MCP;
-- comprobar los viewports responsive;
-- evitar overflow horizontal.
+> El PNG entregado por el Coordinador se utilizó como referencia visual local durante la preparación/implementación. Para acreditar el uso de Figma MCP debe registrarse el enlace o nodo real utilizado con el MCP.
+
+### 4.2 Prompt exacto utilizado con Figma MCP + Copilot
+
+```text
+PENDIENTE: pegar aquí literalmente el prompt utilizado durante la sesión real de Copilot/Figma MCP.
+```
 
 ### 4.3 Resultado obtenido
 
-La migración del frontend fue implementada correctamente.
+PENDIENTE. Registrar el resultado real generado por Copilot/Figma MCP.
 
-Se integró Bootstrap 5.3.8 mediante CDN jsDelivr y se conservaron los
-archivos CSS existentes del proyecto.
+### 4.4 Ajustes manuales realizados
 
-La sección Biblioteca/Catálogo fue migrada al sistema de columnas
-Bootstrap:
+PENDIENTE. Registrar solamente los ajustes realmente realizados después de revisar el resultado generado.
 
-- `col-12 col-lg-3` para Biblioteca.
-- `col-12 col-lg-9` para Catálogo.
+### 4.5 Evidencia final
 
-Las tarjetas del catálogo utilizan columnas responsive Bootstrap:
-
-- una columna en móvil;
-- dos columnas desde `md`;
-- tres columnas desde `lg`.
-
-Se creó `css/bootstrap-overrides.css` para centralizar las
-personalizaciones de Bootstrap y conservar la identidad visual del
-proyecto.
-
-Durante la validación se comprobó que Bootstrap se cargara correctamente,
-que el layout responsive funcionara y que no existiera overflow horizontal
-en los tamaños evaluados.
-
-### 4.4 Ajustes manuales y revisión
-
-Durante la revisión de la implementación se conservaron los estilos
-existentes que continuaban siendo necesarios para el proyecto y se
-utilizó `bootstrap-overrides.css` para adaptar Bootstrap a la identidad
-visual existente.
-
-La revisión realizada mediante Playwright comprobó el comportamiento
-responsive del layout y la ausencia de overflow horizontal.
-
-También se verificó mediante `git diff --check` que no existieran errores
-de whitespace en los cambios.
-
-### 4.5 Resultado del Test Case 6
-
-El Test Case 6 se documentó en:
-
-`docs/04-testing/test-case-6.md`
-
-Se realizaron comprobaciones del layout Bootstrap en los tamaños definidos
-por el template del test.
-
-Los resultados principales fueron:
-
-- Bootstrap cargado correctamente.
-- Biblioteca y Catálogo utilizan Bootstrap Grid.
-- En tamaños móviles las secciones se apilan.
-- Las tarjetas se adaptan a las columnas responsive.
-- No se detectó overflow horizontal.
-- Los estilos existentes del proyecto se conservaron.
-- `bootstrap-overrides.css` se utilizó para las personalizaciones de
-  Bootstrap.
-
-Durante la validación se observó que el favicon `/favicon.ico` devuelve 404. Esta observación es ajena a la migración Bootstrap y no se creó un
-Issue por ella.
-
-### 4.6 Evidencia final
-
-- Test Case:
-  `docs/04-testing/test-case-6.md`
-
-- Capturas:
-  `docs/04-testing/capturas/tc-6/`
-
-- Mockup:
-  `docs/01-mockup/disenio-bootstrap.png`
-
-- Overrides:
-  `css/bootstrap-overrides.css`
-
-- Implementación principal:
-  `index.html`
-
-Los Issues y PR correspondientes se completarán según el flujo de ramas
-del proyecto cuando se realice la integración.
+- Test case: `docs/04-testing/test-case-6.md`
+- Capturas: `docs/04-testing/capturas/tc-6/`
+- Issues: registrar solamente los hallazgos reales.
+- PR: completar al abrir la PR.

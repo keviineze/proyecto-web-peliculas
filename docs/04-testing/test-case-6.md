@@ -1,23 +1,20 @@
 # Test Case 6 — Responsive: Migración a Bootstrap
 
 ## Metadata
-
-| Campo                | Valor                                      |
-| -------------------- | ------------------------------------------ |
-| Responsable          | Kevin Sosa                                 |
-| Fecha de ejecución   | 2026-10-05                                 |
-| Rama testeada        | `feature/dev-frontend-bootstrap-migration` |
-| URL testeada         | `http://localhost:3000`                    |
-| Versión de Bootstrap | 5.3.8                                      |
+| Campo | Valor |
+|-------|-------|
+| Responsable | Kevin Sosa |
+| Fecha de ejecución | 2026-10-05 |
+| Rama testeada | `feature/dev-frontend-bootstrap-migration` |
+| URL testeada | `http://localhost:3000` |
+| Versión de Bootstrap | 5.3.8 |
 
 ## Objetivo
-
 Verificar que la migración a Bootstrap mantiene el comportamiento responsive del sitio,
 que el sistema de columnas se aplica correctamente en todos los breakpoints definidos,
 y que los estilos previos (styles.css, components.css, responsive.css) no se rompieron.
 
 ## Herramientas utilizadas
-
 - Playwright MCP (`@playwright/mcp`) con viewport emulation
 - GitHub Copilot Agent Mode
 
@@ -64,12 +61,11 @@ Guardá las capturas en docs/04-testing/capturas/tc-6/
 ---
 
 ## Breakpoints testeados
-
-| Breakpoint Bootstrap | Viewport | Layout columnas                                    | Navbar              | Scroll horizontal | Estilos previos | Estado |
-| -------------------- | -------- | -------------------------------------------------- | ------------------- | ----------------- | --------------- | ------ |
-| xs (mobile)          | 390×844  | 1 columna para cards; Library/Catalog apilados     | Visible y accesible | No                | Aplicados       | PASS   |
-| md (tablet)          | 768×1024 | 2 columnas para cards; Library/Catalog apilados    | Visible y accesible | No                | Aplicados       | PASS   |
-| lg (desktop)         | 1280×800 | 3 columnas para cards; Library/Catalog lado a lado | Visible y accesible | No                | Aplicados       | PASS   |
+| Breakpoint Bootstrap | Viewport | Layout columnas | Navbar | Scroll horizontal | Estilos previos | Estado |
+|----------------------|----------|-----------------|--------|-------------------|-----------------|--------|
+| xs (mobile) | 390×844 | 1 columna para cards; Library/Catalog apilados | Visible y accesible | No | Aplicados | PASS |
+| md (tablet) | 768×1024 | 1 columna para cards; Library/Catalog apilados | Visible y accesible | No | Aplicados | PASS |
+| lg (desktop) | 1280×800 | 3 columnas para cards; Library/Catalog lado a lado | Visible y accesible | No | Aplicados | PASS |
 
 > Nota: la ejecución original de validación también comprobó 820×1180 (iPad Air)
 > y 412×915 (Samsung Galaxy S23). En 820 px el layout Library/Catalog permanece
@@ -77,34 +73,28 @@ Guardá las capturas en docs/04-testing/capturas/tc-6/
 > No se detectó clipping ni scroll horizontal.
 
 ## Capturas de pantalla
-
-| Breakpoint              | Captura                                             | Estado |
-| ----------------------- | --------------------------------------------------- | ------ |
-| xs — iPhone 14 Pro      | ![](capturas/tc-6/momento-1/iphone-14-pro.png)      | PASS   |
-| xs — Samsung Galaxy S23 | ![](capturas/tc-6/momento-1/samsung-galaxy-s23.png) | PASS   |
-| md — iPad               | ![](capturas/tc-6/momento-1/ipad-air.png)           | PASS   |
-| lg — Desktop            | ![](capturas/tc-6/momento-1/desktop-1280x800.png)   | PASS   |
+| Breakpoint | Captura | Estado |
+|------------|---------|--------|
+| xs — iPhone 14 Pro | ![](capturas/tc-6/momento-1/iphone-14-pro.png) | PASS |
+| md — iPad | ![](capturas/tc-6/momento-1/ipad-air.png) | PASS |
+| lg — Desktop | ![](capturas/tc-6/momento-1/samsung-galaxy-s23.png) | PASS |
 
 ## Hallazgos
-
-| #   | Elemento               | Breakpoint afectado | Descripción                                                                                                                                                    | Tipo de problema          | Severidad |
-| --- | ---------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | --------- |
-| 1   | Layout Library/Catalog | 820×1180 (iPad Air) | El layout permanece apilado a 820 px porque las columnas usan `col-lg-*` y el breakpoint `lg` comienza en 992 px. No se detectó clipping ni scroll horizontal. | Observación de breakpoint | Baja      |
+| # | Elemento | Breakpoint afectado | Descripción | Tipo de problema | Severidad |
+|---|----------|---------------------|-------------|------------------|-----------|
+| 1 | Layout Library/Catalog | 820×1180 (iPad Air) | El layout permanece apilado a 820 px porque las columnas usan `col-lg-*` y el breakpoint `lg` comienza en 992 px. No se detectó clipping ni scroll horizontal. | Observación de breakpoint | Baja |
 
 ### Severidad
-
 - **Alta** — Rompe layout o funcionalidad
 - **Media** — Problema visual significativo
 - **Baja** — Detalle estético menor
 
 ## Issues creados
-
-| Issue   | Elemento | Breakpoint | Severidad | Estado                                                                                                           |
-| ------- | -------- | ---------- | --------- | ---------------------------------------------------------------------------------------------------------------- |
-| Ninguno | —        | —          | —         | No se creó issue: la observación de 820×1180 no rompe el layout ni fue confirmada como incumplimiento del mockup |
+| Issue | Elemento | Breakpoint | Severidad | Estado |
+|-------|----------|------------|-----------|--------|
+| Ninguno | — | — | — | No se creó issue: la observación de 820×1180 no rompe el layout ni fue confirmada como incumplimiento del mockup |
 
 ## Conclusión general
-
 **Resultado final:** PASS
 
 La migración a Bootstrap es coherente y responsive en los viewports evaluados.

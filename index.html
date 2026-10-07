@@ -18,34 +18,152 @@
     <link rel="stylesheet" href="css/bootstrap-overrides.css" />
   </head>
   <body>
-    <!-- Futuro CSS: aplicar la composición visual de la barra superior del mockup. -->
-    <header>
-      <p><a href="#inicio">Mini Letterboxd</a></p>
-
-      <nav aria-label="Navegación principal">
-        <ul>
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#catalogo">Catálogo</a></li>
-          <li><a href="#biblioteca">Biblioteca</a></li>
-        </ul>
-      </nav>
-
-      <!-- Futuro JavaScript: generar una representación compartible de la biblioteca. -->
-      <a href="#compartir">Compartir mi lista</a>
+    <header id="main-navbar" class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid navbar-container">
+        <a
+          class="navbar-brand wordmark"
+          href="#inicio"
+          aria-label="Mini Letterboxd, inicio"
+        >
+          <span>MINI</span>
+          <strong>LETTERBOXD</strong>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#main-navbar-collapse"
+          aria-controls="main-navbar-collapse"
+          aria-expanded="false"
+          aria-label="Abrir o cerrar navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+          <nav aria-label="Navegación principal">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#inicio">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#catalogo">Catálogo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#biblioteca">Biblioteca</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#titulo-lista">Mi Lista</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- Futuro JavaScript: generar una representación compartible de la biblioteca. -->
+          <a class="btn btn-primary navbar-share" href="#compartir"
+            >Compartir Mi Lista</a
+          >
+        </div>
+      </div>
     </header>
 
     <main id="inicio">
-      <section id="sobre-proyecto" aria-labelledby="titulo-presentacion">
-        <h1 id="titulo-presentacion">Sobre el proyecto</h1>
-        <h2>Tu biblioteca de películas y series</h2>
-        <p>
-          Explorá títulos, guardá lo que querés ver y registrá tus películas
-          favoritas en un solo lugar.
-        </p>
-        <p>
-          Esta primera versión presenta el catálogo y deja preparada la
-          estructura para calificar y comentar tus contenidos.
-        </p>
+      <section class="featured-section" aria-labelledby="titulo-destacadas">
+        <h2 id="titulo-destacadas">Películas Destacadas</h2>
+        <div
+          id="featured-carousel"
+          class="carousel slide featured-carousel"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Películas destacadas"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="featured-slide">
+                <img
+                  class="featured-slide-image"
+                  src="assets/images/interestellar-2.jpeg"
+                  alt="Paisaje montañoso de la película Interstellar"
+                  width="686"
+                  height="446"
+                  decoding="async"
+                />
+                <div class="featured-slide-caption">
+                  <h3>Interstellar</h3>
+                  <a class="btn btn-primary" href="#titulo-lista"
+                    >Agregar a Mi Lista</a
+                  >
+                  <p>Película | 2014 | Ciencia ficción</p>
+                  <p>
+                    Un grupo de exploradores busca un nuevo hogar para la
+                    humanidad más allá de las estrellas.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="featured-slide">
+                <img
+                  class="featured-slide-image"
+                  src="assets/images/chihiro-2.jpeg"
+                  alt="Paisaje natural que representa un viaje fantástico"
+                  width="225"
+                  height="225"
+                  decoding="async"
+                />
+                <div class="featured-slide-caption">
+                  <h3>El viaje de Chihiro</h3>
+                  <a class="btn btn-primary" href="#titulo-lista"
+                    >Agregar a Mi Lista</a
+                  >
+                  <p>Película | 2001 | Animación y fantasía</p>
+                  <p>
+                    Chihiro entra en un mundo de espíritus y debe encontrar el
+                    valor para recuperar a sus padres.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="featured-slide">
+                <img
+                  class="featured-slide-image"
+                  src="assets/images/dark.jpeg"
+                  alt="Paisaje de una ciudad nocturna para representar una serie de misterio"
+                  width="685"
+                  height="384"
+                  decoding="async"
+                />
+                <div class="featured-slide-caption">
+                  <h3>Dark</h3>
+                  <a class="btn btn-primary" href="#titulo-lista"
+                    >Agregar a Mi Lista</a
+                  >
+                  <p>Serie | 2017 | Misterio y ciencia ficción</p>
+                  <p>
+                    Cuatro familias buscan respuestas cuando la desaparición de
+                    un niño revela un misterio temporal.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#featured-carousel"
+            data-bs-slide="prev"
+            aria-label="Película anterior"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#featured-carousel"
+            data-bs-slide="next"
+            aria-label="Película siguiente"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+        </div>
       </section>
 
       <!-- Futuro CSS: convertir el siguiente bloque en la distribución de dos columnas del mockup. -->
@@ -55,7 +173,7 @@
           class="col-12 col-lg-3"
           aria-labelledby="titulo-biblioteca"
         >
-          <h2 id="titulo-biblioteca">Tu biblioteca</h2>
+          <h2 id="titulo-biblioteca">Biblioteca</h2>
 
           <section id="lista-pendientes" aria-labelledby="titulo-pendientes">
             <h3 id="titulo-pendientes">Pendientes</h3>
@@ -69,7 +187,7 @@
                 decoding="async"
               />
               <h4>Interstellar</h4>
-              <p>Calificación: pendiente</p>
+              <p>Estado: pendiente</p>
             </article>
           </section>
 
@@ -85,7 +203,7 @@
                 decoding="async"
               />
               <h4>El viaje de Chihiro</h4>
-              <p>Calificación: 5 de 5</p>
+              <p>Estado: vista</p>
             </article>
           </section>
         </aside>
@@ -103,7 +221,7 @@
             class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 catalog-grid"
           >
             <div class="col">
-              <article id="interstellar" class="h-100">
+              <article class="h-100">
                 <img
                   src="assets/images/interestellar-2.jpeg"
                   alt="Paisaje montañoso de la película Interstellar"
@@ -118,21 +236,28 @@
                   Un grupo de exploradores busca un nuevo hogar para la
                   humanidad más allá de las estrellas.
                 </p>
-                <ul>
-                  <li>Estado: pendiente</li>
-                  <li>Duración: 169 minutos</li>
-                </ul>
-                <button class="btn btn-primary" type="button">
-                  Añadir para ver
-                </button>
-                <button class="btn btn-primary" type="button">
-                  Marcar como vista
-                </button>
+                <div class="card-meta">
+                  <p>Duración: 169 minutos</p>
+                  <p>Estado: pendiente</p>
+                </div>
+                <div class="card-actions">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-interstellar"
+                  >
+                    Ver detalles
+                  </button>
+                  <a class="btn btn-primary" href="#titulo-lista"
+                    >Agregar a Mi Lista</a
+                  >
+                </div>
               </article>
             </div>
 
             <div class="col">
-              <article id="chihiro" class="h-100">
+              <article class="h-100">
                 <img
                   src="assets/images/chihiro-2.jpeg"
                   alt="Paisaje natural que representa un viaje fantástico"
@@ -147,18 +272,28 @@
                   Chihiro entra en un mundo de espíritus y debe encontrar el
                   valor para recuperar a sus padres.
                 </p>
-                <ul>
-                  <li>Estado: vista</li>
-                  <li>Duración: 125 minutos</li>
-                </ul>
-                <button class="btn btn-primary" type="button">
-                  Calificar y comentar
-                </button>
+                <div class="card-meta">
+                  <p>Duración: 125 minutos</p>
+                  <p>Estado: vista</p>
+                </div>
+                <div class="card-actions">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-chihiro"
+                  >
+                    Ver detalles
+                  </button>
+                  <a class="btn btn-primary" href="#titulo-lista"
+                    >Agregar a Mi Lista</a
+                  >
+                </div>
               </article>
             </div>
 
             <div class="col">
-              <article id="dark" class="h-100">
+              <article class="h-100">
                 <img
                   src="assets/images/dark.jpeg"
                   alt="Paisaje de una ciudad nocturna para representar una serie de misterio"
@@ -173,61 +308,230 @@
                   Cuatro familias buscan respuestas cuando la desaparición de un
                   niño revela un misterio temporal.
                 </p>
-                <ul>
-                  <li>Estado: pendiente</li>
-                  <li>Temporadas: 3</li>
-                </ul>
-                <button class="btn btn-primary" type="button">
-                  Añadir para ver
-                </button>
-                <button class="btn btn-primary" type="button">
-                  Marcar como vista
-                </button>
+                <div class="card-meta">
+                  <p>Temporadas: 3</p>
+                  <p>Estado: pendiente</p>
+                </div>
+                <div class="card-actions">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-dark"
+                  >
+                    Ver detalles
+                  </button>
+                  <a class="btn btn-primary" href="#titulo-lista"
+                    >Agregar a Mi Lista</a
+                  >
+                </div>
               </article>
             </div>
           </div>
         </section>
       </div>
 
-      <section aria-labelledby="titulo-lista">
-        <h2 id="titulo-lista">Mi lista</h2>
+      <section class="my-list-section" aria-labelledby="titulo-lista">
+        <h2 id="titulo-lista">Mi Lista</h2>
         <nav aria-label="Estados de mi lista">
-          <ul>
-            <li><a href="#lista-completa">Tu lista</a></li>
-            <li><a href="#lista-pendientes">Para ver</a></li>
-            <li><a href="#lista-vistas">Vistas</a></li>
-          </ul>
+          <a class="list-filter" href="#lista-vistas">Vistas</a>
+          <a class="list-filter" href="#lista-pendientes">Por ver</a>
         </nav>
-
-        <section id="lista-completa" aria-labelledby="titulo-lista-completa">
-          <h3 id="titulo-lista-completa">Títulos guardados</h3>
-          <ul>
-            <li>
-              <a href="#interstellar">Interstellar</a> - pendiente de ver.
-            </li>
-            <li>
-              <a href="#chihiro">El viaje de Chihiro</a> - vista, calificación 5
-              de 5.
-            </li>
-            <li><a href="#dark">Dark</a> - pendiente de ver.</li>
-          </ul>
-        </section>
       </section>
     </main>
 
-    <!-- Futuro CSS: aplicar el diseño visual y la distribución del pie de página. -->
+    <div
+      class="modal fade"
+      id="modal-interstellar"
+      tabindex="-1"
+      aria-labelledby="modal-interstellar-title"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="modal-interstellar-title">
+              Interstellar
+            </h2>
+            <button
+              class="btn-close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body modal-detail">
+            <img
+              src="assets/images/interestellar-2.jpeg"
+              alt="Paisaje montañoso de la película Interstellar"
+              width="686"
+              height="446"
+            />
+            <p>Película | 2014 | Ciencia ficción</p>
+            <p>
+              Un grupo de exploradores busca un nuevo hogar para la humanidad
+              más allá de las estrellas.
+            </p>
+            <ul>
+              <li>Duración: 169 minutos</li>
+              <li>Estado: pendiente</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-outline-light"
+              type="button"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <a
+              class="btn btn-primary"
+              href="#titulo-lista"
+              data-bs-dismiss="modal"
+              >Agregar a Mi Lista</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modal-chihiro"
+      tabindex="-1"
+      aria-labelledby="modal-chihiro-title"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="modal-chihiro-title">
+              El viaje de Chihiro
+            </h2>
+            <button
+              class="btn-close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body modal-detail">
+            <img
+              src="assets/images/chihiro-2.jpeg"
+              alt="Paisaje natural que representa un viaje fantástico"
+              width="225"
+              height="225"
+            />
+            <p>Película | 2001 | Animación y fantasía</p>
+            <p>
+              Chihiro entra en un mundo de espíritus y debe encontrar el valor
+              para recuperar a sus padres.
+            </p>
+            <ul>
+              <li>Duración: 125 minutos</li>
+              <li>Estado: vista</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-outline-light"
+              type="button"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <a
+              class="btn btn-primary"
+              href="#titulo-lista"
+              data-bs-dismiss="modal"
+              >Agregar a Mi Lista</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modal-dark"
+      tabindex="-1"
+      aria-labelledby="modal-dark-title"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="modal-dark-title">Dark</h2>
+            <button
+              class="btn-close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body modal-detail">
+            <img
+              src="assets/images/dark.jpeg"
+              alt="Paisaje de una ciudad nocturna para representar una serie de misterio"
+              width="685"
+              height="384"
+            />
+            <p>Serie | 2017 | Misterio y ciencia ficción</p>
+            <p>
+              Cuatro familias buscan respuestas cuando la desaparición de un
+              niño revela un misterio temporal.
+            </p>
+            <ul>
+              <li>Temporadas: 3</li>
+              <li>Estado: pendiente</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-outline-light"
+              type="button"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <a
+              class="btn btn-primary"
+              href="#titulo-lista"
+              data-bs-dismiss="modal"
+              >Agregar a Mi Lista</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer id="compartir">
-      <h2>Mini Letterboxd</h2>
-      <p>Proyecto académico de Programación Web I.</p>
-      <ul>
-        <li><a href="#sobre-proyecto">Sobre el proyecto</a></li>
-        <li>
-          <a href="https://github.com/keviineze/proyecto-web-peliculas"
-            >Repositorio en GitHub</a
-          >
-        </li>
-      </ul>
-      <!-- Futuro JavaScript: inicializar la persistencia local y la acción de compartir. -->
+      <div class="footer-about">
+        <a
+          class="wordmark footer-wordmark"
+          href="#inicio"
+          aria-label="Mini Letterboxd, inicio"
+        >
+          <span>MINI</span>
+          <strong>LETTERBOXD</strong>
+        </a>
+        <p>Tu biblioteca de películas y series</p>
+        <p>
+          Explorá títulos, guardá lo que querés ver y organizá tus películas
+          favoritas en un solo lugar.
+        </p>
+        <p>
+          Esta primera versión incluye el catálogo y sienta las bases para
+          futuras funciones, como calificar y comentar tus contenidos favoritos.
+        </p>
+      </div>
+      <div class="footer-meta">
+        <p>Proyecto académico de Programación Web I.</p>
+        <a href="https://github.com/keviineze/proyecto-web-peliculas"
+          >Repositorio en GitHub</a
+        >
+      </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
