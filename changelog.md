@@ -6,6 +6,11 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
+### Added
+- [feature/coord-devops-update-figma-and-readme] **Preparación de entorno- #49** [PR #49](https://github.com/keviineze/proyecto-web-peliculas/pull/49) - @Davidsoria99 (Coordinador / DevOps)
+
+### Fixed
+
 ## [Release Actividad Obligatoria N°2] - 2026-09-28
 
 ### Added
