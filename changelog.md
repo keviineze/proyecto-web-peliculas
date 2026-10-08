@@ -14,6 +14,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [feature/dev-comp-html-avanzados-add-components] **feat: integrar componentes HTML avanzados** [PR #57](https://github.com/keviineze/proyecto-web-peliculas/pull/57) - @GonzaloBarbano (Desarrollador de Componentes HTML Avanzados); Issue [#56](https://github.com/keviineze/proyecto-web-peliculas/issues/56)
 
+- [docs/evidencia-reviews] **Completar spec-devops** [PR #58](https://github.com/keviineze/proyecto-web-peliculas/pull/58) - @Davidsoria99 (Coordinador / DevOps)
+
 ### Fixed
 
 ## [Release Actividad Obligatoria N°2] - 2026-09-28
