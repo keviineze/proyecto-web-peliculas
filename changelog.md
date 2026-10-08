@@ -4,7 +4,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
-## [Unreleased]
+## [v1.1-primer-parcial] - 2026-10-07
 
 ### Added
 
