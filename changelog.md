@@ -4,7 +4,19 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
-## [Unreleased]
+## [v1.1-primer-parcial] - 2026-10-07
+
+### Added
+
+- [feature/coord-devops-update-figma-and-readme] **Preparación de entorno- #49** [PR #49](https://github.com/keviineze/proyecto-web-peliculas/pull/49) - @Davidsoria99 (Coordinador / DevOps)
+
+- [feature/dev-frontend-bootstrap-migration] **Feature/dev frontend bootstrap migration** [PR #51](https://github.com/keviineze/proyecto-web-peliculas/pull/51) - @keviineze (Desarrollador Frontend / Bootstrap)
+
+- [feature/dev-comp-html-avanzados-add-components] **feat: integrar componentes HTML avanzados** [PR #57](https://github.com/keviineze/proyecto-web-peliculas/pull/57) - @GonzaloBarbano (Desarrollador de Componentes HTML Avanzados); Issue [#56](https://github.com/keviineze/proyecto-web-peliculas/issues/56)
+
+- [docs/evidencia-reviews] **Completar spec-devops** [PR #58](https://github.com/keviineze/proyecto-web-peliculas/pull/58) - @Davidsoria99 (Coordinador / DevOps)
+
+### Fixed
 
 ## [Release Actividad Obligatoria N°2] - 2026-09-28
 
