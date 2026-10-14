@@ -6,7 +6,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
-## [GRUPO N°1][Primer Parcial] Entrega de la actividad
+## [GRUPO N°1][Primer Parcial] Entrega de la actividad / 2026-10-07
 
 ### Added
 
@@ -22,7 +22,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
-- [fix/correcciones-rc-primer-parcial-1] **Correcciones Primer Parcial (RC6, RC10, RC11, RC12, RC13, RC14, RC15, RC3, RC4, RC5, RC9, RC16, RC17)**  - @keviineze (Coordinador / DevOps).
+- [fix/correcciones-rc-primer-parcial-1] **Correcciones Primer Parcial (RC6, RC10, RC11, RC12, RC13, RC14, RC15, RC3, RC4, RC5, RC9, RC16, RC17)** [PR #60](https://github.com/keviineze/proyecto-web-peliculas/pull/60) - @keviineze (Coordinador / DevOps).
 
 ## [Release Actividad Obligatoria N°2] - 2026-09-28
 
