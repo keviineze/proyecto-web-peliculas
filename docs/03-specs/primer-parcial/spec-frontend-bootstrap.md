@@ -177,3 +177,11 @@ PENDIENTE. Registrar solamente los ajustes realmente realizados después de revi
 - Capturas: `docs/04-testing/capturas/tc-6/`
 - Issues: registrar solamente los hallazgos reales.
 - PR: completar al abrir la PR.
+
+## 5. Correcciones RC6, RC10 y RC12
+
+- Se retiró el modal de Interstellar, que no está representado en el mockup disponible. Se quitaron los disparadores y el marcado de los modales. Se conserva Bootstrap Bundle para el Navbar y el Carousel.
+- Las imágenes del carrusel se muestran completas con object-fit: contain; el contenedor tiene altura limitada y fondo para áreas libres.
+- Se añadió separación vertical entre Películas Destacadas y Biblioteca/Catálogo.
+- La validación visual posterior queda pendiente con el mockup aprobado como referencia.
+- No se inventa un prompt ni contexto de Figma MCP que no esté disponible en el historial.
