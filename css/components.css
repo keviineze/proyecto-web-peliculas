@@ -19,7 +19,9 @@ article img {
 }
 
 aside article img {
-  aspect-ratio: 6 / 5;
+  max-width: 260px;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 article h3,
@@ -178,44 +180,6 @@ nav[aria-label="Estados de mi lista"] a.list-filter:focus-visible {
 .card-actions .btn {
   width: 100%;
   white-space: normal;
-}
-
-.modal-content {
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text);
-}
-
-.modal-header,
-.modal-footer {
-  border-color: var(--color-border);
-}
-
-.modal-header .modal-title {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.modal .btn-close {
-  filter: invert(1);
-}
-
-.modal-detail img {
-  width: 100%;
-  max-height: 280px;
-  margin-bottom: var(--space-4);
-  border-radius: var(--radius-control);
-  object-fit: cover;
-}
-
-.modal-detail p,
-.modal-detail li {
-  color: var(--color-text-muted);
-}
-
-.modal-detail ul {
-  margin-bottom: 0;
-  padding-left: var(--space-4);
 }
 
 button:focus-visible,

@@ -4,7 +4,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
-## [v1.1-primer-parcial] - 2026-10-07
+## [Unreleased]
+
+## [GRUPO N°1][Primer Parcial] Entrega de la actividad / 2026-10-07
 
 ### Added
 
@@ -12,11 +14,15 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [feature/dev-frontend-bootstrap-migration] **Feature/dev frontend bootstrap migration** [PR #51](https://github.com/keviineze/proyecto-web-peliculas/pull/51) - @keviineze (Desarrollador Frontend / Bootstrap)
 
+- [feature/esp-componentes-bootstrap-add-components] **Feature/esp componentes bootstrap add components** [PR #53](https://github.com/keviineze/proyecto-web-peliculas/pull/53) - @keviineze (Especialista en Componentes Bootstrap)
+
 - [feature/dev-comp-html-avanzados-add-components] **feat: integrar componentes HTML avanzados** [PR #57](https://github.com/keviineze/proyecto-web-peliculas/pull/57) - @GonzaloBarbano (Desarrollador de Componentes HTML Avanzados); Issue [#56](https://github.com/keviineze/proyecto-web-peliculas/issues/56)
 
 - [docs/evidencia-reviews] **Completar spec-devops** [PR #58](https://github.com/keviineze/proyecto-web-peliculas/pull/58) - @Davidsoria99 (Coordinador / DevOps)
 
 ### Fixed
+
+- [fix/correcciones-rc-primer-parcial-1] **Correcciones Primer Parcial (RC6, RC10, RC11, RC12, RC13, RC14, RC15, RC3, RC4, RC5, RC9, RC16, RC17)** [PR #60](https://github.com/keviineze/proyecto-web-peliculas/pull/60) - @keviineze (Coordinador / DevOps).
 
 ## [Release Actividad Obligatoria N°2] - 2026-09-28
 

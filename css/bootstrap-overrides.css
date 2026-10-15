@@ -126,6 +126,10 @@ main > div.row {
     brightness(100%) contrast(104%);
 }
 
+main > div.row {
+  margin-top: var(--space-8);
+}
+
 .featured-section > h2 {
   width: fit-content;
   margin-right: auto;
@@ -160,8 +164,9 @@ main > div.row {
 .featured-slide-image {
   display: block;
   width: 100%;
-  height: 165px;
-  object-fit: cover;
+  height: clamp(180px, 28vw, 260px);
+  object-fit: contain;
+  background: var(--color-background);
 }
 
 .featured-slide-caption {
@@ -209,6 +214,7 @@ main > div.row {
 @media (min-width: 992px) {
   main > div.row {
     gap: var(--space-4);
+    margin-top: var(--space-4);
   }
 
   main > div.row > #biblioteca {
@@ -242,6 +248,12 @@ main > div.row {
 }
 
 @media (max-width: 575.98px) {
+  aside article img {
+    max-width: 220px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .my-list-section nav[aria-label="Estados de mi lista"] {
     flex-direction: column;
     align-items: center;
@@ -260,7 +272,7 @@ main > div.row {
   }
 
   .featured-slide-image {
-    height: 125px;
+    height: 160px;
   }
 
   .featured-section > h2 {
@@ -274,5 +286,9 @@ main > div.row {
 
   .featured-carousel .carousel-inner {
     width: calc(100% - 6rem);
+  }
+
+  main > div.row {
+    margin-top: var(--space-6);
   }
 }

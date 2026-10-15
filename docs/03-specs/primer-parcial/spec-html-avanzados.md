@@ -51,9 +51,9 @@ compacta y evitando depender de JavaScript para abrir o cerrar ese contenido.
 Se probará la aplicación en `http://localhost:3000` usando los viewports ya
 adoptados en los casos de prueba del proyecto:
 
-- Desktop: 1280×800.
 - Mobile: 390×844.
 - Tablet: 768×1024.
+- iPad Air: 820×1180; revisar que lista-pendientes no renderice imágenes desproporcionadas.
 
 Para el control de calificación se comprobará:
 
@@ -133,7 +133,7 @@ Espera, es sin incropar js
 ### 3.2 Resultado obtenido
 
 Se integraron un `input type="range"` nativo de 1 a 5 en la tarjeta vista de
-El viaje de Chihiro, y un `details`/`summary` con su ficha técnica en el modal
+El viaje de Chihiro, y un `details`/`summary` con su ficha técnica directamente en la tarjeta
 de esa película. Se utilizó la clase Bootstrap `form-range` y estilos de los
 tokens existentes. No se agregó JavaScript. Las pruebas de los componentes
 pasaron en desktop, tablet y mobile; el error de consola del favicon quedó
@@ -147,7 +147,7 @@ bloque duplicado de atributos que se mostraba como texto junto al rango; las
 capturas finales se volvieron a generar. No se incorporó JavaScript, tal como
 se aclaró para la tarea.
 
-### 3.4 Hallazgos de Playwright MCP
+### 3.4 Hallazgos de la validación original (previa a estas correcciones)
 
 Playwright MCP confirmó el rango etiquetado y utilizable con teclado (Home y
 End seleccionaron 1 y 5), y `details` cerrado inicialmente, expandible con
@@ -161,6 +161,10 @@ El único error de consola observado fue la solicitud preexistente de
 `/favicon.ico` con respuesta 404, ajena a los componentes. Se creó el Issue
 [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55); su
 resolución y retest se documentarán cuando se integre la rama `fix/`.
+
+### 3.5 Retest RC9/RC14 pendiente
+
+Repetir la revisión en desktop (1280×800), iPad Air (820×1180) y mobile (390×844). Confirmar tamaño visual de lista-pendientes, ausencia de recortes u overflow y nitidez de la imagen de Chihiro. Registrar resultados y capturas solo después de ejecutar Playwright.
 
 ## 4. Archivos previstos
 
