@@ -1,30 +1,45 @@
 # Test Case 7 — Componente Bootstrap 1
 
 ## Metadata
-| Campo | Valor |
-|-------|-------|
-| Responsable | Kevin Sosa |
-| Fecha de ejecución | 2026-10-05 |
-| Rama testeada | `feature/esp-componentes-bootstrap-add-components` |
-| URL testeada | `http://localhost:3000` |
+
+| Campo              | Valor                                              |
+| ------------------ | -------------------------------------------------- |
+| Responsable        | Kevin Sosa                                         |
+| Fecha de ejecución | 2026-10-05                                         |
+| Rama testeada      | `feature/esp-componentes-bootstrap-add-components` |
+| URL testeada       | `http://localhost:3000`                            |
+
+## Retest posterior a PR #60
+
+La metadata anterior conserva la ejecución original. Este retest se realizó el **2026-10-16** sobre `fix/correcciones-rc`, después de integrar las correcciones de PR #60, con Playwright MCP.
+
+| Viewport         | Resultado observado                                                  | Captura                                                                                                                                                  |
+| ---------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1280×800 desktop | Navbar visible; toggler oculto por el breakpoint `navbar-expand-lg`. | [Desktop](capturas/tc-7/ret-test-post-pr60-desktop-2026-10-16.png)                                                                                       |
+| 390×844 mobile   | Navbar visible; el toggler abrió el menú y se mostraron los enlaces. | [Inicial](capturas/tc-7/ret-test-post-pr60-mobile-inicial-2026-10-16.png), [menú abierto](capturas/tc-7/ret-test-post-pr60-mobile-activo-2026-10-16.png) |
+| 768×1024 tablet  | Navbar visible; el toggler abrió el menú y se mostraron los enlaces. | [Menú abierto](capturas/tc-7/ret-test-post-pr60-tablet-2026-10-16.png)                                                                                   |
+
+**Estado del retest:** PASS. No se observó un fallo de interacción del Navbar en los viewports probados.
 
 ## Componente testeado
 
-| Campo | Descripción |
-|-------|-------------|
-| **Nombre del componente** | Navbar |
-| **Selector / ID en el HTML** | `#main-navbar` (collapse: `#main-navbar-collapse`) |
-| **Sección de la página** | Encabezado / navegación principal |
-| **Comportamiento esperado** | Navbar responsive con collapse en tamaños menores al breakpoint correspondiente. |
+| Campo                        | Descripción                                                                      |
+| ---------------------------- | -------------------------------------------------------------------------------- |
+| **Nombre del componente**    | Navbar                                                                           |
+| **Selector / ID en el HTML** | `#main-navbar` (collapse: `#main-navbar-collapse`)                               |
+| **Sección de la página**     | Encabezado / navegación principal                                                |
+| **Comportamiento esperado**  | Navbar responsive con collapse en tamaños menores al breakpoint correspondiente. |
 
 ---
 
 ## Objetivo
+
 Verificar que el componente Bootstrap implementado funciona correctamente,
 responde a las interacciones del usuario, se adapta a distintos viewports
 y mantiene la identidad visual definida en bootstrap-overrides.css.
 
 ## Herramientas utilizadas
+
 - Playwright MCP (`@playwright/mcp`) con viewport emulation e interacción de UI
 - GitHub Copilot Agent Mode
 - GitHub MCP (`@modelcontextprotocol/server-github`) para registrar issues
@@ -78,37 +93,43 @@ Guardá las capturas en docs/04-testing/capturas/tc-7/
 ---
 
 ## Dispositivos testeados
-| Viewport | Componente visible | Interacción funcional | Estilos override | Estado |
-|----------|-------------------|----------------------|------------------|--------|
-| 1280×800 (desktop) | Sí | No aplica: toggler oculto por breakpoint | Sí: superficie oscura, enlaces subrayados en verde, botón verde y tipografía del proyecto | PASS |
-| 390×844 (mobile) | Sí | Sí: expandir, colapsar y transición completada | Sí: colores y tipografía del proyecto | PASS |
-| 768×1024 (tablet) | Sí | Sí: expandir y transición completada | Sí: colores y tipografía del proyecto | PASS |
+
+| Viewport           | Componente visible | Interacción funcional                          | Estilos override                                                                          | Estado |
+| ------------------ | ------------------ | ---------------------------------------------- | ----------------------------------------------------------------------------------------- | ------ |
+| 1280×800 (desktop) | Sí                 | No aplica: toggler oculto por breakpoint       | Sí: superficie oscura, enlaces subrayados en verde, botón verde y tipografía del proyecto | PASS   |
+| 390×844 (mobile)   | Sí                 | Sí: expandir, colapsar y transición completada | Sí: colores y tipografía del proyecto                                                     | PASS   |
+| 768×1024 (tablet)  | Sí                 | Sí: expandir y transición completada           | Sí: colores y tipografía del proyecto                                                     | PASS   |
 
 ## Capturas de pantalla
-| Viewport / Estado | Captura | Estado |
-|-------------------|---------|--------|
-| Desktop — estado inicial | ![](capturas/tc-7/desktop-inicial.png) | Generada; Navbar visible, toggler oculto |
-| Desktop — estado activo | No aplica: el toggler está oculto en desktop | No se generó captura; no hay estado expandido disponible |
-| Mobile — estado inicial | ![](capturas/tc-7/mobile-inicial.png) | Generada; collapse cerrado |
-| Mobile — estado activo | ![](capturas/tc-7/mobile-activo.png) | Generada; collapse abierto y enlaces visibles |
-| Tablet | ![](capturas/tc-7/tablet.png) | Generada; collapse abierto y enlaces visibles |
+
+| Viewport / Estado        | Captura                                      | Estado                                                   |
+| ------------------------ | -------------------------------------------- | -------------------------------------------------------- |
+| Desktop — estado inicial | ![](capturas/tc-7/desktop-inicial.png)       | Generada; Navbar visible, toggler oculto                 |
+| Desktop — estado activo  | No aplica: el toggler está oculto en desktop | No se generó captura; no hay estado expandido disponible |
+| Mobile — estado inicial  | ![](capturas/tc-7/mobile-inicial.png)        | Generada; collapse cerrado                               |
+| Mobile — estado activo   | ![](capturas/tc-7/mobile-activo.png)         | Generada; collapse abierto y enlaces visibles            |
+| Tablet                   | ![](capturas/tc-7/tablet.png)                | Generada; collapse abierto y enlaces visibles            |
 
 ## Hallazgos
-| # | Viewport | Descripción del problema | Comportamiento esperado | Comportamiento observado | Severidad |
-|---|----------|--------------------------|-------------------------|--------------------------|-----------|
-| 1 | Carga de página (todos los viewports) | Recurso `/favicon.ico` no encontrado; no afecta el Navbar | No debería haber una solicitud de recurso de favicon con respuesta 404 | La consola registró HTTP 404 para `http://localhost:3000/favicon.ico`; el Navbar siguió funcionando | Baja |
+
+| #   | Viewport                              | Descripción del problema                                  | Comportamiento esperado                                                | Comportamiento observado                                                                            | Severidad |
+| --- | ------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------- |
+| 1   | Carga de página (todos los viewports) | Recurso `/favicon.ico` no encontrado; no afecta el Navbar | No debería haber una solicitud de recurso de favicon con respuesta 404 | La consola registró HTTP 404 para `http://localhost:3000/favicon.ico`; el Navbar siguió funcionando | Baja      |
 
 ### Severidad
+
 - **Alta** — Componente no funciona o no se renderiza
 - **Media** — Problema visual o de interacción significativo
 - **Baja** — Detalle estético menor
 
 ## Issues creados
-| Issue | Viewport | Descripción | Severidad | Estado |
-|-------|----------|-------------|-----------|--------|
-| No creado | Todos | 404 de favicon, ajeno al Navbar y de baja severidad | Baja | No se creó Issue |
+
+| Issue     | Viewport | Descripción                                         | Severidad | Estado           |
+| --------- | -------- | --------------------------------------------------- | --------- | ---------------- |
+| No creado | Todos    | 404 de favicon, ajeno al Navbar y de baja severidad | Baja      | No se creó Issue |
 
 ## Conclusión general
+
 **Resultado final:** PASS CON OBSERVACIONES
 
 El Navbar fue visible y responsive en los tres viewports. En desktop el toggler permaneció oculto según el breakpoint; en mobile y tablet el collapse se expandió y se observó la transición de altura. En mobile también se comprobó el cierre. Los enlaces existentes, los overrides visuales y la ausencia de overflow horizontal se verificaron correctamente. Se observó un 404 de `/favicon.ico`, ajeno al Navbar; no se creó un Issue.

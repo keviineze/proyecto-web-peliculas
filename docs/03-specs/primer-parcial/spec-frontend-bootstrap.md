@@ -153,9 +153,9 @@ Las personalizaciones de Bootstrap se centralizarán en `css/bootstrap-overrides
 
 ### 4.1 Contexto Figma utilizado
 
-**Pendiente de completar con el enlace/nodo real del mockup actualizado cuando esté disponible en Figma.**
+Mockup Bootstrap: [Proyecto Web Películas — Figma, nodo 2003:65](https://www.figma.com/design/aavw8ufOkinPXlXFVs9k7q/Proyecto-Web-Peliculas-Mockup-Bootstrap?node-id=2003-65&t=eVzgsTytu6vEXB5r-0), también enlazado desde `README.md`.
 
-> El PNG entregado por el Coordinador se utilizó como referencia visual local durante la preparación/implementación. Para acreditar el uso de Figma MCP debe registrarse el enlace o nodo real utilizado con el MCP.
+El PNG `docs/01-mockup/disenio-bootstrap.png` se utilizó como referencia visual local. Este enlace identifica el mockup; no acredita por sí solo una sesión de Figma MCP.
 
 ### 4.2 Prompt exacto utilizado con Figma MCP + Copilot
 
