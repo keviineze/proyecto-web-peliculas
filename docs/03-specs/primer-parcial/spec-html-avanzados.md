@@ -159,8 +159,10 @@ horizontal. Se guardaron capturas en
 
 El único error de consola observado fue la solicitud preexistente de
 `/favicon.ico` con respuesta 404, ajena a los componentes. Se creó el Issue
-[#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55); su
-resolución y retest se documentarán cuando se integre la rama `fix/`.
+[#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55). En la
+rama `fix/correcciones-rc` se agregó `assets/images/favicon.svg` y se verificó
+respuesta HTTP 200 (`image/svg+xml`) el 2026-10-16; la PR de integración sigue
+pendiente.
 
 ### 3.5 Retest RC9/RC14 pendiente
 

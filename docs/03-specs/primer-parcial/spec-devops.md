@@ -12,7 +12,7 @@ El diseño se migrará para reflejar la utilización de Bootstrap. Se ajustará 
 - [x] Mockup actualizado en Figma reflejando la grilla y los componentes de Bootstrap.
 - [x] Exportación del mockup en `docs/01-mockup/disenio-bootstrap.png`.
 - [x] Enlace de Figma actualizado correctamente en `README.md`.
-- [ ] Ejecución de al menos 4 Code Reviews asistidos con Copilot Agent Mode sobre las PRs del equipo.
+- [x] Ejecución de al menos 4 Code Reviews asistidos con Copilot Agent Mode sobre las PRs del equipo; evidencia registrada en la sección 2.
 - [ ] Crear el tag y publicar la GitHub Release después de aprobar y mergear release/primer-parcial en master.
   - Título requerido: [GRUPO N°1][Primer Parcial] Entrega de la actividad.
   - Pendiente hasta la aprobación y el merge.
