@@ -6,7 +6,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
-## [GRUPO N°1][Primer Parcial] Entrega de la actividad - 2026-10-07
+## [Release Primer Parcial] - 2026-10-07
 
 ### Added
 
