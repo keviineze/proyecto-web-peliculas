@@ -24,7 +24,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correcciones-rc-primer-parcial-1] **Correcciones Primer Parcial (RC6, RC10, RC11, RC12, RC13, RC14, RC15, RC3, RC4, RC5, RC9, RC16, RC17)** [PR #60](https://github.com/keviineze/proyecto-web-peliculas/pull/60) - @keviineze (Coordinador / DevOps).
 
-- [fix/correcciones-rc] **Agregar favicon y corregir Issue #55**; Issue [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55); PR pendiente - @GonzaloBarbano (Coordinador / DevOps)
+- [fix/correcciones-rc] **Correcciones-rc** [PR #61](https://github.com/keviineze/proyecto-web-peliculas/pull/61) - @GonzaloBarbano (Desarrollador de Componentes HTML Avanzados); Issue [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55)
 
 ## [Release Actividad Obligatoria N°2] - 2026-09-28
 
