@@ -179,10 +179,11 @@ Se debieron ajustar manualmente los márgenes (mb-4, mt-3) y sobreescribir color
 - PR: [Feature/esp componentes bootstrap add components- #53
 #53](https://github.com/keviineze/proyecto-web-peliculas/pull/53#issue-5745120875)
 
-## 5. Correcciones RC6, RC10 y RC12
+## 5. Correcciones documentadas en esta PR
 
-- Se retiró el modal de Interstellar, que no está representado en el mockup disponible. Se quitaron los disparadores y el marcado de los modales. Se conserva Bootstrap Bundle para el Navbar y el Carousel.
+- **RC6:** Se documentó el prompt exacto, el resultado obtenido y los ajustes manuales de la sesión de Figma MCP en la sección 4.
+- **RC20:** Se normalizó la estructura formal del encabezado de la release en el archivo `changelog.md`.
+- Se retiró el modal de Interstellar, que no está representado en el mockup disponible. Se quitaron los disparadores y el marcado de los modales.
 - Las imágenes del carrusel se muestran completas con object-fit: contain; el contenedor tiene altura limitada y fondo para áreas libres.
 - Se añadió separación vertical entre Películas Destacadas y Biblioteca/Catálogo.
 - La validación visual posterior queda pendiente con el mockup aprobado como referencia.
-- No se inventa un prompt ni contexto de Figma MCP que no esté disponible en el historial.
