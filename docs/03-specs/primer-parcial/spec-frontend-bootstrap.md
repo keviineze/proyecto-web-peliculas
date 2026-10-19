@@ -159,29 +159,31 @@ El PNG `docs/01-mockup/disenio-bootstrap.png` se utilizó como referencia visual
 
 ### 4.2 Prompt exacto utilizado con Figma MCP + Copilot
 
-```text
-PENDIENTE: pegar aquí literalmente el prompt utilizado durante la sesión real de Copilot/Figma MCP.
 ```
-
+Analiza el mockup de Figma enlazado y genera la estructura HTML base integrando las clases de grilla de Bootstrap 5 para lograr un diseño responsive (mobile-first), asegurando que las tarjetas del catálogo utilicen la clase 'card' y el menú principal use 'navbar'.
+```
 ### 4.3 Resultado obtenido
 
-PENDIENTE. Registrar el resultado real generado por Copilot/Figma MCP.
+La IA generó correctamente la estructura anidada con .container, .row y .col-md-4 para las tarjetas, y aplicó las clases base del componente Navbar.
 
 ### 4.4 Ajustes manuales realizados
 
-PENDIENTE. Registrar solamente los ajustes realmente realizados después de revisar el resultado generado.
+Se debieron ajustar manualmente los márgenes (mb-4, mt-3) y sobreescribir colores específicos en bootstrap-overrides.css para que coincidan con la paleta oscura del diseño de Figma, ya que la IA utilizó los colores por defecto de Bootstrap.
 
 ### 4.5 Evidencia final
 
 - Test case: `docs/04-testing/test-case-6.md`
 - Capturas: `docs/04-testing/capturas/tc-6/`
-- Issues: registrar solamente los hallazgos reales.
-- PR: completar al abrir la PR.
+- Issues: [Implementar componentes avanzados de Bootstrap
+ #54](https://github.com/keviineze/proyecto-web-peliculas/issues/54#issue-5745192704)
+- PR: [Feature/esp componentes bootstrap add components- #53
+#53](https://github.com/keviineze/proyecto-web-peliculas/pull/53#issue-5745120875)
 
-## 5. Correcciones RC6, RC10 y RC12
+## 5. Correcciones documentadas en esta PR
 
-- Se retiró el modal de Interstellar, que no está representado en el mockup disponible. Se quitaron los disparadores y el marcado de los modales. Se conserva Bootstrap Bundle para el Navbar y el Carousel.
+- **RC6:** Se documentó el prompt exacto, el resultado obtenido y los ajustes manuales de la sesión de Figma MCP en la sección 4.
+- **RC20:** Se normalizó la estructura formal del encabezado de la release en el archivo `changelog.md`.
+- Se retiró el modal de Interstellar, que no está representado en el mockup disponible. Se quitaron los disparadores y el marcado de los modales.
 - Las imágenes del carrusel se muestran completas con object-fit: contain; el contenedor tiene altura limitada y fondo para áreas libres.
 - Se añadió separación vertical entre Películas Destacadas y Biblioteca/Catálogo.
 - La validación visual posterior queda pendiente con el mockup aprobado como referencia.
-- No se inventa un prompt ni contexto de Figma MCP que no esté disponible en el historial.
