@@ -44,7 +44,7 @@ El control pasó las verificaciones funcionales y responsive. La ejecución orig
 
 ## Conclusión
 
-**Resultado:** PASS para el componente. El hallazgo del favicon se rastreó con el Issue #55; su corrección y retest están documentados abajo. La integración por PR sigue pendiente.
+**Resultado:** PASS para el componente. El hallazgo del favicon se rastreó con el Issue [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55), ya cerrada tras integrar la corrección mediante la PR [#61](https://github.com/keviineze/proyecto-web-peliculas/pull/61) en `release/primer-parcial`.
 
 ## Retest del Issue #55
 
@@ -52,4 +52,4 @@ El control pasó las verificaciones funcionales y responsive. La ejecución orig
 
 Se agregó `assets/images/favicon.svg` y se declaró en `index.html`. La página respondió HTTP 200 (`text/html`) y el favicon HTTP 200 (`image/svg+xml`) en `http://localhost:3000`; el recurso ya no devuelve 404.
 
-**Estado:** PASS en la rama de corrección. La PR que integre este cambio sigue pendiente; no se afirma que el issue esté cerrado.
+**Estado:** PASS. La corrección fue integrada mediante la PR [#61](https://github.com/keviineze/proyecto-web-peliculas/pull/61) a `release/primer-parcial` y el Issue [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55) está cerrado.
