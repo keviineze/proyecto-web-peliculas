@@ -21,6 +21,10 @@ La metadata anterior conserva la ejecución original. Este retest se realizó el
 
 **Estado del retest:** PASS. No se observó un fallo de interacción del Navbar en los viewports probados.
 
+## Registro histórico: ejecución original del 2026-10-05
+
+Las secciones siguientes conservan el procedimiento y las evidencias de la ejecución original. No representan el resultado final del caso; para el estado vigente, consultar el retest posterior a PR #60 al inicio de este documento.
+
 ## Componente testeado
 
 | Campo                        | Descripción                                                                      |
@@ -92,7 +96,7 @@ Guardá las capturas en docs/04-testing/capturas/tc-7/
 
 ---
 
-## Dispositivos testeados
+## Dispositivos testeados en la ejecución original (histórico)
 
 | Viewport           | Componente visible | Interacción funcional                          | Estilos override                                                                          | Estado |
 | ------------------ | ------------------ | ---------------------------------------------- | ----------------------------------------------------------------------------------------- | ------ |
@@ -100,7 +104,7 @@ Guardá las capturas en docs/04-testing/capturas/tc-7/
 | 390×844 (mobile)   | Sí                 | Sí: expandir, colapsar y transición completada | Sí: colores y tipografía del proyecto                                                     | PASS   |
 | 768×1024 (tablet)  | Sí                 | Sí: expandir y transición completada           | Sí: colores y tipografía del proyecto                                                     | PASS   |
 
-## Capturas de pantalla
+## Capturas de la ejecución original (históricas)
 
 | Viewport / Estado        | Captura                                      | Estado                                                   |
 | ------------------------ | -------------------------------------------- | -------------------------------------------------------- |
@@ -110,7 +114,7 @@ Guardá las capturas en docs/04-testing/capturas/tc-7/
 | Mobile — estado activo   | ![](capturas/tc-7/mobile-activo.png)         | Generada; collapse abierto y enlaces visibles            |
 | Tablet                   | ![](capturas/tc-7/tablet.png)                | Generada; collapse abierto y enlaces visibles            |
 
-## Hallazgos
+## Hallazgos de la ejecución original (históricos)
 
 | #   | Viewport                              | Descripción del problema                                  | Comportamiento esperado                                                | Comportamiento observado                                                                            | Severidad |
 | --- | ------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------- |
@@ -122,14 +126,18 @@ Guardá las capturas en docs/04-testing/capturas/tc-7/
 - **Media** — Problema visual o de interacción significativo
 - **Baja** — Detalle estético menor
 
-## Issues creados
+## Issues de la ejecución original (histórico)
 
 | Issue     | Viewport | Descripción                                         | Severidad | Estado           |
 | --------- | -------- | --------------------------------------------------- | --------- | ---------------- |
 | No creado | Todos    | 404 de favicon, ajeno al Navbar y de baja severidad | Baja      | No se creó Issue |
 
-## Conclusión general
+## Conclusión de la ejecución original (histórica)
 
-**Resultado final:** PASS CON OBSERVACIONES
+**Resultado original:** PASS CON OBSERVACIONES
 
-El Navbar fue visible y responsive en los tres viewports. En desktop el toggler permaneció oculto según el breakpoint; en mobile y tablet el collapse se expandió y se observó la transición de altura. En mobile también se comprobó el cierre. Los enlaces existentes, los overrides visuales y la ausencia de overflow horizontal se verificaron correctamente. Se observó un 404 de `/favicon.ico`, ajeno al Navbar; no se creó un Issue.
+El Navbar fue visible y responsive en los tres viewports. En desktop el toggler permaneció oculto según el breakpoint; en mobile y tablet el collapse se expandió y se observó la transición de altura. En mobile también se comprobó el cierre. Los enlaces existentes, los overrides visuales y la ausencia de overflow horizontal se verificaron correctamente. Se observó un 404 de `/favicon.ico`, ajeno al Navbar; no se creó un Issue. El hallazgo del favicon se corrigió posteriormente y su integración se registra en TC9.
+
+## Conclusión final
+
+**Resultado final: PASS.** El retest del 2026-10-16, posterior a PR #60, confirmó el comportamiento esperado del Navbar en desktop (1280×800), mobile (390×844) y tablet (768×1024). Las capturas enlazadas en la sección de retest corresponden a esa ejecución; no se observaron fallos de interacción en los viewports probados. La conclusión histórica y sus capturas se mantienen únicamente como referencia y no alteran este resultado.

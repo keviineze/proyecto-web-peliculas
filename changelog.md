@@ -28,6 +28,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/rc-correcciones-2] **correcciones de RC20, RC6** [PR #62](https://github.com/keviineze/proyecto-web-peliculas/pull/62) - @Davidsoria99 (Coordinador / DevOps)
 
+- [fix/correcciones-rc-2-21-22] **Correcciones RC 21 y 22** [PR #64](https://github.com/keviineze/proyecto-web-peliculas/pull/64) - @GonzaloBarbano (Desarrollador de Componentes HTML Avanzados)
+
 ## [Release Actividad Obligatoria N°2] - 2026-09-28
 
 ### Added
