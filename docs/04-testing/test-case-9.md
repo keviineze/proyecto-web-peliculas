@@ -40,8 +40,16 @@ El control tiene la etiqueta “Tu calificación”, rango 1–5 y escala visual
 
 ## Hallazgos
 
-El control pasó las verificaciones funcionales y responsive. La consola registró un 404 de `/favicon.ico`, reproducible antes de la implementación y no relacionado con este componente. Se creó el Issue [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55); su corrección se realiza en una rama `fix/` desde `develop`.
+El control pasó las verificaciones funcionales y responsive. La ejecución original registró un 404 de `/favicon.ico`, ajeno al componente. Se creó el Issue [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55); la corrección y su retest se documentan a continuación.
 
 ## Conclusión
 
-**Resultado:** PASS para el componente. El hallazgo general de favicon queda rastreado por el Issue #55 y se actualizará después del retest.
+**Resultado:** PASS para el componente. El hallazgo del favicon se rastreó con el Issue [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55), ya cerrada tras integrar la corrección mediante la PR [#61](https://github.com/keviineze/proyecto-web-peliculas/pull/61) en `release/primer-parcial`.
+
+## Retest del Issue #55
+
+**Fecha:** 2026-10-16. **Rama:** `fix/correcciones-rc`.
+
+Se agregó `assets/images/favicon.svg` y se declaró en `index.html`. La página respondió HTTP 200 (`text/html`) y el favicon HTTP 200 (`image/svg+xml`) en `http://localhost:3000`; el recurso ya no devuelve 404.
+
+**Estado:** PASS. La corrección fue integrada mediante la PR [#61](https://github.com/keviineze/proyecto-web-peliculas/pull/61) a `release/primer-parcial` y el Issue [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55) está cerrado.

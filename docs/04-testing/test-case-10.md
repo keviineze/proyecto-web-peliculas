@@ -1,47 +1,40 @@
-# Test Case 10 — Componente HTML avanzado: ficha desplegable
+# Test Case 10 — Ficha técnica HTML nativa
 
 ## Metadata
+| Campo | Valor |
+|-------|-------|
+| Componente | details/summary |
+| Ubicación | Tarjeta de El viaje de Chihiro en el Catálogo |
+| Estado del retest | PASS — 14/10/2026 |
 
-| Campo              | Valor                                            |
-| ------------------ | ------------------------------------------------ |
-| Responsable        | Gonzalo Barbano                                  |
-| Fecha de ejecución | 2026-10-07                                       |
-| Rama testeada      | `feature/dev-comp-html-avanzados-add-components` |
-| URL testeada       | `http://localhost:3000`                          |
+## Objetivo
+Comprobar la interacción nativa de la ficha técnica tras trasladarla desde el modal a la tarjeta para alinear la implementación con el mockup disponible.
 
-## Componente testeado
+## Procedimiento
+En http://localhost:3000, localizar la tarjeta de El viaje de Chihiro. Repetir en desktop 1280×800, iPad Air 820×1180 y mobile 390×844.
 
-| Campo                   | Descripción                                                                                  |
-| ----------------------- | -------------------------------------------------------------------------------------------- |
-| Nombre                  | `details` y `summary`                                                                        |
-| Selector                | `#modal-chihiro details`                                                                     |
-| Sección                 | Modal de detalles de El viaje de Chihiro                                                     |
-| Comportamiento esperado | Mantener la ficha cerrada inicialmente y permitir expandirla/contraerla con teclado o ratón. |
+1. Confirmar que Ficha técnica aparece cerrada inicialmente.
+2. Abrirla con teclado (Enter y Espacio) y con clic.
+3. Confirmar que se muestran Duración: 125 minutos y Estado: vista.
+4. Volver a cerrarla y confirmar que el contenido se oculta.
+5. Revisar foco visible, legibilidad, límites del viewport y overflow horizontal.
 
-## Objetivo y herramientas
+## Criterios de aceptación
+- Se usa el elemento HTML details con summary y no depende de JavaScript de aplicación.
+- La ficha abre y cierra con teclado y ratón.
+- Los datos corresponden a la tarjeta de Chihiro.
+- La tarjeta permanece legible y no provoca overflow en los tres viewports.
 
-Validar el comportamiento nativo y el contenido de la ficha técnica, además de su integración visual y responsive, mediante Playwright MCP.
+## Resultados y capturas
 
-## Procedimiento ejecutado
+### Ejecución real — 14/10/2026
 
-```text
-Usando Playwright MCP, validá #modal-chihiro details en http://localhost:3000 en 1280x800, 390x844 y 768x1024. Confirmá el estado cerrado inicial, abrí la ficha con Enter y con clic, verificá que se muestren los datos existentes y cerrala con Espacio. Revisá que el modal no desborde el viewport y tomá una captura con la ficha abierta en cada tamaño. No agregues ni ejecutes JavaScript de aplicación.
-```
+**PASS en los tres viewports.** En desktop (1280×800), iPad Air (820×1180) y mobile (390×844), `Ficha técnica` estaba cerrada inicialmente. Se abrió con Enter y cerró con Espacio; el resumen mantuvo foco visible. También se abrió y cerró mediante clic. Al abrirla se mostraron los datos existentes: `Duración: 125 minutos` y `Estado: vista`. No se detectó overflow horizontal, ni con la ficha abierta ni cerrada.
 
-## Resultados
+| Viewport | Overflow comprobado | Captura con la ficha abierta |
+|---|---|---|
+| Desktop — 1280×800 | `scrollWidth` 1265 px ≤ 1280 px | [tc-10-desktop-1280x800.png](./capturas/tc-html-avanzados/momento-2/tc-10-desktop-1280x800.png) |
+| iPad Air — 820×1180 | `scrollWidth` 805 px ≤ 820 px | [tc-10-ipad-air-820x1180.png](./capturas/tc-html-avanzados/momento-2/tc-10-ipad-air-820x1180.png) |
+| Mobile — 390×844 | `scrollWidth` 375 px ≤ 390 px | [tc-10-mobile-390x844.png](./capturas/tc-html-avanzados/momento-2/tc-10-mobile-390x844.png) |
 
-| Viewport         | Estado inicial | Interacción                                                       | Ficha dentro del viewport / overflow | Captura                                                           |
-| ---------------- | -------------- | ----------------------------------------------------------------- | ------------------------------------ | ----------------------------------------------------------------- |
-| 1280×800 desktop | Cerrada        | Enter abrió; Espacio cerró                                        | Sí / No                              | [tc-10-desktop.png](capturas/tc-html-avanzados/tc-10-desktop.png) |
-| 390×844 mobile   | Cerrada        | Clic abrió la ficha                                               | Sí / No                              | [tc-10-mobile.png](capturas/tc-html-avanzados/tc-10-mobile.png)   |
-| 768×1024 tablet  | Cerrada        | Clic abrió la ficha después de que el modal terminó su transición | Sí / No                              | [tc-10-tablet.png](capturas/tc-html-avanzados/tc-10-tablet.png)   |
-
-La ficha contiene solo datos ya presentes: duración y estado. En tablet, un clic realizado durante la transición inicial del modal no la abrió; al repetirlo con el modal visible, abrió correctamente y no se reprodujo el problema.
-
-## Hallazgos
-
-No se encontraron defectos reproducibles en `details`/`summary`. La consola registró un 404 de `/favicon.ico`, reproducible antes de la implementación y no relacionado con este componente. Se creó el Issue [#55](https://github.com/keviineze/proyecto-web-peliculas/issues/55); su corrección se realiza en una rama `fix/` desde `develop`.
-
-## Conclusión
-
-**Resultado:** PASS para el componente. El hallazgo general de favicon queda rastreado por el Issue #55 y se actualizará después del retest.
+Las capturas nuevas de pantalla completa se guardaron en `docs/04-testing/capturas/tc-html-avanzados/momento-2/`; no se reutilizaron las capturas de una corrida anterior.

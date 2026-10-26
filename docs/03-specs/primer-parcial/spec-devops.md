@@ -12,7 +12,10 @@ El diseño se migrará para reflejar la utilización de Bootstrap. Se ajustará 
 - [x] Mockup actualizado en Figma reflejando la grilla y los componentes de Bootstrap.
 - [x] Exportación del mockup en `docs/01-mockup/disenio-bootstrap.png`.
 - [x] Enlace de Figma actualizado correctamente en `README.md`.
-- [ ] Ejecución de al menos 4 Code Reviews asistidos con Copilot Agent Mode sobre las PRs del equipo.
+- [x] Ejecución de al menos 4 Code Reviews asistidos con Copilot Agent Mode sobre las PRs del equipo; evidencia registrada en la sección 2.
+- [ ] Crear el tag y publicar la GitHub Release después de aprobar y mergear release/primer-parcial en master.
+  - Título requerido: [GRUPO N°1][Primer Parcial] Entrega de la actividad.
+  - Pendiente hasta la aprobación y el merge.
 
 ## 2. Al cerrar la tarea
 
@@ -45,3 +48,10 @@ El diseño se migrará para reflejar la utilización de Bootstrap. Se ajustará 
      > Actúa como Senior Software Engineer realizando un code review profesional. Analiza los cambios de la Pull Request activa comparando la rama actual con develop. Utiliza las herramientas de GitKraken (MCP) para identificar los archivos modificados y publicar los hallazgos. CRÍTICO PARA ESTE SPRINT: Verifica si el desarrollador implementó correctamente los componentes HTML avanzados solicitados (`<input type="range">` para el sistema de calificación y la estructura `<details>` con `<summary>` para la ficha técnica). Evalúa si se aplicaron adecuadamente las clases de Bootstrap para su integración y si la implementación visual, junto con los overrides de CSS, son coherentes con la imagen de referencia `docs/01-mockup/disenio-bootstrap.png`.
    - **Resumen de hallazgos:** La IA detectó un bug de severidad media en el catálogo de películas: se insertó un elemento `<details>` duplicado y sin cerrar en la tarjeta de "Interstellar", sobrescribiendo incorrectamente sus metadatos (duración y estado) con los de otra película ("El viaje de Chihiro"). 
    - **Acción tomada:** Se publicó el hallazgo bloqueando la PR para exigir la restauración de los datos originales y corregir el anidamiento HTML. Una vez que el desarrollador subió los commits con las correcciones, se reevaluó el código, se aprobó y se mergeó exitosamente a `develop`.
+## 3. Release posterior a la aprobación
+
+- [ ] Obtener aprobación docente de la PR de release/primer-parcial.
+- [ ] Mergear la release aprobada a master.
+- [ ] Crear/publicar el tag sobre el commit integrado en master.
+- [ ] Publicar la GitHub Release con el título exacto [GRUPO N°1][Primer Parcial] Entrega de la actividad.
+- [ ] Verificar que el tag apunte al commit de master posterior al merge.

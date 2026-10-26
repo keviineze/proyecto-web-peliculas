@@ -1,113 +1,72 @@
-# Test Case 6 — Responsive: Migración a Bootstrap
+# Test Case 6 — Responsive: Bootstrap y correcciones visuales
 
 ## Metadata
 | Campo | Valor |
 |-------|-------|
 | Responsable | Kevin Sosa |
-| Fecha de ejecución | 2026-10-05 |
-| Rama testeada | `feature/dev-frontend-bootstrap-migration` |
-| URL testeada | `http://localhost:3000` |
-| Versión de Bootstrap | 5.3.8 |
+| Rama de trabajo | fix/correcciones-rc-primer-parcial-1 |
+| URL a ejecutar | http://localhost:3000 |
+| Viewports requeridos | Mobile 390×844; iPad Air 820×1180; Desktop 1280×800 |
+| Estado de retest | PASS — segundo retest 14/10/2026; separación desktop corregida |
 
 ## Objetivo
-Verificar que la migración a Bootstrap mantiene el comportamiento responsive del sitio,
-que el sistema de columnas se aplica correctamente en todos los breakpoints definidos,
-y que los estilos previos (styles.css, components.css, responsive.css) no se rompieron.
+Volver a comprobar los hallazgos RC9, RC10, RC11, RC12, RC14 y RC16 después de los cambios de CSS y HTML. Este retest se ejecutó con Playwright el 14/10/2026; los resultados medidos y cualquier diferencia visual quedan registrados abajo.
 
-## Herramientas utilizadas
-- Playwright MCP (`@playwright/mcp`) con viewport emulation
-- GitHub Copilot Agent Mode
+## Procedimiento
+En cada viewport, abrir http://localhost:3000, esperar la carga de imágenes y revisar la página. Las capturas nuevas de este retest se guardan en docs/04-testing/capturas/tc-6/momento-2/.
 
----
+### Mobile — 390×844
+- Confirmar que Biblioteca y Catálogo se apilan y no hay scroll horizontal.
+- Revisar que los filtros de Mi Lista y el carrusel quepan en el viewport.
+- Confirmar que las imágenes de tarjetas y carrusel se vean completas.
 
-## Prompt para Copilot Agent Mode
+### iPad Air — 820×1180
+- Confirmar que Biblioteca y Catálogo se apilan según el breakpoint lg.
+- En lista-pendientes, confirmar que la imagen mantiene un ancho razonable.
+- Revisar proporciones, nitidez, controles del carrusel y ausencia de overflow.
 
-Copiá este prompt en Copilot Agent Mode con Playwright MCP activo:
+### Desktop — 1280×800
+- Confirmar que Biblioteca y Catálogo quedan lado a lado.
+- Avanzar el carrusel hasta Dark y comprobar que la imagen completa se vea.
+- Revisar que las imágenes verticales de lista-pendientes no se recorten.
+- Confirmar el espacio vertical entre Películas Destacadas y Catálogo.
 
-```text
-Usando Playwright MCP, necesito testear la migración a Bootstrap de
-http://localhost:3000 en distintos dispositivos y breakpoints.
+## Criterios para aprobar
+- No hay overflow horizontal en ninguno de los tres tamaños.
+- Las imágenes se muestran completas y Chihiro conserva nitidez a su tamaño renderizado.
+- La imagen de lista-pendientes conserva dimensiones razonables en iPad Air.
+- La separación vertical y el layout corresponden con el mockup aprobado.
+- No aparecen errores de consola atribuibles a esta implementación.
 
-Ejecutá estos pasos en orden:
+## Registro de resultados
 
-1. Configurá el viewport en 390x844 (iPhone 14 Pro — Bootstrap breakpoint: xs)
-   - Navegá a la página y tomá captura completa
-   - Verificá si la grilla de Bootstrap apila las columnas correctamente
-   - Verificá si el navbar colapsa o adapta su comportamiento
-   - Verificá si hay scroll horizontal involuntario
-   - Verificá si los estilos de styles.css y components.css siguen aplicados
+### Ejecución real — 14/10/2026
 
-2. Configurá el viewport en 768x1024 (iPad — Bootstrap breakpoint: md)
-   - Tomá captura completa
-   - Verificá si las columnas de Bootstrap cambian de layout según el breakpoint
-   - Verificá coherencia visual con la version mobile
+| Viewport | Resultado | Observaciones verificadas |
+|---|---|---|
+| Mobile — 390×844 | PASS | Sin scroll horizontal (`scrollWidth` 375 px frente a viewport 390 px). Biblioteca y Catálogo apilados. Imagen de Pendientes cargada, 220×321 px, `object-fit: contain`. Carrusel Interstellar cargado y completo en su área 211×160 px. Separación medida entre el borde inferior de Películas Destacadas y el inicio de Biblioteca: 48 px. |
+| iPad Air — 820×1180 | PASS | Sin scroll horizontal (`scrollWidth` 805 px frente a viewport 820 px). Biblioteca y Catálogo apilados en el breakpoint `lg`. Imagen de Pendientes cargada, 260×379 px, `object-fit: contain`. Carrusel Interstellar cargado y completo en su área 609×230 px. Separación medida: 56 px. |
+| Desktop — 1280×800 | FAIL | Sin scroll horizontal (`scrollWidth` 1265 px frente a viewport 1280 px). Biblioteca y Catálogo quedan lado a lado. Imagen de Pendientes cargada, 178×260 px, `object-fit: contain`. Interstellar, Chihiro y Dark cargaron y se ven completos en el carrusel (`object-fit: contain`; área 738×260 px). La separación medida entre Películas Destacadas y Biblioteca es 56 px; en el mockup es aproximadamente 40 px, por lo que la separación real resulta unos 16 px mayor y no cumple el criterio de correspondencia visual. |
 
-3. Configurá el viewport en 1280x800 (Desktop — Bootstrap breakpoint: lg/xl)
-   - Tomá captura completa
-   - Verificá si el layout de columnas coincide con el mockup actualizado
-   - Verificá si bootstrap-overrides.css mantiene la identidad visual
+**Resultado general del primer retest: FAIL**, únicamente por la diferencia de separación vertical observada en desktop. La comparación visual confirmó la distribución de columnas y el orden de secciones del mockup. El registro se conserva para trazabilidad.
 
-4. Para cada breakpoint reportá:
-   - Qué columnas se aplican y si el layout es correcto
-   - Si algún elemento de estilos previos fue sobreescrito incorrectamente
-   - Si hay diferencias visuales respecto al mockup
+**Consola:** se registró un error real al cargar la página: `GET http://localhost:3000/favicon.ico` respondió `404 (File not found)`. Es ajeno a los cambios responsive/carrusel comprobados; no se observaron errores de consola relacionados con ellos ni warnings.
 
-5. Generá un resumen indicando si la migración a Bootstrap es coherente
-   en todos los breakpoints
+### Capturas de pantalla completa
 
-Guardá las capturas en docs/04-testing/capturas/tc-6/
-```
+| Viewport / estado | Captura |
+|---|---|
+| Mobile — 390×844 | [mobile-390x844.png](./capturas/tc-6/momento-2/mobile-390x844.png) |
+| iPad Air — 820×1180 | [ipad-air-820x1180.png](./capturas/tc-6/momento-2/ipad-air-820x1180.png) |
+| Desktop — 1280×800 | [desktop-1280x800.png](./capturas/tc-6/momento-2/desktop-1280x800.png) |
+| Desktop — slide Dark | [desktop-dark-1280x800.png](./capturas/tc-6/momento-2/desktop-dark-1280x800.png) |
 
----
+### Segundo retest — Desktop 1280×800 — 14/10/2026
 
-## Breakpoints testeados
-| Breakpoint Bootstrap | Viewport | Layout columnas | Navbar | Scroll horizontal | Estilos previos | Estado |
-|----------------------|----------|-----------------|--------|-------------------|-----------------|--------|
-| xs (mobile) | 390×844 | 1 columna para cards; Library/Catalog apilados | Visible y accesible | No | Aplicados | PASS |
-| md (tablet) | 768×1024 | 1 columna para cards; Library/Catalog apilados | Visible y accesible | No | Aplicados | PASS |
-| lg (desktop) | 1280×800 | 3 columnas para cards; Library/Catalog lado a lado | Visible y accesible | No | Aplicados | PASS |
+Se aplicó el ajuste solicitado exclusivamente dentro de `@media (min-width: 992px)`: `main > div.row { margin-top: var(--space-4); }`. Se mantuvieron el valor base para iPad Air y el ajuste existente para mobile.
 
-> Nota: la ejecución original de validación también comprobó 820×1180 (iPad Air)
-> y 412×915 (Samsung Galaxy S23). En 820 px el layout Library/Catalog permanece
-> apilado porque las columnas usan `col-lg-*` y el breakpoint `lg` comienza en 992 px.
-> No se detectó clipping ni scroll horizontal.
+**Resultado: PASS.** Con Playwright a 1280×800, midiendo desde el borde inferior de `.featured-section` hasta el inicio de `#biblioteca` y `#catalogo` (los dos comienzan a la misma altura), se obtuvo **40 px**: borde inferior de Películas Destacadas en `y=549.1875` e inicio de ambas columnas en `y=589.1875`. La medida coincide con los aproximadamente 40 px del mockup. No hubo scroll horizontal (`scrollWidth` 1265 px ≤ 1280 px). Las imágenes cargaron; la imagen de Pendientes se mostró completa en 178×260 px y la imagen activa del carrusel (Interstellar) completa en 738×260 px, ambas con `object-fit: contain`.
 
-## Capturas de pantalla
-| Breakpoint | Captura | Estado |
-|------------|---------|--------|
-| xs — iPhone 14 Pro | ![](capturas/tc-6/momento-1/iphone-14-pro.png) | PASS |
-| md — iPad | ![](capturas/tc-6/momento-1/ipad-air.png) | PASS |
-| lg — Desktop | ![](capturas/tc-6/momento-1/samsung-galaxy-s23.png) | PASS |
+**Consola del segundo retest:** error real `Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:3000/favicon.ico:0`. Es el mismo error preexistente de favicon documentado en el primer retest; no se observaron errores relacionados con el espaciado ni advertencias.
 
-## Hallazgos
-| # | Elemento | Breakpoint afectado | Descripción | Tipo de problema | Severidad |
-|---|----------|---------------------|-------------|------------------|-----------|
-| 1 | Layout Library/Catalog | 820×1180 (iPad Air) | El layout permanece apilado a 820 px porque las columnas usan `col-lg-*` y el breakpoint `lg` comienza en 992 px. No se detectó clipping ni scroll horizontal. | Observación de breakpoint | Baja |
-
-### Severidad
-- **Alta** — Rompe layout o funcionalidad
-- **Media** — Problema visual significativo
-- **Baja** — Detalle estético menor
-
-## Issues creados
-| Issue | Elemento | Breakpoint | Severidad | Estado |
-|-------|----------|------------|-----------|--------|
-| Ninguno | — | — | — | No se creó issue: la observación de 820×1180 no rompe el layout ni fue confirmada como incumplimiento del mockup |
-
-## Conclusión general
-**Resultado final:** PASS
-
-La migración a Bootstrap es coherente y responsive en los viewports evaluados.
-La grilla Bootstrap se aplica correctamente: las tarjetas se muestran en una columna
-en mobile/tablet y en tres columnas en desktop; Library y Catalog se apilan en tamaños
-menores al breakpoint `lg` y quedan lado a lado en desktop. No se detectó scroll
-horizontal ni clipping, y los estilos existentes continúan aplicándose junto con
-`bootstrap-overrides.css`.
-
-Como observación, en 820×1180 el layout Library/Catalog continúa apilado debido al uso
-de `col-lg-*`. Esto no generó un problema funcional ni visual de clipping, por lo que
-se registra como observación y no como issue.
-
-La ausencia de componentes avanzados como Navbar/Carousel no se registra como hallazgo
-de este test, ya que su implementación corresponde al rol de Especialista en
-Componentes Bootstrap y será evaluada mediante los Test Case 7 y 8.
+La captura de pantalla completa se reemplazó tras ejecutar esta medición: [desktop-1280x800.png](./capturas/tc-6/momento-2/desktop-1280x800.png).

@@ -7,6 +7,7 @@
       name="description"
       content="Mini Letterboxd: catálogo y biblioteca personal de películas y series."
     />
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <title>Mini Letterboxd | Películas y series</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -102,10 +103,10 @@
               <div class="featured-slide">
                 <img
                   class="featured-slide-image"
-                  src="assets/images/chihiro-2.jpeg"
-                  alt="Paisaje natural que representa un viaje fantástico"
-                  width="225"
-                  height="225"
+                  src="assets/images/chihiro.jpeg"
+                  alt="Chihiro frente a los edificios iluminados del mundo de los espíritus"
+                  width="351"
+                  height="569"
                   decoding="async"
                 />
                 <div class="featured-slide-caption">
@@ -260,14 +261,7 @@
                   <p>Estado: pendiente</p>
                 </div>
                 <div class="card-actions">
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal-interstellar"
-                  >
-                    Ver detalles
-                  </button>
+
                   <a class="btn btn-primary" href="#titulo-lista"
                     >Agregar a Mi Lista</a
                   >
@@ -278,10 +272,10 @@
             <div class="col">
               <article class="h-100">
                 <img
-                  src="assets/images/chihiro-2.jpeg"
-                  alt="Paisaje natural que representa un viaje fantástico"
-                  width="225"
-                  height="225"
+                  src="assets/images/chihiro.jpeg"
+                  alt="Chihiro frente a los edificios iluminados del mundo de los espíritus"
+                  width="351"
+                  height="569"
                   loading="lazy"
                   decoding="async"
                 />
@@ -291,19 +285,15 @@
                   Chihiro entra en un mundo de espíritus y debe encontrar el
                   valor para recuperar a sus padres.
                 </p>
-                <div class="card-meta">
-                  <p>Duración: 125 minutos</p>
-                  <p>Estado: vista</p>
-                </div>
+                <details class="movie-facts">
+                  <summary>Ficha técnica</summary>
+                  <ul>
+                    <li>Duración: 125 minutos</li>
+                    <li>Estado: vista</li>
+                  </ul>
+                </details>
                 <div class="card-actions">
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal-chihiro"
-                  >
-                    Ver detalles
-                  </button>
+
                   <a class="btn btn-primary" href="#titulo-lista"
                     >Agregar a Mi Lista</a
                   >
@@ -332,14 +322,7 @@
                   <p>Estado: pendiente</p>
                 </div>
                 <div class="card-actions">
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal-dark"
-                  >
-                    Ver detalles
-                  </button>
+
                   <a class="btn btn-primary" href="#titulo-lista"
                     >Agregar a Mi Lista</a
                   >
@@ -358,175 +341,6 @@
         </nav>
       </section>
     </main>
-
-    <div
-      class="modal fade"
-      id="modal-interstellar"
-      tabindex="-1"
-      aria-labelledby="modal-interstellar-title"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title" id="modal-interstellar-title">
-              Interstellar
-            </h2>
-            <button
-              class="btn-close"
-              type="button"
-              data-bs-dismiss="modal"
-              aria-label="Cerrar"
-            ></button>
-          </div>
-          <div class="modal-body modal-detail">
-            <img
-              src="assets/images/interestellar-2.jpeg"
-              alt="Paisaje montañoso de la película Interstellar"
-              width="686"
-              height="446"
-            />
-            <p>Película | 2014 | Ciencia ficción</p>
-            <p>
-              Un grupo de exploradores busca un nuevo hogar para la humanidad
-              más allá de las estrellas.
-            </p>
-            <ul>
-              <li>Duración: 169 minutos</li>
-              <li>Estado: pendiente</li>
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-outline-light"
-              type="button"
-              data-bs-dismiss="modal"
-            >
-              Cerrar
-            </button>
-            <a
-              class="btn btn-primary"
-              href="#titulo-lista"
-              data-bs-dismiss="modal"
-              >Agregar a Mi Lista</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="modal-chihiro"
-      tabindex="-1"
-      aria-labelledby="modal-chihiro-title"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title" id="modal-chihiro-title">
-              El viaje de Chihiro
-            </h2>
-            <button
-              class="btn-close"
-              type="button"
-              data-bs-dismiss="modal"
-              aria-label="Cerrar"
-            ></button>
-          </div>
-          <div class="modal-body modal-detail">
-            <img
-              src="assets/images/chihiro-2.jpeg"
-              alt="Paisaje natural que representa un viaje fantástico"
-              width="225"
-              height="225"
-            />
-            <p>Película | 2001 | Animación y fantasía</p>
-            <p>
-              Chihiro entra en un mundo de espíritus y debe encontrar el valor
-              para recuperar a sus padres.
-            </p>
-            <details class="movie-facts">
-              <summary>Ficha técnica</summary>
-              <ul>
-                <li>Duración: 125 minutos</li>
-                <li>Estado: vista</li>
-              </ul>
-            </details>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-outline-light"
-              type="button"
-              data-bs-dismiss="modal"
-            >
-              Cerrar
-            </button>
-            <a
-              class="btn btn-primary"
-              href="#titulo-lista"
-              data-bs-dismiss="modal"
-              >Agregar a Mi Lista</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="modal-dark"
-      tabindex="-1"
-      aria-labelledby="modal-dark-title"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title" id="modal-dark-title">Dark</h2>
-            <button
-              class="btn-close"
-              type="button"
-              data-bs-dismiss="modal"
-              aria-label="Cerrar"
-            ></button>
-          </div>
-          <div class="modal-body modal-detail">
-            <img
-              src="assets/images/dark.jpeg"
-              alt="Paisaje de una ciudad nocturna para representar una serie de misterio"
-              width="685"
-              height="384"
-            />
-            <p>Serie | 2017 | Misterio y ciencia ficción</p>
-            <p>
-              Cuatro familias buscan respuestas cuando la desaparición de un
-              niño revela un misterio temporal.
-            </p>
-            <ul>
-              <li>Temporadas: 3</li>
-              <li>Estado: pendiente</li>
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-outline-light"
-              type="button"
-              data-bs-dismiss="modal"
-            >
-              Cerrar
-            </button>
-            <a
-              class="btn btn-primary"
-              href="#titulo-lista"
-              data-bs-dismiss="modal"
-              >Agregar a Mi Lista</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
 
     <footer id="compartir">
       <div class="footer-about">
@@ -555,6 +369,7 @@
         >
       </div>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
