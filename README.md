@@ -26,9 +26,9 @@ En esta etapa se trabaja con `prompt()`, `alert()` y/o `console.log()`. No se de
 
 | Nombre completo | N.º de matrícula | Usuario de GitHub                                    | Rol en esta entrega                                                            |
 | --------------- | ---------------: | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
-| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | Coordinador / DevOps                                                           |
-| Kevin Sosa  |           154080 | [@keviineze](https://github.com/keviineze) | Desarrollador Frontend/Bootstrap y Especialista en Componentes Bootstrap       |
-| Gonzalo Barbano      |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano)           | Desarrollador de Componentes HTML Avanzados                                    |
+| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | Arquitecto de Diagramas de Actividades                                         |
+| Kevin Sosa  |           154080 | [@keviineze](https://github.com/keviineze) | Coordinador/DevOps y Tester JavaScript/QA Engineer                                           |
+| Gonzalo Barbano      |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano)           | Desarrollador Javascript                                    |
 
 Los roles de la tercera entrega se asignan según la consigna de la Actividad Obligatoria N.° 3. En grupos de tres integrantes, el Coordinador / DevOps asume también las tareas de Tester JavaScript / QA Engineer, manteniendo una rama `feature/` separada para cada rol.
 
