@@ -12,9 +12,11 @@ Mini Letterboxd Front End es una aplicación web estática para explorar pelícu
 
 La aplicación funcionará como un simulador de seguimiento de contenido audiovisual. Permitirá consultar un catálogo, crear una lista de títulos pendientes, marcar contenidos como vistos, asignar calificaciones, escribir comentarios y compartir una representación de la lista desde el navegador, sin utilizar backend ni base de datos.
 
-## 🎯 Objetivo de la segunda entrega
+## 🎯 Objetivo de la tercera entrega
 
-Incorporar estilos CSS, diseño responsive y un proceso de QA automatizado sobre la estructura HTML5 de la primera entrega. La implementación debe mantenerse alineada con el mockup actualizado de Figma y con los requisitos definidos en [`plan.md`](plan.md).
+Incorporar la lógica de negocio principal con JavaScript puro, modelar cuatro flujos mediante diagramas de actividades y validar la lógica con pruebas automatizadas de Jasmine en navegador. La implementación debe mantenerse alineada con el mockup vigente, los diagramas aprobados y los requisitos de [`plan.md`](plan.md).
+
+En esta etapa se trabaja con `prompt()`, `alert()` y/o `console.log()`. No se debe incorporar manipulación del DOM ni eventos, ya que están previstos para una entrega posterior.
 
 ## 📁 Documentación
 
@@ -28,7 +30,7 @@ Incorporar estilos CSS, diseño responsive y un proceso de QA automatizado sobre
 | Kevin Sosa  |           154080 | [@keviineze](https://github.com/keviineze) | Desarrollador Frontend/Bootstrap y Especialista en Componentes Bootstrap       |
 | Gonzalo Barbano      |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano)           | Desarrollador de Componentes HTML Avanzados                                    |
 
-Los roles se asignan específicamente para esta entrega y se rotan respecto de la Actividad Obligatoria N.° 2.
+Los roles de la tercera entrega se asignan según la consigna de la Actividad Obligatoria N.° 3. En grupos de tres integrantes, el Coordinador / DevOps asume también las tareas de Tester JavaScript / QA Engineer, manteniendo una rama `feature/` separada para cada rol.
 
 ## Objetivo
 
@@ -63,7 +65,7 @@ Esta entrega toma esa estructura como base y agrega la capa visual y el control 
 
 El archivo [`plan.md`](plan.md) es la especificación maestra del proyecto. Define el alcance funcional, la estructura esperada, los criterios de aceptación y el flujo de trabajo. Toda tarea debe mantenerse alineada con ese documento.
 
-Antes de comenzar cada tarea, el integrante responsable deberá crear el spec de su rol en `docs/03-specs/actividad-obligatoria-2/`. El spec debe explicar:
+Antes de comenzar cada tarea, el integrante responsable deberá crear y commitear el spec de su rol antes de la implementación correspondiente. Para la tercera entrega se utilizan los archivos de `docs/03-specs/actividad-obligatoria-3/`. El spec debe explicar:
 
 - qué se va a desarrollar;
 - por qué es necesario para el proyecto;
@@ -71,22 +73,24 @@ Antes de comenzar cada tarea, el integrante responsable deberá crear el spec de
 - cómo se validará;
 - qué criterios determinan que está terminada.
 
-Los archivos previstos para esta entrega son:
+Los specs previstos para la tercera entrega son:
 
-- `docs/03-specs/actividad-obligatoria-2/spec-devops.md`
-- `docs/03-specs/actividad-obligatoria-2/spec-frontend.md`
-- `docs/03-specs/actividad-obligatoria-2/spec-responsive.md`
-- `docs/03-specs/actividad-obligatoria-2/spec-qa.md`
+- `docs/03-specs/actividad-obligatoria-3/spec-devops.md`
+- `docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md`
+- `docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md`
+- `docs/03-specs/actividad-obligatoria-3/spec-tester.md`
+
+Los specs de las entregas anteriores se conservan en sus respectivas carpetas como evidencia histórica.
 
 Un Pull Request no se considerará completo sin el spec correspondiente.
 
-## IA, MCP y testing
+## JavaScript, diagramas y testing — tercera entrega
 
-El Desarrollador Frontend/CSS utilizará Figma MCP y GitHub Copilot en Agent Mode para generar los estilos a partir del mockup. El Especialista en Responsive Design utilizará el mismo flujo para generar y validar `responsive.css`.
-
-El Documentador / QA Tester ejecutará cinco casos con Playwright MCP y creará issues de tipo bug mediante GitHub MCP cuando corresponda. Los prompts, resultados y ajustes manuales se documentarán en cada spec.
-
-Los casos de prueba se registrarán en `docs/04-testing/` y cubrirán desktop, responsive móvil, performance, accesibilidad y estructura HTML semántica. `testing-doc.md` será el índice central con el resumen de issues de los momentos pre-merge y post-merge.
+- El Arquitecto de Diagramas utilizará GitHub Copilot en Agent Mode con `plan.md`, `index.html` y el mockup como contexto para crear cuatro diagramas de actividades PlantUML en formatos `.puml` y `.png`.
+- El Desarrollador JavaScript implementará los cuatro flujos en `js/script.js`, utilizando los diagramas y su spec como referencia. La lógica debe ser testeable, separar las funciones de negocio de `prompt()`/`alert()` y no manipular el DOM ni utilizar eventos en esta entrega.
+- El Tester JavaScript / QA Engineer generará `js/test/script.spec.js` con Jasmine, utilizando `js/script.js` como contexto; ejecutará `js/test/test-runner.html` en un navegador real mediante Playwright MCP y conservará capturas reales de los resultados.
+- El Coordinador / DevOps revisará las PR con apoyo de Copilot Agent Mode, verificando coherencia con `plan.md`, los diagramas y el mockup, y documentará las observaciones y solicitudes de cambios.
+- Cada rol documentará los prompts, resultados y ajustes manuales en su spec. Las métricas y evidencias de testing se registrarán en `js/test/testing-doc.md` siguiendo la plantilla del profesor.
 
 ## Tecnologías
 
@@ -135,7 +139,19 @@ Cada cambio deberá:
 
 El proyecto puede ejecutarse localmente mediante Live Preview en VS Code y validarse contra `http://localhost:3000` o el puerto configurado. También se verificará la integración final en GitHub Pages.
 
+## Documentación de la tercera entrega
+
+- [Plan maestro del proyecto](plan.md)
+- [Índice de diagramas de actividades](docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md)
+- [Documentación de tests JavaScript](js/test/testing-doc.md)
+- [Spec Coordinador / DevOps](docs/03-specs/actividad-obligatoria-3/spec-devops.md)
+- [Spec Arquitecto de Diagramas](docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md)
+- [Spec Desarrollador JavaScript](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md)
+- [Spec Tester JavaScript / QA Engineer](docs/03-specs/actividad-obligatoria-3/spec-tester.md)
+
+Los enlaces a documentos que todavía no estén integrados en la rama actual se habilitarán al incorporarse esos archivos.
+
 ## Estado del proyecto
 
-Actualmente se encuentra en la segunda entrega: mockup actualizado, estilos CSS, responsive y documentación de QA automatizado en proceso.
+El proyecto mantiene la estructura HTML y el diseño Bootstrap de las entregas anteriores. La tercera entrega incorpora la planificación de cuatro flujos JavaScript, sus diagramas de actividades y las pruebas automatizadas con Jasmine. El avance debe verificarse en las ramas y PR vigentes.
 
