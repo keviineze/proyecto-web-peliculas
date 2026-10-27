@@ -142,14 +142,15 @@ El proyecto puede ejecutarse localmente mediante Live Preview en VS Code y valid
 ## Documentación de la tercera entrega
 
 - [Plan maestro del proyecto](plan.md)
-- [Índice de diagramas de actividades](docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md)
-- [Documentación de tests JavaScript](js/test/testing-doc.md)
 - [Spec Coordinador / DevOps](docs/03-specs/actividad-obligatoria-3/spec-devops.md)
-- [Spec Arquitecto de Diagramas](docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md)
-- [Spec Desarrollador JavaScript](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md)
-- [Spec Tester JavaScript / QA Engineer](docs/03-specs/actividad-obligatoria-3/spec-tester.md)
 
-Los enlaces a documentos que todavía no estén integrados en la rama actual se habilitarán al incorporarse esos archivos.
+### Documentos pendientes de integración
+
+- `docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md`
+- `js/test/testing-doc.md`
+- `docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md`
+- `docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md`
+- `docs/03-specs/actividad-obligatoria-3/spec-tester.md`
 
 ## Estado del proyecto
 

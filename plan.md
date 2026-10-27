@@ -30,16 +30,26 @@ Construir una aplicación front-end que permita:
 - Compatibilidad con navegadores modernos.
 - Estilo visual coherente con el mockup vigente de Figma, orientado a catalogación y seguimiento personal.
 
-### 2.3 Equipo y roles
+### 2.3 Roles de entregas anteriores
 
-El equipo está organizado en cuatro roles:
+La siguiente asignación corresponde a entregas previas y se conserva como referencia histórica.
 
 - Coordinador / DevOps
 - Desarrollador Frontend/CSS
 - Especialista en Responsive Design
 - Documentador / QA Tester
 
-Cada integrante debe respetar este plan como fuente de verdad para la implementación y revisión.
+### 2.4 Roles de la tercera entrega
+
+Para la Actividad Obligatoria N.º 3, el equipo trabaja con los siguientes roles:
+
+- Coordinador / DevOps y Tester JavaScript / QA Engineer
+- Arquitecto de Diagramas de Actividades
+- Desarrollador JavaScript
+
+En grupos de tres integrantes, el Coordinador / DevOps asume también las tareas de Tester JavaScript / QA Engineer, manteniendo una rama `feature/` independiente para cada rol.
+
+Cada integrante debe utilizar esta asignación vigente como referencia para la implementación y revisión de la tercera entrega.
 
 ## 3. Requisitos funcionales detallados
 
