@@ -30,12 +30,50 @@ Se utilizarán **particiones (swimlanes)** en los 4 diagramas dividiendo el mode
 **Justificación:** Al requerirse simulación mediante `prompt()` y `alert()`, es fundamental que el Desarrollador JavaScript tenga claro qué acciones son un input/output que bloquea la pantalla (Usuario) y cuáles representan procesamiento lógico interno, cálculos o manipulación de arrays (Sistema).
 
 ### 3. Criterios de Aceptación (Checklist)
-- [ ] 4 diagramas con start, stop, actividades, decisiones if-then-else y ciclos.
-- [ ] Swimlanes donde el flujo involucra al usuario y al sistema.
-- [ ] Flujo lógico coherente con la implementación planificada en plan.md.
-- [ ] Archivos .puml y .png exportados para cada diagrama.
+- [x] 4 diagramas con start, stop, actividades, decisiones if-then-else y ciclos.
+- [x] Swimlanes donde el flujo involucra al usuario y al sistema.
+- [x] Flujo lógico coherente con la implementación planificada en plan.md.
+- [x] Archivos .puml y .png exportados para cada diagrama.
 
 ---
 
-## MOMENTO 2: AL CERRAR (Pendiente de ejecución)
-*(Esta sección se completará luego de utilizar Copilot Agent y exportar los archivos .puml)*
+## MOMENTO 2: Evidencia de Ejecución
+
+### 1. Prompt exacto utilizado en Copilot Agent
+**Contexto adjunto:** `plan.md`, `index.html`.
+
+```text
+Actúa como Arquitecto de Software experto en UML. Analiza los archivos adjuntos (plan.md, index.html y el mockup) y genera el código PlantUML exacto para los 4 flujos de actividades de este proyecto: 
+1. Búsqueda y filtrado de películas
+2. Simulación de compra de entradas
+3. Autenticación (Login)
+4. Calificación de películas
+
+REGLAS ESTRICTAS DE SINTAXIS PLANTUML:
+- Usa particiones (swimlanes) estrictamente divididas en |Usuario| y |Sistema|.
+- Usa `start` para iniciar y `stop` para finalizar cada flujo.
+- Escribe las actividades correctamente con `:` al inicio y `;` al final.
+- Incluye decisiones condicionales usando `if (...) then (sí)` y `else (no)`.
+- Incluye bucles iterativos usando `while (...)` o `repeat`.
+- El flujo debe simularse pensando en inputs vía `prompt()` y outputs vía `alert()` de JavaScript.
+```
+
+### 2. Fragmento del código generado y ajustes manuales
+La IA generó exitosamente los 4 flujos. A continuación, un fragmento del flujo de búsqueda generado:
+```plantuml
+|Sistema|
+start
+:Mostrar prompt() para ingresar un título;
+|Usuario|
+:Ingresar el título o cancelar;
+|Sistema|
+if (¿Se canceló la búsqueda?) then (sí)
+  :Mostrar alert() de cancelación;
+  stop
+else (no)
+endif
+```
+**Ajustes manuales:** La sintaxis devuelta fue impecable y no requirió correcciones de compilación. Se revisó exhaustivamente la lógica de los ciclos `while` para asegurar que el Desarrollador JavaScript tenga un mapa exacto de cómo implementar los loops con `prompt()`.
+
+### 3. Decisiones de diseño finales
+Los flujos quedaron modelados con una fuerte división entre las acciones bloqueantes de interfaz (Usuario) y la lógica de procesamiento (Sistema). Esto garantiza que la lógica de negocio quede completamente aislada y estructurada, facilitando el desarrollo y asegurando que las funciones puras puedan ser testeadas con Jasmine sin interferencia de la UI.

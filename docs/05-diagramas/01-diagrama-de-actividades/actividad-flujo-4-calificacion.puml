@@ -1,0 +1,37 @@
+@startuml
+title Calificación de películas
+
+|Sistema|
+start
+:Mostrar prompt() para ingresar el título de una película;
+|Usuario|
+:Ingresar el título de la película;
+|Sistema|
+:Buscar la película en el catálogo;
+if (¿La película existe?) then (sí)
+  :Consultar si el usuario la marcó como vista;
+  if (¿La película está marcada como vista?) then (sí)
+    :Mostrar prompt() para ingresar una calificación de 1 a 5;
+    |Usuario|
+    :Ingresar la calificación;
+    |Sistema|
+    :Validar que la calificación sea un número entero de 1 a 5;
+    while (¿La calificación es inválida?) is (sí)
+      :Mostrar alert() indicando el rango permitido;
+      :Mostrar prompt() para ingresar nuevamente la calificación;
+      |Usuario|
+      :Ingresar una calificación corregida;
+      |Sistema|
+      :Validar nuevamente la calificación;
+    endwhile (no)
+    :Guardar la calificación asociada a la película;
+    :Persistir el estado actualizado en localStorage;
+    :Mostrar alert() confirmando la calificación guardada;
+  else (no)
+    :Mostrar alert() indicando que solo se califican películas vistas;
+  endif
+else (no)
+  :Mostrar alert() indicando que la película no existe;
+endif
+stop
+@enduml
