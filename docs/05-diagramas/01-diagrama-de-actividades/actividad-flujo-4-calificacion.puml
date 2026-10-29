@@ -1,37 +1,38 @@
 @startuml
-title Calificación de películas
+title Calificación de contenidos vistos
 
 |Sistema|
 start
-:Mostrar prompt() para ingresar el título de una película;
-|Usuario|
-:Ingresar el título de la película;
-|Sistema|
-:Buscar la película en el catálogo;
-if (¿La película existe?) then (sí)
-  :Consultar si el usuario la marcó como vista;
-  if (¿La película está marcada como vista?) then (sí)
-    :Mostrar prompt() para ingresar una calificación de 1 a 5;
+:Recuperar array de contenidos marcados como "vistos" desde localStorage;
+if (¿Hay contenidos vistos pendientes de calificar?) then (sí)
+  
+  while (¿Quedan contenidos sin calificar en el array?) is (sí)
+    :Obtener el siguiente contenido del array;
+    :Mostrar prompt() solicitando calificación (1 a 5) para el contenido actual;
     |Usuario|
-    :Ingresar la calificación;
+    :Ingresar la calificación o cancelar;
     |Sistema|
-    :Validar que la calificación sea un número entero de 1 a 5;
-    while (¿La calificación es inválida?) is (sí)
-      :Mostrar alert() indicando el rango permitido;
-      :Mostrar prompt() para ingresar nuevamente la calificación;
-      |Usuario|
-      :Ingresar una calificación corregida;
-      |Sistema|
-      :Validar nuevamente la calificación;
-    endwhile (no)
-    :Guardar la calificación asociada a la película;
-    :Persistir el estado actualizado en localStorage;
-    :Mostrar alert() confirmando la calificación guardada;
-  else (no)
-    :Mostrar alert() indicando que solo se califican películas vistas;
-  endif
+    if (¿Se canceló la calificación?) then (sí)
+      :Mostrar alert() de "Proceso interrumpido";
+      stop
+    else (no)
+      :Validar que la calificación sea un número entero de 1 a 5;
+      while (¿La calificación es inválida?) is (sí)
+        :Mostrar alert() indicando el rango permitido (1 a 5);
+        :Mostrar prompt() para ingresar nuevamente la calificación;
+        |Usuario|
+        :Ingresar una calificación corregida;
+        |Sistema|
+        :Validar nuevamente la calificación;
+      endwhile (no)
+      :Guardar la calificación asociada al contenido actual;
+      :Persistir el estado actualizado en localStorage;
+      :Mostrar alert() confirmando la calificación guardada para este contenido;
+    endif
+  endwhile (no)
+  :Mostrar alert() de "Todos los contenidos vistos han sido calificados";
 else (no)
-  :Mostrar alert() indicando que la película no existe;
+  :Mostrar alert() indicando "No hay contenidos vistos pendientes de calificación";
 endif
 stop
 @enduml

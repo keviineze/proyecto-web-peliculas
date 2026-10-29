@@ -10,15 +10,15 @@ Considerando el contexto del proyecto de películas y la restricción de usar `p
    * **Decisiones (if-then-else):** ¿Se encontraron películas que coincidan con el género/título ingresado?
    * **Ciclos (while/repeat):** Ciclo para preguntar si desea realizar otra búsqueda o volver al menú principal.
 
-2. **Flujo de Simulación de Compra de Entradas**
+2. **Flujo de Gestión de Lista Personal (Favoritos)**
    * **Actores:** Usuario, Sistema.
-   * **Decisiones (if-then-else):** ¿La cantidad de entradas solicitadas es mayor a 0? ¿Aplica descuento por cantidad?
-   * **Ciclos (while/repeat):** Ciclo de validación para solicitar nuevamente la cantidad si el usuario ingresa un dato inválido o nulo.
+   * **Decisiones (if-then-else):** ¿El contenido ya está en la lista personal? ¿Confirma la adición o remoción?
+   * **Ciclos (while/repeat):** No aplica ciclos iterativos bloqueantes, solo validaciones directas.
 
-3. **Flujo de Autenticación**
+3. **Flujo de Exportar y Compartir Lista Personal**
    * **Actores:** Usuario, Sistema.
-   * **Decisiones (if-then-else):** ¿Las credenciales coinciden con los registros del sistema? 
-   * **Ciclos (while/repeat):** Ciclo que permite un máximo de 3 intentos fallidos antes de bloquear el acceso temporalmente.
+   * **Decisiones (if-then-else):** ¿La lista está vacía? ¿El formato elegido es texto o enlace?
+   * **Ciclos (while/repeat):** Ciclo de validación para solicitar nuevamente el formato si ingresa uno inválido.
 
 4. **Flujo de Calificación de Películas**
    * **Actores:** Usuario, Sistema.

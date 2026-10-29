@@ -1,5 +1,5 @@
 @startuml
-title Búsqueda y filtrado de películas
+title Búsqueda y filtrado de contenidos
 
 |Sistema|
 start
@@ -18,7 +18,12 @@ endif
 :Ingresar un filtro o dejarlo vacío;
 |Sistema|
 :Filtrar el catálogo por título y por el filtro indicado;
-:Mostrar los resultados mediante alert();
+
+if (¿Se encontraron coincidencias?) then (sí)
+  :Mostrar los resultados mediante alert();
+else (no)
+  :Mostrar alert() indicando "No se encontraron contenidos";
+endif
 
 while (¿Desea cambiar los criterios de búsqueda?) is (sí)
   :Mostrar prompt() para ingresar un título;
@@ -35,7 +40,12 @@ while (¿Desea cambiar los criterios de búsqueda?) is (sí)
   :Ingresar un filtro o dejarlo vacío;
   |Sistema|
   :Filtrar nuevamente el catálogo;
-  :Mostrar los resultados mediante alert();
+  
+  if (¿Se encontraron coincidencias?) then (sí)
+    :Mostrar los resultados mediante alert();
+  else (no)
+    :Mostrar alert() indicando "No se encontraron contenidos";
+  endif
 endwhile (no)
 
 :Mostrar alert() de fin de búsqueda;
