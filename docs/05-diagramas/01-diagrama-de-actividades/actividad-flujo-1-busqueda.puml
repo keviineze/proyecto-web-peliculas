@@ -1,0 +1,53 @@
+@startuml
+title Búsqueda y filtrado de contenidos
+
+|Sistema|
+start
+:Mostrar prompt() para ingresar un título;
+|Usuario|
+:Ingresar el título o cancelar;
+|Sistema|
+if (¿Se canceló la búsqueda?) then (sí)
+  :Mostrar alert() de cancelación;
+  stop
+else (no)
+endif
+
+:Mostrar prompt() para elegir tipo o género;
+|Usuario|
+:Ingresar un filtro o dejarlo vacío;
+|Sistema|
+:Filtrar el catálogo por título y por el filtro indicado;
+
+if (¿Se encontraron coincidencias?) then (sí)
+  :Mostrar los resultados mediante alert();
+else (no)
+  :Mostrar alert() indicando "No se encontraron contenidos";
+endif
+
+while (¿Desea cambiar los criterios de búsqueda?) is (sí)
+  :Mostrar prompt() para ingresar un título;
+  |Usuario|
+  :Ingresar el título o cancelar;
+  |Sistema|
+  if (¿Se canceló la búsqueda?) then (sí)
+    :Mostrar alert() de cancelación;
+    stop
+  else (no)
+  endif
+  :Mostrar prompt() para elegir tipo o género;
+  |Usuario|
+  :Ingresar un filtro o dejarlo vacío;
+  |Sistema|
+  :Filtrar nuevamente el catálogo;
+  
+  if (¿Se encontraron coincidencias?) then (sí)
+    :Mostrar los resultados mediante alert();
+  else (no)
+    :Mostrar alert() indicando "No se encontraron contenidos";
+  endif
+endwhile (no)
+
+:Mostrar alert() de fin de búsqueda;
+stop
+@enduml

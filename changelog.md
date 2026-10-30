@@ -10,6 +10,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [feature/coord-devops-tercera-entrega] **A3 - Coordinador / DevOps (Spec inicial y definicion en Repositorio)** [PR #66](https://github.com/keviineze/proyecto-web-peliculas/pull/66) - @keviineze (Coordinador / DevOps)
 
+- [feature/arq-diagramas-actividades] **Creación de flujos y spec** [PR #72](https://github.com/keviineze/proyecto-web-peliculas/pull/72) - @Davidsoria99 (Arquitecto de Diagramas de Actividades)
+
 ## [Release Primer Parcial] - 2026-10-07
 
 ### Added
