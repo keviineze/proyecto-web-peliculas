@@ -1,0 +1,36 @@
+@startuml
+title Exportar y Compartir Lista Personal
+
+|Sistema|
+start
+:Recuperar lista personal de favoritos desde localStorage;
+if (¿La lista está vacía?) then (sí)
+  :Mostrar alert() indicando "No hay contenidos en tu lista para compartir";
+  stop
+else (no)
+  :Mostrar prompt() para elegir formato de exportación (Texto o Enlace);
+  |Usuario|
+  :Elegir formato;
+  |Sistema|
+  while (¿El formato elegido es inválido?) is (sí)
+    :Mostrar alert() de formato incorrecto;
+    :Mostrar prompt() para elegir formato nuevamente;
+    |Usuario|
+    :Ingresar formato válido;
+    |Sistema|
+  endwhile (no)
+  
+  if (¿Formato es Texto?) then (sí)
+    :Generar string formateado con los títulos de la lista;
+  else (no)
+    :Generar enlace de simulación (ej: miproyecto.com/lista?ids=...);
+  endif
+  
+  :Mostrar prompt() con el resultado para que el usuario lo copie;
+  |Usuario|
+  :Copiar el texto/enlace y cerrar prompt;
+  |Sistema|
+  :Mostrar alert() de "Exportación finalizada";
+endif
+stop
+@enduml
