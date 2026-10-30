@@ -20,10 +20,10 @@ Considerando el contexto del proyecto de películas y la restricción de usar `p
    * **Decisiones (if-then-else):** ¿La lista está vacía? ¿El formato elegido es texto o enlace?
    * **Ciclos (while/repeat):** Ciclo de validación para solicitar nuevamente el formato si ingresa uno inválido.
 
-4. **Flujo de Calificación de Películas**
+4. **Flujo de Calificación de Contenidos Vistos**
    * **Actores:** Usuario, Sistema.
    * **Decisiones (if-then-else):** ¿El puntaje ingresado está dentro del rango permitido (1 a 5)?
-   * **Ciclos (while/repeat):** Ciclo iterativo para procesar un array de películas vistas y solicitar calificación para cada una secuencialmente.
+   * **Ciclos (while/repeat):** Ciclo iterativo para procesar un array de contenidos (películas y series) marcados como vistos y solicitar calificación para cada uno secuencialmente.
 
 ### 2. Decisión sobre Swimlanes
 Se utilizarán **particiones (swimlanes)** en los 4 diagramas dividiendo el modelo en `|Usuario|` y `|Sistema|`. 
@@ -77,3 +77,8 @@ endif
 
 ### 3. Decisiones de diseño finales
 Los flujos quedaron modelados con una fuerte división entre las acciones bloqueantes de interfaz (Usuario) y la lógica de procesamiento (Sistema). Esto garantiza que la lógica de negocio quede completamente aislada y estructurada, facilitando el desarrollo y asegurando que las funciones puras puedan ser testeadas con Jasmine sin interferencia de la UI.
+
+**Ajustes manuales tras Code Review:** Luego de la revisión del Coordinador, se realizaron ajustes para adecuar los diagramas al alcance real del proyecto. 
+- El flujo de "Compra de entradas" se reemplazó por "Gestión de Lista Personal" agregando un ciclo iterativo `while` para gestionar múltiples contenidos.
+- El flujo de "Login" se reemplazó por "Exportar/Compartir Lista".
+- Se generalizó el término "película" a "contenido" y se cubrieron los caminos alternativos de búsqueda sin resultados.
