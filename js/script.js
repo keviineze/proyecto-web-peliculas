@@ -134,28 +134,38 @@ function normalizeLibraryRecord(record) {
  * @param {Storage|object|null} storage Almacenamiento compatible con getItem.
  * @returns {Array<object>} Registros válidos o un array vacío ante datos inválidos.
  */
-function loadLibrary(storage) {
+function readStoredLibrary(storage) {
   if (!storage || typeof storage.getItem !== "function") {
-    return [];
+    return null;
   }
 
   try {
     const serializedLibrary = storage.getItem(LIBRARY_STORAGE_KEY);
     if (serializedLibrary === null) {
-      return [];
+      return null;
     }
 
     const parsedLibrary = JSON.parse(serializedLibrary);
-    if (!Array.isArray(parsedLibrary)) {
-      return [];
+    if (
+      !Array.isArray(parsedLibrary) ||
+      !parsedLibrary.every(isValidLibraryRecord)
+    ) {
+      return null;
     }
 
-    return parsedLibrary
-      .filter(isValidLibraryRecord)
-      .map(normalizeLibraryRecord);
+    return parsedLibrary.map(normalizeLibraryRecord);
   } catch {
+    return null;
+  }
+}
+
+function loadLibrary(storage) {
+  const storedLibrary = readStoredLibrary(storage);
+  if (storedLibrary === null) {
     return [];
   }
+
+  return storedLibrary;
 }
 
 /**
@@ -385,9 +395,9 @@ function resolveStorage(storage) {
 }
 
 function getWorkingLibrary(storage, catalog) {
-  const loadedLibrary = loadLibrary(storage);
-  if (loadedLibrary.length > 0) {
-    return loadedLibrary;
+  const storedLibrary = readStoredLibrary(storage);
+  if (storedLibrary !== null) {
+    return storedLibrary;
   }
 
   const initialLibrary = createInitialLibrary(catalog);
@@ -395,9 +405,26 @@ function getWorkingLibrary(storage, catalog) {
   return initialLibrary;
 }
 
-function askYesNo(promptFunction, question) {
-  const answer = promptFunction(`${question} (sí/no)`);
-  return ["si", "sí", "s", "yes", "y"].includes(normalizeText(answer));
+function askYesNo(promptFunction, question, alertFunction) {
+  const showAlert = resolveAlertFunction(alertFunction);
+
+  while (true) {
+    const answer = promptFunction(`${question} (sí/no)`);
+    if (answer === null) {
+      return null;
+    }
+
+    const normalizedAnswer = normalizeText(answer);
+    if (["si", "s", "yes", "y"].includes(normalizedAnswer)) {
+      return true;
+    }
+
+    if (["no", "n"].includes(normalizedAnswer)) {
+      return false;
+    }
+
+    showAlert("Respuesta inválida. Respondé sí o no.");
+  }
 }
 
 /**
@@ -428,7 +455,11 @@ function runSearchFlow(options = {}) {
   );
 
   while (
-    askYesNo(promptFunction, "¿Deseás cambiar los criterios de búsqueda?")
+    askYesNo(
+      promptFunction,
+      "¿Deseás cambiar los criterios de búsqueda?",
+      alertFunction,
+    )
   ) {
     titleQuery = promptFunction(
       "Ingresá un título para buscar o cancelar para volver al menú:",
@@ -471,6 +502,7 @@ function runFavoritesFlow(options = {}) {
     askYesNo(
       promptFunction,
       "¿Deseás gestionar un contenido de tu lista personal?",
+      alertFunction,
     )
   ) {
     const titleName = promptFunction(
@@ -492,6 +524,7 @@ function runFavoritesFlow(options = {}) {
         shouldRemove
           ? `¿Deseás remover ${content.title} de tu lista personal?`
           : `¿Deseás agregar ${content.title} a tu lista personal?`,
+        alertFunction,
       );
 
       if (!confirmed) {
