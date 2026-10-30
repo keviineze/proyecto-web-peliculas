@@ -15,13 +15,13 @@ Describe la captura del título y género, filtrado del catálogo, la validació
 
 ## 2. Flujo de Gestión de Lista Personal (Favoritos)
 Describe el proceso de selección de un contenido y la lógica para agregarlo o removerlo de la lista personal del usuario.
-* 📄 **Código fuente:** [actividad-flujo-2-Gestión.puml](./actividad-flujo-2-gestion.puml)
+* 📄 **Código fuente:** [actividad-flujo-2-gestion.puml](./actividad-flujo-2-gestion.puml)
 * 🖼️ **Visualización:**
 ![Flujo 2](./actividad-flujo-2-gestion.png)
 
 ## 3. Flujo de Exportar y Compartir Lista Personal
 Modela la recuperación de la lista personal y la exportación de la misma mediante un formato de texto o un enlace generado simulado.
-* 📄 **Código fuente:** [actividad-flujo-3-Compartir.puml](./actividad-flujo-3-compartir.puml)
+* 📄 **Código fuente:** [actividad-flujo-3-compartir.puml](./actividad-flujo-3-compartir.puml)
 * 🖼️ **Visualización:**
 ![Flujo 3](./actividad-flujo-3-compartir.png)
 

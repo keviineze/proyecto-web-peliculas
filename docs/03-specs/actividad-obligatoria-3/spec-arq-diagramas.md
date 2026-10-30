@@ -5,15 +5,15 @@
 ### 1. Identificación de los 4 flujos principales
 Considerando el contexto del proyecto de películas y la restricción de usar `prompt()` y `alert()` para la simulación de lógica de negocio, se definen los siguientes flujos:
 
-1. **Flujo de Búsqueda y Filtrado de Películas**
+1. **Flujo de Búsqueda y Filtrado de Contenidos**
    * **Actores:** Usuario, Sistema.
-   * **Decisiones (if-then-else):** ¿Se encontraron películas que coincidan con el género/título ingresado?
+   * **Decisiones (if-then-else):** ¿Se encontraron contenidos que coincidan con el género/título ingresado?
    * **Ciclos (while/repeat):** Ciclo para preguntar si desea realizar otra búsqueda o volver al menú principal.
 
 2. **Flujo de Gestión de Lista Personal (Favoritos)**
    * **Actores:** Usuario, Sistema.
    * **Decisiones (if-then-else):** ¿El contenido ya está en la lista personal? ¿Confirma la adición o remoción?
-   * **Ciclos (while/repeat):** No aplica ciclos iterativos bloqueantes, solo validaciones directas.
+   * **Ciclos (while/repeat):** Ciclo iterativo `while` que permite al usuario gestionar (agregar o remover) varios contenidos de forma consecutiva sin salir del flujo.
 
 3. **Flujo de Exportar y Compartir Lista Personal**
    * **Actores:** Usuario, Sistema.
