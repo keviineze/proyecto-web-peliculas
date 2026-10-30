@@ -130,9 +130,9 @@ function normalizeLibraryRecord(record) {
 }
 
 /**
- * Recupera y normaliza la biblioteca persistida.
+ * Recupera los registros válidos de la biblioteca persistida y los normaliza.
  * @param {Storage|object|null} storage Almacenamiento compatible con getItem.
- * @returns {Array<object>} Registros válidos o un array vacío ante datos inválidos.
+ * @returns {Array<object>|null} Registros válidos, incluso un array vacío, o null si no hay datos legibles.
  */
 function readStoredLibrary(storage) {
   if (!storage || typeof storage.getItem !== "function") {
@@ -146,14 +146,13 @@ function readStoredLibrary(storage) {
     }
 
     const parsedLibrary = JSON.parse(serializedLibrary);
-    if (
-      !Array.isArray(parsedLibrary) ||
-      !parsedLibrary.every(isValidLibraryRecord)
-    ) {
+    if (!Array.isArray(parsedLibrary)) {
       return null;
     }
 
-    return parsedLibrary.map(normalizeLibraryRecord);
+    return parsedLibrary
+      .filter(isValidLibraryRecord)
+      .map(normalizeLibraryRecord);
   } catch {
     return null;
   }
