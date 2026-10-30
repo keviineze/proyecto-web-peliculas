@@ -58,25 +58,25 @@ Para evitar que Jasmine dispare prompts al cargar `js/script.js`, el test runner
 
 ### 2.4 Criterios de aceptación
 
-- [ ] Existen cuatro flujos completos y coherentes con los diagramas: búsqueda/filtrado, gestión de favoritos, exportar/compartir y calificación de vistos.
-- [ ] El menú `prompt()` permite elegir los cuatro flujos y salir; opciones inválidas y cancelaciones se manejan sin bloquear el procesamiento.
-- [ ] Búsqueda y filtrado combina el texto del título con un filtro opcional de tipo o género, informa resultados vacíos y permite repetir criterios.
-- [ ] Gestión de favoritos distingue contenido inexistente, favorito ya agregado, confirmación, cancelación, alta y baja; persiste los cambios confirmados y permite gestionar varios títulos.
-- [ ] Compartir informa cuando la lista está vacía, valida el formato en un ciclo, genera texto o enlace simulado y presenta el resultado para copiar manualmente.
-- [ ] Calificación procesa en orden los contenidos vistos sin rating; acepta solo enteros de 1 a 5, reintenta valores inválidos, persiste cada resultado y se interrumpe si se cancela.
-- [ ] Las funciones tienen nombres descriptivos, parámetros y valores de retorno explícitos.
-- [ ] La lógica de negocio no llama a `prompt()`, `alert()`, `console.log()` ni manipula el DOM.
-- [ ] Las funciones de negocio son puras, trabajan con arrays y objetos, y no mutan los argumentos recibidos.
-- [ ] Las funciones necesarias para Jasmine están disponibles en el nivel superior y no quedan encerradas en una IIFE.
-- [ ] Se emplean condicionales y ciclos para representar las decisiones y repeticiones de los cuatro diagramas.
-- [ ] El catálogo de partida utiliza únicamente títulos presentes en `index.html`.
-- [ ] Todo el código de aplicación se encuentra en `js/script.js`; `index.html` referencia correctamente ese archivo.
-- [ ] La biblioteca se carga y guarda mediante adaptadores de `localStorage`, sin incorporar ese efecto a las funciones de negocio.
-- [ ] No se agrega manipulación del DOM ni uso de eventos.
-- [ ] Las funciones complejas están documentadas con JSDoc y se mantiene la nomenclatura camelCase.
-- [ ] Los cuatro flujos y sus decisiones coinciden con `actividad-flujo-1-busqueda.puml`, `actividad-flujo-2-gestion.puml`, `actividad-flujo-3-compartir.puml` y `actividad-flujo-4-calificacion.puml`.
-- [ ] `js/script.js` puede cargarse en `js/test/test-runner.html` sin iniciar prompts ni impedir la ejecución de Jasmine.
-- [ ] Este spec queda commiteado antes de comenzar la implementación de `js/script.js`.
+- [x] Existen cuatro flujos completos y coherentes con los diagramas: búsqueda/filtrado, gestión de favoritos, exportar/compartir y calificación de vistos.
+- [x] El menú `prompt()` permite elegir los cuatro flujos y salir; opciones inválidas y cancelaciones se manejan sin bloquear el procesamiento.
+- [x] Búsqueda y filtrado combina el texto del título con un filtro opcional de tipo o género, informa resultados vacíos y permite repetir criterios.
+- [x] Gestión de favoritos distingue contenido inexistente, favorito ya agregado, confirmación, cancelación, alta y baja; persiste los cambios confirmados y permite gestionar varios títulos.
+- [x] Compartir informa cuando la lista está vacía, valida el formato en un ciclo, genera texto o enlace simulado y presenta el resultado para copiar manualmente.
+- [x] Calificación procesa en orden los contenidos vistos sin rating; acepta solo enteros de 1 a 5, reintenta valores inválidos, persiste cada resultado y se interrumpe si se cancela.
+- [x] Las funciones tienen nombres descriptivos, parámetros y valores de retorno explícitos.
+- [x] La lógica de negocio no llama a `prompt()`, `alert()`, `console.log()` ni manipula el DOM.
+- [x] Las funciones de negocio son puras, trabajan con arrays y objetos, y no mutan los argumentos recibidos.
+- [x] Las funciones necesarias para Jasmine están disponibles en el nivel superior y no quedan encerradas en una IIFE.
+- [x] Se emplean condicionales y ciclos para representar las decisiones y repeticiones de los cuatro diagramas.
+- [x] El catálogo de partida utiliza únicamente títulos presentes en `index.html`.
+- [x] Todo el código de aplicación se encuentra en `js/script.js`; `index.html` referencia correctamente ese archivo.
+- [x] La biblioteca se carga y guarda mediante adaptadores de `localStorage`, sin incorporar ese efecto a las funciones de negocio.
+- [x] No se agrega manipulación del DOM ni uso de eventos.
+- [x] Las funciones complejas están documentadas con JSDoc y se mantiene la nomenclatura camelCase.
+- [x] Los cuatro flujos y sus decisiones coinciden con `actividad-flujo-1-busqueda.puml`, `actividad-flujo-2-gestion.puml`, `actividad-flujo-3-compartir.puml` y `actividad-flujo-4-calificacion.puml`.
+- [x] `js/script.js` puede cargarse en `js/test/test-runner.html` sin iniciar prompts ni impedir la ejecución de Jasmine, siempre que Jasmine se cargue antes del script.
+- [x] Este spec quedó commiteado antes de comenzar la implementación de `js/script.js` (`548601b` antes de `86a3d01`).
 
 ### 2.5 Dependencias y coordinación
 
@@ -90,16 +90,101 @@ Se coordinará con el Tester JavaScript para acordar los resultados esperados, l
 
 #### Prompt utilizado en Copilot Agent
 
-Incluir la transcripción exacta del prompt usado y enumerar los archivos adjuntados como contexto, incluidos los cuatro diagramas `.puml` del Arquitecto y este `spec-dev-javascript.md`.
+**Archivos adjuntados como contexto:**
+
+- `docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md`
+- `docs/05-diagramas/01-diagrama-de-actividades/actividad-flujo-1-busqueda.puml`
+- `docs/05-diagramas/01-diagrama-de-actividades/actividad-flujo-2-gestion.puml`
+- `docs/05-diagramas/01-diagrama-de-actividades/actividad-flujo-3-compartir.puml`
+- `docs/05-diagramas/01-diagrama-de-actividades/actividad-flujo-4-calificacion.puml`
+
+También se consultó `index.html` para reutilizar los títulos, tipos, géneros y estados existentes; no se adjuntó como parte del prompt.
+
+**Prompt exacto utilizado:**
 
 ```text
-Pendiente: reemplazar por el prompt exacto utilizado al generar js/script.js.
+Ahora teniendo en cuenta los  diagramas de la carpeta 05-diagramas .puml del Arquitecto de
+Diagramas y el spec-dev-javascript.md como contexto genera
+js/script.js. Los diagramas de actividades son el contrato de
+implementación: el código debe reflejar los flujos, decisiones y ciclos
+modelados. Revisar el output, verificar que las funciones sean testeables y
+realizar los ajustes necesarios.
+● Implementar los 4 flujos principales del proyecto en JavaScript puro,
+basándose en los diagramas de actividades creados
+● Crear archivo js/script.js con toda la lógica de negocio
+● Implementar un menú principal mediante prompt() que permita al usuario
+elegir entre los 4 flujos
+● Desarrollar funciones específicas para cada flujo, siguiendo principios de
+código limpio:
+○ Nombres descriptivos
+○ Funciones con responsabilidad única
+○ Parámetros y valores de retorno apropiados
+● Implementar algoritmos condicionales y ciclos de manera eficiente
+● Crear y manipular arrays y objetos relevantes al contexto del proyecto
+● Validar entradas del usuario
+● Mostrar resultados mediante alert() y/o console.log()
+● IMPORTANTE: No manipular el DOM ni usar eventos en esta entrega (solo
+lógica con prompt/alert)
+● CRÍTICO para testing: Estructurar el código de forma que las funciones sean
+testeables:
+○ Separar lógica de negocio de interacción con usuario (prompt/alert)
+○ Crear funciones puras que reciban parámetros y retornen valores
+○ Evitar side effects innecesarios
+○ Exponer funciones necesarias para testing (no anidar todo en IIFE si se
+va a testear)
+● Documentar funciones complejas con comentarios JSDoc
 ```
 
 #### Resultado y ajustes manuales
 
-- **Output generado por Copilot:** pendiente; describir el resultado real y señalar el flujo del que se incluirá un fragmento.
-- **Fragmento de código generado:** pendiente; agregar un fragmento real de al menos uno de los cuatro flujos.
-- **Ajustes manuales:** pendiente; documentar los cambios hechos para separar la lógica de negocio de la interacción y facilitar las pruebas con Jasmine.
-- **Decisiones finales:** pendiente; registrar la estructura definitiva, las funciones expuestas para testing y cómo se coordinó el contrato con el Tester.
-- **Validación:** pendiente; anotar las comprobaciones realizadas sobre los cuatro diagramas, el menú, `index.html` y la carga desde Jasmine.
+- **Output generado por Copilot:** se creó `js/script.js` con el catálogo inicial basado en `index.html`, el menú principal y los cuatro flujos `runSearchFlow`, `runFavoritesFlow`, `runSharingFlow` y `runRatingFlow`. Las reglas reutilizables están implementadas en funciones independientes para buscar, filtrar, gestionar favoritos, exportar, validar ratings y persistir la biblioteca.
+- **Fragmento del flujo de calificación:**
+
+```js
+let contentIndex = 0;
+while (contentIndex < unratedContents.length) {
+  const content = unratedContents[contentIndex];
+  let ratingInput = promptFunction(
+    `Ingresá una calificación de 1 a 5 para ${content.title}, o cancelá para interrumpir:`,
+  );
+
+  if (ratingInput === null) {
+    alertFunction("Proceso interrumpido.");
+    return library;
+  }
+
+  while (!validateRating(ratingInput)) {
+    alertFunction("La calificación debe ser un número entero entre 1 y 5.");
+    ratingInput = promptFunction(
+      `Ingresá nuevamente la calificación para ${content.title}:`,
+    );
+
+    if (ratingInput === null) {
+      alertFunction("Proceso interrumpido.");
+      return library;
+    }
+  }
+
+  const result = rateWatchedContent(library, content.id, ratingInput);
+  if (!result.success) {
+    alertFunction(result.message);
+    contentIndex += 1;
+    continue;
+  }
+
+  if (!saveLibrary(storage, result.library)) {
+    alertFunction(
+      "No se pudo guardar la calificación en el almacenamiento local.",
+    );
+    return library;
+  }
+
+  library = result.library;
+  alertFunction(`Calificación guardada para ${content.title}.`);
+  contentIndex += 1;
+}
+```
+
+- **Ajustes manuales realizados:** se mantuvieron las funciones de negocio en el nivel superior y sin IIFE; se inyectaron `promptFunction`, `alertFunction`, `storage` y `catalog` en los flujos para probarlos con dobles; las operaciones devuelven nuevas bibliotecas en vez de mutar sus argumentos; se separaron `loadLibrary`/`saveLibrary` de las reglas; se reemplazó el recorrido de calificación por `while` para seguir el diagrama; se agregó reintento de rating inválido y salida controlada ante cancelación; se normalizaron tildes en búsquedas y se documentaron las funciones complejas con JSDoc.
+- **Decisiones finales:** la biblioteca usa registros `{ titleId, status, isFavorite, rating }`; `status` distingue `pending`/`watched` y `isFavorite` es independiente para no perder la calificación al quitar un favorito. Las funciones puras (`searchContents`, `addFavorite`, `removeFavorite`, `getUnratedWatchedContents`, `validateRating`, `rateWatchedContent`, `formatFavoritesAsText` y `createFavoritesLink`) quedan invocables directamente. El Tester puede pasar fixtures y dobles de almacenamiento/interacción sin disparar diálogos ni usar el DOM. El arranque automático está condicionado a que exista `window` y no esté definido `jasmine`.
+- **Validación:** `node --check js/script.js` pasó. Se ejecutaron comprobaciones focalizadas con Node y `vm` sobre búsqueda/filtrado, inmutabilidad al agregar favoritos, alta y baja, exportación con reintento de formato, calificación con reintento de valor inválido y carga con `jasmine` presente sin abrir prompts. También se confirmó que no hay llamadas a APIs del DOM/eventos, que `index.html` referencia el script y que los commits `548601b` (spec) y `86a3d01` (script) respetan el orden requerido. No se ejecutó Jasmine: `js/test/test-runner.html` y `js/test/script.spec.js` todavía no existen.
