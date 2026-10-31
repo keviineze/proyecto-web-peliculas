@@ -45,24 +45,24 @@ Copilot se utilizará como apoyo a la revisión, no como sustituto de la evaluac
 
 #### Correcciones del Primer Parcial
 
-- [ ] Revisar y resolver los Request Changes asignados a la release del Primer Parcial.
-- [ ] Crear las ramas `fix/` desde `release/primer-parcial`, según la consigna.
-- [ ] Abrir las PR de corrección hacia `release/primer-parcial`.
-- [ ] Registrar cada corrección bajo `### Fixed` en `changelog.md`, con su enlace a la PR.
-- [ ] Comunicar al docente el estado de las correcciones en el hilo de Slack.
+- [x] Revisar y resolver los Request Changes asignados a la release del Primer Parcial.
+- [x] Crear las ramas `fix/` desde `release/primer-parcial`, según la consigna.
+- [x] Abrir las PR de corrección hacia `release/primer-parcial`.
+- [x] Registrar cada corrección bajo `### Fixed` en `changelog.md`, con su enlace a la PR.
+- [x] Comunicar al docente el estado de las correcciones en el hilo de Slack.
 
 #### Coordinación de la Actividad N.º 3
 
-- [ ] Mantener actualizados `README.md`, `plan.md` y `changelog.md` según corresponda.
-- [ ] Verificar que cada rol tenga su spec commiteado antes de implementar.
-- [ ] Realizar al menos cuatro code reviews asistidos por Copilot Agent Mode sobre PR de otros integrantes.
-- [ ] Documentar los prompts exactos utilizados, el contexto adjuntado y los resultados de cada revisión.
-- [ ] Registrar los `CHANGES_REQUESTED` relevantes con referencias a archivos y líneas del diff.
-- [ ] Coordinar la resolución de defectos y conflictos antes de integrar las PR.
-- [ ] Mantener el tablero Kanban de GitHub Projects actualizado con Issues y estados verificables.
-- [ ] Verificar la publicación de GitHub Pages para `release/tercera-entrega`.
-- [ ] Crear `release/tercera-entrega` desde `develop` cuando la integración esté completa.
-- [ ] Preparar la PR final de release hacia `master` y comunicar sus enlaces en Slack y el campus.
+- [x] Mantener actualizados `README.md`, `plan.md` y `changelog.md` según corresponda.
+- [x] Verificar que cada rol tenga su spec commiteado antes de implementar.
+- [x] Realizar al menos cuatro code reviews asistidos por Copilot Agent Mode sobre PR de otros integrantes.
+- [x] Documentar los prompts exactos utilizados, el contexto adjuntado y los resultados de cada revisión.
+- [x] Registrar los `CHANGES_REQUESTED` relevantes con referencias a archivos y líneas del diff.
+- [x] Coordinar la resolución de defectos y conflictos antes de integrar las PR.
+- [x] Mantener el tablero Kanban de GitHub Projects actualizado con Issues y estados verificables.
+- [x] Verificar la publicación de GitHub Pages para `release/tercera-entrega`.
+- [x] Crear `release/tercera-entrega` desde `develop` cuando la integración esté completa.
+- [x] Preparar la PR final de release hacia `master` y comunicar sus enlaces en Slack y el campus.
 - [ ] Crear el tag y la GitHub Release `v1.1-tercera-entrega` después de que la entrega haya sido aprobada y mergeada en `master`.
 - [ ] Coordinar la limpieza final de ramas, conservando las ramas requeridas por la consigna.
 - [ ] Verificar la navegación entre los índices de documentación, en particular `docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md` y `js/test/testing-doc.md`.
