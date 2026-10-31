@@ -6,6 +6,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
+## [Release Tercera Entrega] - 2026-10-31
+
 ### Added
 
 - [feature/coord-devops-tercera-entrega] **A3 - Coordinador / DevOps (Spec inicial y definicion en Repositorio)** [PR #66](https://github.com/keviineze/proyecto-web-peliculas/pull/66) - @keviineze (Coordinador / DevOps)

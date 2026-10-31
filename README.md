@@ -117,7 +117,7 @@ Las reglas principales son:
 3. Registrar en `changelog.md` quién realizó cada PR, qué aportó y el enlace correspondiente.
 4. Commitear el spec del rol antes de comenzar la implementación asociada.
 5. Realizar revisiones funcionales, de código y asistidas por IA.
-6. Crear `release/actividad-obligatoria-2` desde `develop` cuando todas las features estén integradas.
+6. Crear `release/tercera-entrega` desde `develop` cuando todas las features estén integradas.
 7. Integrar cambios en `master` únicamente mediante una release aprobada por el profesor.
 
 `master` es la rama estable y protegida. `develop` es la rama de integración y también estará protegida; sus cambios requieren revisión y aprobación del Coordinador de Repositorio.
@@ -139,20 +139,31 @@ Cada cambio deberá:
 
 El proyecto puede ejecutarse localmente mediante Live Preview en VS Code y validarse contra `http://localhost:3000` o el puerto configurado. También se verificará la integración final en GitHub Pages.
 
+
 ## Documentación de la tercera entrega
 
 - [Plan maestro del proyecto](plan.md)
 - [Spec Coordinador / DevOps](docs/03-specs/actividad-obligatoria-3/spec-devops.md)
+- [Spec Arquitecto de Diagramas](docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md)
+- [Spec Desarrollador JavaScript](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md)
+- [Spec Tester JavaScript / QA Engineer](docs/03-specs/actividad-obligatoria-3/spec-tester.md)
+- [Índice de diagramas de actividades](docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md)
+- [Documentación de testing con Jasmine](js/test/testing-doc.md)
+- [Runner de Jasmine](js/test/test-runner.html)
 
-### Documentos pendientes de integración
-
-- `docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md`
-- `js/test/testing-doc.md`
-- `docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md`
-- `docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md`
-- `docs/03-specs/actividad-obligatoria-3/spec-tester.md`
 
 ## Estado del proyecto
 
-El proyecto mantiene la estructura HTML y el diseño Bootstrap de las entregas anteriores. La tercera entrega incorpora la planificación de cuatro flujos JavaScript, sus diagramas de actividades y las pruebas automatizadas con Jasmine. El avance debe verificarse en las ramas y PR vigentes.
+La Tercera Entrega integra la lógica de negocio de Mini Letterboxd mediante JavaScript, con cuatro flujos principales:
+
+1. Búsqueda y filtrado de contenidos.
+2. Gestión de lista personal (favoritos).
+3. Exportar y compartir lista personal.
+4. Calificación de contenidos vistos.
+
+Se incorporaron los cuatro diagramas de actividades desarrollados con PlantUML y una suite de pruebas automatizadas con Jasmine 5.10.0.
+
+**Resultados del testing:** 4 suites ejecutadas, 33 tests aprobados y 0 fallidos, según la ejecución documentada mediante Playwright MCP.
+
+La documentación de cada rol, los diagramas y las evidencias de testing se encuentran disponibles en sus respectivas carpetas.
 
