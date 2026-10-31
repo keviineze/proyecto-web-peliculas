@@ -14,6 +14,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [feature/dev-javascript-logica-negocio] **Creación de script.js** [PR #73](https://github.com/keviineze/proyecto-web-peliculas/pull/73) - @GonzaloBarbano (Desarrollador JavaScript)
 
+- [feature/tester-javascript-jasmine] **A3 - Tester Javascript Jasmine** [PR #74](https://github.com/keviineze/proyecto-web-peliculas/pull/74) - @keviineze (Tester JavaScript / QA Engineer)
+
 ## [Release Primer Parcial] - 2026-10-07
 
 ### Added
