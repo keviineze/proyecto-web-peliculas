@@ -24,18 +24,18 @@
 - **Verde**: Tests pasando ✅
 - **Rojo**: Tests fallando ❌
 - **Amarillo**: Tests pendientes ⚠️
-- Resultado confirmado en la ejecución documentada: `33 specs, 0 failures`.
+- Resultado confirmado en la ejecución documentada: `45 specs, 0 failures`.
 
 ---
 
 ## Suites de Tests
 
-### Suite 1: Búsqueda y filtrado de contenidos (9 tests)
+### Suite 1: Búsqueda y filtrado de contenidos (12 tests)
 **Funciones Testeadas:**
 - `searchContents()` - búsqueda parcial y filtros por tipo y género, con normalización de mayúsculas y tildes.
 - `findTitleByName()` - búsqueda exacta normalizada y resultado nulo cuando no hay coincidencia.
 - `formatSearchResults()` - presentación de resultados y mensaje para búsquedas vacías.
-- `runSearchFlow()` - cancelación inicial, repetición con nuevos criterios y finalización.
+- `runSearchFlow()` y `askYesNo()` - cancelación inicial y repetida, repetición con nuevos criterios, respuesta inválida con reintento, cancelación/no coincidencia del filtro y finalización.
 
 **Casos de Prueba:**
 | # | Descripción | Tipo |
@@ -49,10 +49,13 @@
 | 7 | Repetir la búsqueda con nuevos criterios y luego finalizar. | Happy Path |
 | 8 | Finalizar al responder que no se desea repetir. | Happy Path |
 | 9 | Cancelar durante una búsqueda repetida. | Cancelación |
+| 10 | Reintentar la confirmación de repetición tras una respuesta inválida. | Validación |
+| 11 | Tratar la cancelación del filtro como filtro vacío. | Cancelación |
+| 12 | Mostrar el mensaje correspondiente cuando el filtro no tiene coincidencias. | Caso Borde |
 
 ---
 
-### Suite 2: Gestión de lista personal (favoritos) (12 tests)
+### Suite 2: Gestión de lista personal (favoritos) (15 tests)
 **Funciones Testeadas:**
 - `createInitialLibrary()`, `findLibraryRecord()` - estado inicial y consulta de registros.
 - `addFavorite()` y `removeFavorite()` - altas y bajas inmutables, duplicados, contenido inexistente y conservación del estado/calificación.
@@ -74,10 +77,13 @@
 | 10 | Confirmar la baja de un favorito y persistir la biblioteca actualizada. | Happy Path |
 | 11 | Cancelar la confirmación de un alta sin guardar cambios. | Cancelación |
 | 12 | Cancelar la confirmación de una baja y conservar el favorito. | Cancelación |
+| 13 | Informar que el título solicitado no existe en el catálogo. | Validación |
+| 14 | Informar la cancelación del ingreso del título. | Cancelación |
+| 15 | Informar un fallo de `saveLibrary()` sin cambiar la biblioteca en memoria. | Error de persistencia |
 
 ---
 
-### Suite 3: Exportar y compartir lista personal (6 tests)
+### Suite 3: Exportar y compartir lista personal (8 tests)
 **Funciones Testeadas:**
 - `getFavoriteContents()` - seleccionar favoritos presentes en el catálogo.
 - `formatFavoritesAsText()` - exportación en texto.
@@ -93,10 +99,12 @@
 | 4 | Exportar texto mediante funciones de interacción simuladas. | Happy Path |
 | 5 | Reintentar tras un formato inválido y exportar el enlace. | Validación |
 | 6 | Cancelar la selección del formato. | Cancelación |
+| 7 | Cargar la biblioteca desde storage sin inyectar `library` y exportar sus favoritos. | Persistencia |
+| 8 | Informar que la biblioteca cargada desde storage no tiene favoritos. | Caso Borde |
 
 ---
 
-### Suite 4: Calificación de contenidos vistos (6 tests)
+### Suite 4: Calificación de contenidos vistos (10 tests)
 **Funciones Testeadas:**
 - `validateRating()` - validación de enteros de 1 a 5 y rechazo de valores inválidos.
 - `getUnratedWatchedContents()` - selección de contenidos vistos pendientes de calificación.
@@ -112,6 +120,10 @@
 | 4 | Reintentar un valor inválido, persistir el rating válido y completar el flujo. | Validación |
 | 5 | Cancelar durante los reintentos sin alterar ni persistir la biblioteca. | Cancelación |
 | 6 | No solicitar ratings si no quedan contenidos vistos pendientes. | Caso Borde |
+| 7 | Informar un fallo de `saveLibrary()` y conservar la biblioteca original. | Error de persistencia |
+| 8 | Salir del menú con la opción `0`. | Menú |
+| 9 | Informar una opción inválida y permitir salir. | Menú |
+| 10 | Despachar las opciones `1` a `4` a sus flujos correspondientes. | Menú |
 
 ---
 
@@ -121,16 +133,15 @@
 | Métrica | Valor |
 |---------|-------|
 | Suites ejecutadas | 4 |
-| Tests ejecutados | 33 |
-| Tests aprobados | 33 ✅ |
+| Tests ejecutados | 45 |
+| Tests aprobados | 45 ✅ |
 | Tests fallidos | 0 |
-
-### Cobertura por Tipo de Test
-La cobertura funcional incluye casos normales, bordes y entradas inválidas, operaciones con arrays y objetos, cancelaciones, reintentos y persistencia simulada. No se midieron cantidades ni porcentajes por categoría.
+| Líneas de `js/script.js` cubiertas | 212/231 (91,77%) |
+| Ramas de `js/script.js` cubiertas | 138/173 (79,77%) |
 
 ### Análisis de Cobertura de Código
 
-Las suites prueban las funciones indicadas en cada flujo y sus escenarios funcionales relevantes. No se utilizó una herramienta de cobertura de líneas; por eso no se informa cobertura porcentual ni cantidad de líneas ejecutadas o no cubiertas.
+La medición se ejecutó el 02/11/2026 con `istanbul-lib-instrument` 6.0.3 sobre `js/script.js`, junto con las cuatro suites Jasmine. Se cubrieron 212 de 231 líneas y 138 de 173 ramas. La cobertura no es 100%; los valores registrados corresponden al código ejercitado por las 45 pruebas. El instrumentador se usó de forma temporal y sus archivos auxiliares no forman parte del repositorio.
 
 ---
 
@@ -138,11 +149,11 @@ Las suites prueban las funciones indicadas en cada flujo y sus escenarios funcio
 
 ### Tests Pasando
 ![Tests Exitosos](./screenshots/tests-passing.png)
-*Resumen de Jasmine 5.10.0: 33 specs, 0 failures.*
+*Captura existente de una ejecución anterior: 33 specs, 0 failures. Los resultados vigentes de 45 specs y la medición de cobertura están registrados en la tabla anterior.*
 
 ### Vista Detallada de Suites
 ![Suite Detalle](./screenshots/suite-detail.png)
-*Detalle de las cuatro suites y sus resultados individuales.*
+*Captura existente de una ejecución anterior; las cantidades actuales por suite están documentadas arriba.*
 
 ---
 
@@ -158,11 +169,11 @@ Como observación menor, el navegador solicitó automáticamente `http://localho
 
 - La ejecución utiliza Jasmine mediante CDN y requiere conexión a internet para cargar sus recursos.
 - Las pruebas ejercitan la lógica JavaScript con fixtures y mocks; no son pruebas de integración visual con el DOM de la aplicación.
-- No se generó una medición automatizada de cobertura de líneas ni porcentajes.
+- Las capturas guardadas corresponden a una ejecución previa de 33 pruebas; las métricas vigentes están transcritas en este documento.
 - El 404 del favicon en la raíz es una observación del servidor local, no bloqueante para el runner.
 
 ---
 
-**Última Actualización:** 30/10/2026
+**Última Actualización:** 02/11/2026
 **Tester/QA Engineer:** Kevin Ezequiel Sosa
 **Colaboración con:** Desarrollador JavaScript de Mini Letterboxd
