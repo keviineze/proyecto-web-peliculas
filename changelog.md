@@ -20,7 +20,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
-- [feature/correcciones-coord-tester-1] **Correcciones Coordinador y Tester QA (1)**
+- [feature/correcciones-coord-tester-1] **Correcciones Coordinador y Tester QA (1)** | [PR #76](https://github.com/keviineze/proyecto-web-peliculas/pull/76) | @keviineze (Coordinador / DevOps - Tester JavaScript / QA Engineer)
 
 ## [Release Primer Parcial] - 2026-10-07
 
