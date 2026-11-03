@@ -6,7 +6,7 @@ start
 :Recuperar lista personal de favoritos desde localStorage;
 if (¿La lista está vacía?) then (sí)
   :Mostrar alert() indicando "No hay contenidos en tu lista para compartir";
-  stop
+  end
 else (no)
   :Mostrar prompt() para elegir formato de exportación (Texto o Enlace);
   |Usuario|
@@ -23,7 +23,7 @@ else (no)
   if (¿Formato es Texto?) then (sí)
     :Generar string formateado con los títulos de la lista;
   else (no)
-    :Generar enlace de simulación (ej: miproyecto.com/lista?ids=...);
+    :Generar enlace de simulación (ej: [miproyecto.com/lista?ids=](https://miproyecto.com/lista?ids=)...);
   endif
   
   :Mostrar prompt() con el resultado para que el usuario lo copie;
