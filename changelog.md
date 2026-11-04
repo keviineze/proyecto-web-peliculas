@@ -22,6 +22,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [feature/correcciones-coord-tester-1] **Correcciones Coordinador y Tester QA (1)** | [PR #76](https://github.com/keviineze/proyecto-web-peliculas/pull/76) | @keviineze (Coordinador / DevOps - Tester JavaScript / QA Engineer)
 
+- [fix/correcciones-diagramas] **Correcciones RC Arq.Diagramas** | [PR #77](https://github.com/keviineze/proyecto-web-peliculas/pull/77) | @Davidsoria99 (Arquitecto de Diagramas de Actividades)
+
 ## [Release Primer Parcial] - 2026-10-07
 
 ### Added
