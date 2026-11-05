@@ -6,6 +6,26 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
+## [Release Tercera Entrega] - 2026-10-31
+
+### Added
+
+- [feature/coord-devops-tercera-entrega] **A3 - Coordinador / DevOps (Spec inicial y definicion en Repositorio)** | Issue [#69](https://github.com/keviineze/proyecto-web-peliculas/issues/69) | [PR #66](https://github.com/keviineze/proyecto-web-peliculas/pull/66) | @keviineze (Coordinador / DevOps)
+
+- [feature/arq-diagramas-actividades] **Creación de flujos y spec** | Issue [#71](https://github.com/keviineze/proyecto-web-peliculas/issues/71) | [PR #72](https://github.com/keviineze/proyecto-web-peliculas/pull/72) | @Davidsoria99 (Arquitecto de Diagramas de Actividades)
+
+- [feature/dev-javascript-logica-negocio] **Feature/dev javascript logica negocio** | Issue [#63](https://github.com/keviineze/proyecto-web-peliculas/issues/63) | [PR #73](https://github.com/keviineze/proyecto-web-peliculas/pull/73) | @GonzaloBarbano (Desarrollador JavaScript)
+
+- [feature/tester-javascript-jasmine] **A3 - Tester Javascript Jasmine** | Issue [#70](https://github.com/keviineze/proyecto-web-peliculas/issues/70) | [PR #74](https://github.com/keviineze/proyecto-web-peliculas/pull/74) | @keviineze (Tester JavaScript / QA Engineer)
+
+### Fixed
+
+- [feature/correcciones-coord-tester-1] **Correcciones Coordinador y Tester QA (1)** | [PR #76](https://github.com/keviineze/proyecto-web-peliculas/pull/76) | @keviineze (Coordinador / DevOps - Tester JavaScript / QA Engineer)
+
+- [fix/correcciones-diagramas] **Correcciones RC Arq.Diagramas** | [PR #77](https://github.com/keviineze/proyecto-web-peliculas/pull/77) | @Davidsoria99 (Arquitecto de Diagramas de Actividades)
+
+- [fix/correcciones-desarrolador-js] **Correccion RC 17** | [PR #78](https://github.com/keviineze/proyecto-web-peliculas/pull/78) | @GonzaloBarbano (Desarrollador JavaScript)
+
 ## [Release Primer Parcial] - 2026-10-07
 
 ### Added

@@ -30,16 +30,26 @@ Construir una aplicación front-end que permita:
 - Compatibilidad con navegadores modernos.
 - Estilo visual coherente con el mockup vigente de Figma, orientado a catalogación y seguimiento personal.
 
-### 2.3 Equipo y roles
+### 2.3 Roles de entregas anteriores
 
-El equipo está organizado en cuatro roles:
+La siguiente asignación corresponde a entregas previas y se conserva como referencia histórica.
 
 - Coordinador / DevOps
 - Desarrollador Frontend/CSS
 - Especialista en Responsive Design
 - Documentador / QA Tester
 
-Cada integrante debe respetar este plan como fuente de verdad para la implementación y revisión.
+### 2.4 Roles de la tercera entrega
+
+Para la Actividad Obligatoria N.º 3, el equipo trabaja con los siguientes roles:
+
+- Coordinador / DevOps y Tester JavaScript / QA Engineer
+- Arquitecto de Diagramas de Actividades
+- Desarrollador JavaScript
+
+En grupos de tres integrantes, el Coordinador / DevOps asume también las tareas de Tester JavaScript / QA Engineer, manteniendo una rama `feature/` independiente para cada rol.
+
+Cada integrante debe utilizar esta asignación vigente como referencia para la implementación y revisión de la tercera entrega.
 
 ## 3. Requisitos funcionales detallados
 
@@ -213,6 +223,59 @@ La segunda entrega corresponde a la Unidad Temática N.° 2 sobre Diseño Web. D
 - Cada caso de prueba debe incluir el prompt utilizado, los hallazgos, las capturas de pantalla y los enlaces a los issues de GitHub generados.
 - `docs/04-testing/testing-doc.md` debe funcionar como índice central y contener un resumen de los issues identificados en cada ejecución.
 - `changelog.md` debe registrar la contribución de cada integrante de la entrega, con enlaces a los PRs e issues correspondientes.
+
+## 3.14 Requisitos de la tercera entrega: JavaScript, diagramas y testing
+
+La tercera entrega se basa en la estructura HTML y el diseño responsive de las entregas anteriores e incorpora lógica de negocio en JavaScript puro, cuatro diagramas de actividades y testing automatizado con Jasmine.
+
+### Lógica JavaScript
+
+- Toda la lógica JavaScript de esta entrega debe estar en `js/script.js`.
+- El menú principal debe utilizar `prompt()` para permitir seleccionar uno de los cuatro flujos.
+- Las entradas se capturan mediante `prompt()` y los resultados se muestran mediante `alert()` y/o `console.log()`.
+- Se deben utilizar estructuras condicionales, ciclos, funciones con nombres descriptivos, parámetros y valores de retorno apropiados, arrays y objetos relevantes.
+- La lógica debe separar las funciones de negocio de las llamadas a `prompt()` y `alert()` para facilitar las pruebas.
+- Las funciones que se someten a pruebas deben quedar disponibles para el runner, sin encapsular toda la lógica en una IIFE inaccesible.
+- En esta entrega no se debe manipular el DOM ni utilizar eventos; estos aspectos se implementarán en una entrega posterior.
+
+### Diagramas de actividades
+
+- Crear cuatro diagramas PlantUML, uno por cada flujo principal.
+- Cada diagrama debe incluir inicio y fin, actividades, decisiones condicionales y ciclos cuando correspondan.
+- Utilizar swimlanes de Usuario/Sistema cuando el flujo involucre responsabilidades separadas.
+- Exportar cada diagrama en formatos `.puml` y `.png`.
+- Documentar los cuatro diagramas en `docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md`, con descripciones, enlaces a los fuentes e imágenes e instrucciones de edición.
+- Los diagramas deben ser coherentes con `plan.md`, el mockup y la implementación JavaScript.
+
+### Testing con Jasmine
+
+- Crear `js/test/test-runner.html`, que cargue Jasmine mediante CDN, `js/script.js` y `js/test/script.spec.js`.
+- Crear cuatro suites en `js/test/script.spec.js`, una por cada flujo principal, con al menos tres tests por suite.
+- Incluir casos normales, casos borde y validación de entradas inválidas, además de operaciones de arrays/objetos que correspondan a la funcionalidad.
+- Utilizar assertions de Jasmine apropiadas, como `toBe`, `toEqual`, `toBeTruthy`, `toBeFalsy`, `toBeNull`, `toBeUndefined`, `toContain` y `toThrow`, de acuerdo con el comportamiento esperado.
+- Ejecutar el runner en navegador con Playwright MCP y guardar capturas reales de los resultados.
+- Documentar en `js/test/testing-doc.md` la ejecución, las suites, los resultados, las métricas, las capturas, las issues conocidas y las limitaciones; utilizar la plantilla proporcionada por el profesor.
+
+### Especificaciones por rol de la tercera entrega
+
+Los archivos de planificación y evidencia se organizan en `docs/03-specs/actividad-obligatoria-3/`:
+
+- `spec-devops.md`: coordinación, integración, code reviews, release y evidencias.
+- `spec-arq-diagramas.md`: análisis de flujos y generación/validación de diagramas.
+- `spec-dev-javascript.md`: planificación e implementación de la lógica de negocio testeable.
+- `spec-tester.md`: planificación, implementación y ejecución de suites Jasmine.
+
+Cada spec debe tener un momento BEFORE commiteado antes de empezar la implementación y un cierre AT CLOSE con prompts reales, resultados y ajustes manuales. No se deben inventar prompts, resultados ni capturas que no hayan sido producidos.
+
+### Flujo y entregables de la tercera entrega
+
+- Las ramas individuales se crean desde `develop`: `feature/coord-devops-tercera-entrega`, `feature/arq-diagramas-actividades`, `feature/dev-javascript-logica-negocio` y `feature/tester-javascript-jasmine`.
+- Cada rol debe abrir una PR hacia `develop`, vinculada a una Issue y con su contribución registrada en `changelog.md`.
+- El Coordinador / DevOps revisa las PR con apoyo de Copilot Agent Mode y coordina la resolución de defectos antes del merge.
+- Una vez integradas y verificadas las features, se prepara `release/tercera-entrega` desde `develop` y una PR hacia `master`, sujeta a aprobación del docente.
+- Después del merge aprobado en `master`, se crea el tag y GitHub Release `v1.1-tercera-entrega`.
+- GitHub Pages debe apuntar a la versión de `release/tercera-entrega` durante la validación.
+- Mantener actualizado el tablero de GitHub Projects y enlazar los índices de diagramas y testing.
 
 ## 4. Requisitos no funcionales
 
