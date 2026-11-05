@@ -24,6 +24,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/correcciones-diagramas] **Correcciones RC Arq.Diagramas** | [PR #77](https://github.com/keviineze/proyecto-web-peliculas/pull/77) | @Davidsoria99 (Arquitecto de Diagramas de Actividades)
 
+- [fix/correcciones-desarrolador-js] **Correccion RC 17** | [PR #78](https://github.com/keviineze/proyecto-web-peliculas/pull/78) | @GonzaloBarbano (Desarrollador JavaScript)
+
 ## [Release Primer Parcial] - 2026-10-07
 
 ### Added

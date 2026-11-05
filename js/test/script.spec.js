@@ -47,28 +47,26 @@ describe("Flujo 1: Búsqueda y filtrado de contenidos", function () {
   it("encuentra coincidencias parciales sin distinguir mayúsculas ni tildes", function () {
     const catalog = createSpecCatalog();
 
-    expect(searchContents(catalog, "INTER", "").map((content) => content.id)).toEqual([
-      "interstellar",
-    ]);
-    expect(searchContents(catalog, "chihiro", "").map((content) => content.id)).toEqual([
-      "chihiro",
-    ]);
+    expect(
+      searchContents(catalog, "INTER", "").map((content) => content.id),
+    ).toEqual(["interstellar"]);
+    expect(
+      searchContents(catalog, "chihiro", "").map((content) => content.id),
+    ).toEqual(["chihiro"]);
   });
 
   it("aplica filtros por tipo y género, combinándolos con el título", function () {
     const catalog = createSpecCatalog();
 
-    expect(searchContents(catalog, "", "pelicula").map((content) => content.id)).toEqual([
-      "interstellar",
-      "chihiro",
-    ]);
-    expect(searchContents(catalog, "", "CIENCIA").map((content) => content.id)).toEqual([
-      "interstellar",
-      "dark",
-    ]);
-    expect(searchContents(catalog, "inter", "ficcion").map((content) => content.id)).toEqual([
-      "interstellar",
-    ]);
+    expect(
+      searchContents(catalog, "", "pelicula").map((content) => content.id),
+    ).toEqual(["interstellar", "chihiro"]);
+    expect(
+      searchContents(catalog, "", "CIENCIA").map((content) => content.id),
+    ).toEqual(["interstellar", "dark"]);
+    expect(
+      searchContents(catalog, "inter", "ficcion").map((content) => content.id),
+    ).toEqual(["interstellar"]);
   });
 
   it("devuelve el catálogo completo para una consulta vacía y un array vacío sin coincidencias", function () {
@@ -82,7 +80,9 @@ describe("Flujo 1: Búsqueda y filtrado de contenidos", function () {
   it("busca títulos por nombre normalizado y devuelve null si no encuentra uno", function () {
     const catalog = createSpecCatalog();
 
-    expect(findTitleByName(catalog, "  EL VIAJE DE CHIHIRO ")).toEqual(catalog[1]);
+    expect(findTitleByName(catalog, "  EL VIAJE DE CHIHIRO ")).toEqual(
+      catalog[1],
+    );
     expect(findTitleByName(catalog, "")).toBeNull();
     expect(findTitleByName(catalog, "Otro título")).toBeNull();
   });
@@ -97,7 +97,9 @@ describe("Flujo 1: Búsqueda y filtrado de contenidos", function () {
   });
 
   it("cancela la búsqueda inicial y muestra el mensaje correspondiente", function () {
-    const promptFunction = jasmine.createSpy("promptFunction").and.returnValue(null);
+    const promptFunction = jasmine
+      .createSpy("promptFunction")
+      .and.returnValue(null);
     const alertFunction = jasmine.createSpy("alertFunction");
 
     runSearchFlow({
@@ -177,10 +179,16 @@ describe("Flujo 1: Búsqueda y filtrado de contenidos", function () {
       .and.returnValues("inter", "", "quizás", "no");
     const alertFunction = jasmine.createSpy("alertFunction");
 
-    runSearchFlow({ catalog: createSpecCatalog(), promptFunction, alertFunction });
+    runSearchFlow({
+      catalog: createSpecCatalog(),
+      promptFunction,
+      alertFunction,
+    });
 
     expect(promptFunction).toHaveBeenCalledTimes(4);
-    expect(alertFunction).toHaveBeenCalledWith("Respuesta inválida. Respondé sí o no.");
+    expect(alertFunction).toHaveBeenCalledWith(
+      "Respuesta inválida. Respondé sí o no.",
+    );
     expect(alertFunction).toHaveBeenCalledWith("Fin de búsqueda.");
   });
 
@@ -190,7 +198,11 @@ describe("Flujo 1: Búsqueda y filtrado de contenidos", function () {
       .and.returnValues("inter", null, "no");
     const alertFunction = jasmine.createSpy("alertFunction");
 
-    runSearchFlow({ catalog: createSpecCatalog(), promptFunction, alertFunction });
+    runSearchFlow({
+      catalog: createSpecCatalog(),
+      promptFunction,
+      alertFunction,
+    });
 
     expect(alertFunction).toHaveBeenCalledWith(
       "Resultados de búsqueda:\nInterstellar | Película | 2014 | Ciencia ficción",
@@ -204,7 +216,11 @@ describe("Flujo 1: Búsqueda y filtrado de contenidos", function () {
       .and.returnValues("inter", "documental", "no");
     const alertFunction = jasmine.createSpy("alertFunction");
 
-    runSearchFlow({ catalog: createSpecCatalog(), promptFunction, alertFunction });
+    runSearchFlow({
+      catalog: createSpecCatalog(),
+      promptFunction,
+      alertFunction,
+    });
 
     expect(alertFunction).toHaveBeenCalledWith("No se encontraron contenidos.");
   });
@@ -224,7 +240,9 @@ describe("Flujo 2: Gestión de lista personal (favoritos)", function () {
       isFavorite: false,
       rating: null,
     });
-    expect(findLibraryRecord(initialLibrary, "chihiro")).toBe(initialLibrary[1]);
+    expect(findLibraryRecord(initialLibrary, "chihiro")).toBe(
+      initialLibrary[1],
+    );
     expect(findLibraryRecord(initialLibrary, "missing")).toBeNull();
     expect(result.success).toBeTruthy();
     expect(result.library).not.toBe(initialLibrary);
@@ -247,7 +265,11 @@ describe("Flujo 2: Gestión de lista personal (favoritos)", function () {
       },
     ];
     const result = addFavorite(catalog, library, "El viaje de Chihiro");
-    const duplicate = addFavorite(catalog, result.library, "el VIAJE de chihiro");
+    const duplicate = addFavorite(
+      catalog,
+      result.library,
+      "el VIAJE de chihiro",
+    );
 
     expect(result.library[0]).toEqual({
       titleId: "chihiro",
@@ -348,13 +370,13 @@ describe("Flujo 2: Gestión de lista personal (favoritos)", function () {
       },
     ];
 
-    expect(readStoredLibrary(createSpecStorage(JSON.stringify(validRecords)))).toEqual(
-      validRecords,
-    );
+    expect(
+      readStoredLibrary(createSpecStorage(JSON.stringify(validRecords))),
+    ).toEqual(validRecords);
     expect(loadLibrary(createSpecStorage(null))).toEqual([]);
-    expect(loadLibrary(createSpecStorage(JSON.stringify(validRecords)))).toEqual(
-      validRecords,
-    );
+    expect(
+      loadLibrary(createSpecStorage(JSON.stringify(validRecords))),
+    ).toEqual(validRecords);
   });
 
   it("usa el array persistido, incluso vacío, o crea y persiste el estado inicial", function () {
@@ -412,8 +434,76 @@ describe("Flujo 2: Gestión de lista personal (favoritos)", function () {
       },
     ]);
     expect(storage.lastWrittenKey).toBe("miniLetterboxdLibrary");
-    expect(alertFunction).toHaveBeenCalledWith("Contenido agregado exitosamente.");
+    expect(alertFunction).toHaveBeenCalledWith(
+      "Contenido agregado exitosamente.",
+    );
     expect(promptFunction).toHaveBeenCalledTimes(4);
+  });
+
+  it("muestra los títulos disponibles antes del prompt de selección (RC17)", function () {
+    const interactions = [];
+    const responses = ["sí", "No existe", "no"];
+    const promptFunction = jasmine
+      .createSpy("promptFunction")
+      .and.callFake((message) => {
+        interactions.push(`prompt:${message}`);
+        return responses.shift();
+      });
+    const alertFunction = jasmine
+      .createSpy("alertFunction")
+      .and.callFake((message) => interactions.push(`alert:${message}`));
+
+    runFavoritesFlow({
+      catalog: createSpecCatalog(),
+      library: [],
+      promptFunction,
+      alertFunction,
+    });
+
+    expect(interactions.slice(0, 3)).toEqual([
+      "prompt:¿Deseás gestionar un contenido de tu lista personal? (sí/no)",
+      "alert:Contenidos disponibles en el catálogo:\nInterstellar\nEl viaje de Chihiro\nDark",
+      "prompt:Ingresá el título del contenido del catálogo:",
+    ]);
+  });
+
+  it("finaliza la gestión e informa cuando el catálogo está vacío", function () {
+    const promptFunction = jasmine
+      .createSpy("promptFunction")
+      .and.returnValue("sí");
+    const alertFunction = jasmine.createSpy("alertFunction");
+
+    const library = runFavoritesFlow({
+      catalog: [],
+      library: [],
+      promptFunction,
+      alertFunction,
+    });
+
+    expect(library).toEqual([]);
+    expect(promptFunction).toHaveBeenCalledTimes(1);
+    expect(alertFunction).toHaveBeenCalledWith(
+      "No hay contenidos disponibles en el catálogo.",
+    );
+  });
+
+  it("trata un título vacío como cancelación y no como contenido inexistente", function () {
+    const promptFunction = jasmine
+      .createSpy("promptFunction")
+      .and.returnValues("sí", "  ", "no");
+    const alertFunction = jasmine.createSpy("alertFunction");
+
+    runFavoritesFlow({
+      catalog: createSpecCatalog(),
+      library: [],
+      promptFunction,
+      alertFunction,
+    });
+
+    expect(alertFunction).toHaveBeenCalledWith("Operación cancelada.");
+    expect(alertFunction).not.toHaveBeenCalledWith(
+      "El contenido no existe en el catálogo.",
+    );
   });
 
   it("confirma la eliminación de un favorito y persiste la biblioteca actualizada", function () {
@@ -450,7 +540,9 @@ describe("Flujo 2: Gestión de lista personal (favoritos)", function () {
     ]);
     expect(originalLibrary[0].isFavorite).toBeTruthy();
     expect(JSON.parse(storage.value)).toEqual(library);
-    expect(alertFunction).toHaveBeenCalledWith("Contenido removido exitosamente.");
+    expect(alertFunction).toHaveBeenCalledWith(
+      "Contenido removido exitosamente.",
+    );
     expect(promptFunction).toHaveBeenCalledTimes(4);
   });
 
@@ -522,7 +614,9 @@ describe("Flujo 2: Gestión de lista personal (favoritos)", function () {
 
     expect(library).toEqual([]);
     expect(storage.lastWrittenKey).toBeNull();
-    expect(alertFunction).toHaveBeenCalledWith("El contenido no existe en el catálogo.");
+    expect(alertFunction).toHaveBeenCalledWith(
+      "El contenido no existe en el catálogo.",
+    );
   });
 
   it("informa si se cancela el ingreso del título en el flujo de favoritos", function () {
@@ -591,7 +685,9 @@ describe("Flujo 3: Exportar y compartir lista personal", function () {
         { titleId: "id con espacio", isFavorite: true },
         { titleId: "dark", isFavorite: false },
       ]),
-    ).toBe("https://miproyecto.com/lista?ids=interstellar%2Cid%20con%20espacio");
+    ).toBe(
+      "https://miproyecto.com/lista?ids=interstellar%2Cid%20con%20espacio",
+    );
     expect(createFavoritesLink([])).toBe("https://miproyecto.com/lista?ids=");
   });
 
@@ -614,10 +710,17 @@ describe("Flujo 3: Exportar y compartir lista personal", function () {
   });
 
   it("exporta texto usando las funciones de interacción inyectadas", function () {
-    const promptFunction = jasmine.createSpy("promptFunction").and.returnValue("texto");
+    const promptFunction = jasmine
+      .createSpy("promptFunction")
+      .and.returnValue("texto");
     const alertFunction = jasmine.createSpy("alertFunction");
     const library = [
-      { titleId: "interstellar", status: "pending", isFavorite: true, rating: null },
+      {
+        titleId: "interstellar",
+        status: "pending",
+        isFavorite: true,
+        rating: null,
+      },
     ];
 
     runSharingFlow({
@@ -641,7 +744,12 @@ describe("Flujo 3: Exportar y compartir lista personal", function () {
       .and.returnValues("JSON", "enlace");
     const alertFunction = jasmine.createSpy("alertFunction");
     const library = [
-      { titleId: "interstellar", status: "pending", isFavorite: true, rating: null },
+      {
+        titleId: "interstellar",
+        status: "pending",
+        isFavorite: true,
+        rating: null,
+      },
     ];
 
     runSharingFlow({
@@ -664,13 +772,20 @@ describe("Flujo 3: Exportar y compartir lista personal", function () {
   });
 
   it("permite cancelar la selección del formato", function () {
-    const promptFunction = jasmine.createSpy("promptFunction").and.returnValue(null);
+    const promptFunction = jasmine
+      .createSpy("promptFunction")
+      .and.returnValue(null);
     const alertFunction = jasmine.createSpy("alertFunction");
 
     runSharingFlow({
       catalog: createSpecCatalog(),
       library: [
-        { titleId: "interstellar", status: "pending", isFavorite: true, rating: null },
+        {
+          titleId: "interstellar",
+          status: "pending",
+          isFavorite: true,
+          rating: null,
+        },
       ],
       storage: createSpecStorage(null),
       promptFunction,
@@ -684,7 +799,12 @@ describe("Flujo 3: Exportar y compartir lista personal", function () {
   it("carga favoritos desde storage cuando no se inyecta library y exporta el resultado", function () {
     const storage = createSpecStorage(
       JSON.stringify([
-        { titleId: "interstellar", status: "pending", isFavorite: true, rating: null },
+        {
+          titleId: "interstellar",
+          status: "pending",
+          isFavorite: true,
+          rating: null,
+        },
       ]),
     );
     const promptFunction = jasmine
@@ -708,16 +828,25 @@ describe("Flujo 3: Exportar y compartir lista personal", function () {
   });
 
   it("avisa si la biblioteca cargada desde storage no contiene favoritos", function () {
-    const storage = createSpecStorage(JSON.stringify(createSpecCatalog().map((item) => ({
-      titleId: item.id,
-      status: item.initialStatus,
-      isFavorite: false,
-      rating: null,
-    }))));
+    const storage = createSpecStorage(
+      JSON.stringify(
+        createSpecCatalog().map((item) => ({
+          titleId: item.id,
+          status: item.initialStatus,
+          isFavorite: false,
+          rating: null,
+        })),
+      ),
+    );
     const promptFunction = jasmine.createSpy("promptFunction");
     const alertFunction = jasmine.createSpy("alertFunction");
 
-    runSharingFlow({ catalog: createSpecCatalog(), storage, promptFunction, alertFunction });
+    runSharingFlow({
+      catalog: createSpecCatalog(),
+      storage,
+      promptFunction,
+      alertFunction,
+    });
 
     expect(promptFunction).not.toHaveBeenCalled();
     expect(alertFunction).toHaveBeenCalledWith(
@@ -751,7 +880,12 @@ describe("Flujo 4: Calificación de contenidos vistos", function () {
   it("califica contenidos vistos de forma inmutable y rechaza ratings inválidos o pendientes", function () {
     const library = [
       { titleId: "chihiro", status: "watched", isFavorite: true, rating: null },
-      { titleId: "interstellar", status: "pending", isFavorite: false, rating: null },
+      {
+        titleId: "interstellar",
+        status: "pending",
+        isFavorite: false,
+        rating: null,
+      },
     ];
     const result = rateWatchedContent(library, "chihiro", "4");
     const invalidRating = rateWatchedContent(library, "chihiro", 2.5);
@@ -774,7 +908,12 @@ describe("Flujo 4: Calificación de contenidos vistos", function () {
   it("reintenta una calificación inválida, guarda la válida y devuelve el estado actualizado", function () {
     const catalog = createSpecCatalog();
     const library = [
-      { titleId: "chihiro", status: "watched", isFavorite: false, rating: null },
+      {
+        titleId: "chihiro",
+        status: "watched",
+        isFavorite: false,
+        rating: null,
+      },
     ];
     const storage = createSpecStorage(null);
     const promptFunction = jasmine
@@ -797,12 +936,19 @@ describe("Flujo 4: Calificación de contenidos vistos", function () {
     expect(alertFunction).toHaveBeenCalledWith(
       "La calificación debe ser un número entero entre 1 y 5.",
     );
-    expect(alertFunction).toHaveBeenCalledWith("Todos los contenidos vistos han sido calificados.");
+    expect(alertFunction).toHaveBeenCalledWith(
+      "Todos los contenidos vistos han sido calificados.",
+    );
   });
 
   it("permite cancelar durante los reintentos sin alterar la biblioteca original", function () {
     const library = [
-      { titleId: "chihiro", status: "watched", isFavorite: false, rating: null },
+      {
+        titleId: "chihiro",
+        status: "watched",
+        isFavorite: false,
+        rating: null,
+      },
     ];
     const promptFunction = jasmine
       .createSpy("promptFunction")
@@ -849,13 +995,20 @@ describe("Flujo 4: Calificación de contenidos vistos", function () {
 
   it("informa si falla el guardado de una calificación y conserva la biblioteca", function () {
     const library = [
-      { titleId: "chihiro", status: "watched", isFavorite: false, rating: null },
+      {
+        titleId: "chihiro",
+        status: "watched",
+        isFavorite: false,
+        rating: null,
+      },
     ];
     const storage = createSpecStorage(null);
     storage.setItem = function () {
       throw new Error("storage no disponible");
     };
-    const promptFunction = jasmine.createSpy("promptFunction").and.returnValue("5");
+    const promptFunction = jasmine
+      .createSpy("promptFunction")
+      .and.returnValue("5");
     const alertFunction = jasmine.createSpy("alertFunction");
 
     const result = runRatingFlow({
@@ -874,7 +1027,9 @@ describe("Flujo 4: Calificación de contenidos vistos", function () {
   });
 
   it("sale del menú con 0 sin mostrar errores", function () {
-    const promptFunction = jasmine.createSpy("promptFunction").and.returnValue("0");
+    const promptFunction = jasmine
+      .createSpy("promptFunction")
+      .and.returnValue("0");
     const alertFunction = jasmine.createSpy("alertFunction");
 
     startApp({
@@ -902,7 +1057,9 @@ describe("Flujo 4: Calificación de contenidos vistos", function () {
     });
 
     expect(promptFunction).toHaveBeenCalledTimes(2);
-    expect(alertFunction).toHaveBeenCalledWith("Opción inválida. Elegí una opción del menú.");
+    expect(alertFunction).toHaveBeenCalledWith(
+      "Opción inválida. Elegí una opción del menú.",
+    );
   });
 
   it("despacha desde el menú las opciones de búsqueda, favoritos, compartir y calificación", function () {
@@ -913,10 +1070,17 @@ describe("Flujo 4: Calificación de contenidos vistos", function () {
     const promptFunction = jasmine
       .createSpy("promptFunction")
       .and.returnValues(
-        "1", "inter", "", "no",
-        "2", "no",
-        "3", "texto", null,
-        "4", "5",
+        "1",
+        "inter",
+        "",
+        "no",
+        "2",
+        "no",
+        "3",
+        "texto",
+        null,
+        "4",
+        "5",
         "0",
       );
     const alertFunction = jasmine.createSpy("alertFunction");
@@ -937,6 +1101,8 @@ describe("Flujo 4: Calificación de contenidos vistos", function () {
     expect(promptFunction).toHaveBeenCalledWith(
       "Ingresá una calificación de 1 a 5 para El viaje de Chihiro, o cancelá para interrumpir:",
     );
-    expect(alertFunction).toHaveBeenCalledWith("Todos los contenidos vistos han sido calificados.");
+    expect(alertFunction).toHaveBeenCalledWith(
+      "Todos los contenidos vistos han sido calificados.",
+    );
   });
 });
