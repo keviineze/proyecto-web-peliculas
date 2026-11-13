@@ -6,6 +6,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
+## Added
+
+- [feature/tester-qa-specs] **A4 - Tester QA (Planificacion inicial de QA)** | Issue [#82](https://github.com/keviineze/proyecto-web-peliculas/issues/82) | [PR #85](https://github.com/keviineze/proyecto-web-peliculas/pull/85) | @Davidsoria99 (Tester QA Engineer)
+
 ## [Release Tercera Entrega] - 2026-10-31
 
 ### Added
