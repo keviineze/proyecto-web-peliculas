@@ -12,11 +12,9 @@ Mini Letterboxd Front End es una aplicación web estática para explorar pelícu
 
 La aplicación funcionará como un simulador de seguimiento de contenido audiovisual. Permitirá consultar un catálogo, crear una lista de títulos pendientes, marcar contenidos como vistos, asignar calificaciones, escribir comentarios y compartir una representación de la lista desde el navegador, sin utilizar backend ni base de datos.
 
-## 🎯 Objetivo de la tercera entrega
+## 🎯 Objetivo de la cuarta entrega
 
-Incorporar la lógica de negocio principal con JavaScript puro, modelar cuatro flujos mediante diagramas de actividades y validar la lógica con pruebas automatizadas de Jasmine en navegador. La implementación debe mantenerse alineada con el mockup vigente, los diagramas aprobados y los requisitos de [`plan.md`](plan.md).
-
-En esta etapa se trabaja con `prompt()`, `alert()` y/o `console.log()`. No se debe incorporar manipulación del DOM ni eventos, ya que están previstos para una entrega posterior.
+Migrar el proyecto de un simulador basado en consola a una aplicación web interactiva completa. Esta fase elimina el uso de `prompt()` y `alert()` para implementar una arquitectura orientada a objetos (POO), persistencia de datos mediante la Storage API (`localStorage` y `sessionStorage`), manipulación dinámica del DOM y manejo avanzado de eventos del usuario, manteniendo la cobertura de pruebas automatizadas con Jasmine.
 
 ## 📁 Documentación
 
@@ -26,9 +24,9 @@ En esta etapa se trabaja con `prompt()`, `alert()` y/o `console.log()`. No se de
 
 | Nombre completo | N.º de matrícula | Usuario de GitHub                                    | Rol en esta entrega                                                            |
 | --------------- | ---------------: | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
-| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | Arquitecto de Diagramas de Actividades                                         |
-| Kevin Sosa  |           154080 | [@keviineze](https://github.com/keviineze) | Coordinador/DevOps y Tester JavaScript/QA Engineer                                           |
-| Gonzalo Barbano      |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano)           | Desarrollador Javascript                                    |
+| David Soria     |           153203 | [@Davidsoria99](https://github.com/Davidsoria99)     | Coordinador / DevOps + Tester QA + Desarrollador JS Storage                                         |
+| Kevin Sosa  |           154080 | [@keviineze](https://github.com/keviineze) | Desarrollador JS POO                                           |
+| Gonzalo Barbano      |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano)           | Desarrollador JS Eventos + DOM                                    |
 
 Los roles de la tercera entrega se asignan según la consigna de la Actividad Obligatoria N.° 3. En grupos de tres integrantes, el Coordinador / DevOps asume también las tareas de Tester JavaScript / QA Engineer, manteniendo una rama `feature/` separada para cada rol.
 
@@ -61,36 +59,35 @@ Esta entrega toma esa estructura como base y agrega la capa visual y el control 
 - Layouts con Flexbox y/o CSS Grid, adaptados a mobile, tablet y desktop sin overflow horizontal.
 - QA automatizado con Playwright MCP y registro de bugs mediante GitHub MCP.
 
+### Tercera entrega
+- Esta entrega integró la lógica de negocio principal con JavaScript puro mediante `prompt()` y `alert()`, modeló cuatro flujos mediante diagramas de actividades UML y validó la lógica con pruebas automatizadas en Jasmine.
+
+### Cuarta entrega
+Esta entrega transforma el proyecto en una aplicación interactiva. Se estructura en cuatro pilares principales:
+- **Manipulación del DOM y Eventos:** Interfaz responsiva que reacciona a las acciones del usuario sin bloqueos.
+- **Programación Orientada a Objetos (POO):** Lógica de negocio encapsulada en clases dentro de `js/models/`.
+- **Storage API:** Almacenamiento persistente y de sesión mediante una capa de abstracción en `js/utils/storage.js`.
+- **Testing Automatizado:** Refactorización de pruebas y creación de nuevas suites para evaluar el comportamiento de las clases y del storage.
+
 ## Especificación técnica
 
-El archivo [`plan.md`](plan.md) es la especificación maestra del proyecto. Define el alcance funcional, la estructura esperada, los criterios de aceptación y el flujo de trabajo. Toda tarea debe mantenerse alineada con ese documento.
+El archivo [`plan.md`](plan.md) es la especificación maestra del proyecto.
+Para la cuarta entrega se utilizan los archivos de `docs/03-specs/actividad-obligatoria-4/`.
 
-Antes de comenzar cada tarea, el integrante responsable deberá crear y commitear el spec de su rol antes de la implementación correspondiente. Para la tercera entrega se utilizan los archivos de `docs/03-specs/actividad-obligatoria-3/`. El spec debe explicar:
+Los specs previstos para la cuarta entrega son:
+- `docs/03-specs/actividad-obligatoria-4/spec-devops.md`
+- `docs/03-specs/actividad-obligatoria-4/spec-tester-qa.md`
+- `docs/03-specs/actividad-obligatoria-4/spec-dev-poo.md`
+- `docs/03-specs/actividad-obligatoria-4/spec-dev-eventos-dom.md`
+- `docs/03-specs/actividad-obligatoria-4/spec-dev-storage.md`
 
-- qué se va a desarrollar;
-- por qué es necesario para el proyecto;
-- cuál es el alcance de la tarea;
-- cómo se validará;
-- qué criterios determinan que está terminada.
+## JavaScript, diagramas y testing – Cuarta entrega
 
-Los specs previstos para la tercera entrega son:
-
-- `docs/03-specs/actividad-obligatoria-3/spec-devops.md`
-- `docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md`
-- `docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md`
-- `docs/03-specs/actividad-obligatoria-3/spec-tester.md`
-
-Los specs de las entregas anteriores se conservan en sus respectivas carpetas como evidencia histórica.
-
-Un Pull Request no se considerará completo sin el spec correspondiente.
-
-## JavaScript, diagramas y testing — tercera entrega
-
-- El Arquitecto de Diagramas utilizará GitHub Copilot en Agent Mode con `plan.md`, `index.html` y el mockup como contexto para crear cuatro diagramas de actividades PlantUML en formatos `.puml` y `.png`.
-- El Desarrollador JavaScript implementará los cuatro flujos en `js/script.js`, utilizando los diagramas y su spec como referencia. La lógica debe ser testeable, separar las funciones de negocio de `prompt()`/`alert()` y no manipular el DOM ni utilizar eventos en esta entrega.
-- El Tester JavaScript / QA Engineer generará `js/test/script.spec.js` con Jasmine, utilizando `js/script.js` como contexto; ejecutará `js/test/test-runner.html` en un navegador real mediante Playwright MCP y conservará capturas reales de los resultados.
-- El Coordinador / DevOps revisará las PR con apoyo de Copilot Agent Mode, verificando coherencia con `plan.md`, los diagramas y el mockup, y documentará las observaciones y solicitudes de cambios.
-- Cada rol documentará los prompts, resultados y ajustes manuales en su spec. Las métricas y evidencias de testing se registrarán en `js/test/testing-doc.md` siguiendo la plantilla del profesor.
+- El **Desarrollador JS POO** diseñará el diagrama de clases UML y generará la lógica de negocio en `js/models/` mediante Copilot Agent Mode.
+- El **Desarrollador JS Eventos + DOM** refactorizará `js/script.js` para que actúe únicamente como controlador de UI.
+- El **Desarrollador JS Storage** implementará las operaciones CRUD en `js/utils/storage.js` para la persistencia local.
+- El **Tester QA** generará las nuevas suites de prueba (`models.spec.js`, `storage.spec.js`) y ejecutará Playwright MCP para validar los resultados.
+- El **Coordinador / DevOps** realizará Code Reviews exhaustivas asistidas por IA para garantizar la arquitectura y gestionará los despliegues.
 
 ## Tecnologías
 
@@ -117,7 +114,7 @@ Las reglas principales son:
 3. Registrar en `changelog.md` quién realizó cada PR, qué aportó y el enlace correspondiente.
 4. Commitear el spec del rol antes de comenzar la implementación asociada.
 5. Realizar revisiones funcionales, de código y asistidas por IA.
-6. Crear `release/tercera-entrega` desde `develop` cuando todas las features estén integradas.
+6. Crear release/cuarta-entrega desde develop cuando todas las features estén integradas.
 7. Integrar cambios en `master` únicamente mediante una release aprobada por el profesor.
 
 `master` es la rama estable y protegida. `develop` es la rama de integración y también estará protegida; sus cambios requieren revisión y aprobación del Coordinador de Repositorio.
@@ -139,31 +136,19 @@ Cada cambio deberá:
 
 El proyecto puede ejecutarse localmente mediante Live Preview en VS Code y validarse contra `http://localhost:3000` o el puerto configurado. También se verificará la integración final en GitHub Pages.
 
-
-## Documentación de la tercera entrega
+## Documentación de la cuarta entrega
 
 - [Plan maestro del proyecto](plan.md)
-- [Spec Coordinador / DevOps](docs/03-specs/actividad-obligatoria-3/spec-devops.md)
-- [Spec Arquitecto de Diagramas](docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md)
-- [Spec Desarrollador JavaScript](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md)
-- [Spec Tester JavaScript / QA Engineer](docs/03-specs/actividad-obligatoria-3/spec-tester.md)
-- [Índice de diagramas de actividades](docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md)
+- [Spec Coordinador / DevOps](docs/03-specs/actividad-obligatoria-4/spec-devops.md)
+- [Spec Tester QA](docs/03-specs/actividad-obligatoria-4/spec-tester-qa.md)
+- [Spec Desarrollador JS Eventos + DOM](docs/03-specs/actividad-obligatoria-4/spec-dev-eventos-dom.md)
+- [Spec Desarrollador JS POO](docs/03-specs/actividad-obligatoria-4/spec-dev-poo.md)
+- [Spec Desarrollador JS Storage](docs/03-specs/actividad-obligatoria-4/spec-dev-storage.md)
+- [Diagrama de Clases UML](docs/04-diagramas/02-diagrama-de-clases/diagrama-clases-doc.md)
+- [Documentación de Storage](docs/06-storage/storage-doc.md)
 - [Documentación de testing con Jasmine](js/test/testing-doc.md)
-- [Runner de Jasmine](js/test/test-runner.html)
 
 
 ## Estado del proyecto
 
-La Tercera Entrega integra la lógica de negocio de Mini Letterboxd mediante JavaScript, con cuatro flujos principales:
-
-1. Búsqueda y filtrado de contenidos.
-2. Gestión de lista personal (favoritos).
-3. Exportar y compartir lista personal.
-4. Calificación de contenidos vistos.
-
-Se incorporaron los cuatro diagramas de actividades desarrollados con PlantUML y una suite de pruebas automatizadas con Jasmine 5.10.0.
-
-**Resultados del testing:** 4 suites ejecutadas, 33 tests aprobados y 0 fallidos, según la ejecución documentada mediante Playwright MCP.
-
-La documentación de cada rol, los diagramas y las evidencias de testing se encuentran disponibles en sus respectivas carpetas.
-
+La Cuarta Entrega refactoriza la aplicación para implementar POO y persistencia local. Actualmente, el equipo se encuentra en fase de desarrollo de las features y specs iniciales, coordinadas mediante GitHub Projects.
