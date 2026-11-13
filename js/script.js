@@ -504,17 +504,26 @@ function runFavoritesFlow(options = {}) {
       alertFunction,
     )
   ) {
+    if (catalog.length === 0) {
+      alertFunction("No hay contenidos disponibles en el catálogo.");
+      return library;
+    }
+
+    alertFunction(
+      `Contenidos disponibles en el catálogo:\n${catalog
+        .map((content) => content.title)
+        .join("\n")}`,
+    );
+
     const titleName = promptFunction(
       "Ingresá el título del contenido del catálogo:",
     );
     const content = findTitleByName(catalog, titleName);
 
-    if (!content) {
-      alertFunction(
-        titleName === null
-          ? "Operación cancelada."
-          : "El contenido no existe en el catálogo.",
-      );
+    if (titleName === null || !normalizeText(titleName)) {
+      alertFunction("Operación cancelada.");
+    } else if (!content) {
+      alertFunction("El contenido no existe en el catálogo.");
     } else {
       const existingRecord = findLibraryRecord(library, content.id);
       const shouldRemove = existingRecord?.isFavorite;

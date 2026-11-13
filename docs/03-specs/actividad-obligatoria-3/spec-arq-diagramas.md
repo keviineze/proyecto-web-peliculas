@@ -40,18 +40,24 @@ Se utilizarán **particiones (swimlanes)** en los 4 diagramas dividiendo el mode
 ## MOMENTO 2: Evidencia de Ejecución
 
 ### 1. Prompt exacto utilizado en Copilot Agent
-**Contexto adjunto:** `plan.md`, `index.html`.
+**Contexto adjunto:** `plan.md`, `index.html` y análisis del mockup visual (`disenio-bootstrap.png`).
+
+**Evidencia de uso del mockup:** Aunque la imagen no pudo procesarse directamente en el prompt de la IA por limitaciones del chat, el análisis visual manual del mockup determinó la lógica exacta de los diagramas:
+- **Flujo de Gestión (Flujo 2):** Se derivó directamente de los botones verdes "Agregar a Mi Lista" presentes en la sección de *Películas Destacadas* y en cada tarjeta del *Catálogo de películas*.
+- **Flujo de Exportar/Compartir (Flujo 3):** Se justificó por la presencia del botón destacado "Compartir Mi Lista" ubicado en la barra de navegación superior.
+- **Flujo de Calificación (Flujo 4):** Se basó en el botón "Calificar" de las tarjetas del catálogo. Además, el texto del footer ("Tu biblioteca de películas y series") motivó la generalización de los diagramas para procesar "contenidos" y no solo películas.
+- **División de responsabilidades (Swimlanes):** Al ser una interfaz estática en esta entrega, se definió que las acciones del |Usuario| se simulen con `prompt`/`alert`, aislando la lógica del |Sistema|.
 
 ```text
-Actúa como Arquitecto de Software experto en UML. Analiza los archivos adjuntos (plan.md, index.html y el mockup) y genera el código PlantUML exacto para los 4 flujos de actividades de este proyecto: 
-1. Búsqueda y filtrado de películas
-2. Simulación de compra de entradas
-3. Autenticación (Login)
-4. Calificación de películas
+Actúa como Arquitecto de Software experto en UML. Analiza los archivos adjuntos (plan.md, index.html y disenio-bootstrap.png) y genera el código PlantUML exacto para los 4 flujos de actividades de este proyecto: 
+1. Búsqueda y filtrado de contenidos
+2. Gestión de Lista Personal (Favoritos)
+3. Exportar y Compartir Lista Personal
+4. Calificación de Contenidos Vistos
 
 REGLAS ESTRICTAS DE SINTAXIS PLANTUML:
 - Usa particiones (swimlanes) estrictamente divididas en |Usuario| y |Sistema|.
-- Usa `start` para iniciar y `stop` para finalizar cada flujo.
+- Usa `start` para iniciar y `stop` para finalizar cada flujo (los cierres alternativos deben usar `end`).
 - Escribe las actividades correctamente con `:` al inicio y `;` al final.
 - Incluye decisiones condicionales usando `if (...) then (sí)` y `else (no)`.
 - Incluye bucles iterativos usando `while (...)` o `repeat`.

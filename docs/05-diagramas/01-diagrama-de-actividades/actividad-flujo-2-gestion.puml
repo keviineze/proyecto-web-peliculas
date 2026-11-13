@@ -4,40 +4,50 @@ title Gestión de Lista Personal (Favoritos)
 |Sistema|
 start
 while (¿Desea gestionar un contenido de su lista?) is (sí)
-  :Mostrar prompt() para elegir un contenido del catálogo;
-  |Usuario|
-  :Ingresar el título del contenido;
-  |Sistema|
-  :Buscar el contenido en el catálogo;
-  if (¿El contenido existe?) then (sí)
-    :Verificar si el contenido ya está en la lista personal;
-    if (¿Ya está en la lista?) then (sí)
-      :Mostrar prompt() preguntando si desea removerlo;
-      |Usuario|
-      :Confirmar o cancelar remoción;
-      |Sistema|
-      if (¿Confirma remoción?) then (sí)
-        :Remover el contenido de la lista personal;
-        :Persistir nueva lista en localStorage;
-        :Mostrar alert() de "Contenido removido exitosamente";
-      else (no)
-        :Mostrar alert() de operación cancelada;
-      endif
+  if (¿Hay contenidos disponibles en el catálogo?) then (sí)
+    :Mostrar mediante alert() los títulos disponibles en el catálogo;
+    :Mostrar prompt() para elegir un contenido del catálogo;
+    |Usuario|
+    :Ingresar el título del contenido o cancelar;
+    |Sistema|
+    if (¿Se canceló la operación o el título está vacío?) then (sí)
+      :Mostrar alert() de operación cancelada;
     else (no)
-      :Mostrar prompt() preguntando si desea agregarlo;
-      |Usuario|
-      :Confirmar o cancelar adición;
-      |Sistema|
-      if (¿Confirma adición?) then (sí)
-        :Agregar el contenido a la lista personal;
-        :Persistir nueva lista en localStorage;
-        :Mostrar alert() de "Contenido agregado exitosamente";
+      :Buscar el contenido en el catálogo;
+      if (¿El contenido existe?) then (sí)
+        :Verificar si el contenido ya está en la lista personal;
+        if (¿Ya está en la lista?) then (sí)
+          :Mostrar prompt() preguntando si desea removerlo;
+          |Usuario|
+          :Confirmar o cancelar remoción;
+          |Sistema|
+          if (¿Confirma remoción?) then (sí)
+            :Remover el contenido de la lista personal;
+            :Persistir nueva lista en localStorage;
+            :Mostrar alert() de "Contenido removido exitosamente";
+          else (no)
+            :Mostrar alert() de operación cancelada;
+          endif
+        else (no)
+          :Mostrar prompt() preguntando si desea agregarlo;
+          |Usuario|
+          :Confirmar o cancelar adición;
+          |Sistema|
+          if (¿Confirma adición?) then (sí)
+            :Agregar el contenido a la lista personal;
+            :Persistir nueva lista en localStorage;
+            :Mostrar alert() de "Contenido agregado exitosamente";
+          else (no)
+            :Mostrar alert() de operación cancelada;
+          endif
+        endif
       else (no)
-        :Mostrar alert() de operación cancelada;
+        :Mostrar alert() indicando que el contenido no existe;
       endif
     endif
   else (no)
-    :Mostrar alert() indicando que el contenido no existe;
+    :Mostrar alert() indicando que no hay contenidos disponibles;
+    stop
   endif
   :Consultar si desea seguir gestionando la lista;
 endwhile (no)

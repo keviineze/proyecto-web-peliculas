@@ -9,7 +9,7 @@ start
 |Sistema|
 if (¿Se canceló la búsqueda?) then (sí)
   :Mostrar alert() de cancelación;
-  stop
+  end
 else (no)
 endif
 
@@ -32,7 +32,7 @@ while (¿Desea cambiar los criterios de búsqueda?) is (sí)
   |Sistema|
   if (¿Se canceló la búsqueda?) then (sí)
     :Mostrar alert() de cancelación;
-    stop
+    end
   else (no)
   endif
   :Mostrar prompt() para elegir tipo o género;

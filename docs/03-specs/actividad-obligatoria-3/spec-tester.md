@@ -303,20 +303,29 @@ No se registraron otros prompts exactos de corrección.
 
 | Suite | Tests ejecutados | Aprobados | Fallidos |
 |---|---:|---:|---:|
-| Búsqueda y filtrado de contenidos | 9 | 9 | 0 |
-| Gestión de lista personal (favoritos) | 12 | 12 | 0 |
-| Exportar y compartir lista personal | 6 | 6 | 0 |
-| Calificación de contenidos vistos | 6 | 6 | 0 |
-| **Total** | **33** | **33** | **0** |
+| Búsqueda y filtrado de contenidos | 12 | 12 | 0 |
+| Gestión de lista personal (favoritos) | 15 | 15 | 0 |
+| Exportar y compartir lista personal | 8 | 8 | 0 |
+| Calificación de contenidos vistos | 10 | 10 | 0 |
+| **Total** | **45** | **45** | **0** |
 
-Jasmine confirmó 4 suites, 33 specs ejecutados, 33 aprobados y 0 fallidos.
+Jasmine 5.10.0 confirmó 4 suites, 45 specs ejecutados, 45 aprobados y 0 fallidos. La ejecución actual quedó verificada en `js/test/coverage-runner.html`.
+
+#### Medición de cobertura — RC16
+
+Se instrumentó `js/script.js` con `istanbul-lib-instrument` 6.0.3 y se ejecutaron las cuatro suites en el navegador:
+
+- **Líneas ejecutadas:** 212/231 (91,77%).
+- **Ramas ejecutadas:** 138/173 (79,77%).
+
+La cobertura no llega al 100%; estos porcentajes describen el código de `js/script.js` ejercitado por las 44 pruebas actuales.
 
 #### Capturas
 
 - Resumen general: [`js/test/screenshots/tests-passing.png`](../../../js/test/screenshots/tests-passing.png)
 - Detalle de las suites: [`js/test/screenshots/suite-detail.png`](../../../js/test/screenshots/suite-detail.png)
 
-Las dos capturas están guardadas en la carpeta del proyecto y listas para incluirse en la PR de Tester. Corresponden a la ejecución real del runner mediante Playwright MCP; todavía no se afirma que estén publicadas en GitHub.
+Las dos capturas guardadas corresponden a la ejecución anterior de 33 pruebas. La medición actual de 45 pruebas y cobertura está disponible al ejecutar `js/test/coverage-runner.html`.
 
 #### Ajustes realizados en los tests
 

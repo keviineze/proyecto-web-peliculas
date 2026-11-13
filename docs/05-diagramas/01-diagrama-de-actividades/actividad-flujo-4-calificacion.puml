@@ -14,7 +14,7 @@ if (¿Hay contenidos vistos pendientes de calificar?) then (sí)
     |Sistema|
     if (¿Se canceló la calificación?) then (sí)
       :Mostrar alert() de "Proceso interrumpido";
-      stop
+      end
     else (no)
       :Validar que la calificación sea un número entero de 1 a 5;
       while (¿La calificación es inválida?) is (sí)
