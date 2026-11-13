@@ -6,6 +6,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
+### Added
+
+- [feature/dev-storage] **A4 - Desarrollador JS Storage (Implementación de Storage API y Persistencia de Datos)** | Issue [#81](https://github.com/keviineze/proyecto-web-peliculas/issues/81) | [PR #86](https://github.com/keviineze/proyecto-web-peliculas/pull/86) | @Davidsoria99 (Desarrollador JS Storage)
+
 ## [Release Tercera Entrega] - 2026-10-31
 
 ### Added
