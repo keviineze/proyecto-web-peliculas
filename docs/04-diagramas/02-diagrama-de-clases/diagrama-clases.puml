@@ -1,0 +1,135 @@
+@startuml diagrama-clases.puml
+title Mini Letterboxd - Diagrama de Clases POO
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide empty members
+
+' =========================
+' ENTIDAD: CONTENT
+' =========================
+
+class Content {
+    - id: String
+    - title: String
+    - type: "Película" | "Serie"
+    - year: Number
+    - genres: String[]
+    - initialStatus: "pending" | "watched"
+
+    + Content(id: String, title: String, type: "Película" | "Serie", year: Number, genres: String[], initialStatus: "pending" | "watched")
+    + getId(): String
+    + getTitle(): String
+    + getType(): "Película" | "Serie"
+    + getYear(): Number
+    + getGenres(): String[]
+    + getInitialStatus(): "pending" | "watched"
+    + toJSON(): Object
+    + fromJSON(data: Object): Content {static}
+}
+
+note right of Content
+  Representa una película o serie.
+  type: "Película" | "Serie"
+  genres contiene uno o más géneros.
+  Sus propiedades se mantienen privadas.
+end note
+
+' =========================
+' COLECCION: CATALOG
+' =========================
+
+class Catalog {
+    - contents: Content[]
+
+    + Catalog(contents: Content[])
+    + getAll(): Content[]
+    + findById(id: String): Content | null
+    + findByName(name: String): Content | null
+    + search(titleQuery: String, filterValue: String): Content[]
+    + toJSON(): Object[]
+    + fromJSON(data: Object[]): Catalog {static}
+}
+
+note right of Catalog
+  Administra el catálogo disponible.
+  No modifica el estado personal
+  de los contenidos.
+  Evita identificadores duplicados.
+end note
+
+' =========================
+' ENTIDAD: LIBRARY ENTRY
+' =========================
+
+class LibraryEntry {
+    - titleId: String
+    - status: "pending" | "watched"
+    - isFavorite: Boolean
+    - rating: Number | null
+
+    + LibraryEntry(titleId: String, status: "pending" | "watched", isFavorite: Boolean, rating: Number | null)
+    + getTitleId(): String
+    + getStatus(): "pending" | "watched"
+    + getIsFavorite(): Boolean
+    + getRating(): Number | null
+    + setFavorite(value: Boolean): Boolean
+    + setStatus(status: "pending" | "watched"): Boolean
+    + setRating(rating: Number | null): Boolean
+    + toJSON(): Object
+    + fromJSON(data: Object): LibraryEntry {static}
+}
+
+note right of LibraryEntry
+  Representa el estado personal
+  de un contenido.
+  status: "pending" | "watched"
+  isFavorite: true | false
+  rating: null | entero de 1 a 5
+  Solamente se califican contenidos
+  marcados como vistos.
+end note
+
+' =========================
+' COLECCION: LIBRARY
+' =========================
+
+class Library {
+    - entries: LibraryEntry[]
+
+    + Library(entries: LibraryEntry[])
+    + getEntries(): LibraryEntry[]
+    + findEntry(titleId: String): LibraryEntry | null
+    + addFavorite(content: Content): Boolean
+    + removeFavorite(titleId: String): Boolean
+    + getFavorites(catalog: Catalog): Content[]
+    + getUnratedWatchedContents(catalog: Catalog): Content[]
+    + rateContent(titleId: String, rating: Number | null): Boolean
+    + setStatus(titleId: String, status: "pending" | "watched"): Boolean
+    + toJSON(): Object[]
+    + fromJSON(data: Object[]): Library {static}
+    + createInitial(catalog: Catalog): Library {static}
+}
+
+note right of Library
+  Administra la biblioteca personal.
+  Evita registros duplicados
+  para un mismo titleId.
+  Coordina favoritos y calificaciones.
+  No accede directamente al DOM
+  ni a localStorage/sessionStorage.
+end note
+
+' =========================
+' RELACIONES
+' =========================
+
+Catalog "1" o-- "0..*" Content : administra
+
+Library "1" *-- "0..*" LibraryEntry : contiene
+
+LibraryEntry "0..1" --> "1" Content : titleId
+
+Library ..> Catalog : consulta contenidos
+
+@enduml
