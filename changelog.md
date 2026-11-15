@@ -6,6 +6,12 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
+### Added
+
+- [feature/coord-devops-cuarta-entrega] **A4 - Coordinador / DevOps (Planificación inicial y repositorios)** | Issue [#83](https://github.com/keviineze/proyecto-web-peliculas/issues/83) | [PR #84](https://github.com/keviineze/proyecto-web-peliculas/pull/84) | @Davidsoria99 (Coordinador / DevOps)
+
+- [feature/dev-poo-logica-negocio] **A4 - Desarrollador JS POO (Lógica de Negocio)** | Issue [#80](https://github.com/keviineze/proyecto-web-peliculas/issues/80) | [PR #87](https://github.com/keviineze/proyecto-web-peliculas/pull/87) | @keviineze (Desarrollador JS POO)
+
 ## [Release Tercera Entrega] - 2026-10-31
 
 ### Added
