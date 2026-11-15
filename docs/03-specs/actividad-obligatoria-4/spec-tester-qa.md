@@ -1,24 +1,48 @@
-# Spec - Tester QA
+# Spec - Tester QA Engineer
 
-## MOMENTO 1: ANTES de escribir cualquier test
+## MOMENTO 1: ANTES de escribir código (Planificación)
 
-### 1. Plan de Testing
-Se desarrollarán y refactorizarán las siguientes suites de pruebas para garantizar la calidad del software tras la migración a POO y Storage:
-- **POO Models (`js/test/models.spec.js`):**
-  - *Happy path:* Instanciación correcta de clases, ejecución de métodos de negocio con parámetros válidos, correcta serialización/deserialización (`toJSON`/`fromJSON`).
-  - *Edge cases y Errores:* Validaciones internas al instanciar con datos faltantes o tipos de datos inválidos.
-- **Storage (`js/test/storage.spec.js`):**
-  - *Happy path:* Operaciones CRUD (guardar, obtener, actualizar, eliminar) exitosas usando `localStorage` y `sessionStorage`.
-  - *Edge cases y Errores:* Manejo de almacenamiento lleno, peticiones a claves inexistentes, intento de parseo de datos corruptos.
-- **Refactor de `js/test/script.spec.js`:** Adaptar las pruebas existentes para alinearlas a la nueva arquitectura orientada a objetos.
+### 1. Alcance de Cobertura
+Para garantizar la calidad de la nueva arquitectura, se desarrollarán pruebas para los siguientes módulos:
+- **POO (Lógica de Negocio):** Se crearán suites específicas (ej. enumerando módulos como `Pelicula`, `Serie`, `Catalogo`, `Usuario`) para validar:
+  - Constructores y correcta instanciación.
+  - Métodos de las clases y sus responsabilidades.
+  - Validaciones internas y encapsulamiento.
+- **Storage API:** Se creará `storage.spec.js` para validar las operaciones CRUD (guardar, obtener, actualizar, eliminar, listar, limpiar) y el manejo de errores (try-catch, storage lleno).
+- **Eventos y DOM:** Se refactorizará `script.spec.js` para adaptarlo a la nueva arquitectura orientada a objetos.
 
 ### 2. Herramientas a utilizar
-- **GitHub Copilot Agent Mode:** Se utilizará para la generación rápida de los test suites (`models.spec.js` y `storage.spec.js`), entregándole como contexto el código fuente de las clases y del módulo de storage generados por los desarrolladores.
-- **Playwright MCP (@playwright/mcp):** Se utilizará para la ejecución automatizada de los tests abriendo `test-runner.html` en un entorno de navegador real, permitiendo capturar evidencia visual (screenshots) de los resultados de Jasmine de forma transparente.
+- **Jasmine:** Framework para la creación y ejecución de las suites de prueba.
+- **GitHub Copilot Agent Mode:** Asistente para la generación de los tests basados en el código fuente de las clases y módulos.
+- **Playwright MCP:** Herramienta para la ejecución automatizada de `test-runner.html` y captura de resultados.
 
-### 3. Criterios de Aceptación (Checklist)
-- [ ] Suites de tests creadas para modelos POO y capa de storage.
-- [ ] Refactorización completa de los tests preexistentes.
-- [ ] Tests ejecutados en `test-runner.html` vía Playwright MCP.
-- [ ] Screenshots del test runner capturados mostrando los resultados (PASS/FAIL).
-- [ ] Bugs encontrados reportados como Issues en GitHub (con pasos para reproducir, etiqueta correspondiente y test case que falla).
+### 3. Reporte de Bugs
+Cualquier defecto encontrado durante la ejecución será reportado en GitHub Issues incluyendo obligatoriamente:
+- Pasos para reproducir.
+- Comportamiento esperado y comportamiento obtenido.
+- Etiqueta de bug y test específico que falla.
+- Asignación directa al rol responsable (Desarrollador JS POO, Eventos o Storage).
+
+### 4. Criterios de Aceptación (Checklist)
+- [ ] Las suites validan los constructores, métodos y validaciones de las clases POO.
+- [ ] Las suites validan todas las operaciones CRUD y manejo de errores del Storage.
+- [ ] Se documenta la ejecución vía Playwright MCP con capturas de pantalla (PASS/FAIL).
+- [ ] Se reportan los bugs encontrados siguiendo el formato completo descrito en la sección 3.
+- [ ] Se actualiza el archivo `js/test/testing-doc.md` con las métricas, instrucciones, detalle de las suites y enlaces a las evidencias.
+
+---
+
+## MOMENTO 2: AT CLOSE (Después de la ejecución)
+*(Esta sección se completará una vez que los desarrolladores entreguen su código y se ejecuten las pruebas)*
+
+### Evidencias de Generación (Copilot Agent Mode)
+- **Prompt utilizado:**
+ (Pendiente de ejecución)
+
+- **Fragmento generado y ajustes manuales:**
+ (Pendiente de documentar)
+
+### Resultados de Ejecución y Coordinación
+- **Métricas (PASS/FAIL):** (Pendiente)
+- **Capturas adjuntas:** (Pendiente)
+- **Coordinación con desarrolladores:** (Pendiente)
