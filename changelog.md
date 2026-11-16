@@ -8,7 +8,11 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
-- [feature/dev-storage] **A4 - Desarrollador JS Storage (Implementación de Storage API y Persistencia de Datos)** | Issue [#81](https://github.com/keviineze/proyecto-web-peliculas/issues/81) | [PR #86](https://github.com/keviineze/proyecto-web-peliculas/pull/86) | @Davidsoria99 (Desarrollador JS Storage)
+- [feature/tester-qa-specs] **A4 - Tester QA (Planificacion inicial de QA)** | Issue [#82](https://github.com/keviineze/proyecto-web-peliculas/issues/82) | [PR #85](https://github.com/keviineze/proyecto-web-peliculas/pull/85) | @Davidsoria99 (Tester QA Engineer)
+
+- [feature/coord-devops-cuarta-entrega] **A4 - Coordinador / DevOps (Planificación inicial y repositorios)** | Issue [#83](https://github.com/keviineze/proyecto-web-peliculas/issues/83) | [PR #84](https://github.com/keviineze/proyecto-web-peliculas/pull/84) | @Davidsoria99 (Coordinador / DevOps)
+
+- [feature/dev-storage] **A4 - Desarrollador JS Storage (Planificación de persistencia)** | Issue [#81](https://github.com/keviineze/proyecto-web-peliculas/issues/81) | [PR #86](https://github.com/keviineze/proyecto-web-peliculas/pull/86) | @Davidsoria99 (Desarrollador JS Storage)
 
 ## [Release Tercera Entrega] - 2026-10-31
 

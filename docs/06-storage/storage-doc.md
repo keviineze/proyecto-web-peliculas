@@ -22,15 +22,27 @@ Se aplica el patrón estructurado: `app:dominio:entidad`
 
 ---
 
-## 3. Estructura de Datos (JSON Schemas)
+## 3. Estructura de Datos (JSON Schemas) y Coordinación con POO
 
-Los objetos serializados respetarán este schema base:
+### Integración con Clases del Dominio (`toJSON` y `fromJSON`)
+El módulo `StorageAPI` opera exclusivamente con strings JSON. La responsabilidad de la serialización recae en las clases del dominio:
+1. **Guardar:** Antes de llamar a `StorageAPI.guardar()`, las instancias de `Library` llaman internamente a su método `toJSON()`, devolviendo objetos literales puros.
+2. **Recuperar:** Tras llamar a `StorageAPI.obtener()`, los datos recuperados son devueltos como objetos literales. El Desarrollador POO debe pasarlos por el método estático `LibraryEntry.fromJSON()` para reconstruir los prototipos y métodos.
+
+### Ejemplo Real de Schema (`mlb:biblioteca:listaPersonal`)
+El siguiente esquema muestra cómo se guardan las instancias de `LibraryEntry` (conteniendo `Content`) en el array principal de la biblioteca:
+
 ```json
 [
   {
-    "id": "12345",
-    "titulo": "Inception",
-    "estado": "visto",
-    "calificacion": 5
+    "id": "entry-169990123",
+    "content": {
+      "id": "c-101",
+      "title": "Inception",
+      "type": "Movie"
+    },
+    "status": "Visto",
+    "rating": 5,
+    "addedAt": "2026-11-15T20:00:00.000Z"
   }
 ]
