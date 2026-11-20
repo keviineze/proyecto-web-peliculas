@@ -13,11 +13,11 @@ Se aplicará el patrón estructurado `app:dominio:entidad` para evitar colisione
 - `mlb:sesion:filtrosActivos`
 
 ### 3. Criterios de Aceptación (Checklist)
-- [ ] Módulo `js/utils/storage.js` creado.
-- [ ] Funciones CRUD completas (`guardar`, `obtener`, `actualizar`, `eliminar`, `listar`, `limpiar`).
-- [ ] Manejo robusto de errores (`try-catch`, storage lleno).
-- [ ] Serialización/deserialización automática de JSON.
-- [ ] Documentación detallada en `docs/06-storage/storage-doc.md`.
+- [x] Módulo `js/utils/storage.js` creado.
+- [x] Funciones CRUD completas (`guardar`, `obtener`, `actualizar`, `eliminar`, `listar`, `limpiar`).
+- [x] Manejo robusto de errores (`try-catch`, storage lleno).
+- [x] Serialización/deserialización automática de JSON.
+- [x] Documentación detallada en `docs/06-storage/storage-doc.md`.
 
 ## MOMENTO 2: AT CLOSE (Después de la ejecución)
 
