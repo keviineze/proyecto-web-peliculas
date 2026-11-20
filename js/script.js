@@ -1,6 +1,7 @@
 import { Catalog } from "./models/Catalog.js";
 import { Content } from "./models/Content.js";
 import { Library } from "./models/Library.js";
+import { LibraryEntry } from "./models/LibraryEntry.js";
 import { StorageAPI } from "./utils/storage.js";
 
 const LIBRARY_STORAGE_KEY = "miniLetterboxdLibrary";
@@ -82,29 +83,38 @@ function initializeApp() {
 }
 
 function loadLibrary() {
+  const initialLibrary = Library.createInitial(catalog);
   const storedEntries = StorageAPI.obtener(LIBRARY_STORAGE_KEY);
   if (Array.isArray(storedEntries)) {
-    const knownEntries = storedEntries.filter(
-      (entry) => entry && catalog.findById(entry.titleId),
-    );
+    const entriesById = new Map();
+    for (const storedEntry of storedEntries) {
+      try {
+        const entry = LibraryEntry.fromJSON(storedEntry);
+        if (catalog.findById(entry.getTitleId())) {
+          entriesById.set(entry.getTitleId(), entry);
+        }
+      } catch {
+        continue;
+      }
+    }
 
-    try {
-      return Library.fromJSON(knownEntries);
-    } catch {
-      renderMessage(
-        document.getElementById("library-feedback"),
-        "No se pudo leer la biblioteca guardada. Se inició una biblioteca nueva.",
-        "warning",
-      );
+    for (const [titleId, entry] of entriesById) {
+      const content = catalog.findById(titleId);
+      initialLibrary.setStatus(titleId, entry.getStatus());
+      if (entry.getIsFavorite()) {
+        initialLibrary.addFavorite(content);
+      }
+      if (entry.getRating() !== null) {
+        initialLibrary.rateContent(titleId, entry.getRating());
+      }
     }
   }
 
-  const initialLibrary = Library.createInitial(catalog);
   if (!StorageAPI.guardar(LIBRARY_STORAGE_KEY, initialLibrary.toJSON())) {
     renderMessage(
       document.getElementById("library-feedback"),
-      "La biblioteca está disponible, pero no se pudo guardar en este navegador.",
-      "warning",
+      "La biblioteca está disponible, pero no se pudo guardar su estado completo en este navegador.",
+      "danger",
     );
   }
   return initialLibrary;
@@ -216,13 +226,13 @@ function toggleFavorite(titleId) {
 
   const existingEntry = library.findEntry(titleId);
   const wasFavorite = existingEntry?.getIsFavorite() ?? false;
-  const updated = persistLibraryChange(() =>
+  const result = persistLibraryChange(() =>
     wasFavorite
       ? library.removeFavorite(titleId)
       : library.addFavorite(content),
   );
 
-  if (updated) {
+  if (result.type === "saved") {
     renderMessage(
       document.getElementById("library-feedback"),
       wasFavorite
@@ -230,23 +240,35 @@ function toggleFavorite(titleId) {
         : "Contenido agregado a Mi Lista.",
       "success",
     );
+  } else if (result.type === "domain-error") {
+    renderMessage(
+      document.getElementById("library-feedback"),
+      wasFavorite
+        ? "No se pudo quitar el contenido de Mi Lista."
+        : "No se pudo agregar el contenido a Mi Lista.",
+      "warning",
+    );
   }
 }
 
 function updateContentStatus(select) {
   const titleId = select.dataset.titleId;
   const status = select.value;
-  const updated = persistLibraryChange(() =>
-    library.setStatus(titleId, status),
-  );
+  const result = persistLibraryChange(() => library.setStatus(titleId, status));
 
-  renderMessage(
-    document.getElementById("library-feedback"),
-    updated
-      ? "Estado actualizado."
-      : "No se pudo cambiar el estado. Una calificación existente requiere mantener el contenido como visto.",
-    updated ? "success" : "warning",
-  );
+  if (result.type === "saved") {
+    renderMessage(
+      document.getElementById("library-feedback"),
+      "Estado actualizado.",
+      "success",
+    );
+  } else if (result.type === "domain-error") {
+    renderMessage(
+      document.getElementById("library-feedback"),
+      "No se pudo cambiar el estado. Una calificación existente requiere mantener el contenido como visto.",
+      "warning",
+    );
+  }
 }
 
 function previewRating(input) {
@@ -275,20 +297,24 @@ function saveRating(input) {
     return;
   }
 
-  const updated = persistLibraryChange(() =>
+  const result = persistLibraryChange(() =>
     library.rateContent(input.dataset.titleId, rating),
   );
   const currentInput = document.getElementById(input.id) ?? input;
   const feedback = document.getElementById(input.dataset.feedbackId);
+  const saved = result.type === "saved";
+  const storageFailed = result.type === "storage-error";
   setFieldFeedback(
     currentInput,
     feedback,
-    updated
+    saved
       ? "Calificación guardada."
-      : "Solo se pueden calificar contenidos marcados como vistos.",
-    updated,
+      : storageFailed
+        ? "La calificación es válida, pero no se pudo guardar."
+        : "Solo se pueden calificar contenidos marcados como vistos.",
+    storageFailed ? null : saved,
   );
-  if (updated) {
+  if (saved) {
     renderMessage(
       document.getElementById("library-feedback"),
       "Calificación guardada.",
@@ -299,7 +325,7 @@ function saveRating(input) {
 
 function persistLibraryChange(change) {
   const previousLibrary = Library.fromJSON(library.toJSON());
-  let changed = false;
+  let changed;
 
   try {
     changed = change();
@@ -310,7 +336,7 @@ function persistLibraryChange(change) {
   if (!changed) {
     renderLibrary();
     syncFavoriteButtons();
-    return false;
+    return { type: "domain-error" };
   }
 
   if (!StorageAPI.guardar(LIBRARY_STORAGE_KEY, library.toJSON())) {
@@ -322,14 +348,14 @@ function persistLibraryChange(change) {
       "No se pudo guardar el cambio. La biblioteca anterior fue restaurada.",
       "danger",
     );
-    return false;
+    return { type: "storage-error" };
   }
 
   renderLibrary();
   renderCurrentCatalog();
   syncFavoriteButtons();
   clearShareResult();
-  return true;
+  return { type: "saved" };
 }
 
 function renderCurrentCatalog() {
@@ -601,13 +627,13 @@ function renderMessage(container, message, type) {
 }
 
 function setFieldFeedback(input, feedback, message, isValid) {
-  input.classList.toggle("is-valid", isValid);
-  input.classList.toggle("is-invalid", !isValid);
-  input.setAttribute("aria-invalid", String(!isValid));
+  input.classList.toggle("is-valid", isValid === true);
+  input.classList.toggle("is-invalid", isValid === false);
+  input.setAttribute("aria-invalid", String(isValid === false));
   if (feedback) {
     feedback.textContent = message;
-    feedback.classList.toggle("text-success", isValid);
-    feedback.classList.toggle("text-danger", !isValid);
+    feedback.classList.toggle("text-success", isValid === true);
+    feedback.classList.toggle("text-danger", isValid === false);
   }
 }
 

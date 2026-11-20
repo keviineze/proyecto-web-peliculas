@@ -231,18 +231,20 @@ function configureEvents() {
 
 ### Ajustes manuales y justificación
 
-| Ajuste manual                                                                                                    | Justificación / comportamiento corregido                                                                                                               |
-| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Se usaron listeners delegados en `document` y atributos `data-action`/`data-title-id`.                           | Los controles de catálogo y biblioteca se recrean durante el renderizado; la delegación evita listeners duplicados y mantiene las acciones operativas. |
-| El renderizado crea nodos y asigna texto con `textContent`/`replaceChildren`.                                    | Evita interpolar títulos o valores en `innerHTML` y concentra la manipulación de interfaz en funciones de presentación.                                |
-| Si Storage rechaza una escritura, se reconstruye la instancia anterior de `Library` y se vuelve a renderizar.    | Evita que la interfaz muestre como persistido un cambio que no pudo guardarse.                                                                         |
-| El feedback de rating se vuelve a aplicar al control recién renderizado y muestra el valor guardado al recargar. | El renderizado reemplaza el nodo de entrada; el feedback debe reflejar el estado persistido, no el control desconectado.                               |
+| Ajuste manual                                                                                                                                                   | Justificación / comportamiento corregido                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Se usaron listeners delegados en `document` y atributos `data-action`/`data-title-id`.                                                                          | Los controles de catálogo y biblioteca se recrean durante el renderizado; la delegación evita listeners duplicados y mantiene las acciones operativas.   |
+| El renderizado crea nodos y asigna texto con `textContent`/`replaceChildren`.                                                                                   | Evita interpolar títulos o valores en `innerHTML` y concentra la manipulación de interfaz en funciones de presentación.                                  |
+| Si Storage rechaza una escritura, se reconstruye la instancia anterior de `Library` y se vuelve a renderizar.                                                   | Evita que la interfaz muestre como persistido un cambio que no pudo guardarse.                                                                           |
+| El feedback de rating se vuelve a aplicar al control recién renderizado y muestra el valor guardado al recargar.                                                | El renderizado reemplaza el nodo de entrada; el feedback debe reflejar el estado persistido, no el control desconectado.                                 |
+| La carga parte de `Library.createInitial(catalog)`, fusiona las entradas persistidas válidas/identificadas y guarda la biblioteca completa antes de renderizar. | Una biblioteca persistida parcial ya no hace desaparecer contenidos ni sus estados iniciales; las entradas inválidas o desconocidas se ignoran.          |
+| `persistLibraryChange()` devuelve uno de tres estados (`saved`, `domain-error` o `storage-error`) y cada flujo presenta feedback según el resultado.            | Un fallo de `StorageAPI.guardar()` ya no se confunde con una regla del dominio; se restaura el estado anterior y se informa el problema de persistencia. |
 
 ### Decisiones finales de estructura e integración
 
 - **Estructura final de `js/script.js`:** importa `Catalog`, `Content`, `Library` y `StorageAPI`; inicializa una instancia de catálogo y biblioteca; registra cuatro listeners delegados; separa handlers, coordinación de mutaciones y funciones DOM (`renderCatalog`, `renderLibrary`, `renderMessage`, entre otras).
 - **Integración con `Catalog` y `Library`:** búsqueda con `Catalog.search`; resolución por `findById`; gestión con `addFavorite`/`removeFavorite`; cambios con `setStatus`/`rateContent`; exportación desde `getFavorites`. No se accede a campos privados.
-- **Integración con Storage:** usa `StorageAPI.obtener("miniLetterboxdLibrary")` al iniciar y `StorageAPI.guardar(...)` tras mutaciones exitosas, serializando con `Library.toJSON()` y reconstruyendo con `Library.fromJSON()`.
+- **Integración con Storage:** usa `StorageAPI.obtener("miniLetterboxdLibrary")` al iniciar, fusiona datos válidos sobre `Library.createInitial(catalog)` y guarda el estado completo mediante `StorageAPI.guardar(...)`. Las mutaciones exitosas también se serializan con `Library.toJSON()`.
 - **Controles y selectores finales:** `#search-form`, `#search-query`, `#search-filter`, `.catalog-grid`, `#pending-items`, `#watched-items`, `[data-action="toggle-favorite"]`, `[data-action="update-status"]`, `[data-action="rate-content"]`, `#share-format` y `#share-output`.
 - **Manejo de errores/validación:** mensajes Bootstrap en regiones `role=status`/`alert`; rating entero de 1 a 5 con feedback `aria-invalid`/clases; rollback visual si falla Storage; estados vacíos para búsqueda y compartir.
 
@@ -255,6 +257,8 @@ function configureEvents() {
 - [x] No se encontraron llamadas a `prompt()`/`alert()` en `js/` mediante búsqueda del workspace.
 - [x] Sintaxis de `js/script.js` validada como módulo con Node; `get_errors` no reportó errores en JS/HTML; consola del navegador sin errores.
 - [x] Viewport móvil de 390 px verificado sin desbordamiento horizontal.
+- [x] Biblioteca parcial con solo `Dark` verificada: los otros contenidos conservaron su estado inicial y los tres registros quedaron persistidos.
+- [x] Fallo simulado de `StorageAPI.guardar()` verificado para cambio de estado y calificación: se restauró la biblioteca y se mostró feedback de persistencia, no un error de dominio.
 - [ ] Jasmine no ejecutado: `js/test/test-runner.html` aún carga `js/script.js` como script clásico y `js/test/script.spec.js` depende de funciones legacy; requiere refactor del rol Tester QA.
 - **Estado de prueba del navegador:** restaurado a los datos iniciales de la biblioteca después de verificar los flujos.
 - **Capturas/evidencias:** snapshot de accesibilidad y comprobaciones de interacción realizadas con Playwright MCP durante esta sesión.
