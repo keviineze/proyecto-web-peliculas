@@ -22,11 +22,29 @@ Se aplicará el patrón estructurado `app:dominio:entidad` para evitar colisione
 ## MOMENTO 2: AT CLOSE (Después de la ejecución)
 
 ### Evidencias de Generación (Copilot Agent Mode)
-- **Archivos adjuntados como contexto:** `js/models/` y `js/utils/storage.js`.
+- **Archivos adjuntados como contexto:** `js/models/` y `docs/03-specs/actividad-obligatoria-4/spec-dev-storage.md`.
 - **Prompt utilizado:**
   ```text
   Generame el módulo js/utils/storage.js exportando un objeto StorageAPI. Debe incluir las funciones CRUD (guardar, obtener, actualizar, eliminar, listar y limpiar). Agregá try-catch en todas las funciones. En guardar() manejá el error QuotaExceededError. En obtener() parseá el JSON y si falla lanzá un error de datos corruptos. Permití elegir entre localStorage y sessionStorage mediante un parámetro.
   ```
+
+  - **Fragmento generado por Copilot (`js/utils/storage.js`):**
+  ```javascript
+  guardar(clave, valor, tipo = 'local') {
+    try {
+      const storage = obtenerStorage(tipo);
+      const serializado = JSON.stringify(valor);
+      storage.setItem(clave, serializado);
+      return true;
+    } catch (error) {
+      if (error.name === 'QuotaExceededError') {
+        console.error(`[Storage Error] Cuota excedida al guardar "${clave}".`, error);
+      } else {
+        console.error(`[Storage Error] No se pudo serializar o guardar "${clave}".`, error);
+      }
+      return false;
+    }
+  }
 
 ### Ajustes Manuales y Coordinación
 - Mejora de errores: Se añadieron prefijos [Storage Error] y [Storage Warning] en los console.error para identificar rápidamente problemas de persistencia en la consola, diferenciándolos de errores de UI.

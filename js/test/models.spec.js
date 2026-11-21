@@ -1,0 +1,328 @@
+import { Catalog } from "../models/Catalog.js";
+import { Content } from "../models/Content.js";
+import { Library } from "../models/Library.js";
+import { LibraryEntry } from "../models/LibraryEntry.js";
+
+function createContent(
+  id = "interstellar",
+  title = "Interstellar",
+  type = "Película",
+  year = 2014,
+  genres = ["Ciencia ficción"],
+  initialStatus = "pending",
+) {
+  return new Content(id, title, type, year, genres, initialStatus);
+}
+
+describe("Content", function () {
+  it("construye contenido válido, expone sus datos y protege la lista de géneros", function () {
+    const genres = ["Ciencia ficción"];
+    const content = createContent(
+      "interstellar",
+      "Interstellar",
+      "Película",
+      2014,
+      genres,
+      "pending",
+    );
+
+    genres.push("Drama");
+    const exposedGenres = content.getGenres();
+    exposedGenres.push("Acción");
+
+    expect(content.getId()).toBe("interstellar");
+    expect(content.getTitle()).toBe("Interstellar");
+    expect(content.getType()).toBe("Película");
+    expect(content.getYear()).toBe(2014);
+    expect(content.getGenres()).toEqual(["Ciencia ficción"]);
+    expect(content.getInitialStatus()).toBe("pending");
+    expect(content.id).toBeUndefined();
+  });
+
+  it("valida identificador, título, tipo, año, géneros y estado inicial", function () {
+    expect(() => createContent("", "Título")).toThrowError(TypeError);
+    expect(() => createContent("id", " ")).toThrowError(TypeError);
+    expect(() => createContent("id", "Título", "Documental")).toThrowError(
+      TypeError,
+    );
+    expect(() => createContent("id", "Título", "Serie", 0)).toThrowError(
+      RangeError,
+    );
+    expect(() =>
+      createContent("id", "Título", "Serie", 2024.5),
+    ).toThrowError(RangeError);
+    expect(() =>
+      createContent("id", "Título", "Serie", 2024, []),
+    ).toThrowError(TypeError);
+    expect(() =>
+      createContent("id", "Título", "Serie", 2024, ["Drama", " "]),
+    ).toThrowError(TypeError);
+    expect(() =>
+      createContent("id", "Título", "Serie", 2024, ["Drama"], "planned"),
+    ).toThrowError(TypeError);
+  });
+
+  it("serializa y reconstruye una instancia validando el JSON de entrada", function () {
+    const content = createContent(
+      "dark",
+      "Dark",
+      "Serie",
+      2017,
+      ["Misterio"],
+      "watched",
+    );
+
+    expect(content.toJSON()).toEqual({
+      id: "dark",
+      title: "Dark",
+      type: "Serie",
+      year: 2017,
+      genres: ["Misterio"],
+      initialStatus: "watched",
+    });
+    const restored = Content.fromJSON(content.toJSON());
+    expect(restored).toEqual(jasmine.any(Content));
+    expect(restored.toJSON()).toEqual(content.toJSON());
+    expect(() => Content.fromJSON(null)).toThrowError(TypeError);
+    expect(() => Content.fromJSON([])).toThrowError(TypeError);
+  });
+});
+
+describe("Catalog", function () {
+  const contents = [
+    createContent(),
+    createContent(
+      "chihiro",
+      "El viaje de Chihiro",
+      "Película",
+      2001,
+      ["Animación y fantasía"],
+      "watched",
+    ),
+    createContent(
+      "dark",
+      "Dark",
+      "Serie",
+      2017,
+      ["Misterio y ciencia ficción"],
+      "pending",
+    ),
+  ];
+
+  it("valida el arreglo y requiere contenidos con identificadores únicos", function () {
+    expect(() => new Catalog(null)).toThrowError(TypeError);
+    expect(() => new Catalog([{}])).toThrowError(TypeError);
+    expect(
+      () => new Catalog([contents[0], createContent("interstellar")]),
+    ).toThrowError(RangeError);
+  });
+
+  it("mantiene la colección encapsulada y permite búsquedas por ID y título normalizado", function () {
+    const source = [...contents];
+    const catalog = new Catalog(source);
+    source.pop();
+    catalog.getAll().pop();
+
+    expect(catalog.getAll().length).toBe(3);
+    expect(catalog.findById("dark")).toBe(contents[2]);
+    expect(catalog.findById("missing")).toBeNull();
+    expect(catalog.findByName("  EL VIAJE DE CHIHIRO ")).toBe(contents[1]);
+    expect(catalog.findByName("")).toBeNull();
+    expect(catalog.findByName("No existe")).toBeNull();
+  });
+
+  it("busca por título parcial y combina filtros de tipo o género sin distinguir tildes", function () {
+    const catalog = new Catalog(contents);
+
+    expect(catalog.search("inter", "").map((item) => item.getId())).toEqual([
+      "interstellar",
+    ]);
+    expect(catalog.search("", "pelicula").map((item) => item.getId())).toEqual([
+      "interstellar",
+      "chihiro",
+    ]);
+    expect(catalog.search("", "CIENCIA").map((item) => item.getId())).toEqual([
+      "interstellar",
+      "dark",
+    ]);
+    expect(catalog.search("dark", "animacion")).toEqual([]);
+    expect(catalog.search("", "").length).toBe(3);
+  });
+
+  it("serializa el catálogo y reconstruye sus instancias Content", function () {
+    const catalog = new Catalog(contents);
+    const restored = Catalog.fromJSON(catalog.toJSON());
+
+    expect(restored).toEqual(jasmine.any(Catalog));
+    expect(restored.getAll()[0]).toEqual(jasmine.any(Content));
+    expect(restored.toJSON()).toEqual(catalog.toJSON());
+    expect(() => Catalog.fromJSON({})).toThrowError(TypeError);
+    expect(() => Catalog.fromJSON([null])).toThrowError(TypeError);
+  });
+});
+
+describe("LibraryEntry", function () {
+  it("construye un registro válido y protege sus datos mediante getters", function () {
+    const entry = new LibraryEntry("dark", "watched", true, 5);
+
+    expect(entry.getTitleId()).toBe("dark");
+    expect(entry.getStatus()).toBe("watched");
+    expect(entry.getIsFavorite()).toBeTrue();
+    expect(entry.getRating()).toBe(5);
+    expect(entry.titleId).toBeUndefined();
+  });
+
+  it("valida ID, estado, favorito, rango de calificación y compatibilidad del estado", function () {
+    expect(() => new LibraryEntry("", "pending", false, null)).toThrowError(
+      TypeError,
+    );
+    expect(() =>
+      new LibraryEntry("id", "planned", false, null),
+    ).toThrowError(TypeError);
+    expect(() =>
+      new LibraryEntry("id", "pending", "true", null),
+    ).toThrowError(TypeError);
+    expect(() =>
+      new LibraryEntry("id", "watched", false, 0),
+    ).toThrowError(RangeError);
+    expect(() =>
+      new LibraryEntry("id", "watched", false, 5.5),
+    ).toThrowError(RangeError);
+    expect(() =>
+      new LibraryEntry("id", "pending", false, 3),
+    ).toThrowError(RangeError);
+  });
+
+  it("actualiza favorito, estado y calificación y rechaza transiciones inválidas", function () {
+    const entry = new LibraryEntry("dark", "pending", false, null);
+
+    expect(entry.setFavorite(true)).toBeTrue();
+    expect(entry.setFavorite("sí")).toBeFalse();
+    expect(entry.getIsFavorite()).toBeTrue();
+    expect(entry.setRating(4)).toBeFalse();
+    expect(entry.setStatus("watched")).toBeTrue();
+    expect(entry.setRating(4)).toBeTrue();
+    expect(entry.setStatus("pending")).toBeFalse();
+    expect(entry.setRating(6)).toBeFalse();
+    expect(entry.getRating()).toBe(4);
+    expect(entry.setRating(null)).toBeTrue();
+    expect(entry.setStatus("pending")).toBeTrue();
+  });
+
+  it("serializa y reconstruye una entrada validando el objeto", function () {
+    const entry = new LibraryEntry("dark", "watched", true, null);
+
+    expect(entry.toJSON()).toEqual({
+      titleId: "dark",
+      status: "watched",
+      isFavorite: true,
+      rating: null,
+    });
+    expect(LibraryEntry.fromJSON(entry.toJSON()).toJSON()).toEqual(
+      entry.toJSON(),
+    );
+    expect(() => LibraryEntry.fromJSON(null)).toThrowError(TypeError);
+    expect(() => LibraryEntry.fromJSON([])).toThrowError(TypeError);
+  });
+});
+
+describe("Library", function () {
+  const catalog = new Catalog([
+    createContent(),
+    createContent(
+      "chihiro",
+      "El viaje de Chihiro",
+      "Película",
+      2001,
+      ["Animación y fantasía"],
+      "watched",
+    ),
+    createContent("dark", "Dark", "Serie", 2017, ["Misterio"], "pending"),
+  ]);
+
+  it("valida entradas únicas y encapsula copias independientes", function () {
+    const sourceEntry = new LibraryEntry("interstellar", "pending", false, null);
+    const source = [sourceEntry];
+    const library = new Library(source);
+
+    sourceEntry.setFavorite(true);
+    const exposedEntry = library.getEntries()[0];
+    exposedEntry.setFavorite(true);
+
+    expect(() => new Library(null)).toThrowError(TypeError);
+    expect(() => new Library([{}])).toThrowError(TypeError);
+    expect(
+      () =>
+        new Library([
+          new LibraryEntry("same", "pending", false, null),
+          new LibraryEntry("same", "watched", false, null),
+        ]),
+    ).toThrowError(RangeError);
+    expect(library.findEntry("interstellar").getIsFavorite()).toBeFalse();
+    expect(library.findEntry("missing")).toBeNull();
+  });
+
+  it("crea el estado inicial y agrega o quita favoritos preservando otros datos", function () {
+    const library = Library.createInitial(catalog);
+
+    expect(library.toJSON()).toEqual([
+      { titleId: "interstellar", status: "pending", isFavorite: false, rating: null },
+      { titleId: "chihiro", status: "watched", isFavorite: false, rating: null },
+      { titleId: "dark", status: "pending", isFavorite: false, rating: null },
+    ]);
+    expect(library.addFavorite(catalog.findById("chihiro"))).toBeTrue();
+    expect(library.rateContent("chihiro", 5)).toBeTrue();
+    expect(library.addFavorite(catalog.findById("chihiro"))).toBeFalse();
+    expect(library.removeFavorite("chihiro")).toBeTrue();
+    expect(library.removeFavorite("chihiro")).toBeFalse();
+    expect(library.findEntry("chihiro").toJSON()).toEqual({
+      titleId: "chihiro",
+      status: "watched",
+      isFavorite: false,
+      rating: 5,
+    });
+    expect(() => library.addFavorite({})).toThrowError(TypeError);
+    expect(() => Library.createInitial({})).toThrowError(TypeError);
+  });
+
+  it("resuelve favoritos y vistos sin calificación desde el catálogo", function () {
+    const library = Library.createInitial(catalog);
+    library.addFavorite(catalog.findById("dark"));
+    library.setStatus("chihiro", "watched");
+
+    expect(library.getFavorites(catalog).map((item) => item.getId())).toEqual([
+      "dark",
+    ]);
+    expect(
+      library.getUnratedWatchedContents(catalog).map((item) => item.getId()),
+    ).toEqual(["chihiro"]);
+    expect(() => library.getFavorites({})).toThrowError(TypeError);
+    expect(() => library.getUnratedWatchedContents({})).toThrowError(
+      TypeError,
+    );
+  });
+
+  it("actualiza estados y ratings existentes y rechaza cambios inválidos o IDs ausentes", function () {
+    const library = Library.createInitial(catalog);
+
+    expect(library.rateContent("interstellar", 4)).toBeFalse();
+    expect(library.setStatus("missing", "watched")).toBeFalse();
+    expect(library.setStatus("interstellar", "watched")).toBeTrue();
+    expect(library.rateContent("interstellar", 4)).toBeTrue();
+    expect(library.setStatus("interstellar", "pending")).toBeFalse();
+    expect(library.rateContent("interstellar", 8)).toBeFalse();
+    expect(library.rateContent("interstellar", null)).toBeTrue();
+    expect(library.setStatus("interstellar", "pending")).toBeTrue();
+  });
+
+  it("serializa y restaura la biblioteca con entradas independientes", function () {
+    const library = Library.createInitial(catalog);
+    library.addFavorite(catalog.findById("dark"));
+    const restored = Library.fromJSON(library.toJSON());
+
+    expect(restored.toJSON()).toEqual(library.toJSON());
+    expect(restored.getEntries()[0]).toEqual(jasmine.any(LibraryEntry));
+    expect(() => Library.fromJSON({})).toThrowError(TypeError);
+    expect(() => Library.fromJSON([null])).toThrowError(TypeError);
+  });
+});
