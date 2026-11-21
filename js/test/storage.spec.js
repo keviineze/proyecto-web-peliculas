@@ -26,6 +26,13 @@ describe("StorageAPI", function () {
         expect(warning).toHaveBeenCalled();
       });
 
+      it("actualiza una clave existente cuyo valor es null", function () {
+        StorageAPI.guardar("test:null", null, type);
+
+        expect(StorageAPI.actualizar("test:null", "updated", type)).toBeTrue();
+        expect(StorageAPI.obtener("test:null", type)).toBe("updated");
+      });
+
       it("elimina claves y lista solamente las que coinciden con el prefijo", function () {
         StorageAPI.guardar("catalog:one", 1, type);
         StorageAPI.guardar("catalog:two", 2, type);
@@ -83,5 +90,15 @@ describe("StorageAPI", function () {
 
     expect(StorageAPI.guardar("test:circular", circular)).toBeFalse();
     expect(error).toHaveBeenCalled();
+  });
+
+  it("rechaza un tipo de storage inválido sin guardar en sessionStorage", function () {
+    const error = spyOn(console, "error");
+
+    expect(StorageAPI.guardar("test:invalid", "value", "xyz")).toBeFalse();
+    expect(sessionStorage.getItem("test:invalid")).toBeNull();
+    expect(error).toHaveBeenCalled();
+    expect(error.calls.mostRecent().args[0]).toContain("[Storage Error]");
+    expect(error.calls.mostRecent().args[1].name).toBe("TypeError");
   });
 });

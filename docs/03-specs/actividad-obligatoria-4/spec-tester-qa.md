@@ -44,7 +44,7 @@ Cualquier defecto encontrado durante la ejecución será reportado en GitHub Iss
 Se generaron js/test/models.spec.js y js/test/storage.spec.js, se reemplazaron las pruebas antiguas en js/test/script.spec.js por pruebas de integración con el DOM, se actualizó js/test/test-runner.html con el fixture de interfaz y carga ordenada de módulos ES, y se actualizó js/test/testing-doc.md con las instrucciones y la evidencia de ejecución. Se verificó la ejecución mediante servidor HTTP local sin errores de consola.
 
 - **Resultados de Ejecución y Coordinación**
-- Métricas (PASS/FAIL): 36 specs, 0 failures (100% PASS) — Tiempo total: 0.14s (Jasmine 5.10.0).
+- Métricas (PASS/FAIL): 39 specs, 0 failures (100% PASS) — Tiempo total: 0.106s (Jasmine 5.10.0).
 
 - Capturas adjuntas:
 

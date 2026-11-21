@@ -8,7 +8,7 @@ Desde la raíz del proyecto, inicia un servidor HTTP local:
 python -m http.server 8000
 ```
 
-Abre `http://localhost:8000/js/test/test-runner.html` en el navegador. Jasmine 5.10.0 se carga desde CDN y ejecuta automáticamente las tres suites. El servidor es necesario para que el navegador permita cargar los módulos ES.
+Abre `http://localhost:8000/js/test/test-runner.html` en el navegador. Jasmine 5.10.0 se carga desde `js/test/vendor/jasmine-5.10.0/` y ejecuta automáticamente las tres suites. El servidor es necesario para que el navegador permita cargar los módulos ES.
 
 ## Suites
 
@@ -20,12 +20,11 @@ Las suites se ejecutan en el navegador y el reporte de Jasmine muestra el total 
 
 ## Limitaciones
 
-- La ejecución requiere conexión a internet para descargar Jasmine.
 - Las pruebas de interfaz usan un DOM reducido incluido en el runner; no validan estilos ni el diseño visual de `index.html`.
 
 ## Resultados y Evidencias
 
-- **Última ejecución:** 36 specs, 0 failures (100% PASS) — 0.14s en Jasmine 5.10.0.
+- **Última ejecución:** 39 specs, 0 failures (100% PASS) — 0.106s en Jasmine 5.10.0.
 - **Captura de resultados:**
 
-![Resultados Jasmine 36 specs PASS](screenshots/jasmine-pass-1.png)
+![Resultados Jasmine 39 specs PASS](screenshots/jasmine-pass-1.png)
