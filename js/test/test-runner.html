@@ -3,18 +3,50 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="../../" />
+    <link rel="icon" href="data:," />
     <title>Pruebas Jasmine | Mini Letterboxd</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine.css"
-    />
+    <link rel="stylesheet" href="js/test/vendor/jasmine-5.10.0/jasmine.css" />
   </head>
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine-html.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/boot0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/boot1.min.js"></script>
-    <script src="../script.js"></script>
-    <script src="script.spec.js"></script>
+    <script src="js/test/vendor/jasmine-5.10.0/jasmine.js"></script>
+    <script src="js/test/vendor/jasmine-5.10.0/jasmine-html.js"></script>
+    <script src="js/test/vendor/jasmine-5.10.0/boot0.js"></script>
+    <script src="js/test/vendor/jasmine-5.10.0/boot1.js"></script>
+    <script>
+      jasmine.getEnv().configure({ random: false });
+    </script>
+    <div id="test-app-fixture" hidden>
+      <main>
+        <p id="library-feedback" hidden></p>
+        <form id="search-form">
+          <input id="search-query" name="query" type="search" />
+          <select id="search-filter" name="filter">
+            <option value="">Todos</option>
+            <option value="Serie">Serie</option>
+          </select>
+          <button type="submit">Buscar</button>
+          <button type="button" data-action="clear-search">Limpiar</button>
+        </form>
+        <p id="search-feedback" hidden></p>
+        <div class="catalog-grid"></div>
+        <section>
+          <div id="pending-items"></div>
+          <p id="pending-empty" hidden></p>
+          <div id="watched-items"></div>
+          <p id="watched-empty" hidden></p>
+        </section>
+      </main>
+      <select id="share-format">
+        <option value="texto">Texto</option>
+        <option value="enlace">Enlace</option>
+      </select>
+      <button type="button" data-action="share-list">Preparar lista</button>
+      <p id="share-feedback" hidden></p>
+      <textarea id="share-output" hidden></textarea>
+    </div>
+    <script type="module" src="js/test/script.spec.js"></script>
+    <script type="module" src="js/test/models.spec.js"></script>
+    <script type="module" src="js/test/storage.spec.js"></script>
   </body>
 </html>
