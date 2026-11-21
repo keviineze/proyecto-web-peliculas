@@ -22,8 +22,8 @@ Se utilizará Copilot Agent como herramienta analítica durante la revisión de 
 
 ### 3. Criterios de Aceptación (Checklist)
 - [x] Correcciones de la Actividad Obligatoria N°3 aplicadas satisfactoriamente.
-- [ ] Backport realizado desde la release aprobada hacia la rama `develop`.
-- [x] ≥4 code reviews documentados e iterados con el estado `CHANGES_REQUESTED` sobre las PRs de los integrantes.
+- [x] Backport realizado desde la release aprobada hacia la rama `develop`.
+- [ ] ≥4 code reviews documentados e iterados con el estado `CHANGES_REQUESTED` sobre las PRs de los integrantes.
 - [ ] Despliegue de GitHub Pages configurado, actualizado y activo para la rama de la cuarta entrega.
 - [ ] Release final generada en GitHub bajo el tag correspondiente (`v1.2-cuarta-entrega`).
 
