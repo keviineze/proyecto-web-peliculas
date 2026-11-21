@@ -22,7 +22,7 @@ Se utilizará Copilot Agent como herramienta analítica durante la revisión de 
 
 ### 3. Criterios de Aceptación (Checklist)
 - [x] Correcciones de la Actividad Obligatoria N°3 aplicadas satisfactoriamente.
-- [x] Backport realizado desde la release aprobada hacia la rama `develop`.
+- [ ] Backport realizado desde la release aprobada hacia la rama `develop`.
 - [x] ≥4 code reviews documentados e iterados con el estado `CHANGES_REQUESTED` sobre las PRs de los integrantes.
 - [ ] Despliegue de GitHub Pages configurado, actualizado y activo para la rama de la cuarta entrega.
 - [ ] Release final generada en GitHub bajo el tag correspondiente (`v1.2-cuarta-entrega`).
@@ -86,17 +86,79 @@ No se detectaron hallazgos reales que requieran cambios en esta revisión.
 
 DECISIÓN FINAL SUGERIDA: APPROVE.
 
+- **Archivos adjuntos como contexto:** `js/models/Content.js`, `js/models/Catalog.js`, `js/models/LibraryEntry.js`, `js/models/Library.js`, `docs/03-specs/actividad-obligatoria-4/spec-dev-poo.md`.
+- **Estado cargado:** `APPROVE` (no se cargó `CHANGES_REQUESTED` porque no se encontraron hallazgos reales que requirieran cambios).
+
+| Archivo revisado | Alcance del diff | Estado |
+| --- | --- | --- |
+| `js/models/Content.js` | Constructor, campos privados `#`, validaciones y `toJSON`/`fromJSON` | APPROVE |
+| `js/models/Catalog.js` | Encapsulamiento de colección, búsqueda/filtros y serialización | APPROVE |
+| `js/models/LibraryEntry.js` | Validación de estado, favoritos, ratings y serialización | APPROVE |
+| `js/models/Library.js` | Copias defensivas, gestión de entradas y reconstrucción desde JSON | APPROVE |
+
 **2. Revisión de Eventos + DOM - PR #89**
-- **Prompt utilizado (Primera revisión):**
-  ```text
-  Actúa como Senior Software Engineer y Tech Lead realizando un code review profesional de la PR #89 (rama `feature/dev-eventos-dom` contra `develop`). Analiza `script.js`, `index.html`, `spec-dev-eventos-dom.md` y `changelog.md` usando GitKraken (MCP). Verifica eliminación de `prompt()`/`alert()`, separación de responsabilidades respecto a POO y `StorageAPI`, seguridad DOM y bugs reales. Publica los hallazgos directamente en GitHub.
+- **Archivos adjuntos como contexto:** `js/script.js`, `index.html`, `docs/03-specs/actividad-obligatoria-4/spec-dev-eventos-dom.md`, `changelog.md`.
+- **Prompt utilizado:**
+```text
+Actúa como Senior Software Engineer y Tech Lead realizando un code review profesional de la PR #89.
 
-- **Hallazgos detectados y estado:**
-Primera revisión (REQUEST CHANGES): Se detectaron dos casos reales en js/script.js vinculados a pérdida/integridad de estado de la biblioteca y feedback incorrecto ante fallos de persistencia.
+CONTEXTO Y ACCIÓN:
+Analiza los cambios de la Pull Request #89 (rama feature/dev-eventos-dom contra develop), correspondiente al rol de Desarrollador JS Eventos + DOM. Esta PR reemplaza el simulador por prompt()/alert() por una interfaz web interactiva en index.html y convierte a script.js en controlador de eventos y DOM integrado con las clases POO y StorageAPI.
+Utiliza las herramientas de GitKraken (MCP) para identificar los archivos modificados (script.js, index.html, docs/03-specs/actividad-obligatoria-4/spec-dev-eventos-dom.md, changelog.md) y publicar los hallazgos.
 
-Iteración y re-revisión (APPROVE): El desarrollador aplicó el commit 84ed06b (fix: preservar biblioteca y distinguir errores de storage). Se realizó una segunda revisión asistida por Copilot verificando que ambos problemas quedaron resueltos sin introducir regresiones, aprobando la PR para su integración.
+INSTRUCCIONES DE PUBLICACIÓN:
+No solo respondas en este chat.
+DEBES PUBLICAR cada hallazgo detectado directamente como un comentario de revisión en la Pull Request en GitHub utilizando las capacidades de GitKraken/GitLens.
+Si no puedes publicar directamente, indícame qué error recibes de las herramientas de MCP y genera el output aquí en formato Markdown.
+
+REGLAS DE ANÁLISIS ESPECÍFICAS PARA ESTA PR:
+Identifica problemas reales del código evaluando estrictamente:
+
+Eliminación de código legacy: Verificar que no queden restos de prompt(), alert() o confirm() en el flujo principal.
+Separación de responsabilidades (CRÍTICO): script.js debe actuar solo como controlador de UI/eventos. NO debe duplicar lógica de negocio que corresponde a js/models/ ni acceder directamente a localStorage/sessionStorage saltándose StorageAPI.
+Seguridad y DOM: Uso seguro del DOM (prevenir XSS si inyecta strings de usuario con innerHTML), correcta delegación de eventos y manejo de estados vacíos o errores de entrada.
+Bugs, performance y legibilidad: Errores reales en filtros, búsqueda en tiempo real, favoritos, calificaciones o exportación.
+Documentación: Verificar que changelog.md no pise entradas anteriores y que spec-dev-eventos-dom.md esté completo.
+No inventes problemas hipotéticos ni sugieras tests. Cada hallazgo debe ser independiente.
+ESTRUCTURA DE CADA COMENTARIO EN GITHUB:
+HALLAZGO #<numero> - <Título descriptivo>
+
+Tipo de problema: (bug | performance | seguridad | legibilidad | diseño | otro)
+Severidad: (baja | media | alta | crítica)
+Archivo: <Ruta del archivo implicado>
+Explicación técnica: <Por qué esto es un problema real>
+
+Sugerencia de mejora: <Cambio concreto recomendable>
+
+Ejemplo de código corregido:
+
+// Código sugerido
+
+**DECISIÓN DE REVISOR HUMANO:**
+
+- [ ] Aceptar sugerencia
+- [ ] Rechazar sugerencia
+*(Justificación del revisor humano: )*
+AL FINALIZAR:
+Proporciona aquí en el chat un "RESUMEN GENERAL DE LA PR" con evaluación de riesgos y tu "DECISIÓN FINAL SUGERIDA (APPROVE / REQUEST CHANGES)".
+```
+
+- **Trazabilidad de hallazgos, iteración y estado:**
+
+| Iteración | Archivo afectado | Hallazgo / Resultado | Estado cargado | Commit asociado |
+| --- | --- | --- | --- | --- |
+| 1ra revisión | `js/script.js` | Hallazgo 1: pérdida/integridad de estado de la biblioteca al actualizar entradas. | `CHANGES_REQUESTED` | Previo a `84ed06b` |
+| 1ra revisión | `js/script.js` | Hallazgo 2: feedback incorrecto en interfaz ante fallos de persistencia en `StorageAPI`. | `CHANGES_REQUESTED` | Previo a `84ed06b` |
+| Re-revisión | `js/script.js` | Ambos hallazgos resueltos sin introducir regresiones. | `APPROVE` | `84ed06b` (`fix: preservar biblioteca y distinguir errores de storage`) |
+
 
 ### Cierre de Integración y Despliegue
 - **Orden de integración ejecutado:** `feature/dev-poo-logica-negocio` → `feature/dev-storage` → `feature/dev-eventos-dom` → `feature/tester-qa-specs`.
 - **GitHub Pages:** (Pendiente de verificación final tras el último merge).
 - **Release final:** Tag `v1.2-cuarta-entrega` (Pendiente de generación).
+
+### Obstáculos de coordinación y resolución
+- **Obstáculo 1 (Conflictos en `changelog.md`):** Al integrarse múltiples PRs en paralelo sobre `develop` (PR #89 y PR #90), se produjo un conflicto de merge en las primeras líneas de `changelog.md` junto con una entrada duplicada de la PR #84.
+  - **Resolución:** Se resolvieron los conflictos manualmente conservando todas las entradas vigentes y eliminando el duplicado antes del merge.
+- **Obstáculo 2 (Dependencia de contratos entre módulos):** La integración de Eventos/DOM dependía de los métodos definitivos de POO y del contrato de errores de `StorageAPI`, lo que derivó en los dos hallazgos detectados en la PR #89.
+  - **Resolución:** Se aplicó el orden de integración secuencial planificado (`POO` → `Storage` → `Eventos/DOM`) y se iteró la revisión hasta validar la corrección en el commit `84ed06b`.
