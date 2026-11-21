@@ -8,9 +8,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
-- [feature/dev-eventos-dom] **A4 - Desarrollador JS Eventos + DOM (Controlador de interfaz)** | [PR #89](https://github.com/keviineze/proyecto-web-peliculas/pull/89) | @GonzaloBarbano (Desarrollador JS Eventos + DOM)
+- [feature/coord-devops-cierre] **A4 - Coordinador / DevOps (Cierre y documentación de Code Reviews)** | Issue [#83](https://github.com/keviineze/proyecto-web-peliculas/issues/83) | [PR #90](https://github.com/keviineze/proyecto-web-peliculas/pull/90) | @Davidsoria99 (Coordinador / DevOps)
 
-- [feature/coord-devops-cuarta-entrega] **A4 - Coordinador / DevOps (Planificación inicial y repositorios)** | Issue [#83](https://github.com/keviineze/proyecto-web-peliculas/issues/83) | [PR #84](https://github.com/keviineze/proyecto-web-peliculas/pull/84) | @Davidsoria99 (Coordinador / DevOps)
+- [feature/dev-eventos-dom] **A4 - Desarrollador JS Eventos + DOM (Controlador de interfaz)** | [PR #89](https://github.com/keviineze/proyecto-web-peliculas/pull/89) | @GonzaloBarbano (Desarrollador JS Eventos + DOM)
 
 - [feature/dev-poo-logica-negocio] **A4 - Desarrollador JS POO (Lógica de Negocio)** | Issue [#80](https://github.com/keviineze/proyecto-web-peliculas/issues/80) | [PR #87](https://github.com/keviineze/proyecto-web-peliculas/pull/87) | @keviineze (Desarrollador JS POO)
 
