@@ -28,7 +28,7 @@ Migrar el proyecto de un simulador basado en consola a una aplicación web inter
 | Kevin Sosa  |           154080 | [@keviineze](https://github.com/keviineze) | Desarrollador JS POO                                           |
 | Gonzalo Barbano      |           152127 | [@GonzaloBarbano](https://github.com/GonzaloBarbano)           | Desarrollador JS Eventos + DOM                                    |
 
-Los roles de la tercera entrega se asignan según la consigna de la Actividad Obligatoria N.° 3. En grupos de tres integrantes, el Coordinador / DevOps asume también las tareas de Tester JavaScript / QA Engineer, manteniendo una rama `feature/` separada para cada rol.
+Los roles de la cuarta entrega se asignan según la consigna de la Actividad Obligatoria N° 4. En grupos de tres integrantes, el Coordinador / DevOps asume también las tareas de Tester QA y Desarrollador JS Storage, manteniendo una rama `feature/` separada para cada rol.
 
 ## Objetivo
 
@@ -151,4 +151,4 @@ El proyecto puede ejecutarse localmente mediante Live Preview en VS Code y valid
 
 ## Estado del proyecto
 
-La Cuarta Entrega refactoriza la aplicación para implementar POO y persistencia local. Actualmente, el equipo se encuentra en fase de desarrollo de las features y specs iniciales, coordinadas mediante GitHub Projects.
+La Cuarta Entrega se encuentra completa e integrada en la rama `release/cuarta-entrega`. La aplicación cuenta con arquitectura POO (`js/models/`), persistencia en `localStorage`/`sessionStorage` (`js/utils/storage.js`), interfaz interactiva sin `prompt()`/`alert()` (`js/script.js`) y suite automatizada en Jasmine con **39 specs, 0 failures (100% PASS)**.
