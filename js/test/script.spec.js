@@ -65,6 +65,23 @@ describe("Interfaz de catálogo y biblioteca", function () {
     );
   });
 
+  it("cancela el submit del formulario y actualiza los resultados del catálogo", function () {
+    const form = document.getElementById("search-form");
+    form.elements.query.value = "chihiro";
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    form.dispatchEvent(event);
+
+    expect(event.defaultPrevented).toBeTrue();
+    expect(document.querySelectorAll(".catalog-grid article").length).toBe(1);
+    expect(document.querySelector(".catalog-grid").textContent).toContain(
+      "El viaje de Chihiro",
+    );
+    expect(document.getElementById("search-feedback").textContent).toBe(
+      "1 contenido encontrado.",
+    );
+  });
+
   it("alterna favoritos en el modelo, la interfaz y localStorage", function () {
     const button = getFavoriteButton("interstellar");
     button.click();
