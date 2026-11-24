@@ -1,6 +1,11 @@
 import { StorageAPI } from "../utils/storage.js";
+import { LibraryStorage } from "../utils/libraryStorage.js";
+import { Catalog } from "../models/Catalog.js";
+import { Content } from "../models/Content.js";
+import { Library } from "../models/Library.js";
 
 const storageTypes = ["local", "session"];
+const LIBRARY_STORAGE_KEY = "mlb:biblioteca:listaPersonal";
 
 describe("StorageAPI", function () {
   beforeEach(function () {
@@ -100,5 +105,45 @@ describe("StorageAPI", function () {
     expect(error).toHaveBeenCalled();
     expect(error.calls.mostRecent().args[0]).toContain("[Storage Error]");
     expect(error.calls.mostRecent().args[1].name).toBe("TypeError");
+  });
+
+  it("carga y normaliza la biblioteca mediante resultados tipados", function () {
+    const catalog = new Catalog([
+      new Content("dark", "Dark", "Serie", 2017, ["Misterio"], "pending"),
+    ]);
+    StorageAPI.guardar(LIBRARY_STORAGE_KEY, [
+      {
+        titleId: "dark",
+        status: "watched",
+        isFavorite: true,
+        rating: 4,
+      },
+    ]);
+
+    const result = LibraryStorage.cargar(catalog);
+
+    expect(result.ok).toBeTrue();
+    expect(result.error).toBeNull();
+    expect(result.data).toEqual(jasmine.any(Library));
+    expect(result.data.toJSON()).toEqual([
+      { titleId: "dark", status: "watched", isFavorite: true, rating: 4 },
+    ]);
+  });
+
+  it("devuelve la biblioteca anterior y un error de storage al fallar el guardado", function () {
+    const catalog = new Catalog([
+      new Content("dark", "Dark", "Serie", 2017, ["Misterio"], "pending"),
+    ]);
+    const library = Library.createInitial(catalog);
+    const originalData = library.toJSON();
+    spyOn(StorageAPI, "guardar").and.returnValue(false);
+
+    const result = LibraryStorage.cambiar(library, () =>
+      library.addFavorite(catalog.findById("dark")),
+    );
+
+    expect(result.ok).toBeFalse();
+    expect(result.error.type).toBe("storage");
+    expect(result.data.toJSON()).toEqual(originalData);
   });
 });

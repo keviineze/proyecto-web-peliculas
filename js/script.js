@@ -1,10 +1,8 @@
 import { Catalog } from "./models/Catalog.js";
 import { Content } from "./models/Content.js";
 import { Library } from "./models/Library.js";
-import { LibraryEntry } from "./models/LibraryEntry.js";
-import { StorageAPI } from "./utils/storage.js";
+import { LibraryStorage } from "./utils/libraryStorage.js";
 
-const LIBRARY_STORAGE_KEY = "miniLetterboxdLibrary";
 const CONTENT_PRESENTATION = {
   interstellar: {
     image: "assets/images/interestellar-2.jpeg",
@@ -83,41 +81,15 @@ function initializeApp() {
 }
 
 function loadLibrary() {
-  const initialLibrary = Library.createInitial(catalog);
-  const storedEntries = StorageAPI.obtener(LIBRARY_STORAGE_KEY);
-  if (Array.isArray(storedEntries)) {
-    const entriesById = new Map();
-    for (const storedEntry of storedEntries) {
-      try {
-        const entry = LibraryEntry.fromJSON(storedEntry);
-        if (catalog.findById(entry.getTitleId())) {
-          entriesById.set(entry.getTitleId(), entry);
-        }
-      } catch {
-        continue;
-      }
-    }
-
-    for (const [titleId, entry] of entriesById) {
-      const content = catalog.findById(titleId);
-      initialLibrary.setStatus(titleId, entry.getStatus());
-      if (entry.getIsFavorite()) {
-        initialLibrary.addFavorite(content);
-      }
-      if (entry.getRating() !== null) {
-        initialLibrary.rateContent(titleId, entry.getRating());
-      }
-    }
-  }
-
-  if (!StorageAPI.guardar(LIBRARY_STORAGE_KEY, initialLibrary.toJSON())) {
+  const result = LibraryStorage.cargar(catalog);
+  if (!result.ok) {
     renderMessage(
       document.getElementById("library-feedback"),
       "La biblioteca está disponible, pero no se pudo guardar su estado completo en este navegador.",
       "danger",
     );
   }
-  return initialLibrary;
+  return result.data;
 }
 
 function configureEvents() {
@@ -232,7 +204,7 @@ function toggleFavorite(titleId) {
       : library.addFavorite(content),
   );
 
-  if (result.type === "saved") {
+  if (result.ok) {
     renderMessage(
       document.getElementById("library-feedback"),
       wasFavorite
@@ -240,7 +212,7 @@ function toggleFavorite(titleId) {
         : "Contenido agregado a Mi Lista.",
       "success",
     );
-  } else if (result.type === "domain-error") {
+  } else if (result.error.type === "domain") {
     renderMessage(
       document.getElementById("library-feedback"),
       wasFavorite
@@ -256,13 +228,13 @@ function updateContentStatus(select) {
   const status = select.value;
   const result = persistLibraryChange(() => library.setStatus(titleId, status));
 
-  if (result.type === "saved") {
+  if (result.ok) {
     renderMessage(
       document.getElementById("library-feedback"),
       "Estado actualizado.",
       "success",
     );
-  } else if (result.type === "domain-error") {
+  } else if (result.error.type === "domain") {
     renderMessage(
       document.getElementById("library-feedback"),
       "No se pudo cambiar el estado. Una calificación existente requiere mantener el contenido como visto.",
@@ -302,8 +274,8 @@ function saveRating(input) {
   );
   const currentInput = document.getElementById(input.id) ?? input;
   const feedback = document.getElementById(input.dataset.feedbackId);
-  const saved = result.type === "saved";
-  const storageFailed = result.type === "storage-error";
+  const saved = result.ok;
+  const storageFailed = !result.ok && result.error.type === "storage";
   setFieldFeedback(
     currentInput,
     feedback,
@@ -324,23 +296,14 @@ function saveRating(input) {
 }
 
 function persistLibraryChange(change) {
-  const previousLibrary = Library.fromJSON(library.toJSON());
-  let changed;
-
-  try {
-    changed = change();
-  } catch {
-    changed = false;
-  }
-
-  if (!changed) {
+  const result = LibraryStorage.cambiar(library, change);
+  library = result.data;
+  if (!result.ok && result.error.type === "domain") {
     renderLibrary();
     syncFavoriteButtons();
-    return { type: "domain-error" };
+    return result;
   }
-
-  if (!StorageAPI.guardar(LIBRARY_STORAGE_KEY, library.toJSON())) {
-    library = previousLibrary;
+  if (!result.ok) {
     renderLibrary();
     syncFavoriteButtons();
     renderMessage(
@@ -348,14 +311,14 @@ function persistLibraryChange(change) {
       "No se pudo guardar el cambio. La biblioteca anterior fue restaurada.",
       "danger",
     );
-    return { type: "storage-error" };
+    return result;
   }
 
   renderLibrary();
   renderCurrentCatalog();
   syncFavoriteButtons();
   clearShareResult();
-  return { type: "saved" };
+  return result;
 }
 
 function renderCurrentCatalog() {

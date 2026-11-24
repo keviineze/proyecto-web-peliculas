@@ -1,7 +1,9 @@
 import "../script.js";
 import { StorageAPI } from "../utils/storage.js";
 
-StorageAPI.eliminar("miniLetterboxdLibrary");
+const LIBRARY_STORAGE_KEY = "mlb:biblioteca:listaPersonal";
+
+StorageAPI.eliminar(LIBRARY_STORAGE_KEY);
 
 function dispatch(element, type) {
   element.dispatchEvent(new Event(type, { bubbles: true }));
@@ -30,7 +32,7 @@ describe("Interfaz de catálogo y biblioteca", function () {
     expect(document.querySelector("#watched-items article").textContent).toContain(
       "El viaje de Chihiro",
     );
-    expect(JSON.parse(localStorage.getItem("miniLetterboxdLibrary")).length).toBe(
+    expect(JSON.parse(localStorage.getItem(LIBRARY_STORAGE_KEY)).length).toBe(
       3,
     );
     expect(document.getElementById("search-feedback").textContent).toBe(
@@ -71,7 +73,7 @@ describe("Interfaz de catálogo y biblioteca", function () {
     expect(updatedButton.getAttribute("aria-pressed")).toBe("true");
     expect(updatedButton.textContent).toBe("Quitar de Mi Lista");
     expect(
-      JSON.parse(localStorage.getItem("miniLetterboxdLibrary")).find(
+      JSON.parse(localStorage.getItem(LIBRARY_STORAGE_KEY)).find(
         (entry) => entry.titleId === "interstellar",
       ).isFavorite,
     ).toBeTrue();
@@ -121,7 +123,7 @@ describe("Interfaz de catálogo y biblioteca", function () {
       "Calificación guardada.",
     );
     expect(
-      JSON.parse(localStorage.getItem("miniLetterboxdLibrary")).find(
+      JSON.parse(localStorage.getItem(LIBRARY_STORAGE_KEY)).find(
         (entry) => entry.titleId === "el-viaje-de-chihiro",
       ).rating,
     ).toBe(4);
