@@ -25,6 +25,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/dev-storage] **A4 - Desarrollador JS Storage (Planificación de persistencia)** | Issue [#81](https://github.com/keviineze/proyecto-web-peliculas/issues/81) | [PR #86](https://github.com/keviineze/proyecto-web-peliculas/pull/86) | @Davidsoria99 (Desarrollador JS Storage)
 
 ### Fixed
+
+- [fix/changelog-trazabilidad] **A4 - Corrección Changelog (RC1): trazabilidad de PR #89 y registro de fixes de cuarta entrega** | [PR #99](https://github.com/keviineze/proyecto-web-peliculas/pull/99) | @Davidsoria99
+
 - [fix/storage-fachada-docs] **A4 - Correcciones Storage (RC17–RC20): unificación de clave y esquema JSON, fachada `libraryStorage.js` y JSDoc** | [PR #93](https://github.com/keviineze/proyecto-web-peliculas/pull/93) | @Davidsoria99
 
 - [fix/qa-cobertura-tests] **A4 - Correcciones QA (RC2–RC5): cobertura ampliada a 60 specs PASS, evidencias e issues de trazabilidad** | Issues [#95](https://github.com/keviineze/proyecto-web-peliculas/issues/95), [#96](https://github.com/keviineze/proyecto-web-peliculas/issues/96), [#97](https://github.com/keviineze/proyecto-web-peliculas/issues/97) | [PR #98](https://github.com/keviineze/proyecto-web-peliculas/pull/98) | @Davidsoria99
