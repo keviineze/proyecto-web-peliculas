@@ -24,6 +24,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [feature/dev-storage] **A4 - Desarrollador JS Storage (Planificación de persistencia)** | Issue [#81](https://github.com/keviineze/proyecto-web-peliculas/issues/81) | [PR #86](https://github.com/keviineze/proyecto-web-peliculas/pull/86) | @Davidsoria99 (Desarrollador JS Storage)
 
+### Fixed
+
+- [fix/js-poo-1] **Correcciones JS Poo 1** | [PR #94](https://github.com/keviineze/proyecto-web-peliculas/pull/94) | @keviineze (Desarrollador JS POO)
+
 ## [Release Tercera Entrega] - 2026-10-31
 
 ### Added
