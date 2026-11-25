@@ -86,6 +86,27 @@ describe("Content", function () {
     expect(() => Content.fromJSON(null)).toThrowError(TypeError);
     expect(() => Content.fromJSON([])).toThrowError(TypeError);
   });
+
+  it("rechaza objetos JSON parcialmente válidos y valores inválidos al reconstruir", function () {
+    expect(() =>
+      Content.fromJSON({
+        id: "dark",
+        title: "Dark",
+        type: "Serie",
+        year: 2017,
+      }),
+    ).toThrowError(TypeError);
+    expect(() =>
+      Content.fromJSON({
+        id: "dark",
+        title: "Dark",
+        type: "Serie",
+        year: 2017,
+        genres: ["Misterio"],
+        initialStatus: "planned",
+      }),
+    ).toThrowError(TypeError);
+  });
 });
 
 describe("Catalog", function () {
@@ -159,6 +180,28 @@ describe("Catalog", function () {
     expect(() => Catalog.fromJSON({})).toThrowError(TypeError);
     expect(() => Catalog.fromJSON([null])).toThrowError(TypeError);
   });
+
+  it("rechaza catálogos JSON parcialmente inválidos y IDs duplicados", function () {
+    expect(() =>
+      Catalog.fromJSON([
+        {
+          id: "dark",
+          title: "Dark",
+          type: "Serie",
+          year: 2017,
+          genres: ["Misterio"],
+          initialStatus: "pending",
+        },
+        { id: "incomplete" },
+      ]),
+    ).toThrowError(TypeError);
+    expect(() =>
+      Catalog.fromJSON([
+        contents[0].toJSON(),
+        contents[0].toJSON(),
+      ]),
+    ).toThrowError(RangeError);
+  });
 });
 
 describe("LibraryEntry", function () {
@@ -207,6 +250,30 @@ describe("LibraryEntry", function () {
     expect(entry.getRating()).toBe(4);
     expect(entry.setRating(null)).toBeTrue();
     expect(entry.setStatus("pending")).toBeTrue();
+  });
+
+  it("rechaza flags no booleanos y estados inválidos al actualizar o reconstruir", function () {
+    expect(() => new LibraryEntry("dark", "pending", 1, null)).toThrowError(
+      TypeError,
+    );
+    expect(() => new LibraryEntry("dark", "planned", false, null)).toThrowError(
+      TypeError,
+    );
+
+    const entry = new LibraryEntry("dark", "pending", false, null);
+    expect(entry.setStatus("planned")).toBeFalse();
+    expect(entry.getStatus()).toBe("pending");
+    expect(() =>
+      LibraryEntry.fromJSON({
+        titleId: "dark",
+        status: "watched",
+        isFavorite: "true",
+        rating: null,
+      }),
+    ).toThrowError(TypeError);
+    expect(() =>
+      LibraryEntry.fromJSON({ titleId: "dark", status: "pending" }),
+    ).toThrowError(TypeError);
   });
 
   it("serializa y reconstruye una entrada validando el objeto", function () {
@@ -315,6 +382,18 @@ describe("Library", function () {
     expect(library.setStatus("interstellar", "pending")).toBeTrue();
   });
 
+  it("maneja IDs inexistentes al actualizar y omite entradas no resueltas por el catálogo", function () {
+    const library = new Library([
+      new LibraryEntry("removed-title", "watched", true, null),
+    ]);
+
+    expect(library.removeFavorite("missing")).toBeFalse();
+    expect(library.rateContent("missing", 4)).toBeFalse();
+    expect(library.setStatus("missing", "watched")).toBeFalse();
+    expect(library.getFavorites(catalog)).toEqual([]);
+    expect(library.getUnratedWatchedContents(catalog)).toEqual([]);
+  });
+
   it("serializa y restaura la biblioteca con entradas independientes", function () {
     const library = Library.createInitial(catalog);
     library.addFavorite(catalog.findById("dark"));
@@ -324,5 +403,16 @@ describe("Library", function () {
     expect(restored.getEntries()[0]).toEqual(jasmine.any(LibraryEntry));
     expect(() => Library.fromJSON({})).toThrowError(TypeError);
     expect(() => Library.fromJSON([null])).toThrowError(TypeError);
+    expect(() =>
+      Library.fromJSON([
+        {
+          titleId: "dark",
+          status: "pending",
+          isFavorite: false,
+          rating: null,
+        },
+        { titleId: "incomplete" },
+      ]),
+    ).toThrowError(TypeError);
   });
 });
