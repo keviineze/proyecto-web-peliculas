@@ -130,7 +130,7 @@ Los métodos mutadores de `Library`/`LibraryEntry` informan el resultado de la o
 - [x] Los cuatro flujos implementados funcionan desde la interfaz sin recargar la página ni depender de diálogos del navegador.
 - [x] Los mensajes y errores se presentan en regiones accesibles; la calificación actualiza su feedback visual y semántico.
 - [x] Las vistas dinámicas reflejan el estado del dominio y usan los métodos públicos de los modelos.
-- [x] El controlador integra las clases como módulos y coordina `StorageAPI.guardar()`/`obtener()`.
+- [x] El controlador integra las clases como módulos y delega la persistencia de biblioteca en `LibraryStorage`.
 - [x] Las referencias de scripts/importaciones en `index.html` funcionan en navegador y no generan errores de consola.
 - [ ] Jasmine: pendiente de ejecutar tras la refactorización de `js/test/script.spec.js` y `js/test/test-runner.html` por el rol Tester QA.
 
@@ -238,13 +238,13 @@ function configureEvents() {
 | Si Storage rechaza una escritura, se reconstruye la instancia anterior de `Library` y se vuelve a renderizar.                                                   | Evita que la interfaz muestre como persistido un cambio que no pudo guardarse.                                                                           |
 | El feedback de rating se vuelve a aplicar al control recién renderizado y muestra el valor guardado al recargar.                                                | El renderizado reemplaza el nodo de entrada; el feedback debe reflejar el estado persistido, no el control desconectado.                                 |
 | La carga parte de `Library.createInitial(catalog)`, fusiona las entradas persistidas válidas/identificadas y guarda la biblioteca completa antes de renderizar. | Una biblioteca persistida parcial ya no hace desaparecer contenidos ni sus estados iniciales; las entradas inválidas o desconocidas se ignoran.          |
-| `persistLibraryChange()` devuelve uno de tres estados (`saved`, `domain-error` o `storage-error`) y cada flujo presenta feedback según el resultado.            | Un fallo de `StorageAPI.guardar()` ya no se confunde con una regla del dominio; se restaura el estado anterior y se informa el problema de persistencia. |
+| `LibraryStorage.cambiar()` devuelve `{ ok, data, error }`; el controlador presenta feedback según el error tipado (`domain` o `storage`).                        | Un fallo de persistencia ya no se confunde con una regla del dominio; la fachada devuelve el estado anterior para restaurar el modelo y la interfaz.        |
 
 ### Decisiones finales de estructura e integración
 
-- **Estructura final de `js/script.js`:** importa `Catalog`, `Content`, `Library` y `StorageAPI`; inicializa una instancia de catálogo y biblioteca; registra cuatro listeners delegados; separa handlers, coordinación de mutaciones y funciones DOM (`renderCatalog`, `renderLibrary`, `renderMessage`, entre otras).
+- **Estructura final de `js/script.js`:** importa `Catalog`, `Content`, `Library` y `LibraryStorage`; inicializa una instancia de catálogo y biblioteca; registra cuatro listeners delegados; separa handlers, coordinación de mutaciones y funciones DOM (`renderCatalog`, `renderLibrary`, `renderMessage`, entre otras).
 - **Integración con `Catalog` y `Library`:** búsqueda con `Catalog.search`; resolución por `findById`; gestión con `addFavorite`/`removeFavorite`; cambios con `setStatus`/`rateContent`; exportación desde `getFavorites`. No se accede a campos privados.
-- **Integración con Storage:** usa `StorageAPI.obtener("miniLetterboxdLibrary")` al iniciar, fusiona datos válidos sobre `Library.createInitial(catalog)` y guarda el estado completo mediante `StorageAPI.guardar(...)`. Las mutaciones exitosas también se serializan con `Library.toJSON()`.
+- **Integración con Storage:** usa `LibraryStorage.cargar(catalog)` al iniciar; la fachada lee `mlb:biblioteca:listaPersonal`, fusiona datos válidos sobre `Library.createInitial(catalog)` y guarda el estado completo mediante `StorageAPI`. Las mutaciones y su rollback también se coordinan en la fachada usando `Library.toJSON()`.
 - **Controles y selectores finales:** `#search-form`, `#search-query`, `#search-filter`, `.catalog-grid`, `#pending-items`, `#watched-items`, `[data-action="toggle-favorite"]`, `[data-action="update-status"]`, `[data-action="rate-content"]`, `#share-format` y `#share-output`.
 - **Manejo de errores/validación:** mensajes Bootstrap en regiones `role=status`/`alert`; rating entero de 1 a 5 con feedback `aria-invalid`/clases; rollback visual si falla Storage; estados vacíos para búsqueda y compartir.
 

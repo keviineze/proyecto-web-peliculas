@@ -25,24 +25,46 @@ Se aplica el patrón estructurado: `app:dominio:entidad`
 ## 3. Estructura de Datos (JSON Schemas) y Coordinación con POO
 
 ### Integración con Clases del Dominio (`toJSON` y `fromJSON`)
-El módulo `StorageAPI` opera exclusivamente con strings JSON. La responsabilidad de la serialización recae en las clases del dominio:
-1. **Guardar:** Antes de llamar a `StorageAPI.guardar()`, las instancias de `Library` llaman internamente a su método `toJSON()`, devolviendo objetos literales puros.
-2. **Recuperar:** Tras llamar a `StorageAPI.obtener()`, los datos recuperados son devueltos como objetos literales. El Desarrollador POO debe pasarlos por el método estático `LibraryEntry.fromJSON()` para reconstruir los prototipos y métodos.
+`StorageAPI` serializa y parsea valores JSON. `LibraryStorage` coordina la persistencia de la biblioteca y utiliza los modelos para reconstruir el estado:
+1. **Guardar:** `Library.toJSON()` devuelve un array de objetos planos `LibraryEntry`; `LibraryStorage.guardar()` entrega ese array a `StorageAPI.guardar()`.
+2. **Recuperar:** `StorageAPI.obtener()` devuelve objetos literales. `LibraryStorage.cargar(catalog)` los valida con `LibraryEntry.fromJSON()`, descarta registros inválidos o de contenidos que no existen en el catálogo, fusiona los restantes sobre `Library.createInitial(catalog)` y guarda el resultado normalizado.
+3. **Cambios:** `LibraryStorage.cambiar(library, cambio)` guarda el estado completo después de una mutación. Si la mutación es rechazada o la escritura falla, devuelve una copia del estado anterior junto con un error tipado (`domain` o `storage`).
 
-### Ejemplo Real de Schema (`mlb:biblioteca:listaPersonal`)
-El siguiente esquema muestra cómo se guardan las instancias de `LibraryEntry` (conteniendo `Content`) en el array principal de la biblioteca:
+### Esquemas serializados por los modelos
+
+`Library.toJSON()` devuelve un array; cada elemento es exactamente el resultado de `LibraryEntry.toJSON()`. No contiene instancias `Content`, identificadores `id`/`entryId`, ni campos de fecha.
+
+| Modelo | Forma que devuelve `toJSON()` |
+| --- | --- |
+| `Content` | `{ "id": string, "title": string, "type": "Película" \| "Serie", "year": number, "genres": string[], "initialStatus": "pending" \| "watched" }` |
+| `Catalog` | Array de objetos `Content` con la forma anterior. |
+| `LibraryEntry` | `{ "titleId": string, "status": "pending" \| "watched", "isFavorite": boolean, "rating": number \| null }` |
+| `Library` | Array de objetos `LibraryEntry` con la forma anterior. |
+
+`rating` es un entero entre 1 y 5 o `null`; un registro con calificación siempre tiene `status: "watched"`. Los estados serializados usan los valores de dominio `pending` y `watched`, no etiquetas traducidas.
+
+### Ejemplo real guardado en `mlb:biblioteca:listaPersonal`
+
+La clave contiene el array devuelto por `Library.toJSON()`. Este ejemplo corresponde al estado inicial del catálogo de la aplicación:
 
 ```json
 [
   {
-    "id": "entry-169990123",
-    "content": {
-      "id": "c-101",
-      "title": "Inception",
-      "type": "Movie"
-    },
-    "status": "Visto",
-    "rating": 5,
-    "addedAt": "2026-11-15T20:00:00.000Z"
+    "titleId": "interstellar",
+    "status": "pending",
+    "isFavorite": false,
+    "rating": null
+  },
+  {
+    "titleId": "el-viaje-de-chihiro",
+    "status": "watched",
+    "isFavorite": false,
+    "rating": null
+  },
+  {
+    "titleId": "dark",
+    "status": "pending",
+    "isFavorite": false,
+    "rating": null
   }
 ]
