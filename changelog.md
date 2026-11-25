@@ -14,7 +14,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [feature/tester-qa-ejecucion] **A4 - Tester QA (Suites Jasmine, Evidencias y Cierre AT CLOSE)** | Issue [#82](https://github.com/keviineze/proyecto-web-peliculas/issues/82) | [PR #91](https://github.com/keviineze/proyecto-web-peliculas/pull/91) | @Davidsoria99 (Tester QA Engineer)
 
-- [feature/dev-eventos-dom] **A4 - Desarrollador JS Eventos + DOM (Controlador de interfaz)** | [PR #89](https://github.com/keviineze/proyecto-web-peliculas/pull/89) | @GonzaloBarbano (Desarrollador JS Eventos + DOM)
+- [feature/dev-eventos-dom] **A4 - Desarrollador JS Eventos + DOM (Controlador de interfaz)** | Issue [#88](https://github.com/keviineze/proyecto-web-peliculas/issues/88) | [PR #89](https://github.com/keviineze/proyecto-web-peliculas/pull/89) | @GonzaloBarbano (Desarrollador JS Eventos + DOM)
 
 - [feature/dev-poo-logica-negocio] **A4 - Desarrollador JS POO (Lógica de Negocio)** | Issue [#80](https://github.com/keviineze/proyecto-web-peliculas/issues/80) | [PR #87](https://github.com/keviineze/proyecto-web-peliculas/pull/87) | @keviineze (Desarrollador JS POO)
 
@@ -25,6 +25,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/dev-storage] **A4 - Desarrollador JS Storage (Planificación de persistencia)** | Issue [#81](https://github.com/keviineze/proyecto-web-peliculas/issues/81) | [PR #86](https://github.com/keviineze/proyecto-web-peliculas/pull/86) | @Davidsoria99 (Desarrollador JS Storage)
 
 ### Fixed
+- [fix/storage-fachada-docs] **A4 - Correcciones Storage (RC17–RC20): unificación de clave y esquema JSON, fachada `libraryStorage.js` y JSDoc** | [PR #93](https://github.com/keviineze/proyecto-web-peliculas/pull/93) | @Davidsoria99
+
+- [fix/qa-cobertura-tests] **A4 - Correcciones QA (RC2–RC5): cobertura ampliada a 60 specs PASS, evidencias e issues de trazabilidad** | Issues [#95](https://github.com/keviineze/proyecto-web-peliculas/issues/95), [#96](https://github.com/keviineze/proyecto-web-peliculas/issues/96), [#97](https://github.com/keviineze/proyecto-web-peliculas/issues/97) | [PR #98](https://github.com/keviineze/proyecto-web-peliculas/pull/98) | @Davidsoria99
 
 - [fix/js-poo-1] **Correcciones JS Poo 1** | [PR #94](https://github.com/keviineze/proyecto-web-peliculas/pull/94) | @keviineze (Desarrollador JS POO)
 
