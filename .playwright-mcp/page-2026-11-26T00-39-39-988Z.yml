@@ -1,0 +1,403 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link [ref=e4] [cursor=pointer]:
+      - /url: http://jasmine.github.io/
+    - text: 5.10.0
+    - generic [ref=e5]: Options
+  - list [ref=e6]:
+    - listitem "Interfaz de catálogo y biblioteca inicializa el catálogo, la biblioteca y su persistencia usando el DOM" [ref=e7]: •
+    - listitem "Interfaz de catálogo y biblioteca actualiza los resultados al buscar y filtrar desde el formulario" [ref=e8]: •
+    - listitem "Interfaz de catálogo y biblioteca cancela el submit del formulario y actualiza los resultados del catálogo" [ref=e9]: •
+    - listitem "Interfaz de catálogo y biblioteca alterna favoritos en el modelo, la interfaz y localStorage" [ref=e10]: •
+    - listitem "Interfaz de catálogo y biblioteca actualiza el estado desde el control y mueve la tarjeta entre secciones" [ref=e11]: •
+    - listitem "Interfaz de catálogo y biblioteca previsualiza y guarda calificaciones válidas para contenidos vistos" [ref=e12]: •
+    - listitem "Interfaz de catálogo y biblioteca prepara una exportación de favoritos como texto y la limpia al cambiar la lista" [ref=e13]: •
+    - listitem "Interfaz de catálogo y biblioteca revierte el cambio visual si la persistencia falla y muestra el error en el DOM" [ref=e14]: •
+    - listitem "Content construye contenido válido, expone sus datos y protege la lista de géneros" [ref=e15]: •
+    - listitem "Content valida identificador, título, tipo, año, géneros y estado inicial" [ref=e16]: •
+    - listitem "Content serializa y reconstruye una instancia validando el JSON de entrada" [ref=e17]: •
+    - listitem "Content rechaza objetos JSON parcialmente válidos y valores inválidos al reconstruir" [ref=e18]: •
+    - listitem "Catalog valida el arreglo y requiere contenidos con identificadores únicos" [ref=e19]: •
+    - listitem "Catalog mantiene la colección encapsulada y permite búsquedas por ID y título normalizado" [ref=e20]: •
+    - listitem "Catalog busca por título parcial y combina filtros de tipo o género sin distinguir tildes" [ref=e21]: •
+    - listitem "Catalog serializa el catálogo y reconstruye sus instancias Content" [ref=e22]: •
+    - listitem "Catalog rechaza catálogos JSON parcialmente inválidos y IDs duplicados" [ref=e23]: •
+    - listitem "LibraryEntry construye un registro válido y protege sus datos mediante getters" [ref=e24]: •
+    - listitem "LibraryEntry valida ID, estado, favorito, rango de calificación y compatibilidad del estado" [ref=e25]: •
+    - listitem "LibraryEntry actualiza favorito, estado y calificación y rechaza transiciones inválidas" [ref=e26]: •
+    - listitem "LibraryEntry rechaza flags no booleanos y estados inválidos al actualizar o reconstruir" [ref=e27]: •
+    - listitem "LibraryEntry serializa y reconstruye una entrada validando el objeto" [ref=e28]: •
+    - listitem "Library valida entradas únicas y encapsula copias independientes" [ref=e29]: •
+    - listitem "Library crea el estado inicial y agrega o quita favoritos preservando otros datos" [ref=e30]: •
+    - listitem "Library resuelve favoritos y vistos sin calificación desde el catálogo" [ref=e31]: •
+    - listitem "Library actualiza estados y ratings existentes y rechaza cambios inválidos o IDs ausentes" [ref=e32]: •
+    - listitem "Library maneja IDs inexistentes al actualizar y omite entradas no resueltas por el catálogo" [ref=e33]: •
+    - listitem "Library serializa y restaura la biblioteca con entradas independientes" [ref=e34]: •
+    - listitem "StorageAPI localStorage guarda y obtiene valores JSON, devolviendo null si la clave no existe" [ref=e35]: •
+    - listitem "StorageAPI localStorage actualiza una clave existente y rechaza una inexistente" [ref=e36]: •
+    - listitem "StorageAPI localStorage actualiza una clave existente cuyo valor es null" [ref=e37]: •
+    - listitem "StorageAPI localStorage elimina claves y lista solamente las que coinciden con el prefijo" [ref=e38]: •
+    - listitem "StorageAPI localStorage limpia únicamente el storage seleccionado" [ref=e39]: •
+    - listitem "StorageAPI localStorage devuelve null y reporta errores si el valor almacenado no es JSON válido" [ref=e40]: •
+    - listitem "StorageAPI localStorage maneja QuotaExceededError al guardar sin propagar la excepción" [ref=e41]: •
+    - listitem "StorageAPI localStorage devuelve null y registra el fallo si getItem lanza una excepción" [ref=e42]: •
+    - listitem "StorageAPI localStorage devuelve false y registra el fallo si removeItem lanza una excepción" [ref=e43]: •
+    - listitem "StorageAPI localStorage devuelve false y registra el fallo si clear lanza una excepción" [ref=e44]: •
+    - listitem "StorageAPI localStorage devuelve una lista vacía y registra el fallo si key lanza una excepción" [ref=e45]: •
+    - listitem "StorageAPI localStorage devuelve una lista vacía y registra el fallo si acceder a length falla" [ref=e46]: •
+    - listitem "StorageAPI localStorage devuelve false y registra el fallo si actualizar no puede leer la clave" [ref=e47]: •
+    - listitem "StorageAPI localStorage devuelve false y registra el fallo si actualizar no puede escribir" [ref=e48]: •
+    - listitem "StorageAPI sessionStorage guarda y obtiene valores JSON, devolviendo null si la clave no existe" [ref=e49]: •
+    - listitem "StorageAPI sessionStorage actualiza una clave existente y rechaza una inexistente" [ref=e50]: •
+    - listitem "StorageAPI sessionStorage actualiza una clave existente cuyo valor es null" [ref=e51]: •
+    - listitem "StorageAPI sessionStorage elimina claves y lista solamente las que coinciden con el prefijo" [ref=e52]: •
+    - listitem "StorageAPI sessionStorage limpia únicamente el storage seleccionado" [ref=e53]: •
+    - listitem "StorageAPI sessionStorage devuelve null y reporta errores si el valor almacenado no es JSON válido" [ref=e54]: •
+    - listitem "StorageAPI sessionStorage maneja QuotaExceededError al guardar sin propagar la excepción" [ref=e55]: •
+    - listitem "StorageAPI sessionStorage devuelve null y registra el fallo si getItem lanza una excepción" [ref=e56]: •
+    - listitem "StorageAPI sessionStorage devuelve false y registra el fallo si removeItem lanza una excepción" [ref=e57]: •
+    - listitem "StorageAPI sessionStorage devuelve false y registra el fallo si clear lanza una excepción" [ref=e58]: •
+    - listitem "StorageAPI sessionStorage devuelve una lista vacía y registra el fallo si key lanza una excepción" [ref=e59]: •
+    - listitem "StorageAPI sessionStorage devuelve una lista vacía y registra el fallo si acceder a length falla" [ref=e60]: •
+    - listitem "StorageAPI sessionStorage devuelve false y registra el fallo si actualizar no puede leer la clave" [ref=e61]: •
+    - listitem "StorageAPI sessionStorage devuelve false y registra el fallo si actualizar no puede escribir" [ref=e62]: •
+    - listitem "StorageAPI devuelve false y reporta un error si el valor no se puede serializar" [ref=e63]: •
+    - listitem "StorageAPI rechaza un tipo de storage inválido sin guardar en sessionStorage" [ref=e64]: •
+    - listitem "StorageAPI carga y normaliza la biblioteca mediante resultados tipados" [ref=e65]: •
+    - listitem "StorageAPI devuelve la biblioteca anterior y un error de storage al fallar el guardado" [ref=e66]: •
+  - generic [ref=e67]:
+    - generic [ref=e68]: finished in 0.039s
+    - generic [ref=e69]: 60 specs, 0 failures
+  - generic [ref=e71]:
+    - list [ref=e72]:
+      - listitem [ref=e73]:
+        - link "Interfaz de catálogo y biblioteca" [ref=e74] [cursor=pointer]:
+          - /url: /js/test/test-runner.html?spec=Interfaz%20de%20cat%C3%A1logo%20y%20biblioteca
+      - list [ref=e75]:
+        - listitem [ref=e76]:
+          - link "• inicializa el catálogo, la biblioteca y su persistencia usando el DOM" [ref=e77] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Interfaz%20de%20cat%C3%A1logo%20y%20biblioteca%20inicializa%20el%20cat%C3%A1logo%2C%20la%20biblioteca%20y%20su%20persistencia%20usando%20el%20DOM
+          - text: (1ms)
+      - list [ref=e78]:
+        - listitem [ref=e79]:
+          - link "• actualiza los resultados al buscar y filtrar desde el formulario" [ref=e80] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Interfaz%20de%20cat%C3%A1logo%20y%20biblioteca%20actualiza%20los%20resultados%20al%20buscar%20y%20filtrar%20desde%20el%20formulario
+          - text: (0ms)
+      - list [ref=e81]:
+        - listitem [ref=e82]:
+          - link "• cancela el submit del formulario y actualiza los resultados del catálogo" [ref=e83] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Interfaz%20de%20cat%C3%A1logo%20y%20biblioteca%20cancela%20el%20submit%20del%20formulario%20y%20actualiza%20los%20resultados%20del%20cat%C3%A1logo
+          - text: (1ms)
+      - list [ref=e84]:
+        - listitem [ref=e85]:
+          - link "• alterna favoritos en el modelo, la interfaz y localStorage" [ref=e86] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Interfaz%20de%20cat%C3%A1logo%20y%20biblioteca%20alterna%20favoritos%20en%20el%20modelo%2C%20la%20interfaz%20y%20localStorage
+          - text: (0ms)
+      - list [ref=e87]:
+        - listitem [ref=e88]:
+          - link "• actualiza el estado desde el control y mueve la tarjeta entre secciones" [ref=e89] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Interfaz%20de%20cat%C3%A1logo%20y%20biblioteca%20actualiza%20el%20estado%20desde%20el%20control%20y%20mueve%20la%20tarjeta%20entre%20secciones
+          - text: (1ms)
+      - list [ref=e90]:
+        - listitem [ref=e91]:
+          - link "• previsualiza y guarda calificaciones válidas para contenidos vistos" [ref=e92] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Interfaz%20de%20cat%C3%A1logo%20y%20biblioteca%20previsualiza%20y%20guarda%20calificaciones%20v%C3%A1lidas%20para%20contenidos%20vistos
+          - text: (1ms)
+      - list [ref=e93]:
+        - listitem [ref=e94]:
+          - link "• prepara una exportación de favoritos como texto y la limpia al cambiar la lista" [ref=e95] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Interfaz%20de%20cat%C3%A1logo%20y%20biblioteca%20prepara%20una%20exportaci%C3%B3n%20de%20favoritos%20como%20texto%20y%20la%20limpia%20al%20cambiar%20la%20lista
+          - text: (3ms)
+      - list [ref=e96]:
+        - listitem [ref=e97]:
+          - link "• revierte el cambio visual si la persistencia falla y muestra el error en el DOM" [ref=e98] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Interfaz%20de%20cat%C3%A1logo%20y%20biblioteca%20revierte%20el%20cambio%20visual%20si%20la%20persistencia%20falla%20y%20muestra%20el%20error%20en%20el%20DOM
+          - text: (1ms)
+    - list [ref=e99]:
+      - listitem [ref=e100]:
+        - link "Content" [ref=e101] [cursor=pointer]:
+          - /url: /js/test/test-runner.html?spec=Content
+      - list [ref=e102]:
+        - listitem [ref=e103]:
+          - link "• construye contenido válido, expone sus datos y protege la lista de géneros" [ref=e104] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Content%20construye%20contenido%20v%C3%A1lido%2C%20expone%20sus%20datos%20y%20protege%20la%20lista%20de%20g%C3%A9neros
+          - text: (1ms)
+      - list [ref=e105]:
+        - listitem [ref=e106]:
+          - link "• valida identificador, título, tipo, año, géneros y estado inicial" [ref=e107] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Content%20valida%20identificador%2C%20t%C3%ADtulo%2C%20tipo%2C%20a%C3%B1o%2C%20g%C3%A9neros%20y%20estado%20inicial
+          - text: (1ms)
+      - list [ref=e108]:
+        - listitem [ref=e109]:
+          - link "• serializa y reconstruye una instancia validando el JSON de entrada" [ref=e110] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Content%20serializa%20y%20reconstruye%20una%20instancia%20validando%20el%20JSON%20de%20entrada
+          - text: (0ms)
+      - list [ref=e111]:
+        - listitem [ref=e112]:
+          - link "• rechaza objetos JSON parcialmente válidos y valores inválidos al reconstruir" [ref=e113] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Content%20rechaza%20objetos%20JSON%20parcialmente%20v%C3%A1lidos%20y%20valores%20inv%C3%A1lidos%20al%20reconstruir
+          - text: (0ms)
+    - list [ref=e114]:
+      - listitem [ref=e115]:
+        - link "Catalog" [ref=e116] [cursor=pointer]:
+          - /url: /js/test/test-runner.html?spec=Catalog
+      - list [ref=e117]:
+        - listitem [ref=e118]:
+          - link "• valida el arreglo y requiere contenidos con identificadores únicos" [ref=e119] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Catalog%20valida%20el%20arreglo%20y%20requiere%20contenidos%20con%20identificadores%20%C3%BAnicos
+          - text: (0ms)
+      - list [ref=e120]:
+        - listitem [ref=e121]:
+          - link "• mantiene la colección encapsulada y permite búsquedas por ID y título normalizado" [ref=e122] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Catalog%20mantiene%20la%20colecci%C3%B3n%20encapsulada%20y%20permite%20b%C3%BAsquedas%20por%20ID%20y%20t%C3%ADtulo%20normalizado
+          - text: (1ms)
+      - list [ref=e123]:
+        - listitem [ref=e124]:
+          - link "• busca por título parcial y combina filtros de tipo o género sin distinguir tildes" [ref=e125] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Catalog%20busca%20por%20t%C3%ADtulo%20parcial%20y%20combina%20filtros%20de%20tipo%20o%20g%C3%A9nero%20sin%20distinguir%20tildes
+          - text: (0ms)
+      - list [ref=e126]:
+        - listitem [ref=e127]:
+          - link "• serializa el catálogo y reconstruye sus instancias Content" [ref=e128] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Catalog%20serializa%20el%20cat%C3%A1logo%20y%20reconstruye%20sus%20instancias%20Content
+          - text: (0ms)
+      - list [ref=e129]:
+        - listitem [ref=e130]:
+          - link "• rechaza catálogos JSON parcialmente inválidos y IDs duplicados" [ref=e131] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Catalog%20rechaza%20cat%C3%A1logos%20JSON%20parcialmente%20inv%C3%A1lidos%20y%20IDs%20duplicados
+          - text: (0ms)
+    - list [ref=e132]:
+      - listitem [ref=e133]:
+        - link "LibraryEntry" [ref=e134] [cursor=pointer]:
+          - /url: /js/test/test-runner.html?spec=LibraryEntry
+      - list [ref=e135]:
+        - listitem [ref=e136]:
+          - link "• construye un registro válido y protege sus datos mediante getters" [ref=e137] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=LibraryEntry%20construye%20un%20registro%20v%C3%A1lido%20y%20protege%20sus%20datos%20mediante%20getters
+          - text: (0ms)
+      - list [ref=e138]:
+        - listitem [ref=e139]:
+          - link "• valida ID, estado, favorito, rango de calificación y compatibilidad del estado" [ref=e140] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=LibraryEntry%20valida%20ID%2C%20estado%2C%20favorito%2C%20rango%20de%20calificaci%C3%B3n%20y%20compatibilidad%20del%20estado
+          - text: (0ms)
+      - list [ref=e141]:
+        - listitem [ref=e142]:
+          - link "• actualiza favorito, estado y calificación y rechaza transiciones inválidas" [ref=e143] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=LibraryEntry%20actualiza%20favorito%2C%20estado%20y%20calificaci%C3%B3n%20y%20rechaza%20transiciones%20inv%C3%A1lidas
+          - text: (0ms)
+      - list [ref=e144]:
+        - listitem [ref=e145]:
+          - link "• rechaza flags no booleanos y estados inválidos al actualizar o reconstruir" [ref=e146] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=LibraryEntry%20rechaza%20flags%20no%20booleanos%20y%20estados%20inv%C3%A1lidos%20al%20actualizar%20o%20reconstruir
+          - text: (0ms)
+      - list [ref=e147]:
+        - listitem [ref=e148]:
+          - link "• serializa y reconstruye una entrada validando el objeto" [ref=e149] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=LibraryEntry%20serializa%20y%20reconstruye%20una%20entrada%20validando%20el%20objeto
+          - text: (0ms)
+    - list [ref=e150]:
+      - listitem [ref=e151]:
+        - link "Library" [ref=e152] [cursor=pointer]:
+          - /url: /js/test/test-runner.html?spec=Library
+      - list [ref=e153]:
+        - listitem [ref=e154]:
+          - link "• valida entradas únicas y encapsula copias independientes" [ref=e155] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Library%20valida%20entradas%20%C3%BAnicas%20y%20encapsula%20copias%20independientes
+          - text: (0ms)
+      - list [ref=e156]:
+        - listitem [ref=e157]:
+          - link "• crea el estado inicial y agrega o quita favoritos preservando otros datos" [ref=e158] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Library%20crea%20el%20estado%20inicial%20y%20agrega%20o%20quita%20favoritos%20preservando%20otros%20datos
+          - text: (1ms)
+      - list [ref=e159]:
+        - listitem [ref=e160]:
+          - link "• resuelve favoritos y vistos sin calificación desde el catálogo" [ref=e161] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Library%20resuelve%20favoritos%20y%20vistos%20sin%20calificaci%C3%B3n%20desde%20el%20cat%C3%A1logo
+          - text: (0ms)
+      - list [ref=e162]:
+        - listitem [ref=e163]:
+          - link "• actualiza estados y ratings existentes y rechaza cambios inválidos o IDs ausentes" [ref=e164] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Library%20actualiza%20estados%20y%20ratings%20existentes%20y%20rechaza%20cambios%20inv%C3%A1lidos%20o%20IDs%20ausentes
+          - text: (0ms)
+      - list [ref=e165]:
+        - listitem [ref=e166]:
+          - link "• maneja IDs inexistentes al actualizar y omite entradas no resueltas por el catálogo" [ref=e167] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Library%20maneja%20IDs%20inexistentes%20al%20actualizar%20y%20omite%20entradas%20no%20resueltas%20por%20el%20cat%C3%A1logo
+          - text: (0ms)
+      - list [ref=e168]:
+        - listitem [ref=e169]:
+          - link "• serializa y restaura la biblioteca con entradas independientes" [ref=e170] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=Library%20serializa%20y%20restaura%20la%20biblioteca%20con%20entradas%20independientes
+          - text: (0ms)
+    - list [ref=e171]:
+      - listitem [ref=e172]:
+        - link "StorageAPI" [ref=e173] [cursor=pointer]:
+          - /url: /js/test/test-runner.html?spec=StorageAPI
+      - list [ref=e174]:
+        - listitem [ref=e175]:
+          - link "localStorage" [ref=e176] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage
+        - list [ref=e177]:
+          - listitem [ref=e178]:
+            - link "• guarda y obtiene valores JSON, devolviendo null si la clave no existe" [ref=e179] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20guarda%20y%20obtiene%20valores%20JSON%2C%20devolviendo%20null%20si%20la%20clave%20no%20existe
+            - text: (1ms)
+        - list [ref=e180]:
+          - listitem [ref=e181]:
+            - link "• actualiza una clave existente y rechaza una inexistente" [ref=e182] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20actualiza%20una%20clave%20existente%20y%20rechaza%20una%20inexistente
+            - text: (0ms)
+        - list [ref=e183]:
+          - listitem [ref=e184]:
+            - link "• actualiza una clave existente cuyo valor es null" [ref=e185] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20actualiza%20una%20clave%20existente%20cuyo%20valor%20es%20null
+            - text: (0ms)
+        - list [ref=e186]:
+          - listitem [ref=e187]:
+            - link "• elimina claves y lista solamente las que coinciden con el prefijo" [ref=e188] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20elimina%20claves%20y%20lista%20solamente%20las%20que%20coinciden%20con%20el%20prefijo
+            - text: (0ms)
+        - list [ref=e189]:
+          - listitem [ref=e190]:
+            - link "• limpia únicamente el storage seleccionado" [ref=e191] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20limpia%20%C3%BAnicamente%20el%20storage%20seleccionado
+            - text: (0ms)
+        - list [ref=e192]:
+          - listitem [ref=e193]:
+            - link "• devuelve null y reporta errores si el valor almacenado no es JSON válido" [ref=e194] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20devuelve%20null%20y%20reporta%20errores%20si%20el%20valor%20almacenado%20no%20es%20JSON%20v%C3%A1lido
+            - text: (0ms)
+        - list [ref=e195]:
+          - listitem [ref=e196]:
+            - link "• maneja QuotaExceededError al guardar sin propagar la excepción" [ref=e197] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20maneja%20QuotaExceededError%20al%20guardar%20sin%20propagar%20la%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e198]:
+          - listitem [ref=e199]:
+            - link "• devuelve null y registra el fallo si getItem lanza una excepción" [ref=e200] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20devuelve%20null%20y%20registra%20el%20fallo%20si%20getItem%20lanza%20una%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e201]:
+          - listitem [ref=e202]:
+            - link "• devuelve false y registra el fallo si removeItem lanza una excepción" [ref=e203] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20devuelve%20false%20y%20registra%20el%20fallo%20si%20removeItem%20lanza%20una%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e204]:
+          - listitem [ref=e205]:
+            - link "• devuelve false y registra el fallo si clear lanza una excepción" [ref=e206] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20devuelve%20false%20y%20registra%20el%20fallo%20si%20clear%20lanza%20una%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e207]:
+          - listitem [ref=e208]:
+            - link "• devuelve una lista vacía y registra el fallo si key lanza una excepción" [ref=e209] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20devuelve%20una%20lista%20vac%C3%ADa%20y%20registra%20el%20fallo%20si%20key%20lanza%20una%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e210]:
+          - listitem [ref=e211]:
+            - link "• devuelve una lista vacía y registra el fallo si acceder a length falla" [ref=e212] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20devuelve%20una%20lista%20vac%C3%ADa%20y%20registra%20el%20fallo%20si%20acceder%20a%20length%20falla
+            - text: (0ms)
+        - list [ref=e213]:
+          - listitem [ref=e214]:
+            - link "• devuelve false y registra el fallo si actualizar no puede leer la clave" [ref=e215] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20devuelve%20false%20y%20registra%20el%20fallo%20si%20actualizar%20no%20puede%20leer%20la%20clave
+            - text: (0ms)
+        - list [ref=e216]:
+          - listitem [ref=e217]:
+            - link "• devuelve false y registra el fallo si actualizar no puede escribir" [ref=e218] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20localStorage%20devuelve%20false%20y%20registra%20el%20fallo%20si%20actualizar%20no%20puede%20escribir
+            - text: (0ms)
+      - list [ref=e219]:
+        - listitem [ref=e220]:
+          - link "sessionStorage" [ref=e221] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage
+        - list [ref=e222]:
+          - listitem [ref=e223]:
+            - link "• guarda y obtiene valores JSON, devolviendo null si la clave no existe" [ref=e224] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20guarda%20y%20obtiene%20valores%20JSON%2C%20devolviendo%20null%20si%20la%20clave%20no%20existe
+            - text: (0ms)
+        - list [ref=e225]:
+          - listitem [ref=e226]:
+            - link "• actualiza una clave existente y rechaza una inexistente" [ref=e227] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20actualiza%20una%20clave%20existente%20y%20rechaza%20una%20inexistente
+            - text: (1ms)
+        - list [ref=e228]:
+          - listitem [ref=e229]:
+            - link "• actualiza una clave existente cuyo valor es null" [ref=e230] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20actualiza%20una%20clave%20existente%20cuyo%20valor%20es%20null
+            - text: (0ms)
+        - list [ref=e231]:
+          - listitem [ref=e232]:
+            - link "• elimina claves y lista solamente las que coinciden con el prefijo" [ref=e233] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20elimina%20claves%20y%20lista%20solamente%20las%20que%20coinciden%20con%20el%20prefijo
+            - text: (0ms)
+        - list [ref=e234]:
+          - listitem [ref=e235]:
+            - link "• limpia únicamente el storage seleccionado" [ref=e236] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20limpia%20%C3%BAnicamente%20el%20storage%20seleccionado
+            - text: (0ms)
+        - list [ref=e237]:
+          - listitem [ref=e238]:
+            - link "• devuelve null y reporta errores si el valor almacenado no es JSON válido" [ref=e239] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20devuelve%20null%20y%20reporta%20errores%20si%20el%20valor%20almacenado%20no%20es%20JSON%20v%C3%A1lido
+            - text: (0ms)
+        - list [ref=e240]:
+          - listitem [ref=e241]:
+            - link "• maneja QuotaExceededError al guardar sin propagar la excepción" [ref=e242] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20maneja%20QuotaExceededError%20al%20guardar%20sin%20propagar%20la%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e243]:
+          - listitem [ref=e244]:
+            - link "• devuelve null y registra el fallo si getItem lanza una excepción" [ref=e245] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20devuelve%20null%20y%20registra%20el%20fallo%20si%20getItem%20lanza%20una%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e246]:
+          - listitem [ref=e247]:
+            - link "• devuelve false y registra el fallo si removeItem lanza una excepción" [ref=e248] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20devuelve%20false%20y%20registra%20el%20fallo%20si%20removeItem%20lanza%20una%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e249]:
+          - listitem [ref=e250]:
+            - link "• devuelve false y registra el fallo si clear lanza una excepción" [ref=e251] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20devuelve%20false%20y%20registra%20el%20fallo%20si%20clear%20lanza%20una%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e252]:
+          - listitem [ref=e253]:
+            - link "• devuelve una lista vacía y registra el fallo si key lanza una excepción" [ref=e254] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20devuelve%20una%20lista%20vac%C3%ADa%20y%20registra%20el%20fallo%20si%20key%20lanza%20una%20excepci%C3%B3n
+            - text: (0ms)
+        - list [ref=e255]:
+          - listitem [ref=e256]:
+            - link "• devuelve una lista vacía y registra el fallo si acceder a length falla" [ref=e257] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20devuelve%20una%20lista%20vac%C3%ADa%20y%20registra%20el%20fallo%20si%20acceder%20a%20length%20falla
+            - text: (0ms)
+        - list [ref=e258]:
+          - listitem [ref=e259]:
+            - link "• devuelve false y registra el fallo si actualizar no puede leer la clave" [ref=e260] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20devuelve%20false%20y%20registra%20el%20fallo%20si%20actualizar%20no%20puede%20leer%20la%20clave
+            - text: (0ms)
+        - list [ref=e261]:
+          - listitem [ref=e262]:
+            - link "• devuelve false y registra el fallo si actualizar no puede escribir" [ref=e263] [cursor=pointer]:
+              - /url: /js/test/test-runner.html?spec=StorageAPI%20sessionStorage%20devuelve%20false%20y%20registra%20el%20fallo%20si%20actualizar%20no%20puede%20escribir
+            - text: (0ms)
+      - list [ref=e264]:
+        - listitem [ref=e265]:
+          - link "• devuelve false y reporta un error si el valor no se puede serializar" [ref=e266] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=StorageAPI%20devuelve%20false%20y%20reporta%20un%20error%20si%20el%20valor%20no%20se%20puede%20serializar
+          - text: (7ms)
+      - list [ref=e267]:
+        - listitem [ref=e268]:
+          - link "• rechaza un tipo de storage inválido sin guardar en sessionStorage" [ref=e269] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=StorageAPI%20rechaza%20un%20tipo%20de%20storage%20inv%C3%A1lido%20sin%20guardar%20en%20sessionStorage
+          - text: (0ms)
+      - list [ref=e270]:
+        - listitem [ref=e271]:
+          - link "• carga y normaliza la biblioteca mediante resultados tipados" [ref=e272] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=StorageAPI%20carga%20y%20normaliza%20la%20biblioteca%20mediante%20resultados%20tipados
+          - text: (0ms)
+      - list [ref=e273]:
+        - listitem [ref=e274]:
+          - link "• devuelve la biblioteca anterior y un error de storage al fallar el guardado" [ref=e275] [cursor=pointer]:
+            - /url: /js/test/test-runner.html?spec=StorageAPI%20devuelve%20la%20biblioteca%20anterior%20y%20un%20error%20de%20storage%20al%20fallar%20el%20guardado
+          - text: (0ms)

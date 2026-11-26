@@ -1,0 +1,154 @@
+- generic [active] [ref=f5e1]:
+  - banner [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - link "Mini Letterboxd, inicio" [ref=f5e4] [cursor=pointer]:
+        - /url: "#inicio"
+        - generic [ref=f5e5]: MINI
+        - strong [ref=f5e6]: LETTERBOXD
+      - generic [ref=f5e7]:
+        - navigation "Navegación principal" [ref=f5e8]:
+          - list [ref=f5e9]:
+            - listitem [ref=f5e10]:
+              - link "Inicio" [ref=f5e11] [cursor=pointer]:
+                - /url: "#inicio"
+            - listitem [ref=f5e12]:
+              - link "Catálogo" [ref=f5e13] [cursor=pointer]:
+                - /url: "#catalogo"
+            - listitem [ref=f5e14]:
+              - link "Biblioteca" [ref=f5e15] [cursor=pointer]:
+                - /url: "#biblioteca"
+            - listitem [ref=f5e16]:
+              - link "Mi Lista" [ref=f5e17] [cursor=pointer]:
+                - /url: "#titulo-lista"
+        - link "Compartir Mi Lista" [ref=f5e18] [cursor=pointer]:
+          - /url: "#compartir"
+  - main [ref=f5e19]:
+    - region "Películas Destacadas" [ref=f5e20]:
+      - heading "Películas Destacadas" [level=2] [ref=f5e21]
+      - region "Películas destacadas" [ref=f5e22]:
+        - generic [ref=f5e25]:
+          - img "Paisaje montañoso de la película Interstellar" [ref=f5e26]
+          - generic [ref=f5e27]:
+            - heading "Interstellar" [level=3] [ref=f5e28]
+            - button "Agregar a Mi Lista" [ref=f5e29] [cursor=pointer]
+        - button "Película anterior" [ref=f5e30] [cursor=pointer]
+        - button "Película siguiente" [ref=f5e32] [cursor=pointer]
+    - generic [ref=f5e34]:
+      - complementary "Biblioteca" [ref=f5e35]:
+        - heading "Biblioteca" [level=2] [ref=f5e36]
+        - status [ref=f5e147]: Contenido agregado a Mi Lista.
+        - region "Pendientes" [ref=f5e37]:
+          - heading "Pendientes" [level=3] [ref=f5e38]
+          - generic [ref=f5e39]:
+            - article [ref=f5e148]:
+              - heading "Interstellar" [level=4] [ref=f5e149]
+              - paragraph [ref=f5e150]: No está en Mi Lista
+              - generic [ref=f5e151]: Estado de visualización
+              - combobox "Estado de visualización" [ref=f5e152]:
+                - option "Pendiente" [selected]
+                - option "Vista"
+              - button "Agregar a Mi Lista" [ref=f5e153] [cursor=pointer]
+            - article [ref=f5e154]:
+              - heading "Dark" [level=4] [ref=f5e155]
+              - paragraph [ref=f5e156]: En Mi Lista
+              - generic [ref=f5e157]: Estado de visualización
+              - combobox "Estado de visualización" [ref=f5e158]:
+                - option "Pendiente" [selected]
+                - option "Vista"
+              - button "Quitar de Mi Lista" [pressed] [ref=f5e159] [cursor=pointer]
+        - region "Vistas" [ref=f5e52]:
+          - heading "Vistas" [level=3] [ref=f5e53]
+          - article [ref=f5e160]:
+            - heading "El viaje de Chihiro" [level=4] [ref=f5e161]
+            - paragraph [ref=f5e162]: No está en Mi Lista
+            - generic [ref=f5e163]: Estado de visualización
+            - combobox "Estado de visualización" [ref=f5e164]:
+              - option "Pendiente"
+              - option "Vista" [selected]
+            - generic [ref=f5e165]:
+              - generic [ref=f5e166]: "Tu calificación: El viaje de Chihiro"
+              - 'slider "Tu calificación: El viaje de Chihiro" [ref=f5e167]': "3"
+              - status [ref=f5e168]: "3"
+              - generic [ref=f5e169]: Elegí una calificación de 1 a 5.
+            - button "Agregar a Mi Lista" [ref=f5e170] [cursor=pointer]
+      - region "Catálogo de películas" [ref=f5e66]:
+        - heading "Catálogo de películas" [level=2] [ref=f5e67]
+        - paragraph [ref=f5e68]: Una selección inicial para descubrir nuevas historias.
+        - search [ref=f5e69]:
+          - generic [ref=f5e70]:
+            - generic [ref=f5e71]: Buscar por título
+            - searchbox "Buscar por título" [ref=f5e72]
+          - generic [ref=f5e73]:
+            - generic [ref=f5e74]: Tipo o género
+            - combobox "Tipo o género" [ref=f5e75]:
+              - option "Todos" [selected]
+              - option "Película"
+              - option "Serie"
+              - option "Ciencia ficción"
+              - option "Animación y fantasía"
+              - option "Misterio"
+          - button "Buscar" [ref=f5e76] [cursor=pointer]
+          - button "Limpiar" [ref=f5e77] [cursor=pointer]
+        - generic "Resultados del catálogo" [ref=f5e79]:
+          - article [ref=f5e172]:
+            - img "Paisaje montañoso de la película Interstellar" [ref=f5e173]
+            - heading "Interstellar" [level=3] [ref=f5e174]
+            - paragraph [ref=f5e175]: Película | 2014 | Ciencia ficción
+            - paragraph [ref=f5e176]: Un grupo de exploradores busca un nuevo hogar para la humanidad más allá de las estrellas.
+            - paragraph [ref=f5e178]: "Duración: 169 minutos"
+            - button "Agregar a Mi Lista" [ref=f5e180] [cursor=pointer]
+          - article [ref=f5e182]:
+            - img "Chihiro frente a los edificios iluminados del mundo de los espíritus" [ref=f5e183]
+            - heading "El viaje de Chihiro" [level=3] [ref=f5e184]
+            - paragraph [ref=f5e185]: Película | 2001 | Animación y fantasía
+            - paragraph [ref=f5e186]: Chihiro entra en un mundo de espíritus y debe encontrar el valor para recuperar a sus padres.
+            - paragraph [ref=f5e188]: "Duración: 125 minutos"
+            - button "Agregar a Mi Lista" [ref=f5e190] [cursor=pointer]
+          - article [ref=f5e192]:
+            - img "Paisaje de una ciudad nocturna para representar una serie de misterio" [ref=f5e193]
+            - heading "Dark" [level=3] [ref=f5e194]
+            - paragraph [ref=f5e195]: Serie | 2017 | Misterio y ciencia ficción
+            - paragraph [ref=f5e196]: Cuatro familias buscan respuestas cuando la desaparición de un niño revela un misterio temporal.
+            - paragraph [ref=f5e198]: "Temporadas: 3"
+            - button "Quitar de Mi Lista" [pressed] [ref=f5e200] [cursor=pointer]
+    - region "Mi Lista" [ref=f5e110]:
+      - heading "Mi Lista" [level=2] [ref=f5e111]
+      - navigation "Filtrar Mi Lista" [ref=f5e112]:
+        - button "Todas" [pressed] [ref=f5e113] [cursor=pointer]
+        - button "Favoritas" [ref=f5e114] [cursor=pointer]
+        - button "Vistas" [ref=f5e115] [cursor=pointer]
+        - button "Por ver" [ref=f5e116] [cursor=pointer]
+      - generic [ref=f5e117]:
+        - article [ref=f5e201]:
+          - heading "Interstellar" [level=3] [ref=f5e202]
+          - paragraph [ref=f5e203]: Pendiente · No favorita
+          - button "Agregar a Mi Lista" [ref=f5e204] [cursor=pointer]
+        - article [ref=f5e205]:
+          - heading "El viaje de Chihiro" [level=3] [ref=f5e206]
+          - paragraph [ref=f5e207]: Vista · No favorita
+          - button "Agregar a Mi Lista" [ref=f5e208] [cursor=pointer]
+        - article [ref=f5e209]:
+          - heading "Dark" [level=3] [ref=f5e210]
+          - paragraph [ref=f5e211]: Pendiente · Favorita
+          - button "Quitar de Mi Lista" [pressed] [ref=f5e212] [cursor=pointer]
+  - contentinfo [ref=f5e130]:
+    - region "Compartir Mi Lista" [ref=f5e131]:
+      - heading "Compartir Mi Lista" [level=2] [ref=f5e132]
+      - generic [ref=f5e133]:
+        - generic [ref=f5e134]: Formato de exportación
+        - combobox "Formato de exportación" [ref=f5e135]:
+          - option "Texto" [selected]
+          - option "Enlace"
+        - button "Preparar lista" [ref=f5e136] [cursor=pointer]
+    - generic [ref=f5e137]:
+      - link "Mini Letterboxd, inicio" [ref=f5e138] [cursor=pointer]:
+        - /url: "#inicio"
+        - generic [ref=f5e139]: MINI
+        - strong [ref=f5e140]: LETTERBOXD
+      - paragraph [ref=f5e141]: Tu biblioteca de películas y series
+      - paragraph [ref=f5e142]: Explorá títulos, guardá lo que querés ver y organizá tus películas favoritas en un solo lugar.
+      - paragraph [ref=f5e143]: Buscá títulos, organizá tu biblioteca, calificá lo que viste y compartí tus favoritos.
+    - generic [ref=f5e144]:
+      - paragraph [ref=f5e145]: Proyecto académico de Programación Web I.
+      - link "Repositorio en GitHub" [ref=f5e146] [cursor=pointer]:
+        - /url: https://github.com/keviineze/proyecto-web-peliculas

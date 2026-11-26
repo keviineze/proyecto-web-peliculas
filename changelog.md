@@ -26,6 +26,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
+- [fix/rc-desarrollador-js] **A4 - fix: address JavaScript review challenges** | [PR #100](https://github.com/keviineze/proyecto-web-peliculas/pull/100) | @GonzaloBarbano
+
 - [fix/changelog-trazabilidad] **A4 - Corrección Changelog (RC1): trazabilidad de PR #89 y registro de fixes de cuarta entrega** | [PR #99](https://github.com/keviineze/proyecto-web-peliculas/pull/99) | @Davidsoria99
 
 - [fix/storage-fachada-docs] **A4 - Correcciones Storage (RC17–RC20): unificación de clave y esquema JSON, fachada `libraryStorage.js` y JSDoc** | [PR #93](https://github.com/keviineze/proyecto-web-peliculas/pull/93) | @Davidsoria99
