@@ -34,7 +34,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/qa-cobertura-tests] **A4 - Correcciones QA (RC2–RC5): cobertura ampliada a 60 specs PASS, evidencias e issues de trazabilidad** | Issues [#95](https://github.com/keviineze/proyecto-web-peliculas/issues/95), [#96](https://github.com/keviineze/proyecto-web-peliculas/issues/96), [#97](https://github.com/keviineze/proyecto-web-peliculas/issues/97) | [PR #98](https://github.com/keviineze/proyecto-web-peliculas/pull/98) | @Davidsoria99
 
-- [fix/js-poo-1] **Correcciones JS Poo 1** | [PR #94](https://github.com/keviineze/proyecto-web-peliculas/pull/94) | @keviineze (Desarrollador JS POO)
+- [fix/js-poo-1] **Correcciones JS Poo 1** | Issues [#80](https://github.com/keviineze/proyecto-web-peliculas/issues/80) | [PR #94](https://github.com/keviineze/proyecto-web-peliculas/pull/94) | @keviineze (Desarrollador JS POO)
 
 ## [Release Tercera Entrega] - 2026-10-31
 
