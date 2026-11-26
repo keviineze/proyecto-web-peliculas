@@ -1,5 +1,4 @@
 import { Library } from "../models/Library.js";
-import { LibraryEntry } from "../models/LibraryEntry.js";
 import { StorageAPI } from "./storage.js";
 
 const LIBRARY_STORAGE_KEY = "mlb:biblioteca:listaPersonal";
@@ -29,34 +28,8 @@ export const LibraryStorage = {
    *   error. A failed read is treated as no saved data by `StorageAPI`.
    */
   cargar(catalog) {
-    const library = Library.createInitial(catalog);
     const storedEntries = StorageAPI.obtener(LIBRARY_STORAGE_KEY);
-    if (Array.isArray(storedEntries)) {
-      const entriesById = new Map();
-      for (const storedEntry of storedEntries) {
-        try {
-          const entry = LibraryEntry.fromJSON(storedEntry);
-          if (catalog.findById(entry.getTitleId())) {
-            entriesById.set(entry.getTitleId(), entry);
-          }
-        } catch {
-          continue;
-        }
-      }
-
-      for (const [titleId, entry] of entriesById) {
-        const content = catalog.findById(titleId);
-        library.setStatus(titleId, entry.getStatus());
-        if (entry.getIsFavorite()) {
-          library.addFavorite(content);
-        }
-        if (entry.getRating() !== null) {
-          library.rateContent(titleId, entry.getRating());
-        }
-      }
-    }
-
-    return this.guardar(library);
+    return this.guardar(Library.restore(catalog, storedEntries));
   },
 
   /**
@@ -123,8 +96,6 @@ export const LibraryStorage = {
     }
 
     const result = this.guardar(library);
-    return result.ok
-      ? result
-      : { ...result, data: previousLibrary };
+    return result.ok ? result : { ...result, data: previousLibrary };
   },
 };

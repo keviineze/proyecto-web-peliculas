@@ -16,12 +16,12 @@ export class Library {
       throw new TypeError("Library entries must be an array.");
     }
     if (entries.some((entry) => !(entry instanceof LibraryEntry))) {
-      throw new TypeError("Every library item must be a LibraryEntry instance.");
+      throw new TypeError(
+        "Every library item must be a LibraryEntry instance.",
+      );
     }
 
-    const identifiers = new Set(
-      entries.map((entry) => entry.getTitleId()),
-    );
+    const identifiers = new Set(entries.map((entry) => entry.getTitleId()));
     if (identifiers.size !== entries.length) {
       throw new RangeError("Library titleIds must be unique.");
     }
@@ -33,9 +33,7 @@ export class Library {
 
   /** @returns {LibraryEntry[]} Independent copies of the library records. */
   getEntries() {
-    return this.#entries.map((entry) =>
-      LibraryEntry.fromJSON(entry.toJSON()),
-    );
+    return this.#entries.map((entry) => LibraryEntry.fromJSON(entry.toJSON()));
   }
 
   /**
@@ -72,14 +70,27 @@ export class Library {
     }
 
     this.#entries.push(
-      new LibraryEntry(
-        content.getId(),
-        content.getInitialStatus(),
-        true,
-        null,
-      ),
+      new LibraryEntry(content.getId(), content.getInitialStatus(), true, null),
     );
     return true;
+  }
+
+  /**
+   * Toggles favorite status while preserving the entry's other personal data.
+   * @param {Content} content Content whose favorite status should change.
+   * @returns {boolean} Whether the favorite status changed.
+   */
+  toggleFavorite(content) {
+    if (!(content instanceof Content)) {
+      throw new TypeError("A Content instance is required.");
+    }
+
+    const entry =
+      this.#entries.find((item) => item.getTitleId() === content.getId()) ??
+      null;
+    return entry
+      ? entry.setFavorite(!entry.getIsFavorite())
+      : this.addFavorite(content);
   }
 
   /**
@@ -171,6 +182,39 @@ export class Library {
     }
 
     return new Library(data.map((item) => LibraryEntry.fromJSON(item)));
+  }
+
+  /**
+   * Restores valid known records over the catalog's initial state.
+   * @param {Catalog} catalog Source catalog.
+   * @param {object[]} data Stored library records.
+   * @returns {Library}
+   */
+  static restore(catalog, data) {
+    Library.#assertCatalog(catalog);
+    const initial = Library.createInitial(catalog);
+    if (!Array.isArray(data)) {
+      return initial;
+    }
+
+    const storedById = new Map();
+    for (const storedRecord of data) {
+      try {
+        const entry = LibraryEntry.fromJSON(storedRecord);
+        if (catalog.findById(entry.getTitleId())) {
+          storedById.set(entry.getTitleId(), entry);
+        }
+      } catch {
+        continue;
+      }
+    }
+
+    return new Library(
+      initial.#entries.map((entry) => {
+        const storedEntry = storedById.get(entry.getTitleId());
+        return storedEntry ?? entry;
+      }),
+    );
   }
 
   /**

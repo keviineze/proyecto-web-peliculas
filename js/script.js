@@ -2,6 +2,10 @@ import { Catalog } from "./models/Catalog.js";
 import { Content } from "./models/Content.js";
 import { Library } from "./models/Library.js";
 import { LibraryStorage } from "./utils/libraryStorage.js";
+import { ListExport } from "./utils/listExport.js";
+
+const FEEDBACK_TIMEOUT_MS = 4000;
+const feedbackTimeouts = new WeakMap();
 
 const CONTENT_PRESENTATION = {
   interstellar: {
@@ -31,6 +35,7 @@ const CONTENT_PRESENTATION = {
 
 let catalog;
 let library;
+let currentListFilter = "all";
 
 function initializeApp() {
   const main = document.querySelector("main");
@@ -67,7 +72,9 @@ function initializeApp() {
   library = loadLibrary();
   configureEvents();
   renderCatalog(catalog.getAll());
+  renderFeaturedCarousel(catalog.getAll());
   renderLibrary();
+  renderMyList();
   syncFavoriteButtons();
 
   const searchForm = document.getElementById("search-form");
@@ -100,6 +107,14 @@ function configureEvents() {
 }
 
 function handleClick(event) {
+  const listFilter = event.target.closest("[data-list-filter]");
+  if (listFilter) {
+    event.preventDefault();
+    currentListFilter = listFilter.dataset.listFilter;
+    renderMyList();
+    return;
+  }
+
   const actionElement = event.target.closest("[data-action]");
   if (!actionElement) {
     return;
@@ -113,7 +128,7 @@ function handleClick(event) {
       clearSearch();
       break;
     case "share-list":
-      renderShareResult();
+      startSharing();
       break;
     default:
       break;
@@ -169,6 +184,20 @@ function updateSearchResults() {
 
   const titleQuery = form.elements.query.value;
   const filterValue = form.elements.filter.value;
+  const queryInput = form.elements.query;
+  const feedback = document.getElementById("search-feedback");
+  const queryIsValid = queryInput.value.length <= 100;
+  queryInput.classList.toggle("is-invalid", !queryIsValid);
+  queryInput.setAttribute("aria-invalid", String(!queryIsValid));
+  form.elements.filter.setAttribute("aria-invalid", "false");
+  if (!queryIsValid) {
+    renderMessage(
+      feedback,
+      "La búsqueda no puede superar los 100 caracteres.",
+      "danger",
+    );
+    return;
+  }
   const results = catalog.search(titleQuery, filterValue);
   renderCatalog(results);
   renderSearchFeedback(titleQuery, filterValue, results.length);
@@ -196,28 +225,21 @@ function toggleFavorite(titleId) {
     return;
   }
 
-  const existingEntry = library.findEntry(titleId);
-  const wasFavorite = existingEntry?.getIsFavorite() ?? false;
-  const result = persistLibraryChange(() =>
-    wasFavorite
-      ? library.removeFavorite(titleId)
-      : library.addFavorite(content),
-  );
+  const result = persistLibraryChange(() => library.toggleFavorite(content));
 
   if (result.ok) {
+    const isFavorite = library.findEntry(titleId)?.getIsFavorite() ?? false;
     renderMessage(
       document.getElementById("library-feedback"),
-      wasFavorite
-        ? "Contenido quitado de Mi Lista."
-        : "Contenido agregado a Mi Lista.",
+      isFavorite
+        ? "Contenido agregado a Mi Lista."
+        : "Contenido quitado de Mi Lista.",
       "success",
     );
   } else if (result.error.type === "domain") {
     renderMessage(
       document.getElementById("library-feedback"),
-      wasFavorite
-        ? "No se pudo quitar el contenido de Mi Lista."
-        : "No se pudo agregar el contenido a Mi Lista.",
+      "No se pudo actualizar el contenido en Mi Lista.",
       "warning",
     );
   }
@@ -229,12 +251,18 @@ function updateContentStatus(select) {
   const result = persistLibraryChange(() => library.setStatus(titleId, status));
 
   if (result.ok) {
+    select.setAttribute("aria-invalid", "false");
     renderMessage(
       document.getElementById("library-feedback"),
       "Estado actualizado.",
       "success",
     );
   } else if (result.error.type === "domain") {
+    const currentEntry = library.findEntry(titleId);
+    if (currentEntry) {
+      select.value = currentEntry.getStatus();
+    }
+    select.setAttribute("aria-invalid", "true");
     renderMessage(
       document.getElementById("library-feedback"),
       "No se pudo cambiar el estado. Una calificación existente requiere mantener el contenido como visto.",
@@ -244,8 +272,7 @@ function updateContentStatus(select) {
 }
 
 function previewRating(input) {
-  const rating = Number(input.value);
-  const isValid = Number.isInteger(rating) && rating >= 1 && rating <= 5;
+  const isValid = input.checkValidity();
   const valueOutput = document.getElementById(input.dataset.valueId);
   const feedback = document.getElementById(input.dataset.feedbackId);
 
@@ -257,14 +284,14 @@ function previewRating(input) {
     feedback,
     isValid
       ? "La calificación se guardará al soltar el control."
-      : "Elegí un valor entero entre 1 y 5.",
+      : input.validationMessage || "Elegí una calificación válida.",
     isValid,
   );
 }
 
 function saveRating(input) {
-  const rating = Number(input.value);
-  if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
+  const rating = input.valueAsNumber;
+  if (!input.checkValidity()) {
     previewRating(input);
     return;
   }
@@ -283,7 +310,7 @@ function saveRating(input) {
       ? "Calificación guardada."
       : storageFailed
         ? "La calificación es válida, pero no se pudo guardar."
-        : "Solo se pueden calificar contenidos marcados como vistos.",
+        : "No se pudo aplicar la calificación a este contenido.",
     storageFailed ? null : saved,
   );
   if (saved) {
@@ -300,11 +327,13 @@ function persistLibraryChange(change) {
   library = result.data;
   if (!result.ok && result.error.type === "domain") {
     renderLibrary();
+    renderMyList();
     syncFavoriteButtons();
     return result;
   }
   if (!result.ok) {
     renderLibrary();
+    renderMyList();
     syncFavoriteButtons();
     renderMessage(
       document.getElementById("library-feedback"),
@@ -316,6 +345,7 @@ function persistLibraryChange(change) {
 
   renderLibrary();
   renderCurrentCatalog();
+  renderMyList();
   syncFavoriteButtons();
   clearShareResult();
   return result;
@@ -340,6 +370,44 @@ function renderCatalog(contents) {
   }
 
   container.replaceChildren(...contents.map(createCatalogCard));
+}
+
+function renderFeaturedCarousel(contents) {
+  const carousel = document.querySelector("#featured-carousel .carousel-inner");
+  if (!carousel) {
+    return;
+  }
+
+  carousel.replaceChildren(
+    ...contents.map((content, index) => {
+      const item = createElement(
+        "div",
+        `carousel-item${index === 0 ? " active" : ""}`,
+      );
+      const presentation = CONTENT_PRESENTATION[content.getId()] ?? {};
+      const slide = createElement("div", "featured-slide");
+      const image = createElement("img", "featured-slide-image");
+      image.src = presentation.image ?? "";
+      image.alt = presentation.imageAlt ?? content.getTitle();
+      image.loading = "lazy";
+      image.decoding = "async";
+
+      const caption = createElement("div", "featured-slide-caption");
+      caption.append(
+        createElement("h3", "", content.getTitle()),
+        createFavoriteButton(content.getId()),
+        createElement(
+          "p",
+          "",
+          `${content.getType()} | ${content.getYear()} | ${content.getGenres().join(", ")}`,
+        ),
+        createElement("p", "", presentation.description ?? ""),
+      );
+      slide.append(image, caption);
+      item.append(slide);
+      return item;
+    }),
+  );
 }
 
 function createCatalogCard(content) {
@@ -390,6 +458,53 @@ function renderLibrary() {
   const entries = library.getEntries();
   renderLibraryStatus("pending", entries);
   renderLibraryStatus("watched", entries);
+}
+
+function renderMyList() {
+  const container = document.getElementById("my-list-items");
+  if (!container) {
+    return;
+  }
+
+  const filters = {
+    all: () => true,
+    favorites: (entry) => entry.getIsFavorite(),
+    watched: (entry) => entry.getStatus() === "watched",
+    pending: (entry) => entry.getStatus() === "pending",
+  };
+  const matchesFilter = filters[currentListFilter] ?? filters.all;
+  const entries = library
+    .getEntries()
+    .filter(matchesFilter)
+    .map((entry) => ({ entry, content: catalog.findById(entry.getTitleId()) }))
+    .filter(({ content }) => content !== null);
+
+  container.replaceChildren(
+    ...entries.map(({ entry, content }) => {
+      const item = createElement("article", "my-list-entry");
+      item.append(
+        createElement("h3", "", content.getTitle()),
+        createElement(
+          "p",
+          "",
+          `${entry.getStatus() === "watched" ? "Vista" : "Pendiente"} · ${entry.getIsFavorite() ? "Favorita" : "No favorita"}`,
+        ),
+        createFavoriteButton(content.getId()),
+      );
+      return item;
+    }),
+  );
+
+  const emptyState = document.getElementById("my-list-empty");
+  if (emptyState) {
+    emptyState.hidden = entries.length > 0;
+  }
+  document.querySelectorAll("[data-list-filter]").forEach((button) => {
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.listFilter === currentListFilter),
+    );
+  });
 }
 
 function renderLibraryStatus(status, entries) {
@@ -551,16 +666,57 @@ function renderShareResult() {
     return;
   }
 
-  output.value =
-    format === "texto"
-      ? favorites
-          .map((content) => `${content.getTitle()} (${content.getYear()})`)
-          .join("\n")
-      : `https://miproyecto.com/lista?ids=${encodeURIComponent(favorites.map((content) => content.getId()).join(","))}`;
+  try {
+    output.value = ListExport.format(favorites, format);
+  } catch {
+    renderMessage(
+      document.getElementById("share-feedback"),
+      "No se pudo preparar la lista con ese formato.",
+      "danger",
+    );
+    return null;
+  }
   output.hidden = false;
   renderMessage(
     document.getElementById("share-feedback"),
     "Lista preparada. Podés seleccionar y copiar el resultado.",
+    "success",
+  );
+  return { format, value: output.value, output };
+}
+
+function startSharing() {
+  const result = renderShareResult();
+  if (!result) {
+    return;
+  }
+
+  if (typeof navigator.share === "function") {
+    navigator.share({ title: "Mi Lista", text: result.value }).then(
+      () =>
+        renderMessage(
+          document.getElementById("share-feedback"),
+          "Lista compartida.",
+          "success",
+        ),
+      (error) => {
+        if (error.name !== "AbortError") {
+          renderMessage(
+            document.getElementById("share-feedback"),
+            "No se pudo abrir la opción de compartir. El resultado quedó listo para copiar.",
+            "warning",
+          );
+        }
+      },
+    );
+    return;
+  }
+
+  result.output.focus();
+  result.output.select();
+  renderMessage(
+    document.getElementById("share-feedback"),
+    "Lista preparada y seleccionada para copiar.",
     "success",
   );
 }
@@ -587,6 +743,16 @@ function renderMessage(container, message, type) {
     "aria-live",
     type === "danger" ? "assertive" : "polite",
   );
+  clearTimeout(feedbackTimeouts.get(container));
+  if (message) {
+    const timeout = setTimeout(() => {
+      container.hidden = true;
+      container.textContent = "";
+      container.className = "";
+      feedbackTimeouts.delete(container);
+    }, FEEDBACK_TIMEOUT_MS);
+    feedbackTimeouts.set(container, timeout);
+  }
 }
 
 function setFieldFeedback(input, feedback, message, isValid) {
