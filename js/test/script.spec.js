@@ -1,5 +1,7 @@
 import "../script.js";
 import { StorageAPI } from "../utils/storage.js";
+import { ListExport } from "../utils/listExport.js";
+import { Content } from "../models/Content.js";
 
 const LIBRARY_STORAGE_KEY = "mlb:biblioteca:listaPersonal";
 
@@ -26,12 +28,18 @@ describe("Interfaz de catálogo y biblioteca", function () {
 
   it("inicializa el catálogo, la biblioteca y su persistencia usando el DOM", function () {
     expect(document.querySelectorAll(".catalog-grid article").length).toBe(3);
-    expect(document.querySelector("#pending-items article").textContent).toContain(
-      "Interstellar",
-    );
-    expect(document.querySelector("#watched-items article").textContent).toContain(
+    expect(
+      document.querySelectorAll("#featured-carousel .carousel-item").length,
+    ).toBe(3);
+    expect(document.querySelector("#featured-carousel").textContent).toContain(
       "El viaje de Chihiro",
     );
+    expect(
+      document.querySelector("#pending-items article").textContent,
+    ).toContain("Interstellar");
+    expect(
+      document.querySelector("#watched-items article").textContent,
+    ).toContain("El viaje de Chihiro");
     expect(JSON.parse(localStorage.getItem(LIBRARY_STORAGE_KEY)).length).toBe(
       3,
     );
@@ -55,7 +63,9 @@ describe("Interfaz de catálogo y biblioteca", function () {
     filter.value = "Serie";
     dispatch(filter, "change");
     expect(document.querySelectorAll(".catalog-grid article").length).toBe(1);
-    expect(document.querySelector(".catalog-grid").textContent).toContain("Dark");
+    expect(document.querySelector(".catalog-grid").textContent).toContain(
+      "Dark",
+    );
 
     query.value = "sin coincidencias";
     dispatch(query, "input");
@@ -101,6 +111,26 @@ describe("Interfaz de catálogo y biblioteca", function () {
     expect(restoredButton.textContent).toBe("Agregar a Mi Lista");
   });
 
+  it("filtra Mi Lista y muestra explícitamente los contenidos favoritos", function () {
+    getFavoriteButton("interstellar").click();
+    const favoritesFilter = document.querySelector(
+      '[data-list-filter="favorites"]',
+    );
+    favoritesFilter.click();
+
+    expect(favoritesFilter.getAttribute("aria-pressed")).toBe("true");
+    expect(document.querySelectorAll("#my-list-items article").length).toBe(1);
+    expect(document.getElementById("my-list-items").textContent).toContain(
+      "Interstellar",
+    );
+    expect(document.getElementById("my-list-items").textContent).toContain(
+      "Favorita",
+    );
+
+    document.querySelector('[data-list-filter="all"]').click();
+    getFavoriteButton("interstellar").click();
+  });
+
   it("actualiza el estado desde el control y mueve la tarjeta entre secciones", function () {
     const select = document.querySelector(
       '[data-action="update-status"][data-title-id="interstellar"]',
@@ -131,14 +161,15 @@ describe("Interfaz de catálogo y biblioteca", function () {
     );
     input.value = "4";
     dispatch(input, "input");
-    expect(document.getElementById("rating-el-viaje-de-chihiro-value").textContent).toBe(
-      "4",
-    );
+    expect(
+      document.getElementById("rating-el-viaje-de-chihiro-value").textContent,
+    ).toBe("4");
 
     dispatch(input, "change");
-    expect(document.getElementById("rating-el-viaje-de-chihiro-feedback").textContent).toBe(
-      "Calificación guardada.",
-    );
+    expect(
+      document.getElementById("rating-el-viaje-de-chihiro-feedback")
+        .textContent,
+    ).toBe("Calificación guardada.");
     expect(
       JSON.parse(localStorage.getItem(LIBRARY_STORAGE_KEY)).find(
         (entry) => entry.titleId === "el-viaje-de-chihiro",
@@ -161,6 +192,53 @@ describe("Interfaz de catálogo y biblioteca", function () {
     getFavoriteButton("dark").click();
     expect(output.hidden).toBeTrue();
     expect(output.value).toBe("");
+  });
+
+  it("comparte desde el acceso de navegación y selecciona la alternativa de copia", function () {
+    getFavoriteButton("dark").click();
+    document.getElementById("navbar-share").click();
+
+    const output = document.getElementById("share-output");
+    expect(output.hidden).toBeFalse();
+    expect(output.value).toBe("Dark (2017)");
+    expect(document.getElementById("share-feedback").textContent).toContain(
+      "Lista preparada",
+    );
+    getFavoriteButton("dark").click();
+  });
+
+  it("oculta el feedback de búsqueda después de su ciclo visible", function () {
+    jasmine.clock().install();
+    try {
+      const query = document.getElementById("search-query");
+      query.value = "dark";
+      dispatch(query, "input");
+      const feedback = document.getElementById("search-feedback");
+      expect(feedback.hidden).toBeFalse();
+
+      jasmine.clock().tick(4001);
+      expect(feedback.hidden).toBeTrue();
+      expect(feedback.textContent).toBe("");
+    } finally {
+      jasmine.clock().uninstall();
+    }
+  });
+
+  it("formatea favoritos como texto o enlace desde el servicio de exportación", function () {
+    const favorite = new Content(
+      "dark",
+      "Dark",
+      "Serie",
+      2017,
+      ["Misterio"],
+      "pending",
+    );
+
+    expect(ListExport.format([favorite], "texto")).toBe("Dark (2017)");
+    expect(
+      ListExport.format([favorite], "enlace", "https://example.test/"),
+    ).toBe("https://example.test/?lista=dark");
+    expect(() => ListExport.format([favorite], "csv")).toThrowError(RangeError);
   });
 
   it("revierte el cambio visual si la persistencia falla y muestra el error en el DOM", function () {

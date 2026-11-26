@@ -102,8 +102,9 @@ article ul {
   color: var(--color-text-muted);
 }
 
-nav[aria-label="Estados de mi lista"] {
+nav[aria-label="Filtrar Mi Lista"] {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-4);
   margin: 0;
@@ -111,7 +112,7 @@ nav[aria-label="Estados de mi lista"] {
 
 button,
 header > a,
-nav[aria-label="Estados de mi lista"] a {
+nav[aria-label="Filtrar Mi Lista"] .list-filter {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -130,39 +131,52 @@ nav[aria-label="Estados de mi lista"] a {
 
 button,
 header > a,
-nav[aria-label="Estados de mi lista"] a {
+nav[aria-label="Filtrar Mi Lista"] .list-filter {
   background: var(--color-primary);
   color: #07130b;
 }
 
 button:hover,
 header > a:hover,
-nav[aria-label="Estados de mi lista"] a:hover {
+nav[aria-label="Filtrar Mi Lista"] .list-filter:hover {
   background: var(--color-primary-hover);
   color: #07130b;
 }
 
-nav[aria-label="Estados de mi lista"] a.list-filter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(280px, 100%);
-  min-height: 96px;
-  border: 0;
-  border-radius: var(--radius-control);
-  background: var(--color-primary);
-  color: #07130b;
-  font-size: 1.5rem;
-  font-weight: 600;
+nav[aria-label="Filtrar Mi Lista"] .list-filter {
+  min-width: 104px;
+  min-height: 42px;
+  border-color: var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
-nav[aria-label="Estados de mi lista"] a.list-filter:hover {
+nav[aria-label="Filtrar Mi Lista"] .list-filter:hover,
+nav[aria-label="Filtrar Mi Lista"] .list-filter[aria-pressed="true"] {
   background: var(--color-primary-hover);
+  border-color: var(--color-primary);
+  color: #07130b;
 }
 
-nav[aria-label="Estados de mi lista"] a.list-filter:focus-visible {
+nav[aria-label="Filtrar Mi Lista"] .list-filter:focus-visible {
   outline: 2px solid var(--color-secondary);
   outline-offset: 3px;
+}
+
+.my-list-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.my-list-entry h3 {
+  font-size: 1.125rem;
+}
+
+.my-list-entry button {
+  width: 100%;
+  white-space: normal;
 }
 
 .my-list-section h2 {

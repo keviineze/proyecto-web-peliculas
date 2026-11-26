@@ -254,13 +254,13 @@ main > div.row {
     margin-left: auto;
   }
 
-  .my-list-section nav[aria-label="Estados de mi lista"] {
-    flex-direction: column;
-    align-items: center;
+  .my-list-section nav[aria-label="Filtrar Mi Lista"] {
+    gap: var(--space-2);
   }
 
   .my-list-section .list-filter {
-    min-height: 72px;
+    flex: 1 1 calc(50% - var(--space-2));
+    min-width: 0;
   }
 
   #main-navbar .navbar-nav {

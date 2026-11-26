@@ -48,12 +48,12 @@ describe("Content", function () {
     expect(() => createContent("id", "Título", "Serie", 0)).toThrowError(
       RangeError,
     );
-    expect(() =>
-      createContent("id", "Título", "Serie", 2024.5),
-    ).toThrowError(RangeError);
-    expect(() =>
-      createContent("id", "Título", "Serie", 2024, []),
-    ).toThrowError(TypeError);
+    expect(() => createContent("id", "Título", "Serie", 2024.5)).toThrowError(
+      RangeError,
+    );
+    expect(() => createContent("id", "Título", "Serie", 2024, [])).toThrowError(
+      TypeError,
+    );
     expect(() =>
       createContent("id", "Título", "Serie", 2024, ["Drama", " "]),
     ).toThrowError(TypeError);
@@ -196,10 +196,7 @@ describe("Catalog", function () {
       ]),
     ).toThrowError(TypeError);
     expect(() =>
-      Catalog.fromJSON([
-        contents[0].toJSON(),
-        contents[0].toJSON(),
-      ]),
+      Catalog.fromJSON([contents[0].toJSON(), contents[0].toJSON()]),
     ).toThrowError(RangeError);
   });
 });
@@ -219,21 +216,21 @@ describe("LibraryEntry", function () {
     expect(() => new LibraryEntry("", "pending", false, null)).toThrowError(
       TypeError,
     );
-    expect(() =>
-      new LibraryEntry("id", "planned", false, null),
-    ).toThrowError(TypeError);
-    expect(() =>
-      new LibraryEntry("id", "pending", "true", null),
-    ).toThrowError(TypeError);
-    expect(() =>
-      new LibraryEntry("id", "watched", false, 0),
-    ).toThrowError(RangeError);
-    expect(() =>
-      new LibraryEntry("id", "watched", false, 5.5),
-    ).toThrowError(RangeError);
-    expect(() =>
-      new LibraryEntry("id", "pending", false, 3),
-    ).toThrowError(RangeError);
+    expect(() => new LibraryEntry("id", "planned", false, null)).toThrowError(
+      TypeError,
+    );
+    expect(() => new LibraryEntry("id", "pending", "true", null)).toThrowError(
+      TypeError,
+    );
+    expect(() => new LibraryEntry("id", "watched", false, 0)).toThrowError(
+      RangeError,
+    );
+    expect(() => new LibraryEntry("id", "watched", false, 5.5)).toThrowError(
+      RangeError,
+    );
+    expect(() => new LibraryEntry("id", "pending", false, 3)).toThrowError(
+      RangeError,
+    );
   });
 
   it("actualiza favorito, estado y calificación y rechaza transiciones inválidas", function () {
@@ -308,7 +305,12 @@ describe("Library", function () {
   ]);
 
   it("valida entradas únicas y encapsula copias independientes", function () {
-    const sourceEntry = new LibraryEntry("interstellar", "pending", false, null);
+    const sourceEntry = new LibraryEntry(
+      "interstellar",
+      "pending",
+      false,
+      null,
+    );
     const source = [sourceEntry];
     const library = new Library(source);
 
@@ -333,8 +335,18 @@ describe("Library", function () {
     const library = Library.createInitial(catalog);
 
     expect(library.toJSON()).toEqual([
-      { titleId: "interstellar", status: "pending", isFavorite: false, rating: null },
-      { titleId: "chihiro", status: "watched", isFavorite: false, rating: null },
+      {
+        titleId: "interstellar",
+        status: "pending",
+        isFavorite: false,
+        rating: null,
+      },
+      {
+        titleId: "chihiro",
+        status: "watched",
+        isFavorite: false,
+        rating: null,
+      },
       { titleId: "dark", status: "pending", isFavorite: false, rating: null },
     ]);
     expect(library.addFavorite(catalog.findById("chihiro"))).toBeTrue();
@@ -352,6 +364,55 @@ describe("Library", function () {
     expect(() => Library.createInitial({})).toThrowError(TypeError);
   });
 
+  it("alterna favoritos desde el dominio sin perder estado personal", function () {
+    const library = Library.createInitial(catalog);
+    library.setStatus("chihiro", "watched");
+    library.rateContent("chihiro", 5);
+
+    expect(library.toggleFavorite(catalog.findById("chihiro"))).toBeTrue();
+    expect(library.findEntry("chihiro").toJSON()).toEqual({
+      titleId: "chihiro",
+      status: "watched",
+      isFavorite: true,
+      rating: 5,
+    });
+    expect(library.toggleFavorite(catalog.findById("chihiro"))).toBeTrue();
+    expect(library.findEntry("chihiro").getIsFavorite()).toBeFalse();
+  });
+
+  it("restaura datos válidos sobre el estado inicial y omite registros inválidos o desconocidos", function () {
+    const restored = Library.restore(catalog, [
+      {
+        titleId: "chihiro",
+        status: "watched",
+        isFavorite: true,
+        rating: 4,
+      },
+      { titleId: "dark", status: "pending", isFavorite: "yes", rating: null },
+      {
+        titleId: "removed-title",
+        status: "watched",
+        isFavorite: true,
+        rating: null,
+      },
+    ]);
+
+    expect(restored.findEntry("chihiro").toJSON()).toEqual({
+      titleId: "chihiro",
+      status: "watched",
+      isFavorite: true,
+      rating: 4,
+    });
+    expect(restored.findEntry("dark").toJSON()).toEqual({
+      titleId: "dark",
+      status: "pending",
+      isFavorite: false,
+      rating: null,
+    });
+    expect(restored.getEntries().length).toBe(3);
+    expect(() => Library.restore({}, [])).toThrowError(TypeError);
+  });
+
   it("resuelve favoritos y vistos sin calificación desde el catálogo", function () {
     const library = Library.createInitial(catalog);
     library.addFavorite(catalog.findById("dark"));
@@ -364,9 +425,7 @@ describe("Library", function () {
       library.getUnratedWatchedContents(catalog).map((item) => item.getId()),
     ).toEqual(["chihiro"]);
     expect(() => library.getFavorites({})).toThrowError(TypeError);
-    expect(() => library.getUnratedWatchedContents({})).toThrowError(
-      TypeError,
-    );
+    expect(() => library.getUnratedWatchedContents({})).toThrowError(TypeError);
   });
 
   it("actualiza estados y ratings existentes y rechaza cambios inválidos o IDs ausentes", function () {

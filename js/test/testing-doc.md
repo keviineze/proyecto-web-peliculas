@@ -14,7 +14,7 @@ Abre `http://localhost:8000/js/test/test-runner.html` en el navegador. Jasmine 5
 
 - `models.spec.js`: constructores, validaciones, operaciones, encapsulamiento y serialización de `Content`, `Catalog`, `LibraryEntry` y `Library`, incluidos JSON parcialmente inválido e IDs inexistentes.
 - `storage.spec.js`: operaciones CRUD de `StorageAPI` en `localStorage` y `sessionStorage`, además de fallos simulados en lectura, eliminación, limpieza, listado y actualización, JSON corrupto, serialización y cuota excedida.
-- `script.spec.js`: integración de la interfaz con el catálogo, la biblioteca, la búsqueda y el submit del formulario, los controles de calificación, la exportación y la persistencia.
+- `script.spec.js`: integración de la interfaz con el catálogo, la biblioteca, la búsqueda, los filtros de Mi Lista, los controles de calificación, compartir y la persistencia.
 
 Las suites se ejecutan en el navegador y el reporte de Jasmine muestra el total de specs y fallos.
 
@@ -24,7 +24,7 @@ Las suites se ejecutan en el navegador y el reporte de Jasmine muestra el total 
 
 ## Resultados y Evidencias
 
-- **Última ejecución:** 60 specs, 0 failures (100% PASS) — 0.144s en Jasmine 5.10.0, ejecutadas en Chromium mediante Playwright MCP, sin errores de consola ni excepciones de página.
+- **Última ejecución:** 66 specs, 0 failures (100% PASS) en Jasmine 5.10.0, ejecutadas en Chromium mediante Playwright MCP.
 - **Captura de resultados:**
 
-![Resultados Jasmine 60 specs PASS](screenshots/jasmine-pass-1.png)
+![Resultados Jasmine 66 specs PASS](screenshots/jasmine-pass-1.png)

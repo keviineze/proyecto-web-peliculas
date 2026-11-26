@@ -19,6 +19,7 @@
     <div id="test-app-fixture" hidden>
       <main>
         <p id="library-feedback" hidden></p>
+        <div id="featured-carousel"><div class="carousel-inner"></div></div>
         <form id="search-form">
           <input id="search-query" name="query" type="search" />
           <select id="search-filter" name="filter">
@@ -36,11 +37,22 @@
           <div id="watched-items"></div>
           <p id="watched-empty" hidden></p>
         </section>
+        <nav>
+          <button data-list-filter="all"></button>
+          <button data-list-filter="favorites"></button>
+          <button data-list-filter="watched"></button>
+          <button data-list-filter="pending"></button>
+        </nav>
+        <div id="my-list-items"></div>
+        <p id="my-list-empty" hidden></p>
       </main>
       <select id="share-format">
         <option value="texto">Texto</option>
         <option value="enlace">Enlace</option>
       </select>
+      <button id="navbar-share" type="button" data-action="share-list">
+        Compartir Mi Lista
+      </button>
       <button type="button" data-action="share-list">Preparar lista</button>
       <p id="share-feedback" hidden></p>
       <textarea id="share-output" hidden></textarea>
