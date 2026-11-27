@@ -26,7 +26,11 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
-- [fix/cierre-rc23-rc29] **A4 - Correcciones QA, documentación, changelog y mockup (RC23-RC30)** | Sin Issue asociada (fix de Code Review) | [PR #107](https://github.com/keviineze/proyecto-web-peliculas/pull/107) | @Davidsoria99 (Tester QA / Desarrollador JS Storage)
+- [fix/changelog-rc31-rc32] **Correcciones JS Poo 3** | Sin Issue asociada (fix de Code Review) | [PR #110](https://github.com/keviineze/proyecto-web-peliculas/pull/110) | @keviineze (Desarrollador JS POO)
+
+- [fix/cierre-rc23-rc29] **A4 - Correcciones QA, documentación, changelog y mockup (RC23–RC30)** | Sin Issue asociada (fix de Code Review) | [PR #107](https://github.com/keviineze/proyecto-web-peliculas/pull/107) | @Davidsoria99 (Tester QA / Desarrollador JS Storage)
+
+- [fix/changelog-rc26-trazabilidad] **Correcciones JS Poo 2** | Sin Issue asociada (fix de Code Review) | [PR #101](https://github.com/keviineze/proyecto-web-peliculas/pull/101) | @keviineze (Desarrollador JS POO)
 
 - [fix/rc-desarrollador-js] **A4 - fix: address JavaScript review challenges** | [PR #100](https://github.com/keviineze/proyecto-web-peliculas/pull/100) | Sin Issue asociada (fix de Code Review) | @GonzaloBarbano (Desarrollador JS Eventos + DOM)
 
