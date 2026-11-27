@@ -103,6 +103,7 @@ async function loadCatalogFromApi() {
   const status = document.getElementById("catalog-status");
   main?.classList.add("is-loading");
   main?.setAttribute("aria-busy", "true");
+  status?.removeAttribute("data-state");
   apiService.showLoading(status);
 
   try {
@@ -119,9 +120,19 @@ async function loadCatalogFromApi() {
     });
     catalog = Catalog.fromJSON(data);
     library = loadLibrary();
+    if (status) {
+      status.hidden = false;
+      status.className = "catalog-status catalog-success";
+      status.dataset.state = "success";
+      status.setAttribute("role", "status");
+      status.setAttribute("aria-live", "polite");
+      status.textContent = `Catálogo cargado correctamente (${data.length} títulos).`;
+    }
     renderCatalogInterface();
-    apiService.hideLoading(status);
   } catch (error) {
+    catalog = new Catalog([]);
+    library = new Library([]);
+    renderCatalogInterface();
     const message =
       error instanceof Error
         ? `No pudimos cargar el catálogo: ${error.message}`
