@@ -3,6 +3,7 @@ import { Content } from "./models/Content.js";
 import { Library } from "./models/Library.js";
 import { LibraryStorage } from "./utils/libraryStorage.js";
 import { ListExport } from "./utils/listExport.js";
+import { ApiService } from "./api/apiService.js";
 
 const FEEDBACK_TIMEOUT_MS = 4000;
 const feedbackTimeouts = new WeakMap();
@@ -36,43 +37,55 @@ const CONTENT_PRESENTATION = {
 let catalog;
 let library;
 let currentListFilter = "all";
+const apiService = new ApiService();
 
 function initializeApp() {
   const main = document.querySelector("main");
   main?.classList.add("is-loading");
   main?.setAttribute("aria-busy", "true");
 
-  catalog = new Catalog([
-    new Content(
-      "interstellar",
-      "Interstellar",
-      "Película",
-      2014,
-      ["Ciencia ficción"],
-      "pending",
-    ),
-    new Content(
-      "el-viaje-de-chihiro",
-      "El viaje de Chihiro",
-      "Película",
-      2001,
-      ["Animación y fantasía"],
-      "watched",
-    ),
-    new Content(
-      "dark",
-      "Dark",
-      "Serie",
-      2017,
-      ["Misterio y ciencia ficción"],
-      "pending",
-    ),
-  ]);
-
-  library = loadLibrary();
   configureEvents();
-  renderCatalog(catalog.getAll());
-  renderFeaturedCarousel(catalog.getAll());
+  if (document.getElementById("test-app-fixture")) {
+    catalog = new Catalog([
+      new Content(
+        "interstellar",
+        "Interstellar",
+        "Película",
+        2014,
+        ["Ciencia ficción"],
+        "pending",
+      ),
+      new Content(
+        "el-viaje-de-chihiro",
+        "El viaje de Chihiro",
+        "Película",
+        2001,
+        ["Animación y fantasía"],
+        "watched",
+      ),
+      new Content(
+        "dark",
+        "Dark",
+        "Serie",
+        2017,
+        ["Misterio y ciencia ficción"],
+        "pending",
+      ),
+    ]);
+    library = loadLibrary();
+    renderCatalogInterface();
+    main?.classList.remove("is-loading");
+    main?.setAttribute("aria-busy", "false");
+    return;
+  }
+
+  loadCatalogFromApi();
+}
+
+function renderCatalogInterface() {
+  const contents = catalog.getAll();
+  renderCatalog(contents);
+  renderFeaturedCarousel(contents);
   renderLibrary();
   renderMyList();
   syncFavoriteButtons();
@@ -80,11 +93,44 @@ function initializeApp() {
   const searchForm = document.getElementById("search-form");
   renderSearchFeedback(
     searchForm ? searchForm.elements.query.value : "",
-    "",
-    3,
+    searchForm ? searchForm.elements.filter.value : "",
+    contents.length,
   );
-  main?.classList.remove("is-loading");
-  main?.setAttribute("aria-busy", "false");
+}
+
+async function loadCatalogFromApi() {
+  const main = document.querySelector("main");
+  const status = document.getElementById("catalog-status");
+  main?.classList.add("is-loading");
+  main?.setAttribute("aria-busy", "true");
+  apiService.showLoading(status);
+
+  try {
+    const data = await apiService.fetchCatalog();
+    data.forEach((item) => {
+      if (item.image && item.imageAlt && item.description && item.extra) {
+        CONTENT_PRESENTATION[item.id] = {
+          image: item.image,
+          imageAlt: item.imageAlt,
+          description: item.description,
+          extra: item.extra,
+        };
+      }
+    });
+    catalog = Catalog.fromJSON(data);
+    library = loadLibrary();
+    renderCatalogInterface();
+    apiService.hideLoading(status);
+  } catch (error) {
+    const message =
+      error instanceof Error
+        ? `No pudimos cargar el catálogo: ${error.message}`
+        : "No pudimos cargar el catálogo.";
+    apiService.showError(status, message, loadCatalogFromApi);
+  } finally {
+    main?.classList.remove("is-loading");
+    main?.setAttribute("aria-busy", "false");
+  }
 }
 
 function loadLibrary() {
@@ -129,6 +175,9 @@ function handleClick(event) {
       break;
     case "share-list":
       startSharing();
+      break;
+    case "retry-catalog":
+      loadCatalogFromApi();
       break;
     default:
       break;
