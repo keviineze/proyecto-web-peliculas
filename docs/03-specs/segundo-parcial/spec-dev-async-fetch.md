@@ -20,3 +20,21 @@
 - [ ] Datos sanitizados y procesados con `map()`, `filter()` y `reduce()`.
 - [ ] Integración con las clases POO existentes y el DOM sin romper la suite de Jasmine actual.
 - [ ] Casos de test coordinados con Tester QA (`@keviineze`) para `api.spec.js`.
+
+## 4. Evidencia de cierre
+### Prompt utilizado
+```text
+Implementa el rol de Desarrollador JS Asíncrono (Fetch & APIs) siguiendo spec-dev-async-fetch.md: crear api/data.json con 6 títulos válidos, js/api/apiService.js con fetch/async-await/try-catch, JSDoc, validación/sanitización, map/filter/reduce y estados loading/success/error integrados con js/script.js y las clases POO sin romper los tests de Jasmine existentes.
+```
+### Ajustes manuales realizados
+- Se reemplazaron los pósters SVG generados inicialmente por imágenes reales en formato .webp en assets/images/ (la-la-land.webp, la-llegada.webp, stranger-things.webp).
+
+- Se ajustó el sanitizador de js/api/apiService.js para aceptar extensiones locales .webp y asegurar el renderizado completo de sinopsis y duración/temporadas.
+
+### Integración con POO y Storage
+- Los ítems obtenidos de api/data.json se normalizan y sanitizan en ApiService, se instancian con las clases del dominio en js/models/ y se sincronizan con la persistencia existente en localStorage (js/utils/storage.js) manteniendo compatibilidad con el fixture de Jasmine.
+
+### Issues y coordinación
+- Issue asociada: #108
+
+- Coordinado con Tester QA (@keviineze) para ejecutar Lighthouse post-fetch y api.spec.js tras el merge.
