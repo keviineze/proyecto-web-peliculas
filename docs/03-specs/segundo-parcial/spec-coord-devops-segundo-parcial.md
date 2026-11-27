@@ -20,12 +20,12 @@ La rama base de trabajo será `develop`, una vez integradas en ella las correcci
 
 Se esperan PRs para los siguientes aportes. Los nombres de las ramas son ejemplos de convención y deberán coincidir con las ramas que efectivamente abra el equipo:
 
-| Orden | PR esperada | Alcance y dependencia |
-| --- | --- | --- |
-| 1 | `feature/dev-async-fetch` | Mover el catálogo a datos JSON y consumirlos con `fetch`/Promises. Definir el contrato de datos y estados de carga/error que utilizarán la interfaz y QA. Se recomienda `api/contenidos.json` para evitar claves, CORS y dependencia de disponibilidad de un servicio externo. |
-| 2 | `feature/dev-libreria-js` | Integrar una librería JavaScript externa por CDN y justificar su uso. Se propone Toastify para notificaciones complementarias de éxito/error; los mensajes accesibles del DOM seguirán siendo la fuente principal de feedback. |
-| 3 | `feature/tester-qa-segundo-parcial` | Añadir pruebas Jasmine de carga asíncrona con casos de éxito y error, integración de la librería y evidencias de Lighthouse antes/después de las integraciones. Depende de los contratos finales de las dos PR anteriores. |
-| 4 | `feature/coord-devops-segundo-parcial` | Completar documentación y coordinación: actualizar `README.md`, `changelog.md`, enlaces a specs/evidencias y configuración/verificación de GitHub Pages. Integrar esta PR cuando los aportes funcionales y QA estén revisados. |
+| Orden | PR esperada                            | Alcance y dependencia                                                                                                                                                                                                                                                          |
+| ----- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1     | `feature/dev-async-fetch`              | Mover el catálogo a datos JSON y consumirlos con `fetch`/Promises. Definir el contrato de datos y estados de carga/error que utilizarán la interfaz y QA. Se recomienda `api/contenidos.json` para evitar claves, CORS y dependencia de disponibilidad de un servicio externo. |
+| 2     | `feature/dev-libreria-js`              | Integrar una librería JavaScript externa por CDN y justificar su uso. Se propone Toastify para notificaciones complementarias de éxito/error; los mensajes accesibles del DOM seguirán siendo la fuente principal de feedback.                                                 |
+| 3     | `feature/tester-qa-segundo-parcial`    | Añadir pruebas Jasmine de carga asíncrona con casos de éxito y error, integración de la librería y evidencias de Lighthouse antes/después de las integraciones. Depende de los contratos finales de las dos PR anteriores.                                                     |
+| 4     | `feature/coord-devops-segundo-parcial` | Completar documentación y coordinación: actualizar `README.md`, `changelog.md`, enlaces a specs/evidencias y configuración/verificación de GitHub Pages. Integrar esta PR cuando los aportes funcionales y QA estén revisados.                                                 |
 
 **Orden y reglas de integración:**
 
@@ -60,12 +60,12 @@ Las correcciones de la revisión docente se recibirán en la PR `release/segundo
 
 **Prioridades:**
 
-| Prioridad | Criterio | Tratamiento previsto |
-| --- | --- | --- |
+| Prioridad   | Criterio                                                                                                                                                                 | Tratamiento previsto                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
 | **Crítico** | Impide usar o desplegar la aplicación, causa pérdida/corrupción de datos, expone un riesgo de seguridad, o incumple una condición obligatoria que bloquea la aprobación. | Atención inmediata; coordinación directa con el responsable y seguimiento hasta validar la solución. |
-| **Alto** | Rompe una funcionalidad requerida, el flujo asíncrono, la librería, las pruebas obligatorias o una auditoría exigida, sin alternativa aceptable. | Resolver antes de abordar prioridades menores; verificar con pruebas específicas. |
-| **Medio** | Defecto acotado que no bloquea la entrega, pero afecta un flujo secundario, documentación, accesibilidad o consistencia. | Asignar responsable y fecha; incluir en la próxima ronda de correcciones. |
-| **Bajo** | Ajuste menor de presentación, redacción o mantenimiento que no altera requisitos ni bloquea el uso. | Resolver después de críticos/altos/medios, dentro del plazo disponible. |
+| **Alto**    | Rompe una funcionalidad requerida, el flujo asíncrono, la librería, las pruebas obligatorias o una auditoría exigida, sin alternativa aceptable.                         | Resolver antes de abordar prioridades menores; verificar con pruebas específicas.                    |
+| **Medio**   | Defecto acotado que no bloquea la entrega, pero afecta un flujo secundario, documentación, accesibilidad o consistencia.                                                 | Asignar responsable y fecha; incluir en la próxima ronda de correcciones.                            |
+| **Bajo**    | Ajuste menor de presentación, redacción o mantenimiento que no altera requisitos ni bloquea el uso.                                                                      | Resolver después de críticos/altos/medios, dentro del plazo disponible.                              |
 
 **Asignación y ejecución:**
 
@@ -124,11 +124,11 @@ En cada code review asistido se guardarán en este spec el prompt exacto, los ar
 
 Completar al abrir las Issues, sin asumir asignaciones que el equipo o la cátedra todavía no hayan confirmado:
 
-| Rol | Responsable | Issue | Rama/PR |
-| --- | --- | --- | --- |
-| Coordinador / DevOps | Gonzalo Barbano | Pendiente | `feature/coord-devops-segundo-parcial` |
-| Desarrollo de asincronía/fetch | Pendiente de confirmar | Pendiente | Pendiente |
-| Integración de librería JavaScript | Pendiente de confirmar | Pendiente | Pendiente |
-| Tester QA | Pendiente de confirmar o asignación del Coordinador en equipo de 3 | Pendiente | Pendiente |
+| Rol                                | Responsable                                                        | Issue     | Rama/PR                                |
+| ---------------------------------- | ------------------------------------------------------------------ | --------- | -------------------------------------- |
+| Coordinador / DevOps               | Gonzalo Barbano                                                    | Pendiente | `feature/coord-devops-segundo-parcial` |
+| Desarrollo de asincronía/fetch     | Pendiente de confirmar                                             | Pendiente | Pendiente                              |
+| Integración de librería JavaScript | Pendiente de confirmar                                             | Pendiente | Pendiente                              |
+| Tester QA                          | Pendiente de confirmar o asignación del Coordinador en equipo de 3 | Pendiente | Pendiente                              |
 
 > El Momento 2 — prompts exactos, resúmenes de reviews, Request Changes del docente, asignaciones/reasignaciones y obstáculos — se completará al cierre con evidencia real. No completar esa sección con resultados planificados.
