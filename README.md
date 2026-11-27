@@ -151,4 +151,4 @@ El proyecto puede ejecutarse localmente mediante Live Preview en VS Code y valid
 
 ## Estado del proyecto
 
-La Cuarta Entrega se encuentra completa e integrada en la rama `release/cuarta-entrega`. La aplicación cuenta con arquitectura POO (`js/models/`), persistencia en `localStorage`/`sessionStorage` (`js/utils/storage.js`), interfaz interactiva sin `prompt()`/`alert()` (`js/script.js`) y suite automatizada en Jasmine con **39 specs, 0 failures (100% PASS)**.
+La Cuarta Entrega se encuentra completa e integrada en la rama `release/cuarta-entrega`. La aplicación cuenta con arquitectura POO (`js/models/`), persistencia en `localStorage`/`sessionStorage` (`js/utils/storage.js`), interfaz interactiva sin `prompt()`/`alert()` (`js/script.js`) y suite automatizada en Jasmine con **66 specs, 0 failures (100% PASS)**.

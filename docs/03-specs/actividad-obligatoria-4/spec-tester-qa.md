@@ -44,11 +44,14 @@ Cualquier defecto encontrado durante la ejecución será reportado en GitHub Iss
 Se generaron js/test/models.spec.js y js/test/storage.spec.js, se reemplazaron las pruebas antiguas en js/test/script.spec.js por pruebas de integración con el DOM, se actualizó js/test/test-runner.html con el fixture de interfaz y carga ordenada de módulos ES, y se actualizó js/test/testing-doc.md con las instrucciones y la evidencia de ejecución. Se verificó la ejecución mediante servidor HTTP local sin errores de consola.
 
 - **Resultados de Ejecución y Coordinación**
-- Métricas (PASS/FAIL): 60 specs, 0 failures (100% PASS) — Tiempo total: 0.144s (Jasmine 5.10.0), ejecución final en Chromium con Playwright MCP; 0 errores de consola y 0 excepciones de página.
+- Métricas (PASS/FAIL): 66 specs, 0 failures (100% PASS) — Ejecución final en Chromium con Playwright MCP; 0 errores de consola y 0 excepciones de página.
 
 - Capturas adjuntas:
 
-  - js/test/screenshots/jasmine-pass-1.png (captura actualizada: 60 specs PASS, 0 failures).
+  - [Resumen completo de todas las suites](../../../js/test/screenshots/captura-runner-completo.png)
+  - [Ejecución enfocada en specs de modelos POO](../../../js/test/screenshots/captura-models-spec.png)
+  - [Ejecución enfocada en specs de Storage](../../../js/test/screenshots/captura-storage-spec.png)
+  - [Ejecución enfocada en specs de interfaz y DOM](../../../js/test/screenshots/captura-script-spec.png)
 
 - Bugs/Errores encontrados: Ninguno. Todas las pruebas de POO (incluyendo flags y estados inválidos, catálogos y JSON parcialmente inválidos e IDs inexistentes), StorageAPI (incluyendo fallos simulados de acceso y actualización, JSON corrupto y QuotaExceededError) e integración DOM pasaron correctamente.
 
