@@ -26,11 +26,11 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
-- [fix/rc-desarrollador-js] **A4 - fix: address JavaScript review challenges** | [PR #100](https://github.com/keviineze/proyecto-web-peliculas/pull/100) | @GonzaloBarbano
+- [fix/rc-desarrollador-js] **A4 - fix: address JavaScript review challenges** | [PR #100](https://github.com/keviineze/proyecto-web-peliculas/pull/100) | Sin Issue asociada (fix de Code Review) | @GonzaloBarbano
 
-- [fix/changelog-trazabilidad] **A4 - Corrección Changelog (RC1): trazabilidad de PR #89 y registro de fixes de cuarta entrega** | [PR #99](https://github.com/keviineze/proyecto-web-peliculas/pull/99) | @Davidsoria99
+- [fix/changelog-trazabilidad] **A4 - Corrección Changelog (RC1): trazabilidad de PR #89 y registro de fixes de cuarta entrega** | [PR #99](https://github.com/keviineze/proyecto-web-peliculas/pull/99) | Sin Issue asociada (fix de Code Review) | @Davidsoria99
 
-- [fix/storage-fachada-docs] **A4 - Correcciones Storage (RC17–RC20): unificación de clave y esquema JSON, fachada `libraryStorage.js` y JSDoc** | [PR #93](https://github.com/keviineze/proyecto-web-peliculas/pull/93) | @Davidsoria99
+- [fix/storage-fachada-docs] **A4 - Correcciones Storage (RC17–RC20): unificación de clave y esquema JSON, fachada `libraryStorage.js` y JSDoc** | [PR #93](https://github.com/keviineze/proyecto-web-peliculas/pull/93) | Sin Issue asociada (fix de Code Review) | @Davidsoria99
 
 - [fix/qa-cobertura-tests] **A4 - Correcciones QA (RC2–RC5): cobertura ampliada a 60 specs PASS, evidencias e issues de trazabilidad** | Issues [#95](https://github.com/keviineze/proyecto-web-peliculas/issues/95), [#96](https://github.com/keviineze/proyecto-web-peliculas/issues/96), [#97](https://github.com/keviineze/proyecto-web-peliculas/issues/97) | [PR #98](https://github.com/keviineze/proyecto-web-peliculas/pull/98) | @Davidsoria99
 
