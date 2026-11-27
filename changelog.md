@@ -10,7 +10,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
-- [feature/coord-devops-segundo-parcial] **Segundo Parcial - Coordinador / DevOps (planificación inicial y gestión de correcciones)** | Issue [#123](https://github.com/keviineze/proyecto-web-peliculas/issues/123) | PR pendiente de apertura | @GonzaloBarbano (Coordinador / DevOps)
+- [feature/coord-devops-segundo-parcial] **Segundo Parcial - Coordinador / DevOps (planificación inicial y gestión de correcciones)** | Issue [#123](https://github.com/keviineze/proyecto-web-peliculas/issues/123) | [PR #122](https://github.com/keviineze/proyecto-web-peliculas/pull/122) | @GonzaloBarbano (Coordinador / DevOps)
 
 ## [Release Cuarta Entrega] - 2026-11-22
 
