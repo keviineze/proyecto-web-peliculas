@@ -1,6 +1,11 @@
 import { StorageAPI } from "../utils/storage.js";
+import { LibraryStorage } from "../utils/libraryStorage.js";
+import { Catalog } from "../models/Catalog.js";
+import { Content } from "../models/Content.js";
+import { Library } from "../models/Library.js";
 
 const storageTypes = ["local", "session"];
+const LIBRARY_STORAGE_KEY = "mlb:biblioteca:listaPersonal";
 
 describe("StorageAPI", function () {
   beforeEach(function () {
@@ -80,6 +85,87 @@ describe("StorageAPI", function () {
         expect(setItem).toHaveBeenCalled();
         expect(error).toHaveBeenCalled();
       });
+
+      it("devuelve null y registra el fallo si getItem lanza una excepción", function () {
+        const storage = type === "local" ? localStorage : sessionStorage;
+        const getItem = spyOn(storage, "getItem").and.throwError("getItem failed");
+        const error = spyOn(console, "error");
+
+        expect(StorageAPI.obtener("test:unavailable", type)).toBeNull();
+        expect(getItem).toHaveBeenCalledWith("test:unavailable");
+        expect(error).toHaveBeenCalled();
+        expect(error.calls.mostRecent().args[0]).toContain("[Storage Error]");
+      });
+
+      it("devuelve false y registra el fallo si removeItem lanza una excepción", function () {
+        const storage = type === "local" ? localStorage : sessionStorage;
+        const removeItem = spyOn(storage, "removeItem").and.throwError(
+          "removeItem failed",
+        );
+        const error = spyOn(console, "error");
+
+        expect(StorageAPI.eliminar("test:unavailable", type)).toBeFalse();
+        expect(removeItem).toHaveBeenCalledWith("test:unavailable");
+        expect(error).toHaveBeenCalled();
+      });
+
+      it("devuelve false y registra el fallo si clear lanza una excepción", function () {
+        const storage = type === "local" ? localStorage : sessionStorage;
+        const clear = spyOn(storage, "clear").and.throwError("clear failed");
+        const error = spyOn(console, "error");
+
+        expect(StorageAPI.limpiar(type)).toBeFalse();
+        expect(clear).toHaveBeenCalled();
+        expect(error).toHaveBeenCalled();
+      });
+
+      it("devuelve una lista vacía y registra el fallo si key lanza una excepción", function () {
+        const storage = type === "local" ? localStorage : sessionStorage;
+        storage.setItem("test:item", "value");
+        const key = spyOn(storage, "key").and.throwError("key failed");
+        const error = spyOn(console, "error");
+
+        expect(StorageAPI.listar("test:", type)).toEqual([]);
+        expect(key).toHaveBeenCalledWith(0);
+        expect(error).toHaveBeenCalled();
+      });
+
+      it("devuelve una lista vacía y registra el fallo si acceder a length falla", function () {
+        const storage = type === "local" ? localStorage : sessionStorage;
+        const length = spyOnProperty(storage, "length", "get").and.throwError(
+          "length failed",
+        );
+        const error = spyOn(console, "error");
+
+        expect(StorageAPI.listar("test:", type)).toEqual([]);
+        expect(length).toHaveBeenCalled();
+        expect(error).toHaveBeenCalled();
+      });
+
+      it("devuelve false y registra el fallo si actualizar no puede leer la clave", function () {
+        const storage = type === "local" ? localStorage : sessionStorage;
+        const getItem = spyOn(storage, "getItem").and.throwError(
+          "update getItem failed",
+        );
+        const error = spyOn(console, "error");
+
+        expect(StorageAPI.actualizar("test:item", "updated", type)).toBeFalse();
+        expect(getItem).toHaveBeenCalledWith("test:item");
+        expect(error).toHaveBeenCalled();
+      });
+
+      it("devuelve false y registra el fallo si actualizar no puede escribir", function () {
+        const storage = type === "local" ? localStorage : sessionStorage;
+        storage.setItem("test:item", JSON.stringify("original"));
+        const setItem = spyOn(storage, "setItem").and.throwError(
+          "update setItem failed",
+        );
+        const error = spyOn(console, "error");
+
+        expect(StorageAPI.actualizar("test:item", "updated", type)).toBeFalse();
+        expect(setItem).toHaveBeenCalledWith("test:item", '"updated"');
+        expect(error).toHaveBeenCalled();
+      });
     });
   });
 
@@ -100,5 +186,45 @@ describe("StorageAPI", function () {
     expect(error).toHaveBeenCalled();
     expect(error.calls.mostRecent().args[0]).toContain("[Storage Error]");
     expect(error.calls.mostRecent().args[1].name).toBe("TypeError");
+  });
+
+  it("carga y normaliza la biblioteca mediante resultados tipados", function () {
+    const catalog = new Catalog([
+      new Content("dark", "Dark", "Serie", 2017, ["Misterio"], "pending"),
+    ]);
+    StorageAPI.guardar(LIBRARY_STORAGE_KEY, [
+      {
+        titleId: "dark",
+        status: "watched",
+        isFavorite: true,
+        rating: 4,
+      },
+    ]);
+
+    const result = LibraryStorage.cargar(catalog);
+
+    expect(result.ok).toBeTrue();
+    expect(result.error).toBeNull();
+    expect(result.data).toEqual(jasmine.any(Library));
+    expect(result.data.toJSON()).toEqual([
+      { titleId: "dark", status: "watched", isFavorite: true, rating: 4 },
+    ]);
+  });
+
+  it("devuelve la biblioteca anterior y un error de storage al fallar el guardado", function () {
+    const catalog = new Catalog([
+      new Content("dark", "Dark", "Serie", 2017, ["Misterio"], "pending"),
+    ]);
+    const library = Library.createInitial(catalog);
+    const originalData = library.toJSON();
+    spyOn(StorageAPI, "guardar").and.returnValue(false);
+
+    const result = LibraryStorage.cambiar(library, () =>
+      library.addFavorite(catalog.findById("dark")),
+    );
+
+    expect(result.ok).toBeFalse();
+    expect(result.error.type).toBe("storage");
+    expect(result.data.toJSON()).toEqual(originalData);
   });
 });

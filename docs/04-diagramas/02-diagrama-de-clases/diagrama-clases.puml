@@ -1,3 +1,4 @@
+
 @startuml diagrama-clases.puml
 title Mini Letterboxd - Diagrama de Clases POO
 
@@ -10,22 +11,21 @@ hide empty members
 ' =========================
 
 class Content {
-    - id: String
-    - title: String
+    - id: string
+    - title: string
     - type: "Película" | "Serie"
-    - year: Number
-    - genres: String[]
+    - year: number
+    - genres: string[]
     - initialStatus: "pending" | "watched"
-
-    + Content(id: String, title: String, type: "Película" | "Serie", year: Number, genres: String[], initialStatus: "pending" | "watched")
-    + getId(): String
-    + getTitle(): String
+    + Content(id: string, title: string, type: "Película" | "Serie", year: number, genres: string[], initialStatus: "pending" | "watched")
+    + getId(): string
+    + getTitle(): string
     + getType(): "Película" | "Serie"
-    + getYear(): Number
-    + getGenres(): String[]
+    + getYear(): number
+    + getGenres(): string[]
     + getInitialStatus(): "pending" | "watched"
-    + toJSON(): Object
-    + fromJSON(data: Object): Content {static}
+    + toJSON(): object
+    + {static} fromJSON(data: object): Content
 }
 
 note right of Content
@@ -41,14 +41,13 @@ end note
 
 class Catalog {
     - contents: Content[]
-
     + Catalog(contents: Content[])
     + getAll(): Content[]
-    + findById(id: String): Content | null
-    + findByName(name: String): Content | null
-    + search(titleQuery: String, filterValue: String): Content[]
-    + toJSON(): Object[]
-    + fromJSON(data: Object[]): Catalog {static}
+    + findById(id: string): Content | null
+    + findByName(name: string): Content | null
+    + search(titleQuery: string, filterValue: string): Content[]
+    + toJSON(): object[]
+    + {static} fromJSON(data: object[]): Catalog
 }
 
 note right of Catalog
@@ -56,6 +55,8 @@ note right of Catalog
   No modifica el estado personal
   de los contenidos.
   Evita identificadores duplicados.
+  Normaliza mayúsculas y tildes
+  para las búsquedas.
 end note
 
 ' =========================
@@ -63,26 +64,28 @@ end note
 ' =========================
 
 class LibraryEntry {
-    - titleId: String
+    - titleId: string
     - status: "pending" | "watched"
-    - isFavorite: Boolean
-    - rating: Number | null
-
-    + LibraryEntry(titleId: String, status: "pending" | "watched", isFavorite: Boolean, rating: Number | null)
-    + getTitleId(): String
+    - isFavorite: boolean
+    - rating: number | null
+    + LibraryEntry(titleId: string, status: "pending" | "watched", isFavorite: boolean, rating: number | null)
+    + getTitleId(): string
     + getStatus(): "pending" | "watched"
-    + getIsFavorite(): Boolean
-    + getRating(): Number | null
-    + setFavorite(value: Boolean): Boolean
-    + setStatus(status: "pending" | "watched"): Boolean
-    + setRating(rating: Number | null): Boolean
-    + toJSON(): Object
-    + fromJSON(data: Object): LibraryEntry {static}
+    + getIsFavorite(): boolean
+    + getRating(): number | null
+    + setFavorite(value: boolean): boolean
+    + setStatus(status: "pending" | "watched"): boolean
+    + setRating(rating: number | null): boolean
+    + toJSON(): object
+    + {static} fromJSON(data: object): LibraryEntry
+    - {static} #isValidRating(rating: number | null): boolean
 }
 
 note right of LibraryEntry
   Representa el estado personal
   de un contenido.
+  Conserva titleId, no una referencia
+  directa al objeto Content.
   status: "pending" | "watched"
   isFavorite: true | false
   rating: null | entero de 1 a 5
@@ -96,19 +99,19 @@ end note
 
 class Library {
     - entries: LibraryEntry[]
-
     + Library(entries: LibraryEntry[])
     + getEntries(): LibraryEntry[]
-    + findEntry(titleId: String): LibraryEntry | null
-    + addFavorite(content: Content): Boolean
-    + removeFavorite(titleId: String): Boolean
+    + findEntry(titleId: string): LibraryEntry | null
+    + addFavorite(content: Content): boolean
+    + removeFavorite(titleId: string): boolean
     + getFavorites(catalog: Catalog): Content[]
     + getUnratedWatchedContents(catalog: Catalog): Content[]
-    + rateContent(titleId: String, rating: Number | null): Boolean
-    + setStatus(titleId: String, status: "pending" | "watched"): Boolean
-    + toJSON(): Object[]
-    + fromJSON(data: Object[]): Library {static}
-    + createInitial(catalog: Catalog): Library {static}
+    + rateContent(titleId: string, rating: number | null): boolean
+    + setStatus(titleId: string, status: "pending" | "watched"): boolean
+    + toJSON(): object[]
+    + {static} fromJSON(data: object[]): Library
+    + {static} createInitial(catalog: Catalog): Library
+    - {static} #assertCatalog(catalog: Catalog): void
 }
 
 note right of Library
@@ -116,6 +119,8 @@ note right of Library
   Evita registros duplicados
   para un mismo titleId.
   Coordina favoritos y calificaciones.
+  Clona los registros y devuelve copias.
+  Resuelve los titleId mediante Catalog.
   No accede directamente al DOM
   ni a localStorage/sessionStorage.
 end note
@@ -128,8 +133,6 @@ Catalog "1" o-- "0..*" Content : administra
 
 Library "1" *-- "0..*" LibraryEntry : contiene
 
-LibraryEntry "0..1" --> "1" Content : titleId
-
-Library ..> Catalog : consulta contenidos
+Library ..> Catalog : resuelve titleId con findById()
 
 @enduml

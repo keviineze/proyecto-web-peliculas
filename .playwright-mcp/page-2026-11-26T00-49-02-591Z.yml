@@ -1,0 +1,16 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link [ref=e4] [cursor=pointer]:
+      - /url: http://jasmine.github.io/
+    - text: 5.10.0
+  - list [ref=e5]:
+    - listitem "Interfaz de catálogo y biblioteca inicializa el catálogo, la biblioteca y su persistencia usando el DOM" [ref=e6]: •
+    - listitem "Interfaz de catálogo y biblioteca actualiza los resultados al buscar y filtrar desde el formulario" [ref=e7]: •
+    - listitem "Interfaz de catálogo y biblioteca cancela el submit del formulario y actualiza los resultados del catálogo" [ref=e8]: •
+    - listitem "Interfaz de catálogo y biblioteca alterna favoritos en el modelo, la interfaz y localStorage" [ref=e9]: •
+    - listitem "Interfaz de catálogo y biblioteca filtra Mi Lista y muestra explícitamente los contenidos favoritos" [ref=e10]: •
+    - listitem "Interfaz de catálogo y biblioteca actualiza el estado desde el control y mueve la tarjeta entre secciones" [ref=e11]: •
+    - listitem "Interfaz de catálogo y biblioteca previsualiza y guarda calificaciones válidas para contenidos vistos" [ref=e12]: •
+    - listitem "Interfaz de catálogo y biblioteca prepara una exportación de favoritos como texto y la limpia al cambiar la lista" [ref=e13]: •
+    - listitem "Interfaz de catálogo y biblioteca comparte desde el acceso de navegación y selecciona la alternativa de copia" [ref=e14]: •
+    - listitem "Interfaz de catálogo y biblioteca oculta el feedback de búsqueda después de su ciclo visible" [ref=e15]: •

@@ -57,8 +57,10 @@
               </li>
             </ul>
           </nav>
-          <!-- Futuro JavaScript: generar una representación compartible de la biblioteca. -->
-          <a class="btn btn-primary navbar-share" href="#compartir"
+          <a
+            class="btn btn-primary navbar-share"
+            href="#compartir"
+            data-action="share-list"
             >Compartir Mi Lista</a
           >
         </div>
@@ -75,95 +77,7 @@
           aria-roledescription="carousel"
           aria-label="Películas destacadas"
         >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="featured-slide">
-                <img
-                  class="featured-slide-image"
-                  src="assets/images/interestellar-2.jpeg"
-                  alt="Paisaje montañoso de la película Interstellar"
-                  width="686"
-                  height="446"
-                  decoding="async"
-                />
-                <div class="featured-slide-caption">
-                  <h3>Interstellar</h3>
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    data-action="toggle-favorite"
-                    data-title-id="interstellar"
-                    aria-pressed="false"
-                  >
-                    Agregar a Mi Lista
-                  </button>
-                  <p>Película | 2014 | Ciencia ficción</p>
-                  <p>
-                    Un grupo de exploradores busca un nuevo hogar para la
-                    humanidad más allá de las estrellas.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="featured-slide">
-                <img
-                  class="featured-slide-image"
-                  src="assets/images/chihiro.jpeg"
-                  alt="Chihiro frente a los edificios iluminados del mundo de los espíritus"
-                  width="351"
-                  height="569"
-                  decoding="async"
-                />
-                <div class="featured-slide-caption">
-                  <h3>El viaje de Chihiro</h3>
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    data-action="toggle-favorite"
-                    data-title-id="el-viaje-de-chihiro"
-                    aria-pressed="false"
-                  >
-                    Agregar a Mi Lista
-                  </button>
-                  <p>Película | 2001 | Animación y fantasía</p>
-                  <p>
-                    Chihiro entra en un mundo de espíritus y debe encontrar el
-                    valor para recuperar a sus padres.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="featured-slide">
-                <img
-                  class="featured-slide-image"
-                  src="assets/images/dark.jpeg"
-                  alt="Paisaje de una ciudad nocturna para representar una serie de misterio"
-                  width="685"
-                  height="384"
-                  decoding="async"
-                />
-                <div class="featured-slide-caption">
-                  <h3>Dark</h3>
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    data-action="toggle-favorite"
-                    data-title-id="dark"
-                    aria-pressed="false"
-                  >
-                    Agregar a Mi Lista
-                  </button>
-                  <p>Serie | 2017 | Misterio y ciencia ficción</p>
-                  <p>
-                    Cuatro familias buscan respuestas cuando la desaparición de
-                    un niño revela un misterio temporal.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="carousel-inner" aria-live="polite"></div>
           <button
             class="carousel-control-prev"
             type="button"
@@ -225,11 +139,19 @@
                 type="search"
                 placeholder="Ej.: Interstellar"
                 autocomplete="off"
+                maxlength="100"
+                aria-describedby="search-feedback"
+                aria-invalid="false"
               />
             </div>
             <div>
               <label for="search-filter">Tipo o género</label>
-              <select id="search-filter" name="filter">
+              <select
+                id="search-filter"
+                name="filter"
+                aria-describedby="search-feedback"
+                aria-invalid="false"
+              >
                 <option value="">Todos</option>
                 <option value="Película">Película</option>
                 <option value="Serie">Serie</option>
@@ -260,10 +182,42 @@
 
       <section class="my-list-section" aria-labelledby="titulo-lista">
         <h2 id="titulo-lista">Mi Lista</h2>
-        <nav aria-label="Estados de mi lista">
-          <a class="list-filter" href="#lista-vistas">Vistas</a>
-          <a class="list-filter" href="#lista-pendientes">Por ver</a>
+        <nav aria-label="Filtrar Mi Lista">
+          <button
+            class="list-filter"
+            type="button"
+            data-list-filter="all"
+            aria-pressed="true"
+          >
+            Todas
+          </button>
+          <button
+            class="list-filter"
+            type="button"
+            data-list-filter="favorites"
+            aria-pressed="false"
+          >
+            Favoritas
+          </button>
+          <button
+            class="list-filter"
+            type="button"
+            data-list-filter="watched"
+            aria-pressed="false"
+          >
+            Vistas
+          </button>
+          <button
+            class="list-filter"
+            type="button"
+            data-list-filter="pending"
+            aria-pressed="false"
+          >
+            Por ver
+          </button>
         </nav>
+        <div id="my-list-items" class="my-list-items" aria-live="polite"></div>
+        <p id="my-list-empty" hidden>No hay contenidos para este filtro.</p>
       </section>
     </main>
 
