@@ -1,0 +1,138 @@
+
+@startuml diagrama-clases.puml
+title Mini Letterboxd - Diagrama de Clases POO
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide empty members
+
+' =========================
+' ENTIDAD: CONTENT
+' =========================
+
+class Content {
+    - id: string
+    - title: string
+    - type: "Película" | "Serie"
+    - year: number
+    - genres: string[]
+    - initialStatus: "pending" | "watched"
+    + Content(id: string, title: string, type: "Película" | "Serie", year: number, genres: string[], initialStatus: "pending" | "watched")
+    + getId(): string
+    + getTitle(): string
+    + getType(): "Película" | "Serie"
+    + getYear(): number
+    + getGenres(): string[]
+    + getInitialStatus(): "pending" | "watched"
+    + toJSON(): object
+    + {static} fromJSON(data: object): Content
+}
+
+note right of Content
+  Representa una película o serie.
+  type: "Película" | "Serie"
+  genres contiene uno o más géneros.
+  Sus propiedades se mantienen privadas.
+end note
+
+' =========================
+' COLECCION: CATALOG
+' =========================
+
+class Catalog {
+    - contents: Content[]
+    + Catalog(contents: Content[])
+    + getAll(): Content[]
+    + findById(id: string): Content | null
+    + findByName(name: string): Content | null
+    + search(titleQuery: string, filterValue: string): Content[]
+    + toJSON(): object[]
+    + {static} fromJSON(data: object[]): Catalog
+}
+
+note right of Catalog
+  Administra el catálogo disponible.
+  No modifica el estado personal
+  de los contenidos.
+  Evita identificadores duplicados.
+  Normaliza mayúsculas y tildes
+  para las búsquedas.
+end note
+
+' =========================
+' ENTIDAD: LIBRARY ENTRY
+' =========================
+
+class LibraryEntry {
+    - titleId: string
+    - status: "pending" | "watched"
+    - isFavorite: boolean
+    - rating: number | null
+    + LibraryEntry(titleId: string, status: "pending" | "watched", isFavorite: boolean, rating: number | null)
+    + getTitleId(): string
+    + getStatus(): "pending" | "watched"
+    + getIsFavorite(): boolean
+    + getRating(): number | null
+    + setFavorite(value: boolean): boolean
+    + setStatus(status: "pending" | "watched"): boolean
+    + setRating(rating: number | null): boolean
+    + toJSON(): object
+    + {static} fromJSON(data: object): LibraryEntry
+    - {static} #isValidRating(rating: number | null): boolean
+}
+
+note right of LibraryEntry
+  Representa el estado personal
+  de un contenido.
+  Conserva titleId, no una referencia
+  directa al objeto Content.
+  status: "pending" | "watched"
+  isFavorite: true | false
+  rating: null | entero de 1 a 5
+  Solamente se califican contenidos
+  marcados como vistos.
+end note
+
+' =========================
+' COLECCION: LIBRARY
+' =========================
+
+class Library {
+    - entries: LibraryEntry[]
+    + Library(entries: LibraryEntry[])
+    + getEntries(): LibraryEntry[]
+    + findEntry(titleId: string): LibraryEntry | null
+    + addFavorite(content: Content): boolean
+    + removeFavorite(titleId: string): boolean
+    + getFavorites(catalog: Catalog): Content[]
+    + getUnratedWatchedContents(catalog: Catalog): Content[]
+    + rateContent(titleId: string, rating: number | null): boolean
+    + setStatus(titleId: string, status: "pending" | "watched"): boolean
+    + toJSON(): object[]
+    + {static} fromJSON(data: object[]): Library
+    + {static} createInitial(catalog: Catalog): Library
+    - {static} #assertCatalog(catalog: Catalog): void
+}
+
+note right of Library
+  Administra la biblioteca personal.
+  Evita registros duplicados
+  para un mismo titleId.
+  Coordina favoritos y calificaciones.
+  Clona los registros y devuelve copias.
+  Resuelve los titleId mediante Catalog.
+  No accede directamente al DOM
+  ni a localStorage/sessionStorage.
+end note
+
+' =========================
+' RELACIONES
+' =========================
+
+Catalog "1" o-- "0..*" Content : administra
+
+Library "1" *-- "0..*" LibraryEntry : contiene
+
+Library ..> Catalog : resuelve titleId con findById()
+
+@enduml

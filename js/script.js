@@ -1,723 +1,782 @@
-const LIBRARY_STORAGE_KEY = "miniLetterboxdLibrary";
+import { Catalog } from "./models/Catalog.js";
+import { Content } from "./models/Content.js";
+import { Library } from "./models/Library.js";
+import { LibraryStorage } from "./utils/libraryStorage.js";
+import { ListExport } from "./utils/listExport.js";
 
-const CONTENT_CATALOG = Object.freeze([
-  Object.freeze({
-    id: "interstellar",
-    title: "Interstellar",
-    type: "Película",
-    year: 2014,
-    genres: Object.freeze(["Ciencia ficción"]),
-    initialStatus: "pending",
-  }),
-  Object.freeze({
-    id: "el-viaje-de-chihiro",
-    title: "El viaje de Chihiro",
-    type: "Película",
-    year: 2001,
-    genres: Object.freeze(["Animación y fantasía"]),
-    initialStatus: "watched",
-  }),
-  Object.freeze({
-    id: "dark",
-    title: "Dark",
-    type: "Serie",
-    year: 2017,
-    genres: Object.freeze(["Misterio y ciencia ficción"]),
-    initialStatus: "pending",
-  }),
-]);
+const FEEDBACK_TIMEOUT_MS = 4000;
+const feedbackTimeouts = new WeakMap();
 
-const MENU_TEXT = [
-  "Mini Letterboxd - Menú principal",
-  "1. Buscar y filtrar contenidos",
-  "2. Gestionar lista personal (favoritos)",
-  "3. Exportar y compartir lista personal",
-  "4. Calificar contenidos vistos",
-  "0. Salir",
-  "Elegí una opción:",
-].join("\n");
+const CONTENT_PRESENTATION = {
+  interstellar: {
+    image: "assets/images/interestellar-2.jpeg",
+    imageAlt: "Paisaje montañoso de la película Interstellar",
+    description:
+      "Un grupo de exploradores busca un nuevo hogar para la humanidad más allá de las estrellas.",
+    extra: "Duración: 169 minutos",
+  },
+  "el-viaje-de-chihiro": {
+    image: "assets/images/chihiro.jpeg",
+    imageAlt:
+      "Chihiro frente a los edificios iluminados del mundo de los espíritus",
+    description:
+      "Chihiro entra en un mundo de espíritus y debe encontrar el valor para recuperar a sus padres.",
+    extra: "Duración: 125 minutos",
+  },
+  dark: {
+    image: "assets/images/dark.jpeg",
+    imageAlt:
+      "Paisaje de una ciudad nocturna para representar una serie de misterio",
+    description:
+      "Cuatro familias buscan respuestas cuando la desaparición de un niño revela un misterio temporal.",
+    extra: "Temporadas: 3",
+  },
+};
 
-function normalizeText(value) {
-  return String(value ?? "")
-    .trim()
-    .toLocaleLowerCase("es")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+let catalog;
+let library;
+let currentListFilter = "all";
+
+function initializeApp() {
+  const main = document.querySelector("main");
+  main?.classList.add("is-loading");
+  main?.setAttribute("aria-busy", "true");
+
+  catalog = new Catalog([
+    new Content(
+      "interstellar",
+      "Interstellar",
+      "Película",
+      2014,
+      ["Ciencia ficción"],
+      "pending",
+    ),
+    new Content(
+      "el-viaje-de-chihiro",
+      "El viaje de Chihiro",
+      "Película",
+      2001,
+      ["Animación y fantasía"],
+      "watched",
+    ),
+    new Content(
+      "dark",
+      "Dark",
+      "Serie",
+      2017,
+      ["Misterio y ciencia ficción"],
+      "pending",
+    ),
+  ]);
+
+  library = loadLibrary();
+  configureEvents();
+  renderCatalog(catalog.getAll());
+  renderFeaturedCarousel(catalog.getAll());
+  renderLibrary();
+  renderMyList();
+  syncFavoriteButtons();
+
+  const searchForm = document.getElementById("search-form");
+  renderSearchFeedback(
+    searchForm ? searchForm.elements.query.value : "",
+    "",
+    3,
+  );
+  main?.classList.remove("is-loading");
+  main?.setAttribute("aria-busy", "false");
 }
 
-function findTitleByName(catalog, titleName) {
-  const normalizedTitle = normalizeText(titleName);
-  if (!normalizedTitle) {
-    return null;
+function loadLibrary() {
+  const result = LibraryStorage.cargar(catalog);
+  if (!result.ok) {
+    renderMessage(
+      document.getElementById("library-feedback"),
+      "La biblioteca está disponible, pero no se pudo guardar su estado completo en este navegador.",
+      "danger",
+    );
+  }
+  return result.data;
+}
+
+function configureEvents() {
+  document.addEventListener("click", handleClick);
+  document.addEventListener("submit", handleSubmit);
+  document.addEventListener("input", handleInput);
+  document.addEventListener("change", handleChange);
+}
+
+function handleClick(event) {
+  const listFilter = event.target.closest("[data-list-filter]");
+  if (listFilter) {
+    event.preventDefault();
+    currentListFilter = listFilter.dataset.listFilter;
+    renderMyList();
+    return;
   }
 
-  return (
-    catalog.find(
-      (content) => normalizeText(content.title) === normalizedTitle,
-    ) ?? null
+  const actionElement = event.target.closest("[data-action]");
+  if (!actionElement) {
+    return;
+  }
+
+  switch (actionElement.dataset.action) {
+    case "toggle-favorite":
+      toggleFavorite(actionElement.dataset.titleId);
+      break;
+    case "clear-search":
+      clearSearch();
+      break;
+    case "share-list":
+      startSharing();
+      break;
+    default:
+      break;
+  }
+}
+
+function handleSubmit(event) {
+  if (event.target.id !== "search-form") {
+    return;
+  }
+
+  event.preventDefault();
+  updateSearchResults();
+}
+
+function handleInput(event) {
+  if (event.target.id === "search-query") {
+    updateSearchResults();
+    return;
+  }
+
+  if (event.target.matches('[data-action="rate-content"]')) {
+    previewRating(event.target);
+  }
+}
+
+function handleChange(event) {
+  if (event.target.id === "search-filter") {
+    updateSearchResults();
+    return;
+  }
+
+  if (event.target.matches('[data-action="update-status"]')) {
+    updateContentStatus(event.target);
+    return;
+  }
+
+  if (event.target.matches('[data-action="rate-content"]')) {
+    saveRating(event.target);
+    return;
+  }
+
+  if (event.target.id === "share-format") {
+    clearShareResult();
+  }
+}
+
+function updateSearchResults() {
+  const form = document.getElementById("search-form");
+  if (!form) {
+    return;
+  }
+
+  const titleQuery = form.elements.query.value;
+  const filterValue = form.elements.filter.value;
+  const queryInput = form.elements.query;
+  const feedback = document.getElementById("search-feedback");
+  const queryIsValid = queryInput.value.length <= 100;
+  queryInput.classList.toggle("is-invalid", !queryIsValid);
+  queryInput.setAttribute("aria-invalid", String(!queryIsValid));
+  form.elements.filter.setAttribute("aria-invalid", "false");
+  if (!queryIsValid) {
+    renderMessage(
+      feedback,
+      "La búsqueda no puede superar los 100 caracteres.",
+      "danger",
+    );
+    return;
+  }
+  const results = catalog.search(titleQuery, filterValue);
+  renderCatalog(results);
+  renderSearchFeedback(titleQuery, filterValue, results.length);
+}
+
+function clearSearch() {
+  const form = document.getElementById("search-form");
+  if (!form) {
+    return;
+  }
+
+  form.reset();
+  updateSearchResults();
+  form.elements.query.focus();
+}
+
+function toggleFavorite(titleId) {
+  const content = catalog.findById(titleId);
+  if (!content) {
+    renderMessage(
+      document.getElementById("library-feedback"),
+      "No se encontró el contenido seleccionado.",
+      "danger",
+    );
+    return;
+  }
+
+  const result = persistLibraryChange(() => library.toggleFavorite(content));
+
+  if (result.ok) {
+    const isFavorite = library.findEntry(titleId)?.getIsFavorite() ?? false;
+    renderMessage(
+      document.getElementById("library-feedback"),
+      isFavorite
+        ? "Contenido agregado a Mi Lista."
+        : "Contenido quitado de Mi Lista.",
+      "success",
+    );
+  } else if (result.error.type === "domain") {
+    renderMessage(
+      document.getElementById("library-feedback"),
+      "No se pudo actualizar el contenido en Mi Lista.",
+      "warning",
+    );
+  }
+}
+
+function updateContentStatus(select) {
+  const titleId = select.dataset.titleId;
+  const status = select.value;
+  const result = persistLibraryChange(() => library.setStatus(titleId, status));
+
+  if (result.ok) {
+    select.setAttribute("aria-invalid", "false");
+    renderMessage(
+      document.getElementById("library-feedback"),
+      "Estado actualizado.",
+      "success",
+    );
+  } else if (result.error.type === "domain") {
+    const currentEntry = library.findEntry(titleId);
+    if (currentEntry) {
+      select.value = currentEntry.getStatus();
+    }
+    select.setAttribute("aria-invalid", "true");
+    renderMessage(
+      document.getElementById("library-feedback"),
+      "No se pudo cambiar el estado. Una calificación existente requiere mantener el contenido como visto.",
+      "warning",
+    );
+  }
+}
+
+function previewRating(input) {
+  const isValid = input.checkValidity();
+  const valueOutput = document.getElementById(input.dataset.valueId);
+  const feedback = document.getElementById(input.dataset.feedbackId);
+
+  if (valueOutput) {
+    valueOutput.textContent = String(input.value);
+  }
+  setFieldFeedback(
+    input,
+    feedback,
+    isValid
+      ? "La calificación se guardará al soltar el control."
+      : input.validationMessage || "Elegí una calificación válida.",
+    isValid,
   );
 }
 
-/**
- * Busca títulos por nombre y filtra opcionalmente por tipo o género.
- * @param {Array<object>} catalog Catálogo de contenidos disponibles.
- * @param {string} titleQuery Texto parcial del título; vacío incluye todos.
- * @param {string} filterValue Tipo o género opcional.
- * @returns {Array<object>} Coincidencias en el orden original del catálogo.
- */
-function searchContents(catalog, titleQuery, filterValue) {
-  const normalizedTitle = normalizeText(titleQuery);
-  const normalizedFilter = normalizeText(filterValue);
+function saveRating(input) {
+  const rating = input.valueAsNumber;
+  if (!input.checkValidity()) {
+    previewRating(input);
+    return;
+  }
 
-  return catalog.filter((content) => {
-    const matchesTitle =
-      !normalizedTitle ||
-      normalizeText(content.title).includes(normalizedTitle);
-    const matchesFilter =
-      !normalizedFilter ||
-      normalizeText(content.type).includes(normalizedFilter) ||
-      content.genres.some((genre) =>
-        normalizeText(genre).includes(normalizedFilter),
+  const result = persistLibraryChange(() =>
+    library.rateContent(input.dataset.titleId, rating),
+  );
+  const currentInput = document.getElementById(input.id) ?? input;
+  const feedback = document.getElementById(input.dataset.feedbackId);
+  const saved = result.ok;
+  const storageFailed = !result.ok && result.error.type === "storage";
+  setFieldFeedback(
+    currentInput,
+    feedback,
+    saved
+      ? "Calificación guardada."
+      : storageFailed
+        ? "La calificación es válida, pero no se pudo guardar."
+        : "No se pudo aplicar la calificación a este contenido.",
+    storageFailed ? null : saved,
+  );
+  if (saved) {
+    renderMessage(
+      document.getElementById("library-feedback"),
+      "Calificación guardada.",
+      "success",
+    );
+  }
+}
+
+function persistLibraryChange(change) {
+  const result = LibraryStorage.cambiar(library, change);
+  library = result.data;
+  if (!result.ok && result.error.type === "domain") {
+    renderLibrary();
+    renderMyList();
+    syncFavoriteButtons();
+    return result;
+  }
+  if (!result.ok) {
+    renderLibrary();
+    renderMyList();
+    syncFavoriteButtons();
+    renderMessage(
+      document.getElementById("library-feedback"),
+      "No se pudo guardar el cambio. La biblioteca anterior fue restaurada.",
+      "danger",
+    );
+    return result;
+  }
+
+  renderLibrary();
+  renderCurrentCatalog();
+  renderMyList();
+  syncFavoriteButtons();
+  clearShareResult();
+  return result;
+}
+
+function renderCurrentCatalog() {
+  const form = document.getElementById("search-form");
+  if (!form) {
+    renderCatalog(catalog.getAll());
+    return;
+  }
+
+  renderCatalog(
+    catalog.search(form.elements.query.value, form.elements.filter.value),
+  );
+}
+
+function renderCatalog(contents) {
+  const container = document.querySelector(".catalog-grid");
+  if (!container) {
+    return;
+  }
+
+  container.replaceChildren(...contents.map(createCatalogCard));
+}
+
+function renderFeaturedCarousel(contents) {
+  const carousel = document.querySelector("#featured-carousel .carousel-inner");
+  if (!carousel) {
+    return;
+  }
+
+  carousel.replaceChildren(
+    ...contents.map((content, index) => {
+      const item = createElement(
+        "div",
+        `carousel-item${index === 0 ? " active" : ""}`,
       );
+      const presentation = CONTENT_PRESENTATION[content.getId()] ?? {};
+      const slide = createElement("div", "featured-slide");
+      const image = createElement("img", "featured-slide-image");
+      image.src = presentation.image ?? "";
+      image.alt = presentation.imageAlt ?? content.getTitle();
+      image.loading = "lazy";
+      image.decoding = "async";
 
-    return matchesTitle && matchesFilter;
+      const caption = createElement("div", "featured-slide-caption");
+      caption.append(
+        createElement("h3", "", content.getTitle()),
+        createFavoriteButton(content.getId()),
+        createElement(
+          "p",
+          "",
+          `${content.getType()} | ${content.getYear()} | ${content.getGenres().join(", ")}`,
+        ),
+        createElement("p", "", presentation.description ?? ""),
+      );
+      slide.append(image, caption);
+      item.append(slide);
+      return item;
+    }),
+  );
+}
+
+function createCatalogCard(content) {
+  const presentation = CONTENT_PRESENTATION[content.getId()] ?? {};
+  const column = createElement("div", "col");
+  const article = createElement("article", "h-100 catalog-card");
+  const image = createElement("img");
+  image.src = presentation.image ?? "";
+  image.alt = presentation.imageAlt ?? content.getTitle();
+  image.loading = "lazy";
+  image.decoding = "async";
+
+  const title = createElement("h3", "", content.getTitle());
+  const details = createElement(
+    "p",
+    "",
+    `${content.getType()} | ${content.getYear()} | ${content.getGenres().join(", ")}`,
+  );
+  const description = createElement("p", "", presentation.description ?? "");
+  const metadata = createElement("div", "card-meta");
+  const actions = createElement("div", "card-actions");
+
+  if (presentation.extra) {
+    metadata.append(createElement("p", "", presentation.extra));
+  }
+  article.append(image, title, details, description, metadata, actions);
+  actions.append(createFavoriteButton(content.getId()));
+  column.append(article);
+  return column;
+}
+
+function createFavoriteButton(titleId) {
+  const entry = library.findEntry(titleId);
+  const isFavorite = entry?.getIsFavorite() ?? false;
+  const button = createElement(
+    "button",
+    "btn btn-primary",
+    isFavorite ? "Quitar de Mi Lista" : "Agregar a Mi Lista",
+  );
+  button.type = "button";
+  button.dataset.action = "toggle-favorite";
+  button.dataset.titleId = titleId;
+  button.setAttribute("aria-pressed", String(isFavorite));
+  return button;
+}
+
+function renderLibrary() {
+  const entries = library.getEntries();
+  renderLibraryStatus("pending", entries);
+  renderLibraryStatus("watched", entries);
+}
+
+function renderMyList() {
+  const container = document.getElementById("my-list-items");
+  if (!container) {
+    return;
+  }
+
+  const filters = {
+    all: () => true,
+    favorites: (entry) => entry.getIsFavorite(),
+    watched: (entry) => entry.getStatus() === "watched",
+    pending: (entry) => entry.getStatus() === "pending",
+  };
+  const matchesFilter = filters[currentListFilter] ?? filters.all;
+  const entries = library
+    .getEntries()
+    .filter(matchesFilter)
+    .map((entry) => ({ entry, content: catalog.findById(entry.getTitleId()) }))
+    .filter(({ content }) => content !== null);
+
+  container.replaceChildren(
+    ...entries.map(({ entry, content }) => {
+      const item = createElement("article", "my-list-entry");
+      item.append(
+        createElement("h3", "", content.getTitle()),
+        createElement(
+          "p",
+          "",
+          `${entry.getStatus() === "watched" ? "Vista" : "Pendiente"} · ${entry.getIsFavorite() ? "Favorita" : "No favorita"}`,
+        ),
+        createFavoriteButton(content.getId()),
+      );
+      return item;
+    }),
+  );
+
+  const emptyState = document.getElementById("my-list-empty");
+  if (emptyState) {
+    emptyState.hidden = entries.length > 0;
+  }
+  document.querySelectorAll("[data-list-filter]").forEach((button) => {
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.listFilter === currentListFilter),
+    );
   });
 }
 
-function findLibraryRecord(library, titleId) {
-  return library.find((record) => record.titleId === titleId) ?? null;
-}
-
-function createInitialLibrary(catalog) {
-  return catalog.map((content) => ({
-    titleId: content.id,
-    status: content.initialStatus === "watched" ? "watched" : "pending",
-    isFavorite: false,
-    rating: null,
-  }));
-}
-
-function isValidLibraryRecord(record) {
-  return (
-    record !== null &&
-    typeof record === "object" &&
-    typeof record.titleId === "string" &&
-    (record.status === "pending" || record.status === "watched")
+function renderLibraryStatus(status, entries) {
+  const container = document.getElementById(
+    status === "pending" ? "pending-items" : "watched-items",
   );
-}
-
-function validateRating(value) {
-  if (
-    (typeof value !== "string" && typeof value !== "number") ||
-    (typeof value === "string" && value.trim() === "")
-  ) {
-    return false;
-  }
-
-  const numericRating = Number(value);
-  return (
-    Number.isInteger(numericRating) && numericRating >= 1 && numericRating <= 5
+  const emptyState = document.getElementById(
+    status === "pending" ? "pending-empty" : "watched-empty",
   );
-}
-
-function normalizeLibraryRecord(record) {
-  return {
-    titleId: record.titleId,
-    status: record.status,
-    isFavorite: record.isFavorite === true,
-    rating: validateRating(record.rating) ? Number(record.rating) : null,
-  };
-}
-
-/**
- * Recupera los registros válidos de la biblioteca persistida y los normaliza.
- * @param {Storage|object|null} storage Almacenamiento compatible con getItem.
- * @returns {Array<object>|null} Registros válidos, incluso un array vacío, o null si no hay datos legibles.
- */
-function readStoredLibrary(storage) {
-  if (!storage || typeof storage.getItem !== "function") {
-    return null;
-  }
-
-  try {
-    const serializedLibrary = storage.getItem(LIBRARY_STORAGE_KEY);
-    if (serializedLibrary === null) {
-      return null;
-    }
-
-    const parsedLibrary = JSON.parse(serializedLibrary);
-    if (!Array.isArray(parsedLibrary)) {
-      return null;
-    }
-
-    return parsedLibrary
-      .filter(isValidLibraryRecord)
-      .map(normalizeLibraryRecord);
-  } catch {
-    return null;
-  }
-}
-
-function loadLibrary(storage) {
-  const storedLibrary = readStoredLibrary(storage);
-  if (storedLibrary === null) {
-    return [];
-  }
-
-  return storedLibrary;
-}
-
-/**
- * Persiste una biblioteca serializable sin exponer errores de Storage al flujo.
- * @param {Storage|object|null} storage Almacenamiento compatible con setItem.
- * @param {Array<object>} library Registros que se desean guardar.
- * @returns {boolean} Si la escritura se completó correctamente.
- */
-function saveLibrary(storage, library) {
-  if (
-    !storage ||
-    typeof storage.setItem !== "function" ||
-    !Array.isArray(library)
-  ) {
-    return false;
-  }
-
-  try {
-    storage.setItem(LIBRARY_STORAGE_KEY, JSON.stringify(library));
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Agrega un título al conjunto de favoritos de forma inmutable.
- * @param {Array<object>} catalog Catálogo de contenidos disponibles.
- * @param {Array<object>} library Estado personal actual.
- * @param {string} titleName Título elegido por el usuario.
- * @returns {{success: boolean, message: string, library: Array<object>}} Resultado y nuevo estado.
- */
-function addFavorite(catalog, library, titleName) {
-  const content = findTitleByName(catalog, titleName);
-  if (!content) {
-    return {
-      success: false,
-      message: "El contenido no existe en el catálogo.",
-      library,
-    };
-  }
-
-  const existingRecord = findLibraryRecord(library, content.id);
-  if (existingRecord?.isFavorite) {
-    return {
-      success: false,
-      message: "El contenido ya está en tu lista personal.",
-      library,
-    };
-  }
-
-  const updatedLibrary = existingRecord
-    ? library.map((record) =>
-        record.titleId === content.id
-          ? { ...record, isFavorite: true }
-          : record,
-      )
-    : [
-        ...library,
-        {
-          titleId: content.id,
-          status: content.initialStatus === "watched" ? "watched" : "pending",
-          isFavorite: true,
-          rating: null,
-        },
-      ];
-
-  return {
-    success: true,
-    message: "Contenido agregado exitosamente.",
-    library: updatedLibrary,
-  };
-}
-
-/**
- * Quita un favorito sin borrar su estado de visto ni su calificación.
- * @param {Array<object>} library Estado personal actual.
- * @param {string} titleId Identificador estable del contenido.
- * @returns {{success: boolean, message: string, library: Array<object>}} Resultado y nuevo estado.
- */
-function removeFavorite(library, titleId) {
-  const existingRecord = findLibraryRecord(library, titleId);
-  if (!existingRecord?.isFavorite) {
-    return {
-      success: false,
-      message: "El contenido no está en tu lista personal.",
-      library,
-    };
-  }
-
-  return {
-    success: true,
-    message: "Contenido removido exitosamente.",
-    library: library.map((record) =>
-      record.titleId === titleId ? { ...record, isFavorite: false } : record,
-    ),
-  };
-}
-
-function getFavoriteContents(catalog, library) {
-  return library
-    .filter((record) => record.isFavorite)
-    .map((record) => catalog.find((content) => content.id === record.titleId))
-    .filter(Boolean);
-}
-
-function formatFavoritesAsText(catalog, library) {
-  const favoriteContents = getFavoriteContents(catalog, library);
-  return favoriteContents
-    .map((content) => `${content.title} (${content.year})`)
-    .join("\n");
-}
-
-function createFavoritesLink(library) {
-  const favoriteIds = library
-    .filter((record) => record.isFavorite)
-    .map((record) => record.titleId);
-
-  return `https://miproyecto.com/lista?ids=${encodeURIComponent(favoriteIds.join(","))}`;
-}
-
-/**
- * Resuelve los contenidos vistos que todavía no recibieron una calificación.
- * @param {Array<object>} catalog Catálogo de contenidos disponibles.
- * @param {Array<object>} library Estado personal actual.
- * @returns {Array<object>} Contenidos pendientes de calificar, en orden de biblioteca.
- */
-function getUnratedWatchedContents(catalog, library) {
-  return library
-    .filter(
-      (record) =>
-        record.status === "watched" &&
-        (record.rating === null || typeof record.rating === "undefined"),
-    )
-    .map((record) => catalog.find((content) => content.id === record.titleId))
-    .filter(Boolean);
-}
-
-/**
- * Asigna una calificación válida a un contenido visto sin mutar la biblioteca recibida.
- * @param {Array<object>} library Estado personal actual.
- * @param {string} titleId Identificador estable del contenido.
- * @param {number|string} rating Calificación entera entre 1 y 5.
- * @returns {{success: boolean, message: string, library: Array<object>}} Resultado y nuevo estado.
- */
-function rateWatchedContent(library, titleId, rating) {
-  if (!validateRating(rating)) {
-    return {
-      success: false,
-      message: "La calificación debe ser un número entero entre 1 y 5.",
-      library,
-    };
-  }
-
-  const existingRecord = findLibraryRecord(library, titleId);
-  if (!existingRecord || existingRecord.status !== "watched") {
-    return {
-      success: false,
-      message: "Solo se pueden calificar contenidos marcados como vistos.",
-      library,
-    };
-  }
-
-  return {
-    success: true,
-    message: "Calificación guardada.",
-    library: library.map((record) =>
-      record.titleId === titleId
-        ? { ...record, rating: Number(rating) }
-        : record,
-    ),
-  };
-}
-
-function formatContentDetails(content) {
-  return `${content.title} | ${content.type} | ${content.year} | ${content.genres.join(", ")}`;
-}
-
-function formatSearchResults(contents) {
-  if (contents.length === 0) {
-    return "No se encontraron contenidos.";
-  }
-
-  return `Resultados de búsqueda:\n${contents.map(formatContentDetails).join("\n")}`;
-}
-
-function resolvePromptFunction(promptFunction) {
-  if (typeof promptFunction === "function") {
-    return promptFunction;
-  }
-
-  if (
-    typeof globalThis !== "undefined" &&
-    typeof globalThis.prompt === "function"
-  ) {
-    return globalThis.prompt.bind(globalThis);
-  }
-
-  return () => null;
-}
-
-function resolveAlertFunction(alertFunction) {
-  if (typeof alertFunction === "function") {
-    return alertFunction;
-  }
-
-  if (
-    typeof globalThis !== "undefined" &&
-    typeof globalThis.alert === "function"
-  ) {
-    return globalThis.alert.bind(globalThis);
-  }
-
-  return () => {};
-}
-
-function resolveStorage(storage) {
-  if (storage) {
-    return storage;
-  }
-
-  try {
-    return typeof globalThis !== "undefined" ? globalThis.localStorage : null;
-  } catch {
-    return null;
-  }
-}
-
-function getWorkingLibrary(storage, catalog) {
-  const storedLibrary = readStoredLibrary(storage);
-  if (storedLibrary !== null) {
-    return storedLibrary;
-  }
-
-  const initialLibrary = createInitialLibrary(catalog);
-  saveLibrary(storage, initialLibrary);
-  return initialLibrary;
-}
-
-function askYesNo(promptFunction, question, alertFunction) {
-  const showAlert = resolveAlertFunction(alertFunction);
-
-  while (true) {
-    const answer = promptFunction(`${question} (sí/no)`);
-    if (answer === null) {
-      return null;
-    }
-
-    const normalizedAnswer = normalizeText(answer);
-    if (["si", "s", "yes", "y"].includes(normalizedAnswer)) {
-      return true;
-    }
-
-    if (["no", "n"].includes(normalizedAnswer)) {
-      return false;
-    }
-
-    showAlert("Respuesta inválida. Respondé sí o no.");
-  }
-}
-
-/**
- * Ejecuta la interacción del flujo de búsqueda y filtrado descrito en el diagrama 1.
- * @param {object} options Funciones de interacción y catálogo inyectables para pruebas.
- */
-function runSearchFlow(options = {}) {
-  const promptFunction = resolvePromptFunction(options.promptFunction);
-  const alertFunction = resolveAlertFunction(options.alertFunction);
-  const catalog = options.catalog ?? CONTENT_CATALOG;
-
-  let titleQuery = promptFunction(
-    "Ingresá un título para buscar o cancelar para volver al menú:",
-  );
-  if (titleQuery === null) {
-    alertFunction("Búsqueda cancelada.");
+  if (!container) {
     return;
   }
 
-  let filterValue = promptFunction(
-    "Ingresá un tipo o género para filtrar, o dejá vacío:",
-  );
-  if (filterValue === null) {
-    filterValue = "";
+  const cards = entries
+    .filter((entry) => entry.getStatus() === status)
+    .map((entry) => {
+      const content = catalog.findById(entry.getTitleId());
+      return content ? createLibraryCard(content, entry) : null;
+    })
+    .filter(Boolean);
+
+  container.replaceChildren(...cards);
+  if (emptyState) {
+    emptyState.hidden = cards.length > 0;
   }
-  alertFunction(
-    formatSearchResults(searchContents(catalog, titleQuery, filterValue)),
-  );
-
-  while (
-    askYesNo(
-      promptFunction,
-      "¿Deseás cambiar los criterios de búsqueda?",
-      alertFunction,
-    )
-  ) {
-    titleQuery = promptFunction(
-      "Ingresá un título para buscar o cancelar para volver al menú:",
-    );
-    if (titleQuery === null) {
-      alertFunction("Búsqueda cancelada.");
-      return;
-    }
-
-    filterValue = promptFunction(
-      "Ingresá un tipo o género para filtrar, o dejá vacío:",
-    );
-    if (filterValue === null) {
-      filterValue = "";
-    }
-
-    alertFunction(
-      formatSearchResults(searchContents(catalog, titleQuery, filterValue)),
-    );
-  }
-
-  alertFunction("Fin de búsqueda.");
 }
 
-/**
- * Ejecuta altas y bajas de favoritos hasta que el usuario abandona el ciclo.
- * @param {object} options Funciones de interacción, almacenamiento y estado inyectables.
- * @returns {Array<object>} Estado personal resultante.
- */
-function runFavoritesFlow(options = {}) {
-  const promptFunction = resolvePromptFunction(options.promptFunction);
-  const alertFunction = resolveAlertFunction(options.alertFunction);
-  const catalog = options.catalog ?? CONTENT_CATALOG;
-  const storage = resolveStorage(options.storage);
-  let library = Array.isArray(options.library)
-    ? options.library
-    : getWorkingLibrary(storage, catalog);
+function createLibraryCard(content, entry) {
+  const article = createElement("article", "library-entry");
+  article.append(
+    createElement("h4", "", content.getTitle()),
+    createElement(
+      "p",
+      "",
+      entry.getIsFavorite() ? "En Mi Lista" : "No está en Mi Lista",
+    ),
+  );
 
-  while (
-    askYesNo(
-      promptFunction,
-      "¿Deseás gestionar un contenido de tu lista personal?",
-      alertFunction,
-    )
-  ) {
-    if (catalog.length === 0) {
-      alertFunction("No hay contenidos disponibles en el catálogo.");
-      return library;
+  const statusLabel = createElement("label", "", "Estado de visualización");
+  const statusSelect = createElement("select", "form-select");
+  const selectId = `status-${content.getId()}`;
+  statusLabel.htmlFor = selectId;
+  statusSelect.id = selectId;
+  statusSelect.dataset.action = "update-status";
+  statusSelect.dataset.titleId = content.getId();
+  for (const [value, label] of [
+    ["pending", "Pendiente"],
+    ["watched", "Vista"],
+  ]) {
+    const option = createElement("option", "", label);
+    option.value = value;
+    option.selected = entry.getStatus() === value;
+    if (value === "pending" && entry.getRating() !== null) {
+      option.disabled = true;
     }
+    statusSelect.append(option);
+  }
+  article.append(statusLabel, statusSelect);
 
-    alertFunction(
-      `Contenidos disponibles en el catálogo:\n${catalog
-        .map((content) => content.title)
-        .join("\n")}`,
+  if (entry.getStatus() === "watched") {
+    article.append(createRatingControl(content, entry));
+  }
+  article.append(createFavoriteButton(content.getId()));
+  return article;
+}
+
+function createRatingControl(content, entry) {
+  const wrapper = createElement("div", "rating-control");
+  const inputId = `rating-${content.getId()}`;
+  const valueId = `${inputId}-value`;
+  const feedbackId = `${inputId}-feedback`;
+  const label = createElement(
+    "label",
+    "",
+    `Tu calificación: ${content.getTitle()}`,
+  );
+  label.htmlFor = inputId;
+
+  const input = createElement("input", "form-range");
+  input.id = inputId;
+  input.type = "range";
+  input.min = "1";
+  input.max = "5";
+  input.step = "1";
+  input.value = String(entry.getRating() ?? 3);
+  input.dataset.action = "rate-content";
+  input.dataset.titleId = content.getId();
+  input.dataset.valueId = valueId;
+  input.dataset.feedbackId = feedbackId;
+  input.setAttribute("aria-describedby", `${valueId} ${feedbackId}`);
+
+  const value = createElement("output", "rating-value", input.value);
+  value.id = valueId;
+  const feedback = createElement(
+    "small",
+    "form-text",
+    entry.getRating() === null
+      ? "Elegí una calificación de 1 a 5."
+      : `Calificación guardada: ${entry.getRating()}.`,
+  );
+  feedback.id = feedbackId;
+  if (entry.getRating() !== null) {
+    input.classList.add("is-valid");
+  }
+  input.setAttribute("aria-invalid", "false");
+  wrapper.append(label, input, value, feedback);
+  return wrapper;
+}
+
+function syncFavoriteButtons() {
+  document
+    .querySelectorAll('[data-action="toggle-favorite"]')
+    .forEach((button) => {
+      const entry = library.findEntry(button.dataset.titleId);
+      const isFavorite = entry?.getIsFavorite() ?? false;
+      button.textContent = isFavorite
+        ? "Quitar de Mi Lista"
+        : "Agregar a Mi Lista";
+      button.setAttribute("aria-pressed", String(isFavorite));
+    });
+}
+
+function renderSearchFeedback(titleQuery, filterValue, resultCount) {
+  const message =
+    resultCount === 0
+      ? "No se encontraron contenidos. Probá con otros criterios."
+      : `${resultCount} ${resultCount === 1 ? "contenido encontrado" : "contenidos encontrados"}.`;
+  const hasCriteria = Boolean(titleQuery.trim() || filterValue);
+  renderMessage(
+    document.getElementById("search-feedback"),
+    hasCriteria || resultCount === 0 ? message : "Mostrando todo el catálogo.",
+    resultCount === 0 ? "info" : "success",
+  );
+}
+
+function renderShareResult() {
+  const format = document.getElementById("share-format")?.value;
+  const output = document.getElementById("share-output");
+  const favorites = library.getFavorites(catalog);
+  if (!output) {
+    return;
+  }
+  if (favorites.length === 0) {
+    output.value = "";
+    output.hidden = true;
+    renderMessage(
+      document.getElementById("share-feedback"),
+      "No hay contenidos en Mi Lista para compartir.",
+      "warning",
     );
-
-    const titleName = promptFunction(
-      "Ingresá el título del contenido del catálogo:",
+    return;
+  }
+  if (format !== "texto" && format !== "enlace") {
+    renderMessage(
+      document.getElementById("share-feedback"),
+      "Elegí un formato válido para exportar la lista.",
+      "danger",
     );
-    const content = findTitleByName(catalog, titleName);
+    return;
+  }
 
-    if (titleName === null || !normalizeText(titleName)) {
-      alertFunction("Operación cancelada.");
-    } else if (!content) {
-      alertFunction("El contenido no existe en el catálogo.");
-    } else {
-      const existingRecord = findLibraryRecord(library, content.id);
-      const shouldRemove = existingRecord?.isFavorite;
-      const confirmed = askYesNo(
-        promptFunction,
-        shouldRemove
-          ? `¿Deseás remover ${content.title} de tu lista personal?`
-          : `¿Deseás agregar ${content.title} a tu lista personal?`,
-        alertFunction,
-      );
+  try {
+    output.value = ListExport.format(favorites, format);
+  } catch {
+    renderMessage(
+      document.getElementById("share-feedback"),
+      "No se pudo preparar la lista con ese formato.",
+      "danger",
+    );
+    return null;
+  }
+  output.hidden = false;
+  renderMessage(
+    document.getElementById("share-feedback"),
+    "Lista preparada. Podés seleccionar y copiar el resultado.",
+    "success",
+  );
+  return { format, value: output.value, output };
+}
 
-      if (!confirmed) {
-        alertFunction("Operación cancelada.");
-      } else {
-        const result = shouldRemove
-          ? removeFavorite(library, content.id)
-          : addFavorite(catalog, library, content.title);
+function startSharing() {
+  const result = renderShareResult();
+  if (!result) {
+    return;
+  }
 
-        if (result.success && saveLibrary(storage, result.library)) {
-          library = result.library;
-          alertFunction(result.message);
-        } else {
-          alertFunction(
-            result.success
-              ? "No se pudo guardar la lista en el almacenamiento local."
-              : result.message,
+  if (typeof navigator.share === "function") {
+    navigator.share({ title: "Mi Lista", text: result.value }).then(
+      () =>
+        renderMessage(
+          document.getElementById("share-feedback"),
+          "Lista compartida.",
+          "success",
+        ),
+      (error) => {
+        if (error.name !== "AbortError") {
+          renderMessage(
+            document.getElementById("share-feedback"),
+            "No se pudo abrir la opción de compartir. El resultado quedó listo para copiar.",
+            "warning",
           );
         }
-      }
-    }
-  }
-
-  return library;
-}
-
-/**
- * Exporta los favoritos en texto o en un enlace simulado.
- * @param {object} options Funciones de interacción, almacenamiento y estado inyectables.
- */
-function runSharingFlow(options = {}) {
-  const promptFunction = resolvePromptFunction(options.promptFunction);
-  const alertFunction = resolveAlertFunction(options.alertFunction);
-  const catalog = options.catalog ?? CONTENT_CATALOG;
-  const storage = resolveStorage(options.storage);
-  const library = Array.isArray(options.library)
-    ? options.library
-    : getWorkingLibrary(storage, catalog);
-  const favoriteContents = getFavoriteContents(catalog, library);
-
-  if (favoriteContents.length === 0) {
-    alertFunction("No hay contenidos en tu lista para compartir.");
-    return;
-  }
-
-  let format = promptFunction(
-    "Elegí el formato de exportación: texto o enlace.",
-  );
-  while (
-    format !== null &&
-    !["texto", "enlace"].includes(normalizeText(format))
-  ) {
-    alertFunction("Formato incorrecto. Ingresá texto o enlace.");
-    format = promptFunction("Elegí el formato de exportación: texto o enlace.");
-  }
-
-  if (format === null) {
-    alertFunction("Exportación cancelada.");
-    return;
-  }
-
-  const result =
-    normalizeText(format) === "texto"
-      ? formatFavoritesAsText(catalog, library)
-      : createFavoritesLink(library);
-
-  promptFunction("Copiá el resultado y cerrá esta ventana:", result);
-  alertFunction("Exportación finalizada.");
-}
-
-/**
- * Califica secuencialmente los contenidos vistos pendientes, persistiendo cada cambio.
- * @param {object} options Funciones de interacción, almacenamiento y estado inyectables.
- * @returns {Array<object>} Estado personal actualizado hasta completar o cancelar.
- */
-function runRatingFlow(options = {}) {
-  const promptFunction = resolvePromptFunction(options.promptFunction);
-  const alertFunction = resolveAlertFunction(options.alertFunction);
-  const catalog = options.catalog ?? CONTENT_CATALOG;
-  const storage = resolveStorage(options.storage);
-  let library = Array.isArray(options.library)
-    ? options.library
-    : getWorkingLibrary(storage, catalog);
-  const unratedContents = getUnratedWatchedContents(catalog, library);
-
-  if (unratedContents.length === 0) {
-    alertFunction("No hay contenidos vistos pendientes de calificación.");
-    return library;
-  }
-
-  let contentIndex = 0;
-  while (contentIndex < unratedContents.length) {
-    const content = unratedContents[contentIndex];
-    let ratingInput = promptFunction(
-      `Ingresá una calificación de 1 a 5 para ${content.title}, o cancelá para interrumpir:`,
+      },
     );
-
-    if (ratingInput === null) {
-      alertFunction("Proceso interrumpido.");
-      return library;
-    }
-
-    while (!validateRating(ratingInput)) {
-      alertFunction("La calificación debe ser un número entero entre 1 y 5.");
-      ratingInput = promptFunction(
-        `Ingresá nuevamente la calificación para ${content.title}:`,
-      );
-
-      if (ratingInput === null) {
-        alertFunction("Proceso interrumpido.");
-        return library;
-      }
-    }
-
-    const result = rateWatchedContent(library, content.id, ratingInput);
-    if (!result.success) {
-      alertFunction(result.message);
-      contentIndex += 1;
-      continue;
-    }
-
-    if (!saveLibrary(storage, result.library)) {
-      alertFunction(
-        "No se pudo guardar la calificación en el almacenamiento local.",
-      );
-      return library;
-    }
-
-    library = result.library;
-    alertFunction(`Calificación guardada para ${content.title}.`);
-    contentIndex += 1;
+    return;
   }
 
-  alertFunction("Todos los contenidos vistos han sido calificados.");
-  return library;
+  result.output.focus();
+  result.output.select();
+  renderMessage(
+    document.getElementById("share-feedback"),
+    "Lista preparada y seleccionada para copiar.",
+    "success",
+  );
 }
 
-function startApp(options = {}) {
-  const promptFunction = resolvePromptFunction(options.promptFunction);
-  const alertFunction = resolveAlertFunction(options.alertFunction);
-  const storage = resolveStorage(options.storage);
-  const catalog = options.catalog ?? CONTENT_CATALOG;
-  let library = getWorkingLibrary(storage, catalog);
-  let selectedOption = promptFunction(MENU_TEXT);
+function clearShareResult() {
+  const output = document.getElementById("share-output");
+  if (output) {
+    output.value = "";
+    output.hidden = true;
+  }
+  renderMessage(document.getElementById("share-feedback"), "", "info");
+}
 
-  while (selectedOption !== null && normalizeText(selectedOption) !== "0") {
-    switch (normalizeText(selectedOption)) {
-      case "1":
-        runSearchFlow({ promptFunction, alertFunction, catalog });
-        break;
-      case "2":
-        library = runFavoritesFlow({
-          promptFunction,
-          alertFunction,
-          storage,
-          catalog,
-          library,
-        });
-        break;
-      case "3":
-        runSharingFlow({
-          promptFunction,
-          alertFunction,
-          storage,
-          catalog,
-          library,
-        });
-        break;
-      case "4":
-        library = runRatingFlow({
-          promptFunction,
-          alertFunction,
-          storage,
-          catalog,
-          library,
-        });
-        break;
-      default:
-        alertFunction("Opción inválida. Elegí una opción del menú.");
-    }
+function renderMessage(container, message, type) {
+  if (!container) {
+    return;
+  }
 
-    selectedOption = promptFunction(MENU_TEXT);
+  container.textContent = message;
+  container.className = message ? `alert alert-${type} mb-3` : "";
+  container.hidden = !message;
+  container.setAttribute("role", type === "danger" ? "alert" : "status");
+  container.setAttribute(
+    "aria-live",
+    type === "danger" ? "assertive" : "polite",
+  );
+  clearTimeout(feedbackTimeouts.get(container));
+  if (message) {
+    const timeout = setTimeout(() => {
+      container.hidden = true;
+      container.textContent = "";
+      container.className = "";
+      feedbackTimeouts.delete(container);
+    }, FEEDBACK_TIMEOUT_MS);
+    feedbackTimeouts.set(container, timeout);
   }
 }
 
-if (typeof window !== "undefined" && typeof jasmine === "undefined") {
-  startApp();
+function setFieldFeedback(input, feedback, message, isValid) {
+  input.classList.toggle("is-valid", isValid === true);
+  input.classList.toggle("is-invalid", isValid === false);
+  input.setAttribute("aria-invalid", String(isValid === false));
+  if (feedback) {
+    feedback.textContent = message;
+    feedback.classList.toggle("text-success", isValid === true);
+    feedback.classList.toggle("text-danger", isValid === false);
+  }
+}
+
+function createElement(tagName, className = "", text = "") {
+  const element = document.createElement(tagName);
+  if (className) {
+    element.className = className;
+  }
+  if (text) {
+    element.textContent = text;
+  }
+  return element;
+}
+
+if (typeof document !== "undefined") {
+  document.addEventListener("DOMContentLoaded", initializeApp, { once: true });
 }
