@@ -26,7 +26,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
-- [fix/rc-33-40] **A4 - fix: address RC33-RC40 review challenges** | Issue [#118](https://github.com/keviineze/proyecto-web-peliculas/issues/118) | [PR #117](https://github.com/keviineze/proyecto-web-peliculas/pull/117) | @GonzaloBarbano (Desarrollador JS Eventos + DOM)
+- [fix/rc-41-42] **docs: fix RC41 changelog title** | Issue [#120](https://github.com/keviineze/proyecto-web-peliculas/issues/120) | [PR #119](https://github.com/keviineze/proyecto-web-peliculas/pull/119) | @GonzaloBarbano (Desarrollador JS Eventos + DOM)
+
+- [fix/rc-33-40] **fix: address RC33-RC40 review challenges** | Issue [#118](https://github.com/keviineze/proyecto-web-peliculas/issues/118) | [PR #117](https://github.com/keviineze/proyecto-web-peliculas/pull/117) | @GonzaloBarbano (Desarrollador JS Eventos + DOM)
 
 - [fix/changelog-rc31-rc32] **Correcciones JS Poo 3** | Issue [#111](https://github.com/keviineze/proyecto-web-peliculas/issues/111) | [PR #110](https://github.com/keviineze/proyecto-web-peliculas/pull/110) | @keviineze (Desarrollador JS POO)
 
