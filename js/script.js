@@ -3,6 +3,7 @@ import { Content } from "./models/Content.js";
 import { Library } from "./models/Library.js";
 import { LibraryStorage } from "./utils/libraryStorage.js";
 import { ListExport } from "./utils/listExport.js";
+import { showToast } from "./utils/notifications.js";
 
 const FEEDBACK_TIMEOUT_MS = 4000;
 const feedbackTimeouts = new WeakMap();
@@ -229,13 +230,15 @@ function toggleFavorite(titleId) {
 
   if (result.ok) {
     const isFavorite = library.findEntry(titleId)?.getIsFavorite() ?? false;
+    const message = isFavorite
+      ? `${content.getTitle()} se agregó a Mi Lista.`
+      : `${content.getTitle()} se quitó de Mi Lista.`;
     renderMessage(
       document.getElementById("library-feedback"),
-      isFavorite
-        ? "Contenido agregado a Mi Lista."
-        : "Contenido quitado de Mi Lista.",
+      message,
       "success",
     );
+    showToast(message, "success");
   } else if (result.error.type === "domain") {
     renderMessage(
       document.getElementById("library-feedback"),
@@ -257,6 +260,7 @@ function updateContentStatus(select) {
       "Estado actualizado.",
       "success",
     );
+    showToast("Estado de visualización actualizado.", "success");
   } else if (result.error.type === "domain") {
     const currentEntry = library.findEntry(titleId);
     if (currentEntry) {
@@ -319,6 +323,7 @@ function saveRating(input) {
       "Calificación guardada.",
       "success",
     );
+    showToast("Calificación guardada.", "success");
   }
 }
 
@@ -682,6 +687,7 @@ function renderShareResult() {
     "Lista preparada. Podés seleccionar y copiar el resultado.",
     "success",
   );
+  showToast("Mi Lista está lista para compartir.", "success");
   return { format, value: output.value, output };
 }
 

@@ -12,7 +12,26 @@
 2. **Acciones de Biblioteca (cambio de estado/calificación o exportación):** Mostrar una notificación toast al actualizar el estado de visualización/calificación o al exportar/copiar la lista.
 
 ### 3. Criterios de aceptación
-- [ ] CDN (CSS y JS) integrado en `index.html` y configuración encapsulada en `js/utils/notifications.js` con JSDoc.
-- [ ] Integración funcional en al menos 2 puntos visibles de la app manteniendo consistencia visual.
-- [ ] Documentación técnica completa en `docs/07-librerias/libreria-doc.md` con 2 capturas en `docs/07-librerias/screenshots/`.
-- [ ] Suite de Jasmine existente sin regresiones y coordinación con Tester QA (`@keviineze`) para `library.spec.js`.
+- [x] CDN (CSS y JS) integrado en `index.html` y configuración encapsulada en `js/utils/notifications.js` con JSDoc.
+- [x] Integración funcional en al menos 2 puntos visibles de la app manteniendo consistencia visual.
+- [x] Documentación técnica completa en `docs/07-librerias/libreria-doc.md` con 2 capturas en `docs/07-librerias/screenshots/`.
+- [x] Suite de Jasmine existente sin regresiones y coordinación con Tester QA (`@keviineze`) para `library.spec.js`.
+
+## AL CERRAR
+
+### Prompt utilizado
+```text
+Implementa el rol de Desarrollador JS Librerías Externas siguiendo docs/03-specs/segundo-parcial/spec-dev-libreria-externa.md: agregar Toastify-js v1.12.0 por CDN con defer en index.html, crear js/utils/notifications.js con JSDoc y fallback seguro para Jasmine, integrar showToast en js/script.js (Mi Lista, estado/calificación y exportación), documentar en docs/07-librerias/libreria-doc.md con 2 capturas y verificar que pasen los tests existentes sin crear library.spec.js.
+```
+
+### Evidencia de verificación
+- Jasmine: 66 specs, 0 failures (0.445s) sin regresiones.
+
+- Navegador local: Toasts visibles con estética oscura/verde en las acciones integradas y sin errores en consola.
+
+- Documentación: docs/07-librerias/libreria-doc.md y capturas en docs/07-librerias/screenshots/.
+
+### Issues y coordinación
+- Issue asociada: #109
+
+- Coordinación QA: Queda disponible tras el merge a develop para que @keviineze (Tester QA) implemente library.spec.js y ejecute la auditoría final.
