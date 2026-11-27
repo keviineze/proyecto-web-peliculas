@@ -6,6 +6,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
+### Added
+
+- [feature/dev-libreria-externa-toastify] **[A2P] Desarrollador JS Librerías Externas: integración de Toastify-js y documentación** | Issue [#109](https://github.com/keviineze/proyecto-web-peliculas/issues/109) | [PR #125](https://github.com/keviineze/proyecto-web-peliculas/pull/125) | @Davidsoria99 (Desarrollador JS Librerías Externas)
+
 ## [Release Cuarta Entrega] - 2026-11-22
 
 ### Added
