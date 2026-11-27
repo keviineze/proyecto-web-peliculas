@@ -23,6 +23,10 @@ const TOAST_STYLES = {
  *   `false` when Toastify is unavailable.
  */
 export function showToast(message, type = "info") {
+  if (typeof message !== "string" || message.trim() === "") {
+    return false;
+  }
+
   if (typeof window === "undefined" || typeof window.Toastify !== "function") {
     return false;
   }
@@ -34,7 +38,7 @@ export function showToast(message, type = "info") {
 
   window
     .Toastify({
-      text: String(message),
+      text: message.trim(),
       duration: 3500,
       gravity: "top",
       position: "right",

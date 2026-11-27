@@ -19,6 +19,13 @@
 
 ## AL CERRAR
 
+### Checklist de cierre
+- [x] CDN de Toastify-js `v1.12.0` integrado con `defer` para el JavaScript.
+- [x] Notificaciones integradas en puntos visibles, incluyendo Mi Lista y acciones de Biblioteca/exportación.
+- [x] Documentación técnica disponible en `docs/07-librerias/libreria-doc.md`.
+- [x] Dos capturas disponibles en `docs/07-librerias/screenshots/`.
+- [x] Suite Jasmine sin regresiones: 66 specs, 0 failures.
+
 ### Prompt utilizado
 ```text
 Implementa el rol de Desarrollador JS Librerías Externas siguiendo docs/03-specs/segundo-parcial/spec-dev-libreria-externa.md: agregar Toastify-js v1.12.0 por CDN con defer en index.html, crear js/utils/notifications.js con JSDoc y fallback seguro para Jasmine, integrar showToast en js/script.js (Mi Lista, estado/calificación y exportación), documentar en docs/07-librerias/libreria-doc.md con 2 capturas y verificar que pasen los tests existentes sin crear library.spec.js.
