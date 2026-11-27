@@ -6,6 +6,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
+### Added
+
+- [feature/dev-async-fetch-api] **[A2P] Desarrollador JS Asíncrono: ApiService, fetch y estados de carga** | Issue [#108](https://github.com/keviineze/proyecto-web-peliculas/issues/108) | [PR #124](https://github.com/keviineze/proyecto-web-peliculas/pull/124) | @Davidsoria99 (Desarrollador JS Asíncrono)
+
 ## [Release Cuarta Entrega] - 2026-11-22
 
 ### Added
