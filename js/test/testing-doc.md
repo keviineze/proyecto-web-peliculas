@@ -27,10 +27,10 @@ Las suites se ejecutan en el navegador y el reporte de Jasmine muestra el total 
 - **Última ejecución:** 66 specs, 0 failures (100% PASS) en Jasmine 5.10.0, ejecutadas en Chromium mediante Playwright MCP.
 - **Capturas de resultados:**
 
-![Resumen completo de todas las suites](screenshots/captura-runner-completo.png)
+![Resumen completo de todas las suites](capturas/captura-runner-completo.png)
 
-![Specs de modelos POO](screenshots/captura-models-spec.png)
+![Specs de modelos POO](capturas/captura-models-spec.png)
 
-![Specs de Storage](screenshots/captura-storage-spec.png)
+![Specs de Storage](capturas/captura-storage-spec.png)
 
-![Specs de interfaz y DOM](screenshots/captura-script-spec.png)
+![Specs de interfaz y DOM](capturas/captura-script-spec.png)
