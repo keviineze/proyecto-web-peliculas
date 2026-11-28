@@ -108,8 +108,8 @@
   - Precargar el recurso LCP (imagen del carrusel) para atacar *LCP request discovery*.
 
 ## Issues Generadas
-- [#XX] Reducir el JavaScript agregado por la integración de fetch (63 KiB por minificar, 97 KiB sin usar, 2 tareas largas) → @Davidsoria99 (Desarrollador JS Asíncrono)
-- [#XX] Reapertura de #105 — render-blocking requests (980 ms) y caché sin configurar persisten tras el merge de fetch → @GonzaloBarbano (Coordinador/DevOps)
+- [#126] Reducir el JavaScript agregado por la integración de fetch (63 KiB por minificar, 97 KiB sin usar, 2 tareas largas) → @Davidsoria99 (Desarrollador JS Asíncrono)
+- [#105] Reapertura solicitada — render-blocking requests (980 ms) y caché sin configurar persisten tras el merge de fetch → @GonzaloBarbano (Coordinador/DevOps)
 
 > Issues ya existentes que siguen vigentes en este estado: **#104** (CLS 0.713), **#106** (contraste) y **#103** (imágenes/LCP). Las cuatro issues del TC11 (#103–#106) fueron cerradas por @GonzaloBarbano el 2026-11-27 sin correcciones verificables; se solicita reapertura o justificación de cierre ante el Coordinador/DevOps.
 

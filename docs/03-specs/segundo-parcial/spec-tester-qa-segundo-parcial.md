@@ -102,7 +102,7 @@ Cobertura mínima exigida: inicialización, configuración, funcionalidad princi
 - [x] `docs/04-testing/test-case-11-lighthouse-baseline.md` documentado con métricas, umbrales e issues.
 - [x] `docs/04-testing/test-case-12-lighthouse-post-fetch.md` con comparación contra baseline y análisis de impacto.
 - [x] `docs/04-testing/test-case-13-lighthouse-post-library.md` con comparación evolutiva y recomendaciones finales.
-- [ ] Issues creadas para todos los problemas encontrados y asignadas a los roles correspondientes (4 existentes #103–#106 + 2 nuevas pendientes de creación).
+- [x] Issues creadas para todos los problemas encontrados y asignadas a los roles correspondientes (4 del baseline #103–#106 + 2 nuevas del TC12/TC13: #126 y #127, ambas asignadas a @Davidsoria99).
 - [x] `js/test/testing-doc.md` y `docs/04-testing/testing-doc.md` actualizados (con enlaces a los nuevos test cases).
 - [ ] `changelog.md` actualizado con links a la PR y a las issues.
 - [ ] PR `feature/tester-qa-js-testing-suite` → `develop` revisada y aprobada por el Coordinador/DevOps.
@@ -155,8 +155,9 @@ completos, listos para pegar.
   - [#104](https://github.com/keviineze/proyecto-web-peliculas/issues/104) → @GonzaloBarbano (CLS 0.71) — cerrada el 2026-11-27, hallazgo persistente en TC12/TC13 (CLS 0.713).
   - [#105](https://github.com/keviineze/proyecto-web-peliculas/issues/105) → @GonzaloBarbano (render-blocking + CSS/JS sin usar) — cerrada el 2026-11-27, persistente (890 → 980 → 1.130 ms).
   - [#106](https://github.com/keviineze/proyecto-web-peliculas/issues/106) → @GonzaloBarbano (contraste) — cerrada el 2026-11-27, persistente (Accessibility 96 en los tres estados).
-  - [#XX] → @Davidsoria99 — JS agregado por fetch (63 KiB por minificar, 97 KiB sin usar, 2 tareas largas) — TC12.
-  - [#XX] → @Davidsoria99 — CSS de Toastify en render-blocking (+150 ms) — TC13.
+  - [#126](https://github.com/keviineze/proyecto-web-peliculas/issues/126) → @Davidsoria99 — JS agregado por fetch (63 KiB por minificar, 97 KiB sin usar, 2 tareas largas) — TC12.
+  - [#127](https://github.com/keviineze/proyecto-web-peliculas/issues/127) → @Davidsoria99 — CSS de Toastify en render-blocking (+150 ms) — TC13.
+- La issue de tarea [#102](https://github.com/keviineze/proyecto-web-peliculas/issues/102) fue reabierta el 2026-11-27 con comentario de trazabilidad (cerrada prematuramente por @GonzaloBarbano el mismo día).
 - Las cuatro issues del baseline fueron cerradas por @GonzaloBarbano con motivo *"completed"* sin comentarios; se solicita reapertura o justificación ante el Coordinador/DevOps (documentado en TC11, TC12 y TC13).
 
 ### 4. Ajustes manuales sobre tests generados por IA

@@ -123,8 +123,8 @@
 5. Caché de `api/data.json` y assets en Pages (issue #105), condición necesaria para medir cache lifetimes en condiciones reales.
 
 ## Issues Generadas
-- [#XX] Hacer no render-blocking el CSS de Toastify (render-blocking 980 → 1.130 ms tras integrar la librería) → @Davidsoria99 (Desarrollador JS Librerías Externas)
-- [#XX] Reapertura de #104 — CLS 0.713 persistente en los tres estados de auditoría → @GonzaloBarbano (Coordinador/DevOps)
+- [#127] Hacer no render-blocking el CSS de Toastify (render-blocking 980 → 1.130 ms tras integrar la librería) → @Davidsoria99 (Desarrollador JS Librerías Externas)
+- [#104] Reapertura solicitada — CLS 0.713 persistente en los tres estados de auditoría → @GonzaloBarbano (Coordinador/DevOps)
 
 > Issues vigentes heredadas: **#103** (imágenes/LCP), **#105** (render-blocking + caché) y **#106** (contraste). Las issues #103–#106 fueron cerradas por @GonzaloBarbano el 2026-11-27 sin correcciones verificables (los hallazgos siguen presentes en TC12 y TC13); se solicita reapertura o justificación ante el Coordinador/DevOps.
 

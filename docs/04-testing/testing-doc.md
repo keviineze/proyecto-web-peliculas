@@ -407,6 +407,9 @@ Los tres test cases del Segundo Parcial se ejecutaron con **Chrome DevTools → 
 | [#104](https://github.com/keviineze/proyecto-web-peliculas/issues/104) | TC11 / TC12 / TC13 | Corregir layout shifts (CLS 0.71 → 0.713) | @GonzaloBarbano | Cerrada el 2026-11-27, hallazgo persistente |
 | [#105](https://github.com/keviineze/proyecto-web-peliculas/issues/105) | TC11 / TC12 / TC13 | Eliminar render-blocking requests y reducir CSS/JS sin usar | @GonzaloBarbano | Cerrada el 2026-11-27, hallazgo persistente |
 | [#106](https://github.com/keviineze/proyecto-web-peliculas/issues/106) | TC11 / TC12 / TC13 | Corregir contraste insuficiente entre texto y fondo | @GonzaloBarbano | Cerrada el 2026-11-27, hallazgo persistente |
+| [#126](https://github.com/keviineze/proyecto-web-peliculas/issues/126) | TC12 | Reducir el JavaScript agregado por la integración de fetch (63 KiB por minificar, 97 KiB sin usar, 2 tareas largas) | @Davidsoria99 | Abierta |
+| [#127](https://github.com/keviineze/proyecto-web-peliculas/issues/127) | TC13 | Hacer no render-blocking el CSS de Toastify (render-blocking 980 → 1.130 ms) | @Davidsoria99 | Abierta |
+| [#102](https://github.com/keviineze/proyecto-web-peliculas/issues/102) | Tarea Tester QA/JS | Issue de trazabilidad del rol (TC11–TC13) | @keviineze | Reabierta el 2026-11-27 hasta el merge de la PR |
 
 ## Evidencias
 
