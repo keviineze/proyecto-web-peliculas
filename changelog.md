@@ -8,6 +8,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
+- [feature/dev-libreria-externa-toastify] **[A2P] Desarrollador JS Librerías Externas: integración de Toastify-js y documentación** | Issue [#109](https://github.com/keviineze/proyecto-web-peliculas/issues/109) | [PR #125](https://github.com/keviineze/proyecto-web-peliculas/pull/125) | @Davidsoria99 (Desarrollador JS Librerías Externas)
+
 - [feature/dev-async-fetch-api] **[A2P] Desarrollador JS Asíncrono: ApiService, fetch y estados de carga** | Issue [#108](https://github.com/keviineze/proyecto-web-peliculas/issues/108) | [PR #124](https://github.com/keviineze/proyecto-web-peliculas/pull/124) | @Davidsoria99 (Desarrollador JS Asíncrono)
 
 ## [Release Cuarta Entrega] - 2026-11-22
