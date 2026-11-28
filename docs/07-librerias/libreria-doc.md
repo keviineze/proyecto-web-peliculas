@@ -24,10 +24,14 @@ parseo del documento:
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css"
+  integrity="sha384-GSJP6bR4yv1SbLGhL+ntxb4LDi6RC5j8eM8OAh5lwPYdvj9cflIWJiFZdAFr2gyP"
+  crossorigin="anonymous"
 />
 <script
   defer
   src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"
+  integrity="sha384-HV48j9xMNfX80v1dhiML90VeD4a38xrehnBK+dNSSe8P4fija/zP36u52q7TpB6O"
+  crossorigin="anonymous"
 ></script>
 ```
 
