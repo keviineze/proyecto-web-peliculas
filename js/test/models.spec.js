@@ -10,8 +10,23 @@ function createContent(
   year = 2014,
   genres = ["Ciencia ficción"],
   initialStatus = "pending",
+  description = "",
+  extra = "",
+  image = "",
+  imageAlt = "",
 ) {
-  return new Content(id, title, type, year, genres, initialStatus);
+  return new Content(
+    id,
+    title,
+    type,
+    year,
+    genres,
+    initialStatus,
+    description,
+    extra,
+    image,
+    imageAlt,
+  );
 }
 
 describe("Content", function () {
@@ -36,6 +51,10 @@ describe("Content", function () {
     expect(content.getYear()).toBe(2014);
     expect(content.getGenres()).toEqual(["Ciencia ficción"]);
     expect(content.getInitialStatus()).toBe("pending");
+    expect(content.getDescription()).toBe("");
+    expect(content.getExtra()).toBe("");
+    expect(content.getImage()).toBe("");
+    expect(content.getImageAlt()).toBe("");
     expect(content.id).toBeUndefined();
   });
 
@@ -70,6 +89,10 @@ describe("Content", function () {
       2017,
       ["Misterio"],
       "watched",
+      "Descripción",
+      "Dato adicional",
+      "assets/images/dark.jpeg",
+      "Texto alternativo",
     );
 
     expect(content.toJSON()).toEqual({
@@ -79,10 +102,35 @@ describe("Content", function () {
       year: 2017,
       genres: ["Misterio"],
       initialStatus: "watched",
+      description: "Descripción",
+      extra: "Dato adicional",
+      image: "assets/images/dark.jpeg",
+      imageAlt: "Texto alternativo",
     });
     const restored = Content.fromJSON(content.toJSON());
     expect(restored).toEqual(jasmine.any(Content));
     expect(restored.toJSON()).toEqual(content.toJSON());
+    expect(
+      Content.fromJSON({
+        id: "legacy",
+        title: "Legacy",
+        type: "Película",
+        year: 2000,
+        genres: ["Drama"],
+        initialStatus: "pending",
+      }).toJSON(),
+    ).toEqual({
+      id: "legacy",
+      title: "Legacy",
+      type: "Película",
+      year: 2000,
+      genres: ["Drama"],
+      initialStatus: "pending",
+      description: "",
+      extra: "",
+      image: "",
+      imageAlt: "",
+    });
     expect(() => Content.fromJSON(null)).toThrowError(TypeError);
     expect(() => Content.fromJSON([])).toThrowError(TypeError);
   });
