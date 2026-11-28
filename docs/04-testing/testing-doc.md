@@ -22,6 +22,12 @@
 4. [Test Case 4 — Accesibilidad web](./test-case-4.md)
 5. [Test Case 5 — Estructura HTML semántica y CSS](./test-case-5.md)
 
+### Test Cases del Segundo Parcial (Tester QA/JS — auditorías Lighthouse)
+
+6. [Test Case 11 — Auditoría Lighthouse: baseline inicial](./test-case-11-lighthouse-baseline.md)
+7. [Test Case 12 — Auditoría Lighthouse: post-fetch/API](./test-case-12-lighthouse-post-fetch.md)
+8. [Test Case 13 — Auditoría Lighthouse: post-integración de librería externa](./test-case-13-lighthouse-post-library.md)
+
 ---
 
 # Resumen
@@ -377,3 +383,38 @@ Las capturas de las pruebas se almacenan dentro de:
 
 ```text
 docs/04-testing/capturas/
+```
+
+---
+
+# Segundo Parcial — Tester QA/JS: auditorías Lighthouse (TC11–TC13)
+
+Los tres test cases del Segundo Parcial se ejecutaron con **Chrome DevTools → pestaña Lighthouse** (preset Mobile, categorías Performance, Accessibility, Best Practices y SEO) sobre los tres momentos de desarrollo definidos en la consigna. Umbrales mínimos: **≥95 en las cuatro categorías**.
+
+| Test Case | Momento | Estado auditado | URL | Fecha | Resultado |
+|---|---|---|---|---|---|
+| [TC11 — Baseline inicial](./test-case-11-lighthouse-baseline.md) | Antes de las features del parcial | GitHub Pages (`release/cuarta-entrega`) | `https://keviineze.github.io/proyecto-web-peliculas/` | 2026-11-26 | 72 / 96 / 100 / 100 → 3 de 4 umbrales ✅ |
+| [TC12 — Post-fetch](./test-case-12-lighthouse-post-fetch.md) | Tras mergear PR #124 (fetch) | commit `0f8d075` en servidor local | `http://localhost:8001/` | 2026-11-27 | 72 / 96 / 100 / 100 → 3 de 4 umbrales ✅ |
+| [TC13 — Post-librería](./test-case-13-lighthouse-post-library.md) | Tras mergear PR #125 (Toastify) | rama `feature/tester-qa-js-testing-suite` + `develop` | `http://localhost:8000/` | 2026-11-27 | 70 / 96 / 100 / 100 → 3 de 4 umbrales ✅ |
+
+> Nota de trazabilidad: el baseline se corrió contra GitHub Pages y los estados post-fetch/post-librería contra un servidor local, porque Pages sigue publicando `release/cuarta-entrega`. Máquina, navegador, preset y red se mantuvieron idénticos; queda documentada la diferencia de origen de servicio en cada test case.
+
+## Issues generadas por las auditorías
+
+| Issue | Test case | Descripción | Asignación | Estado |
+|---|---|---|---|---|
+| [#103](https://github.com/keviineze/proyecto-web-peliculas/issues/103) | TC11 | Optimizar tamaño y formato de imágenes para mejorar el LCP | @GonzaloBarbano | Cerrada el 2026-11-27 sin corrección verificable |
+| [#104](https://github.com/keviineze/proyecto-web-peliculas/issues/104) | TC11 / TC12 / TC13 | Corregir layout shifts (CLS 0.71 → 0.713) | @GonzaloBarbano | Cerrada el 2026-11-27, hallazgo persistente |
+| [#105](https://github.com/keviineze/proyecto-web-peliculas/issues/105) | TC11 / TC12 / TC13 | Eliminar render-blocking requests y reducir CSS/JS sin usar | @GonzaloBarbano | Cerrada el 2026-11-27, hallazgo persistente |
+| [#106](https://github.com/keviineze/proyecto-web-peliculas/issues/106) | TC11 / TC12 / TC13 | Corregir contraste insuficiente entre texto y fondo | @GonzaloBarbano | Cerrada el 2026-11-27, hallazgo persistente |
+
+## Evidencias
+
+Las capturas de Lighthouse de los tres momentos se almacenan en `docs/04-testing/screenshots/`:
+
+```text
+docs/04-testing/screenshots/
+├── lighthouse-baseline-{performance,performance-insights,accessibility,best-practices,seo}.png
+├── lighthouse-post-fetch-{performance,performance-insights,accessibility,best-practices,seo}.png
+└── lighthouse-post-library-{performance,performance-insights,accessibility,best-practices,seo}.png
+```

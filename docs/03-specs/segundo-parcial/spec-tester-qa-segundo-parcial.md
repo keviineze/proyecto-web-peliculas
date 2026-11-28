@@ -94,16 +94,16 @@ Cobertura mínima exigida: inicialización, configuración, funcionalidad princi
 
 ### 4. Criterios de Aceptación (Checklist)
 
-- [ ] El spec BEFORE está commiteado antes de escribir cualquier test o correr Lighthouse.
-- [ ] `js/test/api.spec.js` completo: éxito, error HTTP, error de red y procesamiento con map/filter/reduce.
-- [ ] `js/test/library.spec.js` completo: inicialización, configuración, funcionalidad principal y manejo de errores.
-- [ ] Ambos specs cargados en `test-runner.html` y suite en verde (0 failures).
-- [ ] `js/test/script.spec.js` y `js/test/models.spec.js` actualizados si corresponde, manteniendo la cobertura.
-- [ ] `docs/04-testing/test-case-11-lighthouse-baseline.md` documentado con métricas, umbrales e issues.
-- [ ] `docs/04-testing/test-case-12-lighthouse-post-fetch.md` con comparación contra baseline y análisis de impacto.
-- [ ] `docs/04-testing/test-case-13-lighthouse-post-library.md` con comparación evolutiva y recomendaciones finales.
-- [ ] Issues creadas para todos los problemas encontrados y asignadas a los roles correspondientes.
-- [ ] `js/test/testing-doc.md` y `docs/04-testing/testing-doc.md` actualizados (con enlaces a los nuevos test cases).
+- [x] El spec BEFORE está commiteado antes de escribir cualquier test o correr Lighthouse.
+- [x] `js/test/api.spec.js` completo: éxito, error HTTP, error de red y procesamiento con map/filter/reduce.
+- [x] `js/test/library.spec.js` completo: inicialización, configuración, funcionalidad principal y manejo de errores.
+- [x] Ambos specs cargados en `test-runner.html` y suite en verde (0 failures) → **104 specs, 0 failures**.
+- [x] `js/test/script.spec.js` y `js/test/models.spec.js` actualizados si corresponde, manteniendo la cobertura — no requirieron cambios: el Desarrollador ya los había adaptado en las PR #124/#125 y siguen en verde.
+- [x] `docs/04-testing/test-case-11-lighthouse-baseline.md` documentado con métricas, umbrales e issues.
+- [x] `docs/04-testing/test-case-12-lighthouse-post-fetch.md` con comparación contra baseline y análisis de impacto.
+- [x] `docs/04-testing/test-case-13-lighthouse-post-library.md` con comparación evolutiva y recomendaciones finales.
+- [ ] Issues creadas para todos los problemas encontrados y asignadas a los roles correspondientes (4 existentes #103–#106 + 2 nuevas pendientes de creación).
+- [x] `js/test/testing-doc.md` y `docs/04-testing/testing-doc.md` actualizados (con enlaces a los nuevos test cases).
 - [ ] `changelog.md` actualizado con links a la PR y a las issues.
 - [ ] PR `feature/tester-qa-js-testing-suite` → `develop` revisada y aprobada por el Coordinador/DevOps.
 
@@ -111,25 +111,63 @@ Cobertura mínima exigida: inicialización, configuración, funcionalidad princi
 
 ## MOMENTO 2: AL CERRAR la tarea (evidencia)
 
-> ⏳ Pendiente: se completa al finalizar el testing. No se commitea hasta tener las evidencias.
-
 ### 1. Prompt exacto utilizado en Copilot Agent
 ```text
-[Pendiente — prompt exacto, con los archivos adjuntados como contexto]
+Actuás como asistente de testing QA del proyecto Mini Letterboxd (Programación Web I — Segundo Parcial).
+Como contexto adjunto: js/api/apiService.js, js/utils/notifications.js, js/script.js, index.html,
+js/test/test-runner.html, js/test/models.spec.js, js/test/storage.spec.js, js/test/script.spec.js y
+docs/03-specs/segundo-parcial/spec-tester-qa-segundo-parcial.md.
+
+Creá dos suites Jasmine 5.10.0 con el mismo estilo que las existentes (describe/it en español, funciones
+clásicas, módulos ES con import, fixture del runner, sin dependencias nuevas):
+
+1) /js/test/api.spec.js sobre ApiService: casos de éxito de fetchCatalog() (lista plana y payload envuelto en
+   "catalog"), error HTTP (404, 500 y 403 con mensaje exacto), error de red (mensaje amigable y conservación de
+   error.cause), payload inválido (TypeError), procesamiento con map/filter/reduce (processCollection,
+   filterByCategory, calculateStats, deduplicado con reduce) e integración con el DOM (showLoading, hideLoading
+   y showError con botón "Reintentar"). Mockear fetch con spyOn(window, "fetch") usando una respuesta simulada
+   { ok, status, json }.
+
+2) /js/test/library.spec.js sobre showToast() de js/utils/notifications.js (librería externa Toastify-js
+   1.12.0): inicialización (verificar en index.html la carga vía CDN con defer, SRI integrity y
+   crossorigin, más el CSS), configuración (duration 3500, gravity "top", position "right", close,
+   stopOnFocus, escapeMarkup y acento de color por tipo), funcionalidad principal (el wrapper devuelve true y
+   ejecuta el toast), manejo de errores (mensaje vacío o no string, librería ausente, librería que lanza
+   excepción) e interacción con el sistema (toggle-favorite con window.Toastify instalado y sin instalar,
+   manteniendo el feedback inline accesible).
+
+Registrá ambos archivos en js/test/test-runner.html después de storage.spec.js y devolvé los dos archivos
+completos, listos para pegar.
 ```
 
+> **Herramienta:** GitHub Copilot Agent Mode (asistente de IA) con los archivos fuente adjuntos como contexto, según lo planificado en el Momento 1 (sección 3). Salida revisada y ajustada manualmente (sección 4).
+
 ### 2. Resumen de resultados
-- **Tests:** [Pendiente] specs PASS / [Pendiente] specs FAIL (Jasmine 5.10.0).
-- **Lighthouse baseline (TC11):** [Pendiente] — captura en `docs/04-testing/screenshots/`.
-- **Lighthouse post-fetch (TC12):** [Pendiente].
-- **Lighthouse post-librería (TC13):** [Pendiente].
+- **Tests:** **104 specs PASS / 0 specs FAIL** (Jasmine 5.10.0) — 66 specs preexistentes + 38 nuevos (25 en `api.spec.js`, 13 en `library.spec.js`). Captura: `js/test/capturas/captura-runner-104-specs.jpeg`.
+- **Lighthouse baseline (TC11):** Performance **72** ❌ · Accessibility **96** ✅ · Best Practices **100** ✅ · SEO **100** ✅ — [test-case-11](../04-testing/test-case-11-lighthouse-baseline.md), capturas en `docs/04-testing/screenshots/lighthouse-baseline-*.png`.
+- **Lighthouse post-fetch (TC12):** Performance **72** ❌ · Accessibility **96** ✅ · Best Practices **100** ✅ · SEO **100** ✅ — [test-case-12](../04-testing/test-case-12-lighthouse-post-fetch.md), capturas `lighthouse-post-fetch-*.png`.
+- **Lighthouse post-librería (TC13):** Performance **70** ❌ · Accessibility **96** ✅ · Best Practices **100** ✅ · SEO **100** ✅ — [test-case-13](../04-testing/test-case-13-lighthouse-post-library.md), capturas `lighthouse-post-library-*.png`.
 
 ### 3. Issues reportadas
-- **Cantidad:** [Pendiente].
-- **Asignación y estado:** [Pendiente — issue #XX → rol, estado].
+- **Cantidad:** 6 en total — 4 del baseline (TC11) + 2 nuevas de las auditorías post-integración (TC12/TC13).
+- **Asignación y estado:**
+  - [#103](https://github.com/keviineze/proyecto-web-peliculas/issues/103) → @GonzaloBarbano (imágenes/LCP) — cerrada el 2026-11-27 sin corrección verificable.
+  - [#104](https://github.com/keviineze/proyecto-web-peliculas/issues/104) → @GonzaloBarbano (CLS 0.71) — cerrada el 2026-11-27, hallazgo persistente en TC12/TC13 (CLS 0.713).
+  - [#105](https://github.com/keviineze/proyecto-web-peliculas/issues/105) → @GonzaloBarbano (render-blocking + CSS/JS sin usar) — cerrada el 2026-11-27, persistente (890 → 980 → 1.130 ms).
+  - [#106](https://github.com/keviineze/proyecto-web-peliculas/issues/106) → @GonzaloBarbano (contraste) — cerrada el 2026-11-27, persistente (Accessibility 96 en los tres estados).
+  - [#XX] → @Davidsoria99 — JS agregado por fetch (63 KiB por minificar, 97 KiB sin usar, 2 tareas largas) — TC12.
+  - [#XX] → @Davidsoria99 — CSS de Toastify en render-blocking (+150 ms) — TC13.
+- Las cuatro issues del baseline fueron cerradas por @GonzaloBarbano con motivo *"completed"* sin comentarios; se solicita reapertura o justificación ante el Coordinador/DevOps (documentado en TC11, TC12 y TC13).
 
 ### 4. Ajustes manuales sobre tests generados por IA
-- [Pendiente — detallar qué se corrigió a mano sobre el output de Copilot].
+- **Adaptación a la implementación real:** los nombres del ejemplo de la consigna (`ApiService.fetchData()`, `DataProcessor.mapData()`) se sustituyeron por los métodos reales de David (`fetchCatalog()`, `processCollection()`, `filterByCategory()`, `calculateStats()`).
+- **Mensajes de error:** se reemplazó el `expect(...).toContain('HTTP error')` del ejemplo por los mensajes reales en español (`No se pudo cargar el catálogo (404).`, `No se pudo conectar con el servidor del catálogo.`), verificados contra `js/api/apiService.js`.
+- **Mock de fetch:** se implementó con `spyOn(window, "fetch").and.resolveTo(...)` / `.and.rejectWith(...)` sobre una respuesta simulada `{ ok, status, json }` en lugar de instanciar `Response`, para no depender de APIs del navegador.
+- **Bloque de integración con DOM:** se agregó el grupo `integración con el DOM` (estados accesibles `role="status"`/`role="alert"` y botón "Reintentar"), que no figuraba en el ejemplo de la consigna pero sí en el plan del Momento 1.
+- **library.spec.js:** como el runner no carga el CDN, se mockea `window.Toastify` con `jasmine.createSpy` (instalado en `beforeEach`, eliminado en `afterEach`) y se validó la etiqueta del CDN real con `fetch("index.html")` + regex sobre la etiqueta `<script>`.
+- **Selección de selectores:** se usó `[data-action="toggle-favorite"]` en lugar de ids concretos, para no acoplarse al DOM que renderiza `script.spec.js`.
+- **Orden en el runner:** `api.spec.js` y `library.spec.js` se registraron al final para no alterar el estado del DOM que consumen los specs de interfaz.
+- **Verificación:** suite ejecutada en el navegador hasta dejar **104 specs, 0 failures**.
 
 ---
 
@@ -141,5 +179,7 @@ Cobertura mínima exigida: inicialización, configuración, funcionalidad princi
 ## Decisiones de trazabilidad
 1. **Ruta de los nuevos test cases:** la consigna (sección 4.3 y rubro) los nombra como `/docs/03-testing/...`, pero la estructura de carpetas del parcial (sección 5.1) los ubica en `04-testing/` y el repositorio ya posee `docs/04-testing/` con `test-case-1..10`, `testing-doc.md` y `capturas/`. Se decidió ubicarlos en **`docs/04-testing/`** para mantener la estructura existente y los enlaces entre documentos. Queda constancia de la decisión (pendiente de confirmación docente).
 2. **Umbrales de Lighthouse:** se adoptan **≥95** en las cuatro categorías según la sección 4.3 y el rubro, por sobre los valores de ejemplo de la plantilla (≥80 / ≥90 / ≥85 / ≥80).
-3. **Base de la rama:** `develop` aún no tiene el backport de la Actividad Obligatoria N°4, por lo que la rama `feature/tester-qa-js-testing-suite` se creó desde `origin/release/cuarta-entrega`; se integrará `develop` en la rama antes de subir los cambios (proceso indicado en la consigna).
+3. **Base de la rama:** `develop` aún no tenía el backport de la Actividad Obligatoria N°4 al momento de crear la rama, por lo que `feature/tester-qa-js-testing-suite` se creó desde `origin/release/cuarta-entrega`. **Resuelto:** se ejecutó `git merge origin/develop` sobre la rama feature (commit `d7486c0`, sin conflictos), integrando las PR #124 (fetch) y #125 (librería) antes de subir los cambios, según indica la consigna.
 4. **Baseline (TC11):** al no existir todavía `develop` actualizado, se audita el estado actual publicado en GitHub Pages (rama `release/cuarta-entrega`) y se deja constancia en el test case.
+5. **URL de las auditorías post-integración (TC12/TC13):** GitHub Pages sigue publicando `release/cuarta-entrega` (sin las features del parcial), por lo que TC12 y TC13 se corrieron contra un servidor local: `http://localhost:8001/` con el estado exacto del merge de la PR #124 (commit `0f8d075`) y `http://localhost:8000/` con la rama feature ya mergeada con `develop`. Se mantuvieron idénticos máquina, Chrome 158, preset Mobile, versión de Lighthouse y red; solo cambia el origen de servicio. El caveat de *cache lifetimes* en `localhost` está documentado en ambos test cases.
+6. **Asignación de issues:** al no contemplar el Segundo Parcial un rol de Frontend/CSS, las issues de hallazgos de UI/rendimiento se asignan a @GonzaloBarbano (Coordinador/DevOps) o a @Davidsoria99 según el rol responsable del cambio que originó el hallazgo (fetch o librería).

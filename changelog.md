@@ -8,6 +8,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
+- [feature/tester-qa-js-testing-suite] **[A2P] Tester QA/JS - Testing avanzado: `api.spec.js`, `library.spec.js` y auditorías Lighthouse TC11–TC13** | Issue [#102](https://github.com/keviineze/proyecto-web-peliculas/issues/102) | Issues de hallazgos [#103](https://github.com/keviineze/proyecto-web-peliculas/issues/103), [#104](https://github.com/keviineze/proyecto-web-peliculas/issues/104), [#105](https://github.com/keviineze/proyecto-web-peliculas/issues/105), [#106](https://github.com/keviineze/proyecto-web-peliculas/issues/106) + [#XX](https://github.com/keviineze/proyecto-web-peliculas/issues/XX) y [#XX](https://github.com/keviineze/proyecto-web-peliculas/issues/XX) | [PR #XXX](https://github.com/keviineze/proyecto-web-peliculas/pull/XXX) | @keviineze (Tester QA/JS)
+
 - [feature/dev-libreria-externa-toastify] **[A2P] Desarrollador JS Librerías Externas: integración de Toastify-js y documentación** | Issue [#109](https://github.com/keviineze/proyecto-web-peliculas/issues/109) | [PR #125](https://github.com/keviineze/proyecto-web-peliculas/pull/125) | @Davidsoria99 (Desarrollador JS Librerías Externas)
 
 - [feature/dev-async-fetch-api] **[A2P] Desarrollador JS Asíncrono: ApiService, fetch y estados de carga** | Issue [#108](https://github.com/keviineze/proyecto-web-peliculas/issues/108) | [PR #124](https://github.com/keviineze/proyecto-web-peliculas/pull/124) | @Davidsoria99 (Desarrollador JS Asíncrono)
