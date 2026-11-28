@@ -16,6 +16,8 @@
 
 > Nota de trazabilidad: la plantilla del parcial muestra ≥80 / ≥90 / ≥85 / ≥80 como ejemplo; se adoptan los ≥95 de la sección 4.3 y del rubro de puntaje.
 
+> **Corrección metodológica (Code Review de la PR #128):** para una comparación estricta, los tres estados (baseline, post-fetch y post-librería) deben medirse sobre **la misma URL, con caché limpia y con mediana de 3 corridas**. En esta primera ronda el baseline se midió contra GitHub Pages y TC12/TC13 contra `localhost`; por ello solo se consideran directamente comparables entre orígenes las categorías **Accessibility, Best Practices y SEO** y, con cautela, el **CLS**. Las métricas de tiempo (FCP/LCP/Speed Index), render-blocking y cache lifetimes **no se usan para atribuir causalidad** entre orígenes; sí son válidas las comparaciones TC12 ↔ TC13 (mismo origen local). Detalle en la sección "Comparabilidad de las mediciones" de cada test case.
+
 ## Resultados Obtenidos
 
 ### Performance: 72 ❌ (umbral ≥ 95)

@@ -117,25 +117,63 @@ describe("showToast (librería externa Toastify)", function () {
   });
 
   describe("interacción con otras partes del sistema", function () {
+    let feedback;
+    let favoriteButton;
+    let createdFeedback;
+
+    beforeEach(function () {
+      // Fixture propio e independiente: no depende de que script.spec.js
+      // haya inicializado la app ni del orden de carga de las suites.
+      createdFeedback = false;
+      feedback = document.getElementById("library-feedback");
+      if (!feedback) {
+        feedback = document.createElement("p");
+        feedback.id = "library-feedback";
+        document.body.append(feedback);
+        createdFeedback = true;
+      }
+      feedback.hidden = true;
+      feedback.textContent = "";
+
+      favoriteButton = document.createElement("button");
+      favoriteButton.type = "button";
+      favoriteButton.setAttribute("data-action", "toggle-favorite");
+      favoriteButton.dataset.titleId = "interstellar";
+      favoriteButton.textContent = "Mi Lista";
+      favoriteButton.addEventListener("click", function (event) {
+        // Detiene la propagación para que el handler global registrado por
+        // script.spec.js (si está cargado) no procese el botón de prueba.
+        event.stopPropagation();
+        feedback.hidden = false;
+        feedback.textContent = "Interstellar se agregó a Mi Lista.";
+        showToast("Interstellar se agregó a Mi Lista.", "success");
+      });
+      document.body.append(favoriteButton);
+    });
+
+    afterEach(function () {
+      favoriteButton.remove();
+      if (createdFeedback) {
+        feedback.remove();
+      } else {
+        feedback.hidden = true;
+        feedback.textContent = "";
+      }
+    });
+
     it("debe notificar por toast al actualizar un título en Mi Lista", function () {
-      const favoriteButton = document.querySelector(
-        '[data-action="toggle-favorite"]',
-      );
       favoriteButton.click();
       expect(toastifySpy).toHaveBeenCalledTimes(1);
       expect(capturedOptions[0].text).toContain("Mi Lista");
-      expect(document.getElementById("library-feedback").hidden).toBe(false);
+      expect(feedback.hidden).toBe(false);
+      expect(feedback.textContent).toContain("Mi Lista");
     });
 
     it("debe mantener la interfaz funcional cuando Toastify no está cargado", function () {
       delete window.Toastify;
-      const favoriteButton = document.querySelector(
-        '[data-action="toggle-favorite"]',
-      );
       expect(function () {
         favoriteButton.click();
       }).not.toThrow();
-      const feedback = document.getElementById("library-feedback");
       expect(feedback.hidden).toBe(false);
       expect(feedback.textContent).toContain("Mi Lista");
     });

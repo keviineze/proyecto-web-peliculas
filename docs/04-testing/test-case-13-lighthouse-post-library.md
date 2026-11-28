@@ -18,6 +18,25 @@
 ## Umbrales Mínimos Definidos
 - **Performance:** ≥ 95 · **Accessibility:** ≥ 95 · **Best Practices:** ≥ 95 · **SEO:** ≥ 95
 
+## Comparabilidad de las mediciones (corrección tras el Code Review de la PR #128)
+
+Metodología unificada para las tres corridas del parcial:
+
+- **URL única de prueba y mismo entorno** para los tres estados (misma máquina, Chrome 158.0.8127.88, preset Mobile, versión de Lighthouse y red).
+- **Caché limpia** en cada ejecución antes de auditar.
+- **Mediana de 3 ejecuciones** por estado antes de reportar un valor.
+
+**Alcance real de la comparación actual:**
+
+| Hallazgo | ¿Comparables TC11 (Pages) vs TC12/TC13 (localhost)? | Motivo |
+|---|---|---|
+| Accessibility, Best Practices, SEO | ✅ Sí | Dependen del HTML y del contenido, no del origen de servicio |
+| CLS / layout shift culprits | ✅ Sí, con cautela | Atribuible al layout; verificado 0.71 → 0.713 en los tres estados |
+| FCP, LCP, Speed Index, document latency | ❌ No directamente | Distinto origen (HTTPS + CDN vs HTTP local) y distinto estado de caché |
+| Render-blocking, cache lifetimes | ❌ No directamente | `python -m http.server` no envía cabeceras `Cache-Control` |
+
+**Comparación válida sin ambigüedad: TC12 ↔ TC13**, ambos servidos por `localhost` en la misma máquina y condiciones: los **+150 ms de render-blocking** (980 → 1.130 ms), las **+2 tareas largas** (2 → 4) y la caída de **72 → 70** en Performance **sí son atribuibles** a la integración de la librería, al compartir origen y entorno. Las columnas del baseline (TC11) se mantienen como referencia histórica, marcadas como no directamente comparables en tiempo y caché.
+
 ## Resultados Obtenidos
 
 ### Performance: 70 ❌ (umbral ≥ 95)

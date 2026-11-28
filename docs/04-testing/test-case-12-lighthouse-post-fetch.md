@@ -17,6 +17,25 @@
 ## Umbrales Mínimos Definidos
 - **Performance:** ≥ 95 · **Accessibility:** ≥ 95 · **Best Practices:** ≥ 95 · **SEO:** ≥ 95
 
+## Comparabilidad de las mediciones (corrección tras el Code Review de la PR #128)
+
+Metodología unificada para las tres corridas del parcial:
+
+- **URL única de prueba y mismo entorno** para los tres estados (misma máquina, Chrome 158.0.8127.88, preset Mobile, versión de Lighthouse y red).
+- **Caché limpia** en cada ejecución antes de auditar.
+- **Mediana de 3 ejecuciones** por estado antes de reportar un valor.
+
+**Alcance real de la comparación actual:**
+
+| Hallazgo | ¿Comparables TC11 (Pages) vs TC12/TC13 (localhost)? | Motivo |
+|---|---|---|
+| Accessibility, Best Practices, SEO | ✅ Sí | Dependen del HTML y del contenido, no del origen de servicio |
+| CLS / layout shift culprits | ✅ Sí, con cautela | Atribuible al layout; verificado 0.71 → 0.713 en los tres estados |
+| FCP, LCP, Speed Index, document latency | ❌ No directamente | Distinto origen (HTTPS + CDN vs HTTP local) y distinto estado de caché |
+| Render-blocking, cache lifetimes | ❌ No directamente | `python -m http.server` no envía cabeceras `Cache-Control` |
+
+**Comparación válida sin ambigüedad: TC12 ↔ TC13**, ambos servidos por `localhost` en la misma máquina y condiciones: allí el salto de render-blocking de 980 ms a 1.130 ms **sí es atribuible** a la integración de Toastify. Los hallazgos no comparables entre orígenes están marcados con `\*` en las tablas siguientes y no se usan para atribuir causalidad a ninguna de las dos features.
+
 ## Resultados Obtenidos
 
 ### Performance: 72 ❌ (umbral ≥ 95)
