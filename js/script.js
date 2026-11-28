@@ -1,5 +1,4 @@
 import { Catalog } from "./models/Catalog.js";
-import { Content } from "./models/Content.js";
 import { Library } from "./models/Library.js";
 import { LibraryStorage } from "./utils/libraryStorage.js";
 import { ListExport } from "./utils/listExport.js";
@@ -8,78 +7,26 @@ import { ApiService } from "./api/apiService.js";
 const FEEDBACK_TIMEOUT_MS = 4000;
 const feedbackTimeouts = new WeakMap();
 
-const CONTENT_PRESENTATION = {
-  interstellar: {
-    image: "assets/images/interestellar-2.jpeg",
-    imageAlt: "Paisaje montañoso de la película Interstellar",
-    description:
-      "Un grupo de exploradores busca un nuevo hogar para la humanidad más allá de las estrellas.",
-    extra: "Duración: 169 minutos",
-  },
-  "el-viaje-de-chihiro": {
-    image: "assets/images/chihiro.jpeg",
-    imageAlt:
-      "Chihiro frente a los edificios iluminados del mundo de los espíritus",
-    description:
-      "Chihiro entra en un mundo de espíritus y debe encontrar el valor para recuperar a sus padres.",
-    extra: "Duración: 125 minutos",
-  },
-  dark: {
-    image: "assets/images/dark.jpeg",
-    imageAlt:
-      "Paisaje de una ciudad nocturna para representar una serie de misterio",
-    description:
-      "Cuatro familias buscan respuestas cuando la desaparición de un niño revela un misterio temporal.",
-    extra: "Temporadas: 3",
-  },
-};
-
 let catalog;
 let library;
 let currentListFilter = "all";
 const apiService = new ApiService();
+let appInitialized = false;
+let activeCatalogLoader = loadCatalogFromApi;
 
-function initializeApp() {
+export function initializeApp({ loadCatalog = loadCatalogFromApi } = {}) {
+  if (appInitialized) {
+    return;
+  }
+  appInitialized = true;
+  activeCatalogLoader = loadCatalog;
+
   const main = document.querySelector("main");
   main?.classList.add("is-loading");
   main?.setAttribute("aria-busy", "true");
 
   configureEvents();
-  if (document.getElementById("test-app-fixture")) {
-    catalog = new Catalog([
-      new Content(
-        "interstellar",
-        "Interstellar",
-        "Película",
-        2014,
-        ["Ciencia ficción"],
-        "pending",
-      ),
-      new Content(
-        "el-viaje-de-chihiro",
-        "El viaje de Chihiro",
-        "Película",
-        2001,
-        ["Animación y fantasía"],
-        "watched",
-      ),
-      new Content(
-        "dark",
-        "Dark",
-        "Serie",
-        2017,
-        ["Misterio y ciencia ficción"],
-        "pending",
-      ),
-    ]);
-    library = loadLibrary();
-    renderCatalogInterface();
-    main?.classList.remove("is-loading");
-    main?.setAttribute("aria-busy", "false");
-    return;
-  }
-
-  loadCatalogFromApi();
+  loadCatalogAndRender(loadCatalog);
 }
 
 function renderCatalogInterface() {
@@ -98,7 +45,11 @@ function renderCatalogInterface() {
   );
 }
 
-async function loadCatalogFromApi() {
+function loadCatalogFromApi() {
+  return apiService.fetchCatalog();
+}
+
+async function loadCatalogAndRender(loadCatalog) {
   const main = document.querySelector("main");
   const status = document.getElementById("catalog-status");
   main?.classList.add("is-loading");
@@ -107,17 +58,7 @@ async function loadCatalogFromApi() {
   apiService.showLoading(status);
 
   try {
-    const data = await apiService.fetchCatalog();
-    data.forEach((item) => {
-      if (item.image && item.imageAlt && item.description && item.extra) {
-        CONTENT_PRESENTATION[item.id] = {
-          image: item.image,
-          imageAlt: item.imageAlt,
-          description: item.description,
-          extra: item.extra,
-        };
-      }
-    });
+    const data = await loadCatalog();
     catalog = Catalog.fromJSON(data);
     library = loadLibrary();
     if (status) {
@@ -129,15 +70,15 @@ async function loadCatalogFromApi() {
       status.textContent = `Catálogo cargado correctamente (${data.length} títulos).`;
     }
     renderCatalogInterface();
-  } catch (error) {
+  } catch {
     catalog = new Catalog([]);
     library = new Library([]);
     renderCatalogInterface();
-    const message =
-      error instanceof Error
-        ? `No pudimos cargar el catálogo: ${error.message}`
-        : "No pudimos cargar el catálogo.";
-    apiService.showError(status, message, loadCatalogFromApi);
+    apiService.showError(
+      status,
+      "No pudimos cargar el catálogo. Revisá tu conexión e intentá nuevamente.",
+      () => loadCatalogAndRender(loadCatalog),
+    );
   } finally {
     main?.classList.remove("is-loading");
     main?.setAttribute("aria-busy", "false");
@@ -188,7 +129,7 @@ function handleClick(event) {
       startSharing();
       break;
     case "retry-catalog":
-      loadCatalogFromApi();
+      loadCatalogAndRender(activeCatalogLoader);
       break;
     default:
       break;
@@ -444,11 +385,10 @@ function renderFeaturedCarousel(contents) {
         "div",
         `carousel-item${index === 0 ? " active" : ""}`,
       );
-      const presentation = CONTENT_PRESENTATION[content.getId()] ?? {};
       const slide = createElement("div", "featured-slide");
       const image = createElement("img", "featured-slide-image");
-      image.src = presentation.image ?? "";
-      image.alt = presentation.imageAlt ?? content.getTitle();
+      image.src = content.getImage();
+      image.alt = content.getImageAlt() || content.getTitle();
       image.loading = "lazy";
       image.decoding = "async";
 
@@ -461,7 +401,7 @@ function renderFeaturedCarousel(contents) {
           "",
           `${content.getType()} | ${content.getYear()} | ${content.getGenres().join(", ")}`,
         ),
-        createElement("p", "", presentation.description ?? ""),
+        createElement("p", "", content.getDescription()),
       );
       slide.append(image, caption);
       item.append(slide);
@@ -471,12 +411,11 @@ function renderFeaturedCarousel(contents) {
 }
 
 function createCatalogCard(content) {
-  const presentation = CONTENT_PRESENTATION[content.getId()] ?? {};
   const column = createElement("div", "col");
   const article = createElement("article", "h-100 catalog-card");
   const image = createElement("img");
-  image.src = presentation.image ?? "";
-  image.alt = presentation.imageAlt ?? content.getTitle();
+  image.src = content.getImage();
+  image.alt = content.getImageAlt() || content.getTitle();
   image.loading = "lazy";
   image.decoding = "async";
 
@@ -486,12 +425,12 @@ function createCatalogCard(content) {
     "",
     `${content.getType()} | ${content.getYear()} | ${content.getGenres().join(", ")}`,
   );
-  const description = createElement("p", "", presentation.description ?? "");
+  const description = createElement("p", "", content.getDescription());
   const metadata = createElement("div", "card-meta");
   const actions = createElement("div", "card-actions");
 
-  if (presentation.extra) {
-    metadata.append(createElement("p", "", presentation.extra));
+  if (content.getExtra()) {
+    metadata.append(createElement("p", "", content.getExtra()));
   }
   article.append(image, title, details, description, metadata, actions);
   actions.append(createFavoriteButton(content.getId()));

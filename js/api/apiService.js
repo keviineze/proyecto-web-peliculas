@@ -9,26 +9,30 @@ export class ApiService {
    * @throws {Error} When the response is not successful or the payload is invalid.
    */
   static async fetchCatalog(endpoint = "api/data.json") {
+    let response;
     try {
-      const response = await fetch(endpoint, {
+      response = await fetch(endpoint, {
         headers: { Accept: "application/json" },
       });
-      if (!response.ok) {
-        throw new Error(`No se pudo cargar el catálogo (${response.status}).`);
-      }
-
-      const payload = await response.json();
-      const rawItems = Array.isArray(payload) ? payload : payload?.catalog;
-      if (!Array.isArray(rawItems)) {
-        throw new TypeError("El catálogo recibido no tiene un formato válido.");
-      }
-
-      return ApiService.processCollection(rawItems);
     } catch (error) {
-      throw error instanceof Error
-        ? error
-        : new Error("Ocurrió un error inesperado al cargar el catálogo.");
+      const networkError = new Error(
+        "No se pudo conectar con el servidor del catálogo.",
+      );
+      networkError.cause = error;
+      throw networkError;
     }
+
+    if (!response.ok) {
+      throw new Error(`No se pudo cargar el catálogo (${response.status}).`);
+    }
+
+    const payload = await response.json();
+    const rawItems = Array.isArray(payload) ? payload : payload?.catalog;
+    if (!Array.isArray(rawItems)) {
+      throw new TypeError("El catálogo recibido no tiene un formato válido.");
+    }
+
+    return ApiService.processCollection(rawItems);
   }
 
   /**

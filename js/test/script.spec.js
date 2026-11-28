@@ -1,4 +1,4 @@
-import "../script.js";
+import { initializeApp } from "../script.js";
 import { StorageAPI } from "../utils/storage.js";
 import { ListExport } from "../utils/listExport.js";
 import { Content } from "../models/Content.js";
@@ -6,6 +6,52 @@ import { Content } from "../models/Content.js";
 const LIBRARY_STORAGE_KEY = "mlb:biblioteca:listaPersonal";
 
 StorageAPI.eliminar(LIBRARY_STORAGE_KEY);
+
+initializeApp({
+  loadCatalog: async () => [
+    {
+      id: "interstellar",
+      title: "Interstellar",
+      type: "Película",
+      year: 2014,
+      genres: ["Ciencia ficción"],
+      initialStatus: "pending",
+      description:
+        "Un grupo de exploradores busca un nuevo hogar para la humanidad más allá de las estrellas.",
+      extra: "Duración: 169 minutos",
+      image: "assets/images/interestellar-2.jpeg",
+      imageAlt: "Paisaje montañoso de la película Interstellar",
+    },
+    {
+      id: "el-viaje-de-chihiro",
+      title: "El viaje de Chihiro",
+      type: "Película",
+      year: 2001,
+      genres: ["Animación y fantasía"],
+      initialStatus: "watched",
+      description:
+        "Chihiro entra en un mundo de espíritus y debe encontrar el valor para recuperar a sus padres.",
+      extra: "Duración: 125 minutos",
+      image: "assets/images/chihiro.jpeg",
+      imageAlt:
+        "Chihiro frente a los edificios iluminados del mundo de los espíritus",
+    },
+    {
+      id: "dark",
+      title: "Dark",
+      type: "Serie",
+      year: 2017,
+      genres: ["Misterio y ciencia ficción"],
+      initialStatus: "pending",
+      description:
+        "Cuatro familias buscan respuestas cuando la desaparición de un niño revela un misterio temporal.",
+      extra: "Temporadas: 3",
+      image: "assets/images/dark.jpeg",
+      imageAlt:
+        "Paisaje de una ciudad nocturna para representar una serie de misterio",
+    },
+  ],
+});
 
 function dispatch(element, type) {
   element.dispatchEvent(new Event(type, { bubbles: true }));
