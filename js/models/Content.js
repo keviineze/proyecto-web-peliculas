@@ -8,6 +8,10 @@ export class Content {
   #year;
   #genres;
   #initialStatus;
+  #description;
+  #extra;
+  #image;
+  #imageAlt;
 
   /**
    * @param {string} id Stable content identifier.
@@ -16,8 +20,23 @@ export class Content {
    * @param {number} year Release year.
    * @param {string[]} genres One or more associated genres.
    * @param {"pending" | "watched"} initialStatus Default personal status.
+   * @param {string} [description=""] Content description.
+   * @param {string} [extra=""] Additional content information.
+   * @param {string} [image=""] Content image URL.
+   * @param {string} [imageAlt=""] Accessible image description.
    */
-  constructor(id, title, type, year, genres, initialStatus) {
+  constructor(
+    id,
+    title,
+    type,
+    year,
+    genres,
+    initialStatus,
+    description = "",
+    extra = "",
+    image = "",
+    imageAlt = "",
+  ) {
     if (typeof id !== "string" || !id.trim()) {
       throw new TypeError("Content id must be a non-empty string.");
     }
@@ -49,6 +68,10 @@ export class Content {
     this.#year = year;
     this.#genres = [...genres];
     this.#initialStatus = initialStatus;
+    this.#description = description;
+    this.#extra = extra;
+    this.#image = image;
+    this.#imageAlt = imageAlt;
   }
 
   /** @returns {string} */
@@ -81,8 +104,28 @@ export class Content {
     return this.#initialStatus;
   }
 
+  /** @returns {string} */
+  getDescription() {
+    return this.#description;
+  }
+
+  /** @returns {string} */
+  getExtra() {
+    return this.#extra;
+  }
+
+  /** @returns {string} */
+  getImage() {
+    return this.#image;
+  }
+
+  /** @returns {string} */
+  getImageAlt() {
+    return this.#imageAlt;
+  }
+
   /**
-   * @returns {{id: string, title: string, type: string, year: number, genres: string[], initialStatus: string}}
+   * @returns {{id: string, title: string, type: string, year: number, genres: string[], initialStatus: string, description: string, extra: string, image: string, imageAlt: string}}
    */
   toJSON() {
     return {
@@ -92,6 +135,10 @@ export class Content {
       year: this.#year,
       genres: this.getGenres(),
       initialStatus: this.#initialStatus,
+      description: this.#description,
+      extra: this.#extra,
+      image: this.#image,
+      imageAlt: this.#imageAlt,
     };
   }
 
@@ -112,6 +159,10 @@ export class Content {
       data.year,
       data.genres,
       data.initialStatus,
+      data.description,
+      data.extra,
+      data.image,
+      data.imageAlt,
     );
   }
 }
