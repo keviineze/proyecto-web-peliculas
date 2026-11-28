@@ -7,7 +7,7 @@
 - **Rol:** Coordinador / DevOps
 - **Rama de trabajo:** `feature/coord-devops-segundo-parcial`
 - **Rama destino:** `develop`
-- **Issue:** pendiente de crear y vincular antes de comenzar la implementación
+- **Issue:** [#123](https://github.com/keviineze/proyecto-web-peliculas/issues/123)
 - **Plazo de correcciones:** hasta el 30 de noviembre a las 22:00 hs, según la consigna
 
 ## Momento 1 — BEFORE: planificación
@@ -124,11 +124,56 @@ En cada code review asistido se guardarán en este spec el prompt exacto, los ar
 
 Completar al abrir las Issues, sin asumir asignaciones que el equipo o la cátedra todavía no hayan confirmado:
 
-| Rol                                | Responsable                                                        | Issue     | Rama/PR                                |
-| ---------------------------------- | ------------------------------------------------------------------ | --------- | -------------------------------------- |
-| Coordinador / DevOps               | Gonzalo Barbano                                                    | Pendiente | `feature/coord-devops-segundo-parcial` |
-| Desarrollo de asincronía/fetch     | Pendiente de confirmar                                             | Pendiente | Pendiente                              |
-| Integración de librería JavaScript | Pendiente de confirmar                                             | Pendiente | Pendiente                              |
-| Tester QA                          | Pendiente de confirmar o asignación del Coordinador en equipo de 3 | Pendiente | Pendiente                              |
+| Rol                                | Responsable                                                        | Issue                                                                  | Rama/PR                                |
+| ---------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| Coordinador / DevOps               | Gonzalo Barbano                                                    | [#123](https://github.com/keviineze/proyecto-web-peliculas/issues/123) | `feature/coord-devops-segundo-parcial` |
+| Desarrollo de asincronía/fetch     | Pendiente de confirmar                                             | Pendiente                                                              | Pendiente                              |
+| Integración de librería JavaScript | Pendiente de confirmar                                             | Pendiente                                                              | Pendiente                              |
+| Tester QA                          | Pendiente de confirmar o asignación del Coordinador en equipo de 3 | Pendiente                                                              | Pendiente                              |
 
-> El Momento 2 — prompts exactos, resúmenes de reviews, Request Changes del docente, asignaciones/reasignaciones y obstáculos — se completará al cierre con evidencia real. No completar esa sección con resultados planificados.
+## Momento 2 — AT CLOSE: evidencia de code review y cierre
+
+### 1. Prompt exacto utilizado en Copilot Agent Mode
+
+```text
+Actúa como Senior Software Engineer y Tech Lead realizando un code review profesional de la PR #122.
+
+CONTEXTO Y ACCIÓN:
+Analiza el diff completo de la Pull Request #122 (rama feature/coord-devops-segundo-parcial contra develop), correspondiente al rol Coordinador / DevOps del Segundo Parcial, junto con Issue #123 y los archivos adjuntos changelog.md y docs/03-specs/segundo-parcial/spec-coord-devops-segundo-parcial.md.
+
+Verifica especialmente:
+1. Que el título exacto de la PR aparezca en el changelog y permita correlacionar inequívocamente la PR.
+2. Que la entrada nueva esté inmediatamente bajo ## [Unreleased] y no dentro de una release publicada.
+3. Que la descripción de la PR tenga dos archivos reales modificados y no conserve texto residual de título sugerido.
+4. Que Issue #123 esté enlazada y deje de aparecer como pendiente en el spec y en la descripción.
+5. Que los metadatos de la PR incluyan assignee, labels y reviewer solicitado.
+6. Que no haya contradicciones, errores de trazabilidad ni conflictos contra develop.
+
+INSTRUCCIONES:
+No inventes hallazgos hipotéticos. Para cada hallazgo real indica tipo, severidad, archivo, explicación técnica, sugerencia concreta y decisión humana pendiente.
+Publica el resumen como Code Review — PR #122 y marca CHANGES_REQUESTED si existen hallazgos accionables.
+
+Archivos adjuntos como contexto:
+- changelog.md
+- docs/03-specs/segundo-parcial/spec-coord-devops-segundo-parcial.md
+- Diff de PR #122
+- Issue #123
+- Consigna del Segundo Parcial
+```
+
+### 2. Archivos adjuntos y alcance
+
+- `changelog.md`: título exacto de la PR, ubicación `[Unreleased]`, rama, Issue, PR y autor.
+- `docs/03-specs/segundo-parcial/spec-coord-devops-segundo-parcial.md`: dato de Issue, responsables y registro de revisiones.
+- Diff de la PR #122: verificación de los dos archivos modificados reales.
+- Issue #123: existencia, estado abierto y asignación a Gonzalo Barbano.
+- Metadata de la PR: assignee, labels, requested reviewers y estado de merge.
+
+### 3. Resumen del code review
+
+Se revisó trazabilidad de changelog, ubicación de la entrada, consistencia de la descripción, vinculación efectiva de la Issue y configuración formal de revisión. El 27 de noviembre de 2026 se emitió `CHANGES_REQUESTED` por cinco hallazgos accionables:
+
+| Hallazgo | Validación realizada                                                    | Severidad | Línea o archivo del diff              | Resultado                                     |
+| -------- | ----------------------------------------------------------------------- | --------- | ------------------------------------- | --------------------------------------------- |
+| #1       | El changelog no contenía el título exacto de la PR.                     | Crítica   | `changelog.md`, bloque `[Unreleased]` | Corregido: título exacto agregado.            |
+| #2       | La entrada estaba visualmente bajo la release y no bajo `[Unreleased]`. | Crítica   | `changelog.md`, encabezados iniciales | Corregido: entrada movida bajo `[Unreleased]` |

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "interstellar",
+    "title": "Interstellar",
+    "type": "Película",
+    "year": 2014,
+    "genres": ["Ciencia ficción"],
+    "initialStatus": "pending",
+    "description": "Un grupo de exploradores busca un nuevo hogar para la humanidad más allá de las estrellas.",
+    "extra": "Duración: 169 minutos",
+    "image": "assets/images/interestellar-2.jpeg",
+    "imageAlt": "Paisaje montañoso de la película Interstellar"
+  },
+  {
+    "id": "el-viaje-de-chihiro",
+    "title": "El viaje de Chihiro",
+    "type": "Película",
+    "year": 2001,
+    "genres": ["Animación y fantasía"],
+    "initialStatus": "watched",
+    "description": "Chihiro entra en un mundo de espíritus y debe encontrar el valor para recuperar a sus padres.",
+    "extra": "Duración: 125 minutos",
+    "image": "assets/images/chihiro.jpeg",
+    "imageAlt": "Chihiro frente a los edificios iluminados del mundo de los espíritus"
+  },
+  {
+    "id": "dark",
+    "title": "Dark",
+    "type": "Serie",
+    "year": 2017,
+    "genres": ["Misterio", "Ciencia ficción"],
+    "initialStatus": "pending",
+    "description": "Cuatro familias buscan respuestas cuando la desaparición de un niño revela un misterio temporal.",
+    "extra": "Temporadas: 3",
+    "image": "assets/images/dark.jpeg",
+    "imageAlt": "Paisaje de una ciudad nocturna para representar una serie de misterio"
+  },
+  {
+    "id": "la-la-land",
+    "title": "La La Land",
+    "type": "Película",
+    "year": 2016,
+    "genres": ["Drama", "Música"],
+    "initialStatus": "pending",
+    "description": "Una actriz y un músico persiguen sus sueños mientras se enamoran en Los Ángeles.",
+    "extra": "Duración: 128 minutos",
+    "image": "assets/images/la-la-land.webp",
+    "imageAlt": "Ilustración de una noche estrellada para La La Land"
+  },
+  {
+    "id": "arrival",
+    "title": "La llegada",
+    "type": "Película",
+    "year": 2016,
+    "genres": ["Ciencia ficción", "Drama"],
+    "initialStatus": "watched",
+    "description": "Una lingüista intenta comunicarse con visitantes extraterrestres y comprender el propósito de su llegada.",
+    "extra": "Duración: 116 minutos",
+    "image": "assets/images/la-llegada.webp",
+    "imageAlt": "Ilustración de una nave entre nubes para La llegada"
+  },
+  {
+    "id": "stranger-things",
+    "title": "Stranger Things",
+    "type": "Serie",
+    "year": 2016,
+    "genres": ["Misterio", "Ciencia ficción"],
+    "initialStatus": "pending",
+    "description": "Un grupo de amigos de Hawkins se enfrenta a fuerzas sobrenaturales y secretos de otra dimensión.",
+    "extra": "Temporadas: 5",
+    "image": "assets/images/stranger-things.webp",
+    "imageAlt": "Ilustración retro de luces y estrellas para Stranger Things"
+  }
+]
