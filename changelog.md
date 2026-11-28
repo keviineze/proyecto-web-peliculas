@@ -6,7 +6,11 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
+## [Release Segundo Parcial] - 2026-11-27
+
 ### Added
+
+- [feature/coord-devops-segundo-parcial] **Segundo Parcial - Coordinador / DevOps (planificación inicial y gestión de correcciones)** | Issue [#123](https://github.com/keviineze/proyecto-web-peliculas/issues/123) | [PR #122](https://github.com/keviineze/proyecto-web-peliculas/pull/122) | @GonzaloBarbano (Coordinador / DevOps)
 
 - [feature/tester-qa-js-testing-suite] **[A2P] Tester QA/JS - Testing avanzado: `api.spec.js`, `library.spec.js` y auditorías Lighthouse TC11–TC13** | Issue [#102](https://github.com/keviineze/proyecto-web-peliculas/issues/102) | Issues de hallazgos [#103](https://github.com/keviineze/proyecto-web-peliculas/issues/103), [#104](https://github.com/keviineze/proyecto-web-peliculas/issues/104), [#105](https://github.com/keviineze/proyecto-web-peliculas/issues/105), [#106](https://github.com/keviineze/proyecto-web-peliculas/issues/106) + [#126](https://github.com/keviineze/proyecto-web-peliculas/issues/126) y [#127](https://github.com/keviineze/proyecto-web-peliculas/issues/127) | [PR #128](https://github.com/keviineze/proyecto-web-peliculas/pull/128) | @keviineze (Tester QA/JS)
 
