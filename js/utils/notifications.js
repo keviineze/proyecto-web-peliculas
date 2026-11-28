@@ -36,26 +36,30 @@ export function showToast(message, type = "info") {
     : "info";
   const { accent } = TOAST_STYLES[toastType];
 
-  window
-    .Toastify({
-      text: message.trim(),
-      duration: 3500,
-      gravity: "top",
-      position: "right",
-      close: true,
-      stopOnFocus: true,
-      escapeMarkup: true,
-      style: {
-        background: "linear-gradient(135deg, #1d232a 0%, #14181c 100%)",
-        border: `1px solid ${accent}`,
-        borderLeft: `4px solid ${accent}`,
-        borderRadius: "8px",
-        boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35)",
-        color: "#ffffff",
-        fontFamily: '"Inter", "Roboto", Arial, sans-serif',
-      },
-    })
-    .showToast();
+  try {
+    window
+      .Toastify({
+        text: message.trim(),
+        duration: 3500,
+        gravity: "top",
+        position: "right",
+        close: true,
+        stopOnFocus: true,
+        escapeMarkup: true,
+        style: {
+          background: "linear-gradient(135deg, #1d232a 0%, #14181c 100%)",
+          border: `1px solid ${accent}`,
+          borderLeft: `4px solid ${accent}`,
+          borderRadius: "8px",
+          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35)",
+          color: "#ffffff",
+          fontFamily: '"Inter", "Roboto", Arial, sans-serif',
+        },
+      })
+      .showToast();
 
-  return true;
+    return true;
+  } catch {
+    return false;
+  }
 }
