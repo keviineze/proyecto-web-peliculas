@@ -104,7 +104,7 @@ Cobertura mínima exigida: inicialización, configuración, funcionalidad princi
 - [x] `docs/04-testing/test-case-13-lighthouse-post-library.md` con comparación evolutiva y recomendaciones finales.
 - [x] Issues creadas para todos los problemas encontrados y asignadas a los roles correspondientes (4 del baseline #103–#106 + 2 nuevas del TC12/TC13: #126 y #127, ambas asignadas a @Davidsoria99).
 - [x] `js/test/testing-doc.md` y `docs/04-testing/testing-doc.md` actualizados (con enlaces a los nuevos test cases).
-- [ ] `changelog.md` actualizado con links a la PR y a las issues.
+- [x] `changelog.md` actualizado con links a la PR y a las issues (PR [#128](https://github.com/keviineze/proyecto-web-peliculas/pull/128), issues #102, #103–#106, #126 y #127).
 - [ ] PR `feature/tester-qa-js-testing-suite` → `develop` revisada y aprobada por el Coordinador/DevOps.
 
 ---
