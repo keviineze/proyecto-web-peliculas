@@ -68,10 +68,12 @@
 | SEO | ≥ 95 | 100 | ✅ |
 
 ## Issues Generadas
-- [#XX] Optimizar tamaño y formato de imágenes para mejorar el LCP → @GonzaloBarbano (Coordinador/DevOps)
-- [#XX] Corregir layout shifts (CLS 0.71) detectados en el baseline → @GonzaloBarbano (Coordinador/DevOps)
-- [#XX] Eliminar render-blocking requests y reducir CSS/JS sin usar → @GonzaloBarbano (Coordinador/DevOps)
-- [#XX] Corregir contraste insuficiente entre texto y fondo → @GonzaloBarbano (Coordinador/DevOps)
+- [#103] Optimizar tamaño y formato de imágenes para mejorar el LCP → @GonzaloBarbano (Coordinador/DevOps)
+- [#104] Corregir layout shifts (CLS 0.71) detectados en el baseline → @GonzaloBarbano (Coordinador/DevOps)
+- [#105] Eliminar render-blocking requests y reducir CSS/JS sin usar → @GonzaloBarbano (Coordinador/DevOps)
+- [#106] Corregir contraste insuficiente entre texto y fondo → @GonzaloBarbano (Coordinador/DevOps)
+
+> **Estado de resolución (2026-11-27):** las cuatro issues fueron cerradas por @GonzaloBarbano con motivo *"completed"*, sin comentarios ni correcciones verificables: en el TC12 y el TC13 los hallazgos siguen presentes (CLS 0.713, render-blocking 980/1.130 ms, contraste insuficiente). Se solicita reapertura o justificación de cierre ante el Coordinador/DevOps.
 
 > Todas las issues del baseline se asignan al Coordinador/DevOps porque el Segundo Parcial no contempla un rol de Frontend/CSS; queda documentada la decisión de asignación y se coordinará la priorización con el Tester QA/JS (sección de Coordinación de la consigna).
 
